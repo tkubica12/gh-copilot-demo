@@ -1,0 +1,13 @@
+@baseUrl = http://localhost:8000
+
+### Create a new book
+# @name createNew
+POST {{baseUrl}}/api/process
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="example.jpg"
+Content-Type: image/jpeg
+
+< ./example.jpg
+--boundary--

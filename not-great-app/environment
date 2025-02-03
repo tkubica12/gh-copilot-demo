@@ -1,0 +1,2 @@
+BLOB_STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=stdefdyem;AccountKey=yRtbjaWhIPz0P1Y41Pb5l2Lnnfocg8mAfmdaIrJCYt3LKgEWOorSpvLo5nUNrkG4ZnNFQp0tP1CH+AStJcl+HQ==;EndpointSuffix=core.windows.net"
+BLOB_STORAGE_KEY = "yRtbjaWhIPz0P1Y41Pb5l2Lnnfocg8mAfmdaIrJCYt3LKgEWOorSpvLo5nUNrkG4ZnNFQp0tP1CH+AStJcl+HQ=="

@@ -1,0 +1,4 @@
+example.jpg
+.env
+venv/
+__pycache__/
