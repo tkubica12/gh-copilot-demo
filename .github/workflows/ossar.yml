@@ -16,6 +16,7 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '20 19 * * 6'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -46,7 +47,7 @@ jobs:
 
       # Run open source static analysis tools
     - name: Run OSSAR
-      uses: github/ossar-action@v1
+      uses: github/ossar-action@v2
       id: ossar
 
       # Upload results to the Security tab
