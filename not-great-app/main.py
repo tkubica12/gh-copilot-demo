@@ -77,6 +77,10 @@ def path_traversal():
         content = file.read()
     return content
 
+def myfunction():
+    num = 1
+    return `num`
+
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
