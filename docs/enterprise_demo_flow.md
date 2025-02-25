@@ -3,14 +3,15 @@
 >> SLIDE: GitHub Copilot Enterprise overview
 
 ## GitHub Copilot
-- Next-suggestion TAB experience in code editor (Terraform example), mention new gpt-4o-copilot finetuned model
-- Discuss future of SLMs for autocomplete and fine-tuning preview
+- Next-suggestion TAB experience in code editor (get_env_var in Python APIs), mention new gpt-4o-copilot finetuned model
+- Discuss future of SLMs for autocomplete and fine-tuning preview in Enterprise
 
 ## Copilot Chat Enterprise
-- Chat - model selection, o3-mini Elo on Codeforces (2032) vs. future with GPT-5 (Elo 2727), Google and Anthropic models
-- Chat - Attach screenshot (insiders)
+- Chat - model selection, o3-mini Elo on Codeforces (2032) vs. future with GPT-5 (Elo 2727), Google and Anthropic (especially 3.7 thinking) models
+- Chat - Attach screenshot (insiders) - company homepage: Explain what is this web page about and provide assessment of its UX
 - Chat - Knowledgebase on web copilot (Enteprise)
 I am creating new project to implement SDK for our public APIs and publish it for general public. What license should I pick, Apache, GPL or MIT?
+What does worker in this repository do?
 
 - Chat - Azure extension
 @azure /resources Do I have any Azure Container Apps deployed?
@@ -34,12 +35,12 @@ Nice, now also add contrast and colorful mode
 >> SLIDE: Benefits and pricing for Codespaces
 
 ## Development cycle and DevSecOps
-- Commit, PR with generate message and summary
+- Do change in api-processing, Commit, PR with generate message and summary
 - Ask Copilot Agent to become reviewer + use Code Review in VS Code
 
 - DevSecOps - see dependabot
 - DevSecOps - see issues from CodeQL, OSS, Sonar and apply Copilot AutoFix
-- Approve and deploy to ACA -> CI stage (build container, VNET integrated managed agents), CD stage (ACA deploy)
+- Approve and deploy to ACA -> CI stage (build container), CD stage (ACA deploy) - to mention: Azure VNET integrated managed agents, workload identity federation
 - Check failed actions and click "Explain error" via Copilot
 
 >> SLIDE: Benefits of full GitHub Enterprise suite with all addons
