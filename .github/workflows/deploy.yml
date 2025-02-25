@@ -65,6 +65,16 @@ jobs:
           name: tfplan
           path: ./terraform
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: |
+          terraform init
+
       - name: Terraform apply
         working-directory: ./terraform
         run: |
