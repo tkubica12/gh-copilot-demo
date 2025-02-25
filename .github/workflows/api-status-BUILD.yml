@@ -40,6 +40,7 @@ jobs:
         echo "API_STATUS_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-status:${{ github.sha }}\"" > ./terraform/staging/api-status.tfvars
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+        git pull --rebase || true
         git add ./terraform/staging/api-status.tfvars
         git commit -m "Update api-status image with latest SHA"
         git push

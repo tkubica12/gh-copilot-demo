@@ -40,6 +40,7 @@ jobs:
         echo "PERFTEST_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-perftest:${{ github.sha }}\"" > ./terraform/staging/perftest.tfvars
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+        git pull --rebase || true
         git add ./terraform/staging/perftest.tfvars
         git commit -m "Update perftest image with latest SHA"
         git push
