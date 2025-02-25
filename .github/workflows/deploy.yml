@@ -40,9 +40,10 @@ jobs:
 
       - name: Terraform Plan
         working-directory: ./terraform
-        run: terraform plan \
-            -var-file=./terraform/staging/general.tfvars \
-            -var-file=./terraform/staging/worker.tfvars
+        run: |
+          terraform plan \
+            -var-file=./staging/general.tfvars \
+            -var-file=./staging/worker.tfvars
 
       - name: Upload Terraform Plan Artifact
         uses: actions/upload-artifact@v4
@@ -66,10 +67,11 @@ jobs:
 
       - name: Terraform apply
         working-directory: ./terraform
-        run: terraform apply \
-            -var-file=./terraform/staging/general.tfvars \
-            -var-file=./terraform/staging/worker.tfvars \
-            ./terraform/tfplan
+        run: |
+          terraform apply \
+            -var-file=./staging/general.tfvars \
+            -var-file=./staging/worker.tfvars \
+            ./tfplan
 
     #   - name: Get Terraform outputs
     #     working-directory: ./terraform
