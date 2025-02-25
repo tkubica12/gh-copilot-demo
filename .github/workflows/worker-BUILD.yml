@@ -1,11 +1,10 @@
 name: BUILD worker
 
 on:
-  push:
-    paths:
-      - 'worker/**'
   workflow_dispatch:
   pull_request:
+    branches: 
+      - main
     paths:
       - 'worker/**'
 
@@ -37,7 +36,7 @@ jobs:
 
     - name: Save Docker tags
       run: |
-        echo "WORKER_IMAGE_TAG=ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}" > worker.tfvars
+        echo "WORKER_IMAGE_TAG=ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}" > /terraform/staging/worker.tfvars
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add worker.tfvars
