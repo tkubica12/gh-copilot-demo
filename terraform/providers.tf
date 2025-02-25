@@ -33,6 +33,7 @@ terraform {
 
 provider "azurerm" {
   subscription_id = "673af34d-6b28-41dc-bc7b-f507418045e6"
+  use_oidc        = true
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
