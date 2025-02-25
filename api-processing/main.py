@@ -48,6 +48,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # Get clients to storage and Service Bus
 credential = DefaultAzureCredential()
 storage_account_client = BlobServiceClient(account_url=storage_account_url, credential=credential)
