@@ -25,7 +25,7 @@ terraform {
     resource_group_name  = "rg-base"
     storage_account_name = "tomaskubicatf"
     container_name       = "tfstate"
-    key                  = "d-ai-async.tfstate"
+    key                  = "gh-copilot-demo.tfstate"
     use_azuread_auth     = true
     subscription_id      = "673af34d-6b28-41dc-bc7b-f507418045e6"
   }
