@@ -14,8 +14,8 @@ resource "azurerm_container_app_job" "perftest" {
 
   template {
     container {
-      image  = "ghcr.io/tkubica12/azure-workshops/d-ai-async-perftest:latest"
       name   = "perftest"
+      image  = var.PERFTEST_IMAGE
       cpu    = 1
       memory = "2Gi"
 

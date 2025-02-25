@@ -29,7 +29,7 @@ resource "azapi_resource" "api_frontend" {
         containers = [
           {
             name  = "myapp"
-            image = "ghcr.io/tkubica12/azure-workshops/d-ai-async-frontend:latest"
+            image = var.FRONTEND_IMAGE
             resources = {
               cpu    = 0.25
               memory = "0.5Gi"

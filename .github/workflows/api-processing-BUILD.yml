@@ -33,4 +33,13 @@ jobs:
       with:
         context: api-processing
         push: true
-        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-api-processing:latest
+        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-api-processing:${{ github.sha }}
+
+    - name: Save Docker tags
+      run: |
+        echo "API_PROCESSING_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-api-processing:${{ github.sha }}\"" > ./terraform/staging/api-processing.tfvars
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add ./terraform/staging/api-processing.tfvars
+        git commit -m "Update api-processing image with latest SHA"
+        git push

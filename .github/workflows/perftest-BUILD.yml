@@ -33,4 +33,13 @@ jobs:
       with:
         context: perftest
         push: true
-        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-perftest:latest
+        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-perftest:${{ github.sha }}
+        
+    - name: Save Docker tags
+      run: |
+        echo "PERFTEST_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-perftest:${{ github.sha }}\"" > ./terraform/staging/perftest.tfvars
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add ./terraform/staging/perftest.tfvars
+        git commit -m "Update perftest image with latest SHA"
+        git push

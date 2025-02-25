@@ -43,7 +43,11 @@ jobs:
         run: |
           terraform plan -out=tfplan \
             -var-file=./staging/general.tfvars \
-            -var-file=./staging/worker.tfvars
+            -var-file=./staging/worker.tfvars \
+            -var-file=./staging/perftest.tfvars \
+            -var-file=./staging/frontend.tfvars \
+            -var-file=./staging/api-status.tfvars \
+            -var-file=./staging/api-processing.tfvars
 
       - name: Upload Terraform Plan Artifact
         uses: actions/upload-artifact@v4
@@ -90,6 +94,10 @@ jobs:
           terraform apply \
             -var-file=./staging/general.tfvars \
             -var-file=./staging/worker.tfvars \
+            -var-file=./staging/perftest.tfvars \
+            -var-file=./staging/frontend.tfvars \
+            -var-file=./staging/api-status.tfvars \
+            -var-file=./staging/api-processing.tfvars \
             ./tfplan
 
     #   - name: Get Terraform outputs

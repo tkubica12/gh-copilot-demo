@@ -32,7 +32,7 @@ resource "azapi_resource" "api_status" {
         containers = [
           {
             name  = "myapp"
-            image = "ghcr.io/tkubica12/azure-workshops/d-ai-async-api-status:latest"
+            image = var.API_STATUS_IMAGE
             resources = {
               cpu    = 0.25
               memory = "0.5Gi"

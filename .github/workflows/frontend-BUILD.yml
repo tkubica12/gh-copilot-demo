@@ -33,4 +33,13 @@ jobs:
       with:
         context: frontend
         push: true
-        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-frontend:latest
+        tags: ghcr.io/${{ github.repository }}/gh-copilot-demo-frontend:${{ github.sha }}
+
+    - name: Save Docker tags
+      run: |
+        echo "FRONTEND_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-frontend:${{ github.sha }}\"" > ./terraform/staging/frontend.tfvars
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add ./terraform/staging/frontend.tfvars
+        git commit -m "Update frontend image with latest SHA"
+        git push

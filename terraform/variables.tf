@@ -32,3 +32,23 @@ variable "WORKER_IMAGE" {
   type        = string
   description = "Docker image tag for the worker"
 }
+
+variable "FRONTEND_IMAGE" {
+  type        = string
+  description = "Docker image tag for the frontend"
+}
+
+variable "API_STATUS_IMAGE" {
+  type        = string
+  description = "Docker image tag for the API status"
+}
+
+variable "API_PROCESSING_IMAGE" {
+  type        = string
+  description = "Docker image tag for the API processing"
+}
+
+variable "PERFTEST_IMAGE" {
+  type        = string
+  description = "Docker image tag for the perftest job"
+}
