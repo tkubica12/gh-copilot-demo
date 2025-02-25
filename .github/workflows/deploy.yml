@@ -41,7 +41,7 @@ jobs:
       - name: Terraform Plan
         working-directory: ./terraform
         run: |
-          terraform plan \
+          terraform plan -out=tfplan \
             -var-file=./staging/general.tfvars \
             -var-file=./staging/worker.tfvars
 
