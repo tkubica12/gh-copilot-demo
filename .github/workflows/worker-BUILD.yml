@@ -37,7 +37,6 @@ jobs:
     - name: Save Docker tags
       run: |
         echo "WORKER_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}\"" > ./terraform/staging/worker.tfvars
-        echo "" >> ./terraform/staging/worker.tfvars  // Ensure newline at end
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add ./terraform/staging/worker.tfvars
