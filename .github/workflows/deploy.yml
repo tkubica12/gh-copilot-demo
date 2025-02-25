@@ -1,0 +1,76 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    environment: staging
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: |
+          terraform init
+
+      - name: Terraform Plan
+        working-directory: ./terraform
+        run: terraform plan
+
+      - name: Upload Terraform Plan Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: ./terraform/tfplan
+
+  apply:
+    runs-on: ubuntu-latest
+    needs: plan
+    permissions:
+      id-token: write
+    environment: staging
+    steps:
+
+      - name: Download Terraform Plan Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tfplan
+          path: ./terraform
+
+      - name: Terraform apply
+        working-directory: ./terraform
+        run: terraform apply -auto-approve \
+            -var-file=./terraform/staging/general.tfvars \
+            -var-file=./terraform/staging/worker.tfvars \
+            ./terraform/tfplan
+
+    #   - name: Get Terraform outputs
+    #     working-directory: ./terraform
+    #     id: tf-outputs
+    #     run: |
+    #       echo "::set-output name=acr_name::$(terraform output -raw acr_name)"
+    #       echo "::set-output name=aks_name::$(terraform output -raw aks_name)"
+    #       echo "::set-output name=rg_name::$(terraform output -raw rg_name)"

@@ -25,7 +25,7 @@ resource "azapi_resource" "api_worker" {
         containers = [
           {
             name  = "myapp"
-            image = "ghcr.io/tkubica12/azure-workshops/d-ai-async-worker:latest"
+            image = var.WORKER_IMAGE
             resources = {
               cpu    = 0.25
               memory = "0.5Gi"

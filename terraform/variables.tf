@@ -1,6 +1,6 @@
 variable "prefix" {
   type        = string
-  default     = "aiasync"
+  default     = "ghdemo"
   description = <<EOF
 Prefix for resources.
 Preferably 2-4 characters long without special characters, lowercase.
@@ -26,4 +26,9 @@ variable "azure_openai_api_key" {
 variable "azure_openai_endpoint" {
   type        = string
   description = "Endpoint for Azure OpenAI"
+}
+
+variable "WORKER_IMAGE" {
+  type        = string
+  description = "Docker image tag for the worker"
 }

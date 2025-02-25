@@ -36,9 +36,9 @@ jobs:
 
     - name: Save Docker tags
       run: |
-        echo "WORKER_IMAGE_TAG=ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}" > /terraform/staging/worker.tfvars
+        echo "WORKER_IMAGE=ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}" > /terraform/staging/worker.tfvars
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add worker.tfvars
-        git commit -m "Update worker image tag with latest SHA"
+        git add /terraform/staging/worker.tfvars
+        git commit -m "Update worker image with latest SHA"
         git push
