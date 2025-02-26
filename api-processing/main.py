@@ -59,6 +59,10 @@ servicebus_queue = servicebus_client.get_queue_sender(servicebus_queue)
 def get_openapi_spec():
     return app.openapi()
 
+@app.get("/health", include_in_schema=False)
+def health_check():
+    return JSONResponse(status_code=200, content={"status": "healthy"})
+
 @app.post(
     "/api/process",
     response_class=JSONResponse,
