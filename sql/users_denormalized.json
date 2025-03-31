@@ -1,0 +1,107 @@
+[
+    {
+      "userId": "U1001",
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "address": {
+        "street": "123 Main Street",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10001",
+        "country": "USA"
+      },
+      "orders": [
+        {
+          "orderId": "ORD-2023-001",
+          "totalPrice": 129.99,
+          "description": "Wireless Headphones",
+          "date": "2023-05-15T14:30:22Z"
+        },
+        {
+          "orderId": "ORD-2023-012",
+          "totalPrice": 899.95,
+          "description": "Laptop Computer",
+          "date": "2023-06-02T09:15:43Z"
+        }
+      ]
+    },
+    {
+      "userId": "U1002",
+      "name": "Emma Johnson",
+      "email": "emma.j@example.com",
+      "address": {
+        "street": "456 Oak Avenue",
+        "city": "San Francisco",
+        "state": "CA",
+        "zipCode": "94105",
+        "country": "USA"
+      },
+      "orders": []
+    },
+    {
+      "userId": "U1003",
+      "name": "Michael Chen",
+      "email": "mchen@example.com",
+      "address": {
+        "street": "789 Pine Road",
+        "city": "Boston",
+        "state": "MA",
+        "zipCode": "02108",
+        "country": "USA"
+      },
+      "orders": [
+        {
+          "orderId": "ORD-2023-045",
+          "totalPrice": 49.99,
+          "description": "External Hard Drive",
+          "date": "2023-07-11T16:22:10Z"
+        }
+      ]
+    },
+    {
+      "userId": "U1004",
+      "name": "Sarah Williams",
+      "email": "swilliams@example.com",
+      "address": {
+        "street": "1010 Maple Blvd",
+        "city": "Chicago",
+        "state": "IL",
+        "zipCode": "60601",
+        "country": "USA"
+      },
+      "orders": [
+        {
+          "orderId": "ORD-2023-062",
+          "totalPrice": 75.50,
+          "description": "Fitness Tracker",
+          "date": "2023-06-18T11:45:30Z"
+        },
+        {
+          "orderId": "ORD-2023-078",
+          "totalPrice": 129.99,
+          "description": "Smart Speaker",
+          "date": "2023-07-23T15:33:21Z"
+        },
+        {
+          "orderId": "ORD-2023-093",
+          "totalPrice": 19.95,
+          "description": "Phone Case",
+          "date": "2023-08-05T09:12:45Z"
+        }
+      ]
+    },
+    {
+      "userId": "U1005",
+      "name": "David Rodriguez",
+      "email": "drodriguez@example.com",
+      "address": {
+        "street": "2020 Cedar Street",
+        "city": "Miami",
+        "state": "FL",
+        "zipCode": "33101",
+        "country": "USA"
+      },
+      "orders": []
+    }
+  ]
+  

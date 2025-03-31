@@ -16,5 +16,10 @@ Clear chat and attach prompt file camelbase and ask again. We will get different
 ## KQL
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
+## SQL
+Attach [users_denormalized.json](./sql/users_denormalized.json) and ask ```Generate CREATE commands for normalized users and orders using Microsoft SQL..```
+
+Than use output to ask ```Given the following Microsoft SQL schema. generate SQL query to get sum of order prices grouped by user.```
+
 ## Vision
 Attach [classes.png](./vision/classes.png) and ask ```Generate code for classes in Python according to attached schema.```
