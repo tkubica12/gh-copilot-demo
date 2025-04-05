@@ -17,7 +17,7 @@ Clear chat and attach prompt file camelbase and ask again. We will get different
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
 ## SQL
-Attach [users_denormalized.json](./sql/users_denormalized.json) and ask ```Generate CREATE commands for normalized users and orders using Microsoft SQL..```
+Attach [users_denormalized.json](./sql/users_denormalized.json) and ask ```Generate CREATE commands for normalized users and orders using Microsoft SQL.```
 
 Than use output to ask ```Given the following Microsoft SQL schema. generate SQL query to get sum of order prices grouped by user.```
 
@@ -36,3 +36,14 @@ You can use Web Search for Copilot extension using your Bing or Tavily key. This
 You can also Fetch specific file from URL directly. There is new standard **llms.txt** designed to give AI-friendly version of web site. Try this:
 
 ```What is new in version v0.98.0 of CrewAI? #fetch https://docs.crewai.com/llms-full.txt```
+
+## Bring your own model
+Install ```Ollama``` and download Deepseek Coder models (small and mid size).
+
+```
+ollama pull deepseek-coder:1.3b
+ollama pull deepseek-coder:6.7b
+ollama pull qwen2.5-coder
+```
+
+In Copilot click on Manage Models and add Ollama models. Than try some of the above examples with different models.
