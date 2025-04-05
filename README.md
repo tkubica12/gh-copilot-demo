@@ -23,3 +23,16 @@ Than use output to ask ```Given the following Microsoft SQL schema. generate SQL
 
 ## Vision
 Attach [classes.png](./vision/classes.png) and ask ```Generate code for classes in Python according to attached schema.``` Follow with ```now create PlanUML diagram out of this```
+
+## Agent
+Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
+
+## Search and Fetch
+Ask ```What is new in version v0.98.0 of CrewAI?``` and Copilot will not know.
+You can use Web Search for Copilot extension using your Bing or Tavily key. This question should be answered now:
+
+```What is new in version v0.98.0 of CrewAI? #websearch```
+
+You can also Fetch specific file from URL directly. There is new standard **llms.txt** designed to give AI-friendly version of web site. Try this:
+
+```What is new in version v0.98.0 of CrewAI? #fetch https://docs.crewai.com/llms-full.txt```
