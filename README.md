@@ -6,13 +6,6 @@ Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus```
 ## Next edit suggestion
 Open ```main.py``` in ```api-processing``` and around line 52 change ```credential``` to ```azure_credential``` and wait for suggestions.
 
-## Prompt files
-Ask this in chat: ```Generate CRUD in Python for product API```
-
-We will get functions using standard Python convention which is snake_case.
-
-Clear chat and attach prompt file camelbase and ask again. We will get different response.
-
 ## KQL
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
@@ -24,8 +17,12 @@ Than use output to ask ```Given the following Microsoft SQL schema. generate SQL
 ## Vision
 Attach [classes.png](./vision/classes.png) and ask ```Generate code for classes in Python according to attached schema.``` Follow with ```now create PlanUML diagram out of this```
 
-## Agent
-Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
+## Prompt files
+Ask this in chat: ```Generate CRUD in Python for product API```
+
+We will get functions using standard Python convention which is snake_case.
+
+Clear chat and attach prompt file camelbase and ask again. We will get different response.
 
 ## Search and Fetch
 Ask ```What is new in version v0.98.0 of CrewAI?``` and Copilot will not know.
@@ -47,3 +44,18 @@ ollama pull qwen2.5-coder
 ```
 
 In Copilot click on Manage Models and add Ollama models. Than try some of the above examples with different models.
+
+## Agent
+Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
+
+## Code Review
+After few changes create branch, showcase commit message, PR creation and do Code Review.
+
+## Code Security
+In GitHub show vulnerabilities and demonstrate autofix.
+
+## Brainstorming with Copilot Workspace
+[Copilot Workspace](https://copilot-workspace.githubnext.com/)
+
+## No-code with GitHub Spark
+[GitHub Spark](https://spark.githubnext.com/)
