@@ -1,0 +1,8 @@
+{
+    "servers": {
+        "my-mcp-string-generator": {
+            "type": "sse",
+            "url": "http://localhost:8000/sse"
+        }
+    }
+}
