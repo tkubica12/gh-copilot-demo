@@ -34,6 +34,14 @@ You can also Fetch specific file from URL directly. There is new standard **llms
 
 ```What is new in version v0.98.0 of CrewAI? #fetch https://docs.crewai.com/llms-full.txt```
 
+## Connect tools via MCP
+Run MCP server in folder ```random_string_mcp```. This runs locally and is configured in ```mcp.json``` file on workspace. 
+
+Use this prompt in Agent mode to demonstrate:
+
+```Generate names for 10 containers in format app1-xxxxxx where xxxxxx is random suffix consisting of lowercase letters and numbers```
+
+
 ## Bring your own model
 Install ```Ollama``` and download Deepseek Coder models (small and mid size).
 
