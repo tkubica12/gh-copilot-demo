@@ -61,6 +61,8 @@ In Copilot click on Manage Models and add Ollama models. Than try some of the ab
 ## Agent
 Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
 
+Than try ```Now add other modes and make UI to switch them easier. Colorful, contrast, green and MS DOS```
+
 ## Code Review
 After few changes create branch, showcase commit message, PR creation and do Code Review.
 
