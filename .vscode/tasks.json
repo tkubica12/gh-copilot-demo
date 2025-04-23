@@ -1,0 +1,57 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend: npm start",
+      "type": "npm",
+      "script": "start",
+      "group": { "kind": "build", "isDefault": true },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: npm build",
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: run FastAPI",
+      "type": "shell",
+      "command": "uvicorn backend.main:app --reload --port 8000",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: pytest",
+      "type": "shell",
+      "command": "pytest -q",
+      "group": "test",
+      "problemMatcher": ["$pytest"]
+    },
+    {
+      "label": "Terraform: init",
+      "type": "shell",
+      "command": "terraform -chdir=terraform init",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Terraform: plan",
+      "type": "shell",
+      "command": "terraform -chdir=terraform plan",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Terraform: apply",
+      "type": "shell",
+      "command": "terraform -chdir=terraform apply -auto-approve",
+      "group": "deploy",
+      "problemMatcher": []
+    }
+  ]
+}

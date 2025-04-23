@@ -1,11 +1,14 @@
 # GitHub Copilot demo
+This repo contains example code to demonstrate GitHub Copilot features. It is not intended to be used in production.
 
+# In-line code suggestions
 ## Autocomplete
-Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus``` and wait for suggestions.
+Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus``` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
 
 ## Next edit suggestion
 Open ```main.py``` in ```api-processing``` and around line 52 change ```credential``` to ```azure_credential``` and wait for suggestions.
 
+# Examples using Ask and Edits
 ## KQL
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
@@ -21,6 +24,10 @@ Attach [classes.png](./vision/classes.png) and ask ```Generate code for classes 
 Add ```api-processing/main.py```, ```worker/main.py``` and terraform files such as ```terraform/service_bus.tf``` and ```terraform.rbac.tf```.
 
 Ask ```In this code I am using Service Bus Queues, but I need to move to Service Bus Topics. Make sure to update my Terraform and Python code accordingly and add topic subscriptions and RBAC.```
+
+# Copilot customization
+## Extensions
+```@azure /costs What can you tell me about storage costs im my subscription 673af34d-6b28-41dc-bc7b-f507418045e6```
 
 ## Repository instructions and prompt files
 Ask this in chat: ```Generate CRUD in Python for product API```
@@ -60,19 +67,19 @@ ollama pull qwen2.5-coder
 
 In Copilot click on Manage Models and add Ollama models. Than try some of the above examples with different models.
 
-## Agent
+# Agent mode
 Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
 
 Than try ```Now add other modes and make UI to switch them easier. Colorful, contrast, green and MS DOS```
 
-## Code Review
+# Code Review
 After few changes create branch, showcase commit message, PR creation and do Code Review.
 
-## Code Security
+# Code Security
 In GitHub show vulnerabilities and demonstrate autofix.
 
-## Brainstorming with Copilot Workspace
+# Brainstorming with Copilot Workspace
 [Copilot Workspace](https://copilot-workspace.githubnext.com/)
 
-## No-code with GitHub Spark
+# No-code with GitHub Spark
 [GitHub Spark](https://spark.githubnext.com/)
