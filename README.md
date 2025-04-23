@@ -22,12 +22,14 @@ Add ```api-processing/main.py```, ```worker/main.py``` and terraform files such 
 
 Ask ```In this code I am using Service Bus Queues, but I need to move to Service Bus Topics. Make sure to update my Terraform and Python code accordingly and add topic subscriptions and RBAC.```
 
-## Prompt files
+## Repository instructions and prompt files
 Ask this in chat: ```Generate CRUD in Python for product API```
 
 We will get functions using standard Python convention which is snake_case.
 
-Clear chat and attach prompt file camelbase and ask again. We will get different response.
+Clear chat and attach prompt file camelcase and ask again. We will get different response.
+
+Discuss repo-wide instructions at [./.github/copilot-instructions.md](./.github/copilot-instructions.md).
 
 ## Search and Fetch
 Ask ```What is new in version v0.98.0 of CrewAI?``` and Copilot will not know.
