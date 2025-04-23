@@ -1,1 +1,1 @@
-FRONTEND_IMAGE="ghcr.io/tkubica12/gh-copilot-demo/gh-copilot-demo-frontend:b04190f787f832cf0129e2087e39ed6344a9a571"
+FRONTEND_IMAGE="ghcr.io/tkubica12/gh-copilot-demo/gh-copilot-demo-frontend:2abbf03d11d3eb847647a59d4666a95a913b3189"
