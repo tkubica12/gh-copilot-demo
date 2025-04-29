@@ -12,6 +12,16 @@ Open ```main.py``` in ```api-processing``` and around line 52 change ```credenti
 ## Codebase search
 ```Where in my code I am processing messages from Service Bus queues and what is the code doing? #codebase```
 
+## Documentation
+Create README.md and add all Terraform files.
+
+- ```Create basic Markdown documentation into README.md for my Terraform project. Start by describing this project as demo Terraform infrastructure, explain how to deploy it using Terraform CLI and list tree structure of tf files in the project with short description of each file into my README.md.```
+- ```Create list of cloud resources used in this project.`
+- ```Research what container apps are and add short description of this service into existing section with list of cloud resources used in this project. #websearch```
+- ```Research what Service Bus is and add short description of this service into existing section with list of cloud resources used in this project. #websearch```
+- ```Create chapter listing environment variables used with each container app and put it into nice table.```
+- ```Add chapter TODO to end of document and describe next steps for this Terraform project. Make sure to include CI/CD using GitHub Actions, Infrastructure as Code security using DevSecOps tools, adding FinOps and other topics that are important for enterprise usage of this project as you see fit.```
+
 ## KQL
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
