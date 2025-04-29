@@ -3,13 +3,16 @@
       "userId": "U1001",
       "name": "John Smith",
       "email": "john.smith@example.com",
-      "address": {
-        "street": "123 Main Street",
-        "city": "New York",
-        "state": "NY",
-        "zipCode": "10001",
-        "country": "USA"
-      },
+      "address": [
+        {
+          "street": "123 Main Street",
+          "city": "New York",
+          "state": "NY",
+          "zipCode": "10001",
+          "country": "USA",
+          "isPrimaryAddress": true
+        }
+      ],
       "orders": [
         {
           "orderId": "ORD-2023-001",
@@ -29,26 +32,32 @@
       "userId": "U1002",
       "name": "Emma Johnson",
       "email": "emma.j@example.com",
-      "address": {
-        "street": "456 Oak Avenue",
-        "city": "San Francisco",
-        "state": "CA",
-        "zipCode": "94105",
-        "country": "USA"
-      },
+      "address": [
+        {
+          "street": "456 Oak Avenue",
+          "city": "San Francisco",
+          "state": "CA",
+          "zipCode": "94105",
+          "country": "USA",
+          "isPrimaryAddress": true
+        }
+      ],
       "orders": []
     },
     {
       "userId": "U1003",
       "name": "Michael Chen",
       "email": "mchen@example.com",
-      "address": {
-        "street": "789 Pine Road",
-        "city": "Boston",
-        "state": "MA",
-        "zipCode": "02108",
-        "country": "USA"
-      },
+      "address": [
+        {
+          "street": "789 Pine Road",
+          "city": "Boston",
+          "state": "MA",
+          "zipCode": "02108",
+          "country": "USA",
+          "isPrimaryAddress": true
+        }
+      ],
       "orders": [
         {
           "orderId": "ORD-2023-045",
@@ -62,13 +71,16 @@
       "userId": "U1004",
       "name": "Sarah Williams",
       "email": "swilliams@example.com",
-      "address": {
-        "street": "1010 Maple Blvd",
-        "city": "Chicago",
-        "state": "IL",
-        "zipCode": "60601",
-        "country": "USA"
-      },
+      "address": [
+        {
+          "street": "1010 Maple Blvd",
+          "city": "Chicago",
+          "state": "IL",
+          "zipCode": "60601",
+          "country": "USA",
+          "isPrimaryAddress": true
+        }
+      ],
       "orders": [
         {
           "orderId": "ORD-2023-062",
@@ -94,14 +106,16 @@
       "userId": "U1005",
       "name": "David Rodriguez",
       "email": "drodriguez@example.com",
-      "address": {
-        "street": "2020 Cedar Street",
-        "city": "Miami",
-        "state": "FL",
-        "zipCode": "33101",
-        "country": "USA"
-      },
+      "address": [
+        {
+          "street": "2020 Cedar Street",
+          "city": "Miami",
+          "state": "FL",
+          "zipCode": "33101",
+          "country": "USA",
+          "isPrimaryAddress": true
+        }
+      ],
       "orders": []
     }
   ]
-  

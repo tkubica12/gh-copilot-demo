@@ -9,13 +9,17 @@ Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus```
 Open ```main.py``` in ```api-processing``` and around line 52 change ```credential``` to ```azure_credential``` and wait for suggestions.
 
 # Examples using Ask and Edits
+## Codebase search
+```Where in my code I am processing messages from Service Bus queues and what is the code doing? #codebase```
+
 ## KQL
 Attach [query_data.cvs](./kql/query_data.csv) and ask ```Give me microsoft Kusto Query (KQL) to display percentage of procesor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.``.
 
 ## SQL
-Attach [users_denormalized.json](./sql/users_denormalized.json) and ask ```Generate CREATE commands for normalized users and orders using Microsoft SQL.```
-
-Than use output to ask ```Given the following Microsoft SQL schema. generate SQL query to get sum of order prices grouped by user.```
+Attach [users_denormalized.json](./sql/users_denormalized.json) and ask:
+- ```Generate CREATE commands for normalized users, addresses and orders using Microsoft SQL.```
+- ```Based on data structure, create 10 lines of sample data and make sure it make sense and foreign keys are respected.```
+- ```Give me SQL statement to list userId, name, number of orders and number of addresses for each user.```
 
 ## Vision
 Attach [classes.png](./vision/classes.png), create classes.py and ask ```Generate code for classes in Python according to attached schema.```  in Ask mode.
@@ -41,14 +45,14 @@ Clear chat and attach prompt file camelcase and ask again. We will get different
 Discuss repo-wide instructions at [./.github/copilot-instructions.md](./.github/copilot-instructions.md).
 
 ## Search and Fetch
-Ask ```What is new in version v0.98.0 of CrewAI?``` and Copilot will not know.
+Ask ```Did Pinecone introduced MCP support already? When and in what release?``` and Copilot will not know.
 You can use Web Search for Copilot extension using your Bing or Tavily key. This question should be answered now:
 
-```What is new in version v0.98.0 of CrewAI? #websearch```
+```Did Pinecone introduced MCP support already? When and in what release? Use #websearch```
 
 You can also Fetch specific file from URL directly. There is new standard **llms.txt** designed to give AI-friendly version of web site. Try this:
 
-```What is new in version v0.98.0 of CrewAI? #fetch https://docs.crewai.com/llms-full.txt```
+```Did Pinecone introduced MCP support already? When and in what release? #fetch https://docs.pinecone.io/llms-full.txt```
 
 ## Connect tools via MCP
 Run MCP server in folder ```random_string_mcp```. This runs locally and is configured in ```mcp.json``` file on workspace. 
