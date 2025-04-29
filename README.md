@@ -18,7 +18,9 @@ Attach [users_denormalized.json](./sql/users_denormalized.json) and ask ```Gener
 Than use output to ask ```Given the following Microsoft SQL schema. generate SQL query to get sum of order prices grouped by user.```
 
 ## Vision
-Attach [classes.png](./vision/classes.png) and ask ```Generate code for classes in Python according to attached schema.``` Follow with ```now create PlantUML diagram out of this```
+Attach [classes.png](./vision/classes.png), create classes.py and ask ```Generate code for classes in Python according to attached schema.```  in Ask mode.
+
+Create README.md file and in Edit mode follow with ```Create markdown documentation for classes.py and include mermaid diagram.```
 
 ## Multi-file editing
 Add ```api-processing/main.py```, ```worker/main.py``` and terraform files such as ```terraform/service_bus.tf``` and ```terraform.rbac.tf```.
