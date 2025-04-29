@@ -1,1 +1,1 @@
-API_PROCESSING_IMAGE="ghcr.io/tkubica12/gh-copilot-demo/gh-copilot-demo-api-processing:b3f9453f726a53322bec900cf803492b4d90d087"
+API_PROCESSING_IMAGE="ghcr.io/tkubica12/gh-copilot-demo/gh-copilot-demo-api-processing:af0e2ba9319334606257a00424e5a943f127c726"
