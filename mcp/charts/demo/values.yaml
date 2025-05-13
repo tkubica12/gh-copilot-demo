@@ -1,0 +1,26 @@
+namespaces:
+  - name: red
+    color: red
+    apps:
+      - name: app1
+        replicas: 3
+      - name: app2
+        replicas: 4
+        config:
+          key: value2
+        secret:
+          password: s3cr3t2
+  - name: green
+    color: green
+    apps:
+      - name: app1
+        replicas: 2
+      - name: app2
+        replicas: 5
+  - name: blue
+    color: blue
+    apps:
+      - name: app1
+        replicas: 5
+      - name: app2
+        replicas: 2

@@ -1,0 +1,12 @@
+{{- /*
+Create namespaces defined in values.yaml.
+*/ -}}
+{{- range .Values.namespaces }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .name }}
+  labels:
+    color: {{ .color | quote }}
+---
+{{- end }}

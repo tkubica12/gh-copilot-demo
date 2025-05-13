@@ -1,0 +1,14 @@
+{{- range .Values.namespaces }}
+{{- $ns := .name }}
+{{- range .apps }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .name }}-config
+  namespace: {{ $ns }}
+data:
+  demo.conf: |
+    mykey: myvalue
+---
+{{- end }}
+{{- end }}

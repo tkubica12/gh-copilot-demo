@@ -1,0 +1,40 @@
+{{- range .Values.namespaces }}
+{{- $ns := .name }}
+{{- $color := .color }}
+{{- range .apps }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  namespace: {{ $ns }}
+  labels:
+    color: {{ $color }}
+    app: {{ .name }}
+spec:
+  replicas: {{ .replicas }}
+  selector:
+    matchLabels:
+      app: {{ .name }}
+      color: {{ $color }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+        color: {{ $color }}
+    spec:
+      serviceAccountName: demo-sa
+      containers:
+        - name: {{ .name }}
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/demo
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ .name }}-config
+---
+{{- end }}
+{{- end }}

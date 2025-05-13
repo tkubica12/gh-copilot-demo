@@ -1,0 +1,25 @@
+{{- range .Values.namespaces }}
+{{- $ns := .name }}
+{{- $color := .color }}
+{{- range .apps }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-svc
+  namespace: {{ $ns }}
+  labels:
+    color: {{ $color }}
+    app: {{ .name }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .name }}
+    color: {{ $color }}
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+---
+{{- end }}
+{{- end }}

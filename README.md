@@ -65,11 +65,23 @@ You can also Fetch specific file from URL directly. There is new standard **llms
 ```Did Pinecone introduced MCP support already? When and in what release? #fetch https://docs.pinecone.io/llms-full.txt```
 
 ## Connect tools via MCP
-Run MCP server in folder ```random_string_mcp```. This runs locally and is configured in ```mcp.json``` file on workspace. 
+Run MCP server in folder [](mcp/random_string_mcp/src/). This runs locally and is configured in ```mcp.json``` file on workspace. 
 
 Use this prompt in Agent mode to demonstrate:
 
 ```Generate names for 10 containers in format app1-xxxxxx where xxxxxx is random suffix consisting of lowercase letters and numbers```
+
+Install AKS and Kubernetes apps using [this guide](./mcp/README.md). Than you can tru following conversation:
+
+```
+What namespaces I have in my Kubernetes cluster? [enter][end]
+Show me pods in blue namespace [enter][end]
+I have some error with app1, can you kill one of the pods? [enter][end]
+Check logs from new pod that was created afterwards, does it start normally? [enter][end]
+Hmm, do we have enough resources in app1 allocated? [enter][end]
+How would I do that, show me [enter][end]
+If I would like to do the steps you did in this chat using Kubernetes CLI next time, how it would look like? [enter][end]
+```
 
 
 ## Bring your own model

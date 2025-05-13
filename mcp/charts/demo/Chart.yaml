@@ -1,0 +1,4 @@
+apiVersion: v2
+name: demo
+version: 0.1.0
+description: Demo chart for multi-namespace, multi-app deployment
