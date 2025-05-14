@@ -9,6 +9,26 @@
             "args": [
                 "mcp-server-kubernetes"
             ]
+        },
+        "azure-mcp-server": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "@azure/mcp@latest",
+                "server",
+                "start"
+            ],
+            "env": {
+                "AZURE_MCP_INCLUDE_PRODUCTION_CREDENTIALS": "${input:include-production-credentials}"
+            }
         }
-    }
+    },
+    "inputs": [
+        {
+            "id": "include-production-credentials",
+            "type": "promptString",
+            "description": "Should production credentials be included?"
+        }
+    ]
 }
