@@ -1,6 +1,27 @@
 # GitHub Copilot demo
 This repo contains example code to demonstrate GitHub Copilot features. It is not intended to be used in production.
 
+## Architecture
+
+```mermaid
+flowchart TD
+    User[User] -->|Upload Image/PDF| Frontend[Frontend UI]
+    Frontend -->|Submit file| API[API Processing Service]
+    API -->|Store file| Blob[(Azure Blob Storage)]
+    API -->|Queue processing request| SB[Azure Service Bus Queue]
+    SB -->|Consume message| Worker[Worker Service]
+    Worker -->|Retrieve file| Blob
+    Worker -->|Analyze content| OpenAI[Azure OpenAI]
+    Worker -->|Store results| CosmosDB[(Azure Cosmos DB)]
+    User -->|Check results| StatusAPI[Status API]
+    StatusAPI -->|Retrieve results| CosmosDB
+
+    subgraph "File Processing"
+        Worker -->|Image files| ImageProcess[Vision Analysis]
+        Worker -->|PDF files| PDFProcess[Text Extraction & Summarization]
+    end
+```
+
 # In-line code suggestions
 ## Autocomplete
 Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus``` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
