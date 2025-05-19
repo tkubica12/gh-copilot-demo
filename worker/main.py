@@ -14,6 +14,8 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+import io
+import PyPDF2
 
 # Load environment variables
 def get_env_var(var_name):
@@ -68,29 +70,50 @@ async def process_message(msg, receiver):
         message_body = json.loads(str(msg))
         blob_name = message_body.get("blob_name", "")
         id = message_body.get("id", "")
-        blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
-        print(f"Downloading image data from {blob_name}")
-        download_stream = await blob_client.download_blob()
-        image_data = await download_stream.readall()
-        encoded_image = base64.b64encode(image_data).decode("utf-8")
-        print(f"Sending image {blob_name} to OpenAI...")
+        file_type = message_body.get("file_type", ".jpg")  # Default to jpg for backward compatibility
         
-        response = await client.chat.completions.create(
-            model=azure_openai_deployment_name,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": [
-                    {"type": "text", "text": "Describe this picture:"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
-                ]}
-            ]
-        )
+        blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
+        print(f"Downloading file data from {blob_name}")
+        download_stream = await blob_client.download_blob()
+        file_data = await download_stream.readall()
+        
+        # Process based on file type
+        if file_type.lower() in ['.jpg', '.jpeg', '.png']:
+            # Process image
+            print(f"Processing image {blob_name}...")
+            encoded_image = base64.b64encode(file_data).decode("utf-8")
+            
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": [
+                        {"type": "text", "text": "Describe this picture:"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
+                    ]}
+                ]
+            )
+        elif file_type.lower() == '.pdf':
+            # Process PDF
+            print(f"Processing PDF {blob_name}...")
+            pdf_text = await extract_text_from_pdf(file_data)
+            
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant. Provide a comprehensive summarization of the PDF content."},
+                    {"role": "user", "content": f"Summarize the following PDF content:\n\n{pdf_text}"}
+                ]
+            )
+        else:
+            raise ValueError(f"Unsupported file type: {file_type}")
         
         print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
         doc = {
             "id": id,
-            "ai_response": response.choices[0].message.content
+            "ai_response": response.choices[0].message.content,
+            "file_type": file_type
         }
         await cosmos_container.upsert_item(doc)
         await receiver.complete_message(msg)
@@ -98,6 +121,24 @@ async def process_message(msg, receiver):
         print(f"Error encountered: {e}. Abandoning message for retry.")
         await receiver.abandon_message(msg)
         return
+
+async def extract_text_from_pdf(pdf_data):
+    """
+    Extract text from a PDF file.
+    """
+    # This needs to be run in a thread because PyPDF2 operations are blocking
+    def extract_text():
+        pdf_file = io.BytesIO(pdf_data)
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        text = ""
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
+            text += page.extract_text() + "\n\n"
+        return text
+
+    # Run the blocking operation in a thread pool
+    with ThreadPoolExecutor() as executor:
+        return await asyncio.get_event_loop().run_in_executor(executor, extract_text)
 
 async def main():
     async with ServiceBusClient(servicebus_fqdn, credential=credential) as sb_client:

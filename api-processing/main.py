@@ -90,19 +90,43 @@ def get_openapi_spec():
                     }
                 }
             }
+        },
+        400: {
+            "description": "Bad Request",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "detail": "Invalid file type. Only JPG, JPEG, PNG, and PDF files are supported."
+                    }
+                }
+            }
         }
     }
 )
-async def process_image(file: UploadFile = File(...)):
+async def process_file(file: UploadFile = File(...)):
+    # Check file type
+    allowed_extensions = [".jpg", ".jpeg", ".png", ".pdf"]
+    file_extension = os.path.splitext(file.filename)[1].lower()
+    
+    if file_extension not in allowed_extensions:
+        return JSONResponse(
+            status_code=400,
+            content={"detail": "Invalid file type. Only JPG, JPEG, PNG, and PDF files are supported."}
+        )
+    
     # Generate GUID
     guid = str(uuid.uuid4())
 
-    # Upload image to storage
-    blob_name = f"{guid}.jpg"
+    # Upload file to storage with original extension
+    blob_name = f"{guid}{file_extension}"
     container_client.upload_blob(name=blob_name, data=file.file, overwrite=False)
 
-    # Send message to Service Bus
-    message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
+    # Send message to Service Bus with file information
+    message = ServiceBusMessage(json.dumps({
+        "blob_name": blob_name, 
+        "id": guid,
+        "file_type": file_extension
+    }))
     servicebus_queue.send_messages(message)
 
     return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})
