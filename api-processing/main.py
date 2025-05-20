@@ -12,6 +12,8 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
+from prometheus_client import Counter, Histogram, Summary
+from prometheus_fastapi_instrumentator import Instrumentator, metrics
 
 app = FastAPI(title="AI processing", description="API to process pictures")
 
@@ -37,6 +39,38 @@ resource = Resource.create({SERVICE_NAME: "Processing API Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
 FastAPIInstrumentor.instrument_app(app)
+
+# Configure Prometheus metrics
+BLOB_UPLOAD_COUNTER = Counter(
+    "api_processing_blob_uploads_total",
+    "Total number of blob uploads",
+)
+MESSAGE_SEND_COUNTER = Counter(
+    "api_processing_messages_sent_total",
+    "Total number of messages sent to Service Bus",
+)
+UPLOAD_SIZE_SUMMARY = Summary(
+    "api_processing_upload_size_bytes",
+    "Summary of upload sizes in bytes",
+)
+REQUEST_PROCESSING_TIME = Histogram(
+    "api_processing_request_processing_seconds",
+    "Time spent processing requests",
+    buckets=(0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0, 10.0),
+)
+
+# Prometheus metrics endpoint
+instrumentator = Instrumentator(
+    should_group_status_codes=True,
+    should_ignore_untemplated=True,
+    should_respect_app_router_include=True,
+    should_instrument_requests_inprogress=True,
+    excluded_handlers=[".*admin.*", "/metrics"],
+    inprogress_name="api_processing_inprogress",
+    inprogress_help="Inprogress requests in Processing API",
+)
+instrumentator.add(metrics.latency(metric_name="api_processing_request_latency_seconds"))
+instrumentator.instrument(app).expose(app, include_in_schema=False, endpoint="/metrics")
 
 # CORS
 origins = [os.environ.get("CORS_ORIGIN", "*")]
@@ -94,15 +128,27 @@ def get_openapi_spec():
     }
 )
 async def process_image(file: UploadFile = File(...)):
-    # Generate GUID
-    guid = str(uuid.uuid4())
+    # Use Prometheus histogram to track processing time
+    with REQUEST_PROCESSING_TIME.time():
+        # Generate GUID
+        guid = str(uuid.uuid4())
 
-    # Upload image to storage
-    blob_name = f"{guid}.jpg"
-    container_client.upload_blob(name=blob_name, data=file.file, overwrite=False)
+        # Upload image to storage
+        blob_name = f"{guid}.jpg"
+        # Get file size for metrics
+        file_content = await file.read()
+        file_size = len(file_content)
+        UPLOAD_SIZE_SUMMARY.observe(file_size)
+        
+        # Upload file to blob storage 
+        container_client.upload_blob(name=blob_name, data=file_content, overwrite=False)
+        # Increment blob upload counter
+        BLOB_UPLOAD_COUNTER.inc()
 
-    # Send message to Service Bus
-    message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
-    servicebus_queue.send_messages(message)
+        # Send message to Service Bus
+        message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
+        servicebus_queue.send_messages(message)
+        # Increment message send counter
+        MESSAGE_SEND_COUNTER.inc()
 
-    return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})
+        return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})
