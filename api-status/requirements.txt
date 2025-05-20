@@ -11,3 +11,5 @@ opentelemetry-instrumentation-fastapi
 opentelemetry-instrumentation-requests
 python-multipart
 aiohttp
+prometheus-client
+prometheus-fastapi-instrumentator
