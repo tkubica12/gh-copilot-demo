@@ -10,6 +10,8 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
+from prometheus_client import Counter, Histogram, Gauge
+from prometheus_fastapi_instrumentator import Instrumentator, metrics
 
 app = FastAPI(title="AI Results", description="API to get processed results")
 
@@ -34,6 +36,38 @@ resource = Resource.create({SERVICE_NAME: "Status API Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
 FastAPIInstrumentor.instrument_app(app)
+
+# Configure Prometheus metrics
+RESULTS_FOUND_COUNTER = Counter(
+    "api_status_results_found_total",
+    "Total number of results found",
+)
+RESULTS_PENDING_COUNTER = Counter(
+    "api_status_results_pending_total",
+    "Total number of results that are still pending",
+)
+STATUS_REQUEST_PROCESSING_TIME = Histogram(
+    "api_status_request_processing_seconds",
+    "Time spent processing status requests",
+    buckets=(0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5),
+)
+ERROR_COUNTER = Counter(
+    "api_status_errors_total",
+    "Total number of errors encountered",
+)
+
+# Prometheus metrics endpoint
+instrumentator = Instrumentator(
+    should_group_status_codes=True,
+    should_ignore_untemplated=True,
+    should_respect_app_router_include=True,
+    should_instrument_requests_inprogress=True,
+    excluded_handlers=[".*admin.*", "/metrics"],
+    inprogress_name="api_status_inprogress",
+    inprogress_help="Inprogress requests in Status API",
+)
+instrumentator.add(metrics.latency(metric_name="api_status_request_latency_seconds"))
+instrumentator.instrument(app).expose(app, include_in_schema=False, endpoint="/metrics")
 
 # CORS
 origins = [os.environ.get("CORS_ORIGIN", "*")]
@@ -96,21 +130,29 @@ def get_openapi_spec():
     }
 )
 async def get_results(guid: str):
-    try:
-        query = "SELECT * FROM c WHERE c.id = @id"
-        parameters = [{"name": "@id", "value": guid}]
-        items = [item async for item in container.query_items(query=query, parameters=parameters, partition_key=guid)]
-        if items:
-            item = items[0]
-            response = {
-                "id": item["id"],
-                "status": "completed",
-                "data": {
-                    "result": item["ai_response"]
+    # Use Prometheus histogram to track processing time
+    with STATUS_REQUEST_PROCESSING_TIME.time():
+        try:
+            query = "SELECT * FROM c WHERE c.id = @id"
+            parameters = [{"name": "@id", "value": guid}]
+            items = [item async for item in container.query_items(query=query, parameters=parameters, partition_key=guid)]
+            if items:
+                item = items[0]
+                response = {
+                    "id": item["id"],
+                    "status": "completed",
+                    "data": {
+                        "result": item["ai_response"]
+                    }
                 }
-            }
-            return JSONResponse(status_code=200, content=response)
-        else:
-            return JSONResponse(status_code=202, headers={"Retry-After": retry_after}, content={"message": "Processing, please retry after some time."})
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+                # Increment results found counter
+                RESULTS_FOUND_COUNTER.inc()
+                return JSONResponse(status_code=200, content=response)
+            else:
+                # Increment results pending counter
+                RESULTS_PENDING_COUNTER.inc()
+                return JSONResponse(status_code=202, headers={"Retry-After": retry_after}, content={"message": "Processing, please retry after some time."})
+        except Exception as e:
+            # Increment error counter on exception
+            ERROR_COUNTER.inc()
+            raise HTTPException(status_code=500, detail=str(e))
