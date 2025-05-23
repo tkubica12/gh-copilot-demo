@@ -28,7 +28,7 @@ storage_account_url = get_env_var("STORAGE_ACCOUNT_URL")
 storage_container = get_env_var("STORAGE_CONTAINER")
 processed_base_url = get_env_var("PROCESSED_BASE_URL")
 servicebus_fqdn = get_env_var("SERVICEBUS_FQDN")
-servicebus_queue = get_env_var("SERVICEBUS_QUEUE")
+servicebus_topic = get_env_var("SERVICEBUS_TOPIC")
 appinsights_connection_string = get_env_var("APPLICATIONINSIGHTS_CONNECTION_STRING")
 
 # Configure Azure Monitor
@@ -53,7 +53,7 @@ credential = DefaultAzureCredential()
 storage_account_client = BlobServiceClient(account_url=storage_account_url, credential=credential)
 container_client = storage_account_client.get_container_client(storage_container)
 servicebus_client = ServiceBusClient(servicebus_fqdn, credential=credential)
-servicebus_queue = servicebus_client.get_queue_sender(servicebus_queue)
+servicebus_sender = servicebus_client.get_topic_sender(servicebus_topic)
 
 @app.get("/", include_in_schema=False)
 def get_openapi_spec():
@@ -103,6 +103,6 @@ async def process_image(file: UploadFile = File(...)):
 
     # Send message to Service Bus
     message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
-    servicebus_queue.send_messages(message)
+    servicebus_sender.send_messages(message)
 
     return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})
