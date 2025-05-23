@@ -36,7 +36,8 @@ azure_openai_endpoint = get_env_var("AZURE_OPENAI_ENDPOINT")
 azure_openai_api_version = "2024-10-21"
 azure_openai_deployment_name = get_env_var("AZURE_OPENAI_DEPLOYMENT_NAME")
 servicebus_fqdn = get_env_var("SERVICEBUS_FQDN")
-servicebus_queue = get_env_var("SERVICEBUS_QUEUE")
+servicebus_topic = get_env_var("SERVICEBUS_TOPIC")
+servicebus_subscription = get_env_var("SERVICEBUS_SUBSCRIPTION")
 storage_account_url = get_env_var("STORAGE_ACCOUNT_URL")
 storage_container = get_env_var("STORAGE_CONTAINER")
 batch_size = int(get_env_var("BATCH_SIZE"))
@@ -101,8 +102,9 @@ async def process_message(msg, receiver):
 
 async def main():
     async with ServiceBusClient(servicebus_fqdn, credential=credential) as sb_client:
-        receiver = sb_client.get_queue_receiver(
-            queue_name=servicebus_queue,
+        receiver = sb_client.get_subscription_receiver(
+            topic_name=servicebus_topic,
+            subscription_name=servicebus_subscription,
             max_lock_renewal_duration=120
         )
         async with receiver:

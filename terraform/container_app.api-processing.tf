@@ -63,8 +63,8 @@ resource "azapi_resource" "api_processing" {
                 value = replace(replace(azurerm_servicebus_namespace.main.endpoint, "https://", ""), ":443/", "")
               },
               {
-                name  = "SERVICEBUS_QUEUE"
-                value = azurerm_servicebus_queue.main.name
+                name  = "SERVICEBUS_TOPIC"
+                value = azurerm_servicebus_topic.main.name
               },
               {
                 name  = "AZURE_CLIENT_ID"

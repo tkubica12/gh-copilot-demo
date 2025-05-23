@@ -48,8 +48,12 @@ resource "azapi_resource" "api_worker" {
                 value = replace(replace(azurerm_servicebus_namespace.main.endpoint, "https://", ""), ":443/", "")
               },
               {
-                name  = "SERVICEBUS_QUEUE"
-                value = azurerm_servicebus_queue.main.name
+                name  = "SERVICEBUS_TOPIC"
+                value = azurerm_servicebus_topic.main.name
+              },
+              {
+                name  = "SERVICEBUS_SUBSCRIPTION"
+                value = azurerm_servicebus_subscription.main.name
               },
               {
                 name  = "AZURE_CLIENT_ID"
@@ -101,13 +105,14 @@ resource "azapi_resource" "api_worker" {
           cooldownPeriod  = 60
           rules = [
             {
-              name = "queue-scaling"
+              name = "topic-scaling"
               custom = {
                 type = "azure-servicebus"
                 metadata = {
-                  queueName    = azurerm_servicebus_queue.main.name
-                  namespace    = azurerm_servicebus_namespace.main.name
-                  messageCount = "5"
+                  topicName         = azurerm_servicebus_topic.main.name
+                  subscriptionName  = azurerm_servicebus_subscription.main.name
+                  namespace         = azurerm_servicebus_namespace.main.name
+                  messageCount      = "5"
                 }
                 identity = azurerm_user_assigned_identity.main.id
               }

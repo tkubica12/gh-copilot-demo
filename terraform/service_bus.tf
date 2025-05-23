@@ -6,8 +6,14 @@ resource "azurerm_servicebus_namespace" "main" {
   local_auth_enabled  = false
 }
 
-resource "azurerm_servicebus_queue" "main" {
+resource "azurerm_servicebus_topic" "main" {
   name                 = "documents-to-process"
   namespace_id         = azurerm_servicebus_namespace.main.id
-  partitioning_enabled = true
+  enable_partitioning  = true
+}
+
+resource "azurerm_servicebus_subscription" "main" {
+  name               = "processing-worker"
+  topic_id           = azurerm_servicebus_topic.main.id
+  max_delivery_count = 10
 }
