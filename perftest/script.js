@@ -6,8 +6,13 @@ import { FormData } from 'https://jslib.k6.io/formdata/0.0.2/index.js';
 const processBaseUrl = __ENV.TEST_URL || 'https://ca-api-processing-aiasync-gchk.yellowmoss-adbbb4fb.germanywestcentral.azurecontainerapps.io';
 console.log(`Using processBaseUrl: ${processBaseUrl}`);
 
-// Read the file content in the init stage
-const fileContent = open('./example.jpg', 'b');
+// Read the file contents in the init stage
+const imageContent = open('./example.jpg', 'b');
+const pdfContent = __ENV.TEST_PDF === 'true' ? open('./example.pdf', 'b') : null;
+
+// Use PDF or image based on environment variable
+const useTestPdf = __ENV.TEST_PDF === 'true';
+console.log(`Testing with ${useTestPdf ? 'PDF' : 'image'} files`);
 
 export const options = {
   scenarios: {
@@ -24,15 +29,19 @@ export default function() {
   // Create a new FormData instance
   const form = new FormData();
   
-  // Append the file to the form
-  form.append('file', http.file(fileContent, 'example.jpg', 'image/jpeg'));
+  // Append the file to the form based on the test type
+  if (useTestPdf && pdfContent) {
+    form.append('file', http.file(pdfContent, 'example.pdf', 'application/pdf'));
+  } else {
+    form.append('file', http.file(imageContent, 'example.jpg', 'image/jpeg'));
+  }
 
   // Define headers
   const headers = {
     'Content-Type': 'multipart/form-data; boundary=' + form.boundary,
   };
 
-  // POST request to upload the image
+  // POST request to upload the file
   const postResponse = http.post(`${processBaseUrl}/api/process`, form.body(), { headers });
 
   check(postResponse, {
@@ -40,7 +49,7 @@ export default function() {
   });
 
   if (postResponse.status !== 202) {
-    console.error(`Failed to upload image. Status: ${postResponse.status}, Response: ${postResponse.body}`);
+    console.error(`Failed to upload file. Status: ${postResponse.status}, Response: ${postResponse.body}`);
     return;
   }
 
