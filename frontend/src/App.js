@@ -50,11 +50,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>AI Image Processor</h1>
+        <h1>AI Document Processor</h1>
       </header>
       
       <div className="upload-card">
-        <input type="file" onChange={handleFileChange} />
+        <p>Upload an image or PDF document for AI processing</p>
+        <input type="file" onChange={handleFileChange} accept="image/jpeg,image/png,image/gif,application/pdf" />
         <button onClick={handleUpload} disabled={!file}>Upload</button>
       </div>
 

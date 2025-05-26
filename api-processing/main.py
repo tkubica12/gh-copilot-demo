@@ -13,7 +13,7 @@ from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 
-app = FastAPI(title="AI processing", description="API to process pictures")
+app = FastAPI(title="AI document processing", description="API to process images and PDFs")
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -93,16 +93,29 @@ def get_openapi_spec():
         }
     }
 )
-async def process_image(file: UploadFile = File(...)):
+async def process_document(file: UploadFile = File(...)):
     # Generate GUID
     guid = str(uuid.uuid4())
 
-    # Upload image to storage
-    blob_name = f"{guid}.jpg"
+    # Determine file type and extension
+    content_type = file.content_type
+    file_ext = ".jpg"  # Default extension
+    file_type = "image"  # Default type
+    
+    if content_type == "application/pdf":
+        file_ext = ".pdf"
+        file_type = "pdf"
+
+    # Upload file to storage
+    blob_name = f"{guid}{file_ext}"
     container_client.upload_blob(name=blob_name, data=file.file, overwrite=False)
 
     # Send message to Service Bus
-    message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
+    message = ServiceBusMessage(json.dumps({
+        "blob_name": blob_name,
+        "id": guid,
+        "file_type": file_type
+    }))
     servicebus_queue.send_messages(message)
 
     return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})

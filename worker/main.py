@@ -9,11 +9,13 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import requests
 import base64
+import io
 from openai import AsyncAzureOpenAI
 from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+import PyPDF2
 
 # Load environment variables
 def get_env_var(var_name):
@@ -45,6 +47,37 @@ cosmos_account_url = get_env_var("COSMOS_ACCOUNT_URL")
 cosmos_db_name = get_env_var("COSMOS_DB_NAME")
 cosmos_container_name = get_env_var("COSMOS_CONTAINER_NAME")
 
+async def extract_text_from_pdf(pdf_data):
+    """
+    Extract text content from a PDF file.
+    """
+    try:
+        # Use a thread pool to run PyPDF2 operations which are CPU-bound and blocking
+        with ThreadPoolExecutor() as executor:
+            loop = asyncio.get_event_loop()
+            return await loop.run_in_executor(executor, _extract_pdf_text, pdf_data)
+    except Exception as e:
+        print(f"Error extracting text from PDF: {e}")
+        return "Error extracting text from PDF"
+
+def _extract_pdf_text(pdf_data):
+    """
+    Helper function to extract text from PDF data.
+    This runs in a separate thread to avoid blocking the event loop.
+    """
+    pdf_text = ""
+    try:
+        with io.BytesIO(pdf_data) as pdf_file:
+            pdf_reader = PyPDF2.PdfReader(pdf_file)
+            for page_num in range(len(pdf_reader.pages)):
+                page = pdf_reader.pages[page_num]
+                pdf_text += page.extract_text()
+    except Exception as e:
+        print(f"Error in _extract_pdf_text: {e}")
+        return f"Error processing PDF: {str(e)}"
+    
+    return pdf_text
+
 # Create clients
 credential = DefaultAzureCredential()
 servicebus_client = ServiceBusClient(servicebus_fqdn, credential=credential)
@@ -68,23 +101,39 @@ async def process_message(msg, receiver):
         message_body = json.loads(str(msg))
         blob_name = message_body.get("blob_name", "")
         id = message_body.get("id", "")
+        file_type = message_body.get("file_type", "image")  # Default to image if not specified
         blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
-        print(f"Downloading image data from {blob_name}")
+        print(f"Downloading data from {blob_name}")
         download_stream = await blob_client.download_blob()
-        image_data = await download_stream.readall()
-        encoded_image = base64.b64encode(image_data).decode("utf-8")
-        print(f"Sending image {blob_name} to OpenAI...")
+        file_data = await download_stream.readall()
         
-        response = await client.chat.completions.create(
-            model=azure_openai_deployment_name,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": [
-                    {"type": "text", "text": "Describe this picture:"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
-                ]}
-            ]
-        )
+        if file_type == "pdf":
+            # Process PDF file
+            print(f"Processing PDF file {blob_name}")
+            pdf_content = await extract_text_from_pdf(file_data)
+            
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant. Provide a concise summary of the PDF content."},
+                    {"role": "user", "content": f"Summarize this PDF content: {pdf_content[:5000]}"}  # Limit text to avoid token limits
+                ]
+            )
+        else:
+            # Process image file
+            print(f"Processing image file {blob_name}")
+            encoded_image = base64.b64encode(file_data).decode("utf-8")
+            
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": [
+                        {"type": "text", "text": "Describe this picture:"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
+                    ]}
+                ]
+            )
         
         print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
