@@ -52,7 +52,7 @@ We will get functions using standard Python convention which is snake_case.
 
 Clear chat and attach prompt file camelcase and ask again. We will get different response.
 
-Discuss repo-wide instructions at [./.github/copilot-instructions.md](./.github/copilot-instructions.md).
+Discuss repo-wide instructions at [./.github/instructions](./.github/instructions).
 
 ## Search and Fetch
 Ask ```Did Pinecone introduced MCP support already? When and in what release?``` and Copilot will not know.
