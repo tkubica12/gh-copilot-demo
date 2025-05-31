@@ -110,8 +110,5 @@ In GitHub show vulnerabilities and demonstrate autofix.
 ## Copilot Spaces preview
 Try preview at [https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
 
-## Copilot Workspace
-[Copilot Workspace](https://copilot-workspace.githubnext.com/)
-
 ## No-code with GitHub Spark
 [GitHub Spark](https://spark.githubnext.com/)
