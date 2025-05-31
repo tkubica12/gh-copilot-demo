@@ -54,11 +54,6 @@ Clear chat and attach prompt file camelcase and ask again. We will get different
 
 Discuss repo-wide instructions at [./.github/instructions](./.github/instructions).
 
-## Copilot Spaces
-Try preview at [https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
-
-
-
 ## Search and Fetch
 Ask ```Did Pinecone introduced MCP support already? When and in what release?``` and Copilot will not know.
 You can use Web Search for Copilot extension using your Bing or Tavily key. This question should be answered now:
@@ -111,8 +106,12 @@ After few changes create branch, showcase commit message, PR creation and do Cod
 # Code Security
 In GitHub show vulnerabilities and demonstrate autofix.
 
-# Brainstorming with Copilot Workspace
+# Thinking, planning and prototyping with Copilot
+## Copilot Spaces preview
+Try preview at [https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
+
+## Copilot Workspace
 [Copilot Workspace](https://copilot-workspace.githubnext.com/)
 
-# No-code with GitHub Spark
+## No-code with GitHub Spark
 [GitHub Spark](https://spark.githubnext.com/)
