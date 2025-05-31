@@ -54,6 +54,11 @@ Clear chat and attach prompt file camelcase and ask again. We will get different
 
 Discuss repo-wide instructions at [./.github/instructions](./.github/instructions).
 
+## Copilot Spaces
+Try preview at [https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
+
+
+
 ## Search and Fetch
 Ask ```Did Pinecone introduced MCP support already? When and in what release?``` and Copilot will not know.
 You can use Web Search for Copilot extension using your Bing or Tavily key. This question should be answered now:
