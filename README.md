@@ -83,6 +83,7 @@ How would I do that, show me [enter][end]
 If I would like to do the steps you did in this chat using Kubernetes CLI next time, how it would look like? [enter][end]
 ```
 
+You can also see [recording](./video/MCP-Kubernetes.mp4) of this demo.
 
 ## Bring your own model
 Install ```Ollama``` and download Deepseek Coder models (small and mid size).
@@ -98,7 +99,10 @@ In Copilot click on Manage Models and add Ollama models. Than try some of the ab
 # Agent mode
 Take files from ```frontend``` and using agent mode ask ```Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and css.```
 
-Than try ```Now add other modes and make UI to switch them easier. Colorful, contrast, green and MS DOS```
+Than try ```Now add other modes and make UI to switch them easier. Colorful, contrast, green and MS DOS```.
+
+# Copilot Coding Agent
+Go to Issues and assign it to Copilot Coding Agent. 
 
 # Code Review
 After few changes create branch, showcase commit message, PR creation and do Code Review.
