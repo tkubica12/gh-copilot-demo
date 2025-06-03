@@ -12,6 +12,22 @@ Content-Type: image/jpeg
 < ./example.jpg
 --boundary--
 
-### Get the status of the process
-# @name getStatus
+### Process a PDF document
+# @name processPDF
+POST {{processBaseUrl}}/api/process
+Content-Type: multipart/form-data; boundary=boundary2
+
+--boundary2
+Content-Disposition: form-data; name="file"; filename="sample.txt"
+Content-Type: application/pdf
+
+< ./sample.txt
+--boundary2--
+
+### Get the status of the image process
+# @name getImageStatus
 GET {{processImage.response.body.$.results_url}}
+
+### Get the status of the PDF process
+# @name getPDFStatus
+GET {{processPDF.response.body.$.results_url}}

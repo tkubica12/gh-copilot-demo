@@ -14,6 +14,8 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+import PyPDF2
+import io
 
 # Load environment variables
 def get_env_var(var_name):
@@ -59,6 +61,63 @@ client = AsyncAzureOpenAI(
     base_url=f"{azure_openai_endpoint}/openai/deployments/{azure_openai_deployment_name}"
 )
 
+async def extract_pdf_text(pdf_data):
+    """
+    Extract text from PDF data.
+    """
+    try:
+        pdf_file = io.BytesIO(pdf_data)
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        text = ""
+        for page in pdf_reader.pages:
+            text += page.extract_text() + "\n"
+        return text.strip()
+    except Exception as e:
+        print(f"Error extracting PDF text: {e}")
+        return ""
+
+async def process_image_file(file_data, blob_name):
+    """
+    Process image file using Azure OpenAI Vision API.
+    """
+    encoded_image = base64.b64encode(file_data).decode("utf-8")
+    print(f"Sending image {blob_name} to OpenAI...")
+    
+    response = await client.chat.completions.create(
+        model=azure_openai_deployment_name,
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": [
+                {"type": "text", "text": "Describe this picture:"},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
+            ]}
+        ]
+    )
+    
+    return response.choices[0].message.content
+
+async def process_pdf_file(file_data, blob_name):
+    """
+    Process PDF file by extracting text and summarizing it using OpenAI.
+    """
+    print(f"Extracting text from PDF {blob_name}...")
+    extracted_text = await extract_pdf_text(file_data)
+    
+    if not extracted_text:
+        return "Unable to extract text from the PDF file."
+    
+    print(f"Sending PDF text from {blob_name} to OpenAI for summarization...")
+    
+    response = await client.chat.completions.create(
+        model=azure_openai_deployment_name,
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that provides concise summaries of documents."},
+            {"role": "user", "content": f"Please provide a comprehensive summary of the following document:\n\n{extracted_text}"}
+        ]
+    )
+    
+    return response.choices[0].message.content
+
 async def process_message(msg, receiver):
     """
     Process a single message and then complete it.
@@ -69,28 +128,22 @@ async def process_message(msg, receiver):
         blob_name = message_body.get("blob_name", "")
         id = message_body.get("id", "")
         blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
-        print(f"Downloading image data from {blob_name}")
+        print(f"Downloading file data from {blob_name}")
         download_stream = await blob_client.download_blob()
-        image_data = await download_stream.readall()
-        encoded_image = base64.b64encode(image_data).decode("utf-8")
-        print(f"Sending image {blob_name} to OpenAI...")
+        file_data = await download_stream.readall()
         
-        response = await client.chat.completions.create(
-            model=azure_openai_deployment_name,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": [
-                    {"type": "text", "text": "Describe this picture:"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
-                ]}
-            ]
-        )
+        # Determine file type based on extension
+        if blob_name.lower().endswith('.pdf'):
+            ai_response = await process_pdf_file(file_data, blob_name)
+        else:
+            # Default to image processing for backward compatibility
+            ai_response = await process_image_file(file_data, blob_name)
         
-        print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
+        print("OpenAI response:", f"{ai_response[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
         doc = {
             "id": id,
-            "ai_response": response.choices[0].message.content
+            "ai_response": ai_response
         }
         await cosmos_container.upsert_item(doc)
         await receiver.complete_message(msg)
