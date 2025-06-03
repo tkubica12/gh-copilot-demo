@@ -14,6 +14,10 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+from prometheus_client import Counter, Histogram, Summary, Gauge
+import prometheus_client
+import prometheus_async
+from prometheus_async.aio import web
 
 # Load environment variables
 def get_env_var(var_name):
@@ -30,6 +34,34 @@ resource = Resource.create({SERVICE_NAME: "AI Worker Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
 OpenAIInstrumentor().instrument()
+
+# Configure Prometheus metrics
+MESSAGES_PROCESSED = Counter(
+    "worker_messages_processed_total",
+    "Total number of messages processed",
+)
+MESSAGES_FAILED = Counter(
+    "worker_messages_failed_total",
+    "Total number of messages that failed processing",
+)
+MESSAGE_PROCESSING_TIME = Histogram(
+    "worker_message_processing_seconds",
+    "Time spent processing messages",
+    buckets=(0.5, 1.0, 2.5, 5.0, 10.0, 30.0, 60.0, 120.0),
+)
+MESSAGES_IN_PROGRESS = Gauge(
+    "worker_messages_in_progress",
+    "Number of messages currently being processed",
+)
+IMAGE_SIZE_SUMMARY = Summary(
+    "worker_image_size_bytes",
+    "Summary of image sizes in bytes",
+)
+OPENAI_PROCESSING_TIME = Histogram(
+    "worker_openai_processing_seconds",
+    "Time spent processing with OpenAI",
+    buckets=(0.5, 1.0, 2.5, 5.0, 10.0, 30.0, 60.0),
+)
 
 azure_openai_api_key = get_env_var("AZURE_OPENAI_API_KEY")
 azure_openai_endpoint = get_env_var("AZURE_OPENAI_ENDPOINT")
@@ -63,6 +95,8 @@ async def process_message(msg, receiver):
     """
     Process a single message and then complete it.
     """
+    MESSAGES_IN_PROGRESS.inc()
+    start_time = asyncio.get_event_loop().time()
     try:
         print(f"Processing message: {msg}")
         message_body = json.loads(str(msg))
@@ -72,9 +106,12 @@ async def process_message(msg, receiver):
         print(f"Downloading image data from {blob_name}")
         download_stream = await blob_client.download_blob()
         image_data = await download_stream.readall()
+        # Record image size in metrics
+        IMAGE_SIZE_SUMMARY.observe(len(image_data))
         encoded_image = base64.b64encode(image_data).decode("utf-8")
         print(f"Sending image {blob_name} to OpenAI...")
         
+        openai_start_time = asyncio.get_event_loop().time()
         response = await client.chat.completions.create(
             model=azure_openai_deployment_name,
             messages=[
@@ -85,6 +122,8 @@ async def process_message(msg, receiver):
                 ]}
             ]
         )
+        openai_duration = asyncio.get_event_loop().time() - openai_start_time
+        OPENAI_PROCESSING_TIME.observe(openai_duration)
         
         print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
@@ -94,28 +133,42 @@ async def process_message(msg, receiver):
         }
         await cosmos_container.upsert_item(doc)
         await receiver.complete_message(msg)
+        MESSAGES_PROCESSED.inc()
     except Exception as e:
         print(f"Error encountered: {e}. Abandoning message for retry.")
         await receiver.abandon_message(msg)
+        MESSAGES_FAILED.inc()
         return
+    finally:
+        MESSAGES_IN_PROGRESS.dec()
+        total_duration = asyncio.get_event_loop().time() - start_time
+        MESSAGE_PROCESSING_TIME.observe(total_duration)
 
 async def main():
-    async with ServiceBusClient(servicebus_fqdn, credential=credential) as sb_client:
-        receiver = sb_client.get_queue_receiver(
-            queue_name=servicebus_queue,
-            max_lock_renewal_duration=120
-        )
-        async with receiver:
-            while True:
-                messages = await receiver.receive_messages(max_message_count=batch_size, max_wait_time=max_wait_time)
-                if not messages:
-                    await asyncio.sleep(1)
-                    continue
-                tasks = []
-                for message in messages:
-                    tasks.append(asyncio.create_task(process_message(message, receiver)))
-                if tasks:
-                    await asyncio.gather(*tasks)
+    # Start Prometheus metrics server
+    metrics_server = await web.start_http_server(port=8000)
+    print("Prometheus metrics server started on port 8000")
+    
+    try:
+        async with ServiceBusClient(servicebus_fqdn, credential=credential) as sb_client:
+            receiver = sb_client.get_queue_receiver(
+                queue_name=servicebus_queue,
+                max_lock_renewal_duration=120
+            )
+            async with receiver:
+                while True:
+                    messages = await receiver.receive_messages(max_message_count=batch_size, max_wait_time=max_wait_time)
+                    if not messages:
+                        await asyncio.sleep(1)
+                        continue
+                    tasks = []
+                    for message in messages:
+                        tasks.append(asyncio.create_task(process_message(message, receiver)))
+                    if tasks:
+                        await asyncio.gather(*tasks)
+    finally:
+        # Stop Prometheus metrics server on exit
+        await metrics_server.close()
 
 if __name__ == "__main__":
     asyncio.run(main())
