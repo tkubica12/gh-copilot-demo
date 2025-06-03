@@ -1,7 +1,7 @@
 import os
 import uuid
 import dotenv
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from azure.identity import DefaultAzureCredential
@@ -13,7 +13,7 @@ from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 
-app = FastAPI(title="AI processing", description="API to process pictures")
+app = FastAPI(title="AI processing", description="API to process pictures and PDFs")
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -94,15 +94,36 @@ def get_openapi_spec():
     }
 )
 async def process_image(file: UploadFile = File(...)):
+    # Validate file type
+    content_type = file.content_type
+    file_extension = ""
+    file_type = ""
+    
+    if content_type == "image/jpeg" or content_type == "image/jpg":
+        file_extension = ".jpg"
+        file_type = "image"
+    elif content_type == "application/pdf":
+        file_extension = ".pdf"
+        file_type = "pdf"
+    else:
+        raise HTTPException(
+            status_code=422, 
+            detail=f"Unsupported file type: {content_type}. Only JPEG images and PDF documents are supported."
+        )
+
     # Generate GUID
     guid = str(uuid.uuid4())
 
-    # Upload image to storage
-    blob_name = f"{guid}.jpg"
+    # Upload file to storage with appropriate extension
+    blob_name = f"{guid}{file_extension}"
     container_client.upload_blob(name=blob_name, data=file.file, overwrite=False)
 
-    # Send message to Service Bus
-    message = ServiceBusMessage(json.dumps({"blob_name": blob_name, "id": guid}))
+    # Send message to Service Bus with file type info
+    message = ServiceBusMessage(json.dumps({
+        "blob_name": blob_name, 
+        "id": guid,
+        "file_type": file_type
+    }))
     servicebus_queue.send_messages(message)
 
     return JSONResponse(status_code=202, content={"id": guid, "results_url": f"{processed_base_url}/{guid}"})

@@ -17,6 +17,17 @@
   margin-bottom: 40px;
 }
 
+.App-header h1 {
+  margin-bottom: 0;
+}
+
+.App-header .subtitle {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: normal;
+  opacity: 0.9;
+}
+
 .upload-card {
   background: #f9f9f9;
   padding: 30px;
