@@ -18,10 +18,10 @@ POST {{processBaseUrl}}/api/process
 Content-Type: multipart/form-data; boundary=boundary2
 
 --boundary2
-Content-Disposition: form-data; name="file"; filename="sample.txt"
+Content-Disposition: form-data; name="file"; filename="example.pdf"
 Content-Type: application/pdf
 
-< ./sample.txt
+< ./example.pdf
 --boundary2--
 
 ### Get the status of the image process

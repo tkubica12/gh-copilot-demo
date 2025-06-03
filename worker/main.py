@@ -70,11 +70,17 @@ async def extract_pdf_text(pdf_data):
         pdf_reader = PyPDF2.PdfReader(pdf_file)
         text = ""
         for page in pdf_reader.pages:
-            text += page.extract_text() + "\n"
+            page_text = page.extract_text()
+            if page_text:
+                text += page_text + "\n"
+        
+        if not text.strip():
+            return "This PDF appears to contain no extractable text content."
+        
         return text.strip()
     except Exception as e:
         print(f"Error extracting PDF text: {e}")
-        return ""
+        return f"Unable to extract text from PDF: {str(e)}"
 
 async def process_image_file(file_data, blob_name):
     """
@@ -103,8 +109,8 @@ async def process_pdf_file(file_data, blob_name):
     print(f"Extracting text from PDF {blob_name}...")
     extracted_text = await extract_pdf_text(file_data)
     
-    if not extracted_text:
-        return "Unable to extract text from the PDF file."
+    if not extracted_text or "Unable to extract text" in extracted_text or "no extractable text" in extracted_text:
+        return f"PDF processing completed for {blob_name}. {extracted_text}"
     
     print(f"Sending PDF text from {blob_name} to OpenAI for summarization...")
     
