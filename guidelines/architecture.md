@@ -10,10 +10,10 @@ This document outlines the architectural patterns, design principles, and coding
 
 The application follows a microservices pattern with clear separation of concerns:
 
-- **API Processing Service**: Handles image uploads and initiates processing workflows
-- **Worker Service**: Performs AI-powered image analysis using Azure OpenAI
+- **API Processing Service**: Handles file uploads and initiates processing workflows
+- **Worker Service**: Performs AI-powered image analysis and PDF summarization using Azure OpenAI
 - **API Status Service**: Provides processing status and results retrieval
-- **Frontend Service**: User interface for image upload and result viewing
+- **Frontend Service**: User interface for file upload and result viewing
 
 #### Key Principles:
 - Each service has a single responsibility

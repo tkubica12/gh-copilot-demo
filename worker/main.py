@@ -9,6 +9,8 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 import requests
 import base64
+import io
+from PyPDF2 import PdfReader
 from openai import AsyncAzureOpenAI
 from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
@@ -69,22 +71,37 @@ async def process_message(msg, receiver):
         blob_name = message_body.get("blob_name", "")
         id = message_body.get("id", "")
         blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
-        print(f"Downloading image data from {blob_name}")
+        print(f"Downloading data from {blob_name}")
         download_stream = await blob_client.download_blob()
-        image_data = await download_stream.readall()
-        encoded_image = base64.b64encode(image_data).decode("utf-8")
-        print(f"Sending image {blob_name} to OpenAI...")
-        
-        response = await client.chat.completions.create(
-            model=azure_openai_deployment_name,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": [
-                    {"type": "text", "text": "Describe this picture:"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
-                ]}
-            ]
-        )
+        file_data = await download_stream.readall()
+
+        extension = os.path.splitext(blob_name)[1].lower()
+        if extension in [".jpg", ".jpeg", ".png"]:
+            encoded_image = base64.b64encode(file_data).decode("utf-8")
+            print(f"Sending image {blob_name} to OpenAI...")
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": [
+                        {"type": "text", "text": "Describe this picture:"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encoded_image}"}}
+                    ]}
+                ]
+            )
+        elif extension == ".pdf":
+            print(f"Summarizing PDF {blob_name} with OpenAI...")
+            pdf_reader = PdfReader(io.BytesIO(file_data))
+            text = "\n".join(page.extract_text() or "" for page in pdf_reader.pages)
+            response = await client.chat.completions.create(
+                model=azure_openai_deployment_name,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": f"Summarize this document:\n{text}"}
+                ]
+            )
+        else:
+            raise ValueError("Unsupported file type")
         
         print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
