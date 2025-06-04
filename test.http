@@ -1,15 +1,15 @@
 @processBaseUrl = http://localhost:8000
 
-### Process an image
-# @name processImage
+### Process a file
+# @name processFile
 POST {{processBaseUrl}}/api/process
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
-Content-Disposition: form-data; name="file"; filename="example.jpg"
-Content-Type: image/jpeg
+Content-Disposition: form-data; name="file"; filename="example.pdf"
+Content-Type: application/pdf
 
-< ./example.jpg
+< ./api-processing/example.pdf
 --boundary--
 
 ### Get the status of the process

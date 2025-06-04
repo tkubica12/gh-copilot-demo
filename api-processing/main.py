@@ -13,7 +13,7 @@ from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 
-app = FastAPI(title="AI processing", description="API to process pictures")
+app = FastAPI(title="AI processing", description="API to process pictures and documents")
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -93,12 +93,16 @@ def get_openapi_spec():
         }
     }
 )
-async def process_image(file: UploadFile = File(...)):
+async def process_file(file: UploadFile = File(...)):
     # Generate GUID
     guid = str(uuid.uuid4())
 
-    # Upload image to storage
-    blob_name = f"{guid}.jpg"
+    extension = os.path.splitext(file.filename)[1].lower()
+    if extension not in [".jpg", ".jpeg", ".png", ".pdf"]:
+        return JSONResponse(status_code=400, content={"detail": "Unsupported file type"})
+
+    # Upload file to storage
+    blob_name = f"{guid}{extension}"
     container_client.upload_blob(name=blob_name, data=file.file, overwrite=False)
 
     # Send message to Service Bus
