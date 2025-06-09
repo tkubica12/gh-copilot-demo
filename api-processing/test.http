@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:8000
 
-### Create a new book
-# @name createNew
+### Process an image file
+# @name processImage
 POST {{baseUrl}}/api/process
 Content-Type: multipart/form-data; boundary=boundary
 
@@ -10,4 +10,16 @@ Content-Disposition: form-data; name="file"; filename="example.jpg"
 Content-Type: image/jpeg
 
 < ./example.jpg
+--boundary--
+
+### Process a PDF file
+# @name processPDF
+POST {{baseUrl}}/api/process
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: application/pdf
+
+< ../sample.pdf
 --boundary--
