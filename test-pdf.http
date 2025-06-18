@@ -1,0 +1,33 @@
+@processBaseUrl = http://localhost:8000
+
+### Process a PDF file
+# @name processPDF  
+POST {{processBaseUrl}}/api/process
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="sample.pdf"
+Content-Type: application/pdf
+
+< ./sample.pdf
+--boundary--
+
+### Process an image (existing functionality)
+# @name processImage
+POST {{processBaseUrl}}/api/process
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="example.jpg"
+Content-Type: image/jpeg
+
+< ./example.jpg
+--boundary--
+
+### Get the status of the PDF process
+# @name getPDFStatus
+GET {{processPDF.response.body.$.results_url}}
+
+### Get the status of the image process
+# @name getImageStatus  
+GET {{processImage.response.body.$.results_url}}
