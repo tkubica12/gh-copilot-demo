@@ -1,0 +1,44 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: demo-apps-api-processing
+  namespace: demo-apps
+  labels:
+    app.kubernetes.io/name: demo-apps
+    app.kubernetes.io/component: api-processing
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo-apps
+      app.kubernetes.io/component: api-processing
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: demo-apps-api-status
+  namespace: demo-apps
+  labels:
+    app.kubernetes.io/name: demo-apps
+    app.kubernetes.io/component: api-status
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo-apps
+      app.kubernetes.io/component: api-status
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: demo-apps-frontend
+  namespace: demo-apps
+  labels:
+    app.kubernetes.io/name: demo-apps
+    app.kubernetes.io/component: frontend
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo-apps
+      app.kubernetes.io/component: frontend

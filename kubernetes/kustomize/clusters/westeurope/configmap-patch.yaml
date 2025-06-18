@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-apps-config
+  namespace: demo-apps
+data:
+  region: "westeurope"
+  # West Europe specific URLs
+  react-app-api-processing-url: "https://westeurope-api.example.com/api/processing"
+  react-app-api-status-url: "https://westeurope-api.example.com/api/status"

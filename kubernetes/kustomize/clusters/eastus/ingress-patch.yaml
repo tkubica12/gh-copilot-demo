@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-apps
+  namespace: demo-apps
+  annotations:
+    kubernetes.io/ingress.class: "azure/application-gateway"
+    appgw.ingress.kubernetes.io/backend-protocol: "http"
+spec:
+  rules:
+  - host: eastus-demo-apps.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-apps-frontend
+            port:
+              number: 80
+      - path: /api/processing
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-apps-api-processing
+            port:
+              number: 80
+      - path: /api/status
+        pathType: Prefix
+        backend:
+          service:
+            name: demo-apps-api-status
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - eastus-demo-apps.example.com
+    secretName: eastus-demo-apps-tls

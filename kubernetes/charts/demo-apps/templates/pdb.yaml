@@ -1,0 +1,58 @@
+{{- if .Values.pdb.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-api-processing
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-processing" | nindent 4 }}
+spec:
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "demo-apps.selectorLabels" . | nindent 6 }}
+      {{- include "demo-apps.componentLabels" "api-processing" | nindent 6 }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-api-status
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-status" | nindent 4 }}
+spec:
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "demo-apps.selectorLabels" . | nindent 6 }}
+      {{- include "demo-apps.componentLabels" "api-status" | nindent 6 }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-frontend
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "frontend" | nindent 4 }}
+spec:
+  {{- if .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "demo-apps.selectorLabels" . | nindent 6 }}
+      {{- include "demo-apps.componentLabels" "frontend" | nindent 6 }}
+{{- end }}

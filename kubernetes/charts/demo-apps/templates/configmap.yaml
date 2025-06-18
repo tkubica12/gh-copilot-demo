@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-config
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+data:
+  environment: {{ include "demo-apps.environment" . | quote }}
+  region: {{ include "demo-apps.region" . | quote }}
+  
+  # API Processing Configuration
+  {{- if .Values.apiProcessing.enabled }}
+  api-processing-cors-origin: {{ .Values.apiProcessing.env.CORS_ORIGIN | quote }}
+  {{- end }}
+  
+  # API Status Configuration
+  {{- if .Values.apiStatus.enabled }}
+  api-status-retry-after: {{ .Values.apiStatus.env.RETRY_AFTER | quote }}
+  api-status-cors-origin: {{ .Values.apiStatus.env.CORS_ORIGIN | quote }}
+  {{- end }}
+  
+  # Frontend Configuration
+  {{- if .Values.frontend.enabled }}
+  react-app-api-processing-url: {{ .Values.frontend.env.REACT_APP_API_PROCESSING_URL | quote }}
+  react-app-api-status-url: {{ .Values.frontend.env.REACT_APP_API_STATUS_URL | quote }}
+  {{- end }}

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-apps-config
+  namespace: demo-apps
+data:
+  region: "eastus"
+  # East US specific URLs
+  react-app-api-processing-url: "https://eastus-api.example.com/api/processing"
+  react-app-api-status-url: "https://eastus-api.example.com/api/status"

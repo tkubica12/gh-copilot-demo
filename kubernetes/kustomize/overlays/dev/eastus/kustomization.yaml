@@ -1,0 +1,62 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: demo-apps-dev-eastus
+
+resources:
+  - ../../clusters/eastus
+
+namePrefix: dev-
+
+commonLabels:
+  environment: dev
+
+patchesStrategicMerge:
+  - configmap-patch.yaml
+  - secret-patch.yaml
+
+patches:
+  # Reduce replicas for dev
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+  
+  # Reduce resource limits for dev
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/memory
+        value: "128Mi"
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/requests/cpu
+        value: "100m"
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/memory
+        value: "512Mi"
+      - op: replace
+        path: /spec/template/spec/containers/0/resources/limits/cpu
+        value: "500m"
+  
+  # Adjust HPA for dev
+  - target:
+      kind: HorizontalPodAutoscaler
+    patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 1
+      - op: replace
+        path: /spec/maxReplicas
+        value: 3
+
+images:
+  - name: api-processing
+    newTag: dev
+  - name: api-status
+    newTag: dev
+  - name: frontend
+    newTag: dev

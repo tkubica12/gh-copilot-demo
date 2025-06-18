@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: demo-apps-base
+
+resources:
+  - namespace.yaml
+  - serviceaccount.yaml
+  - configmap.yaml
+  - secret.yaml
+  - deployment-api-processing.yaml
+  - deployment-api-status.yaml
+  - deployment-frontend.yaml
+  - service.yaml
+  - ingress.yaml
+  - hpa.yaml
+  - pdb.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: demo-apps
+  app.kubernetes.io/managed-by: kustomize
+
+images:
+  - name: api-processing
+    newTag: latest
+  - name: api-status
+    newTag: latest
+  - name: frontend
+    newTag: latest

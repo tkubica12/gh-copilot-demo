@@ -1,0 +1,51 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: demo-apps-prod-westus
+
+resources:
+  - ../../clusters/westus
+
+namePrefix: prod-
+
+commonLabels:
+  environment: prod
+
+patchesStrategicMerge:
+  - configmap-patch.yaml
+  - secret-patch.yaml
+
+patches:
+  # Same production configurations as eastus
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
+  
+  - target:
+      kind: HorizontalPodAutoscaler
+    patch: |-
+      - op: replace
+        path: /spec/minReplicas
+        value: 3
+      - op: replace
+        path: /spec/maxReplicas
+        value: 20
+  
+  - target:
+      kind: PodDisruptionBudget
+    patch: |-
+      - op: replace
+        path: /spec/minAvailable
+        value: 2
+
+images:
+  - name: api-processing
+    newTag: stable
+  - name: api-status
+    newTag: stable
+  - name: frontend
+    newTag: stable

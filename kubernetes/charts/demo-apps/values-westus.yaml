@@ -1,0 +1,29 @@
+# West US region values
+global:
+  region: "westus"
+
+# Region-specific node selector
+nodeSelector:
+  topology.kubernetes.io/region: "westus"
+  
+# West US specific configurations
+apiProcessing:
+  env:
+    # Region-specific storage and service bus endpoints
+    STORAGE_ACCOUNT_URL: "https://westus-storage.blob.core.windows.net"
+    SERVICEBUS_FQDN: "westus-servicebus.servicebus.windows.net"
+
+apiStatus:
+  env:
+    # Region-specific Cosmos DB endpoint
+    COSMOS_ACCOUNT_URL: "https://westus-cosmos.documents.azure.com:443/"
+
+# Ingress annotations for West US
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # Azure specific annotations
+    kubernetes.io/ingress.class: "azure/application-gateway"
+    appgw.ingress.kubernetes.io/backend-protocol: "http"

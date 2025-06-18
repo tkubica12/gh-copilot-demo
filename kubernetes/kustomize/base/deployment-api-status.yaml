@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-apps-api-status
+  namespace: demo-apps
+  labels:
+    app.kubernetes.io/name: demo-apps
+    app.kubernetes.io/component: api-status
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo-apps
+      app.kubernetes.io/component: api-status
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: demo-apps
+        app.kubernetes.io/component: api-status
+    spec:
+      serviceAccountName: demo-apps
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+      - name: api-status
+        image: api-status:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        env:
+        - name: COSMOS_ACCOUNT_URL
+          valueFrom:
+            secretKeyRef:
+              name: demo-apps-secret
+              key: api-status-cosmos-account-url
+        - name: COSMOS_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: demo-apps-secret
+              key: api-status-cosmos-db-name
+        - name: COSMOS_CONTAINER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: demo-apps-secret
+              key: api-status-cosmos-container-name
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: demo-apps-secret
+              key: api-status-appinsights-connection-string
+        - name: RETRY_AFTER
+          valueFrom:
+            configMapKeyRef:
+              name: demo-apps-config
+              key: api-status-retry-after
+        - name: CORS_ORIGIN
+          valueFrom:
+            configMapKeyRef:
+              name: demo-apps-config
+              key: api-status-cors-origin
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: demo-apps-config
+              key: environment
+        - name: REGION
+          valueFrom:
+            configMapKeyRef:
+              name: demo-apps-config
+              key: region
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: var-cache
+          mountPath: /var/cache
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: var-cache
+        emptyDir: {}

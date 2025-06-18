@@ -1,0 +1,29 @@
+# East US region values
+global:
+  region: "eastus"
+
+# Region-specific node selector
+nodeSelector:
+  topology.kubernetes.io/region: "eastus"
+  
+# East US specific configurations
+apiProcessing:
+  env:
+    # Region-specific storage and service bus endpoints
+    STORAGE_ACCOUNT_URL: "https://eastus-storage.blob.core.windows.net"
+    SERVICEBUS_FQDN: "eastus-servicebus.servicebus.windows.net"
+
+apiStatus:
+  env:
+    # Region-specific Cosmos DB endpoint
+    COSMOS_ACCOUNT_URL: "https://eastus-cosmos.documents.azure.com:443/"
+
+# Ingress annotations for East US
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # Azure specific annotations
+    kubernetes.io/ingress.class: "azure/application-gateway"
+    appgw.ingress.kubernetes.io/backend-protocol: "http"

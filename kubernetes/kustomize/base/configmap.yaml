@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-apps-config
+  namespace: demo-apps
+  labels:
+    app.kubernetes.io/name: demo-apps
+    app.kubernetes.io/component: config
+data:
+  environment: "dev"
+  region: "eastus"
+  
+  # API Processing Configuration
+  api-processing-cors-origin: "*"
+  
+  # API Status Configuration
+  api-status-retry-after: "5"
+  api-status-cors-origin: "*"
+  
+  # Frontend Configuration
+  react-app-api-processing-url: "http://demo-apps-api-processing/api/processing"
+  react-app-api-status-url: "http://demo-apps-api-status/api/status"

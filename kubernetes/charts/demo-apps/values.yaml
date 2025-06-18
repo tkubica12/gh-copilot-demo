@@ -1,0 +1,174 @@
+# Default values for demo-apps.
+# This is a YAML-formatted file.
+# Declare variables to be substituted into your templates.
+
+global:
+  registry: ""
+  imageTag: "latest"
+  imagePullPolicy: IfNotPresent
+  environment: "dev"
+  region: "eastus"
+  
+nameOverride: ""
+fullnameOverride: ""
+
+# Common labels
+commonLabels:
+  app.kubernetes.io/part-of: demo-apps
+  app.kubernetes.io/managed-by: helm
+
+# Service Account
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# Pod Security Context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 3000
+  fsGroup: 2000
+
+# Security Context
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+# Resources
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# Node Selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}
+
+# Horizontal Pod Autoscaler
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Pod Disruption Budget
+pdb:
+  enabled: true
+  minAvailable: 1
+
+# Ingress
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: demo-apps.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api/processing
+          pathType: Prefix
+          service: api-processing
+        - path: /api/status
+          pathType: Prefix
+          service: api-status
+  tls:
+    - secretName: demo-apps-tls
+      hosts:
+        - demo-apps.example.com
+
+# Application-specific configurations
+apiProcessing:
+  enabled: true
+  name: api-processing
+  image:
+    repository: api-processing
+    tag: ""
+  replicaCount: 2
+  port: 8000
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8000
+  env:
+    STORAGE_ACCOUNT_URL: ""
+    STORAGE_CONTAINER: ""
+    PROCESSED_BASE_URL: ""
+    SERVICEBUS_FQDN: ""
+    SERVICEBUS_QUEUE: ""
+    APPLICATIONINSIGHTS_CONNECTION_STRING: ""
+    CORS_ORIGIN: "*"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+
+apiStatus:
+  enabled: true
+  name: api-status
+  image:
+    repository: api-status
+    tag: ""
+  replicaCount: 2
+  port: 8000
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8000
+  env:
+    COSMOS_ACCOUNT_URL: ""
+    COSMOS_DB_NAME: ""
+    COSMOS_CONTAINER_NAME: ""
+    APPLICATIONINSIGHTS_CONNECTION_STRING: ""
+    RETRY_AFTER: "5"
+    CORS_ORIGIN: "*"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+
+frontend:
+  enabled: true
+  name: frontend
+  image:
+    repository: frontend
+    tag: ""
+  replicaCount: 2
+  port: 80
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 80
+  env:
+    REACT_APP_API_PROCESSING_URL: ""
+    REACT_APP_API_STATUS_URL: ""
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"

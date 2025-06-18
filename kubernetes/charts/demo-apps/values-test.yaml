@@ -1,0 +1,65 @@
+# Test environment values
+global:
+  environment: "test"
+  region: "eastus"
+  imageTag: "test"
+  registry: "your-test-registry.azurecr.io"
+
+# Resource limits for test
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# Test replica counts
+apiProcessing:
+  replicaCount: 2
+  env:
+    STORAGE_ACCOUNT_URL: "https://teststorageaccount.blob.core.windows.net"
+    STORAGE_CONTAINER: "test-images"
+    PROCESSED_BASE_URL: "https://test-api.example.com"
+    SERVICEBUS_FQDN: "test-servicebus.servicebus.windows.net"
+    SERVICEBUS_QUEUE: "test-processing-queue"
+    APPLICATIONINSIGHTS_CONNECTION_STRING: "InstrumentationKey=your-test-key"
+
+apiStatus:
+  replicaCount: 2
+  env:
+    COSMOS_ACCOUNT_URL: "https://test-cosmos.documents.azure.com:443/"
+    COSMOS_DB_NAME: "test-database"
+    COSMOS_CONTAINER_NAME: "test-results"
+    APPLICATIONINSIGHTS_CONNECTION_STRING: "InstrumentationKey=your-test-key"
+
+frontend:
+  replicaCount: 2
+  env:
+    REACT_APP_API_PROCESSING_URL: "https://test-api.example.com/api/processing"
+    REACT_APP_API_STATUS_URL: "https://test-api.example.com/api/status"
+
+# HPA settings for test
+hpa:
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+# Ingress for test
+ingress:
+  hosts:
+    - host: test-demo-apps.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api/processing
+          pathType: Prefix
+          service: api-processing
+        - path: /api/status
+          pathType: Prefix
+          service: api-status
+  tls:
+    - secretName: test-demo-apps-tls
+      hosts:
+        - test-demo-apps.example.com

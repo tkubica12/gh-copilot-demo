@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+metadata:
+  name: demo-apps-westus
+
+resources:
+  - ../../base
+
+namePrefix: westus-
+
+commonLabels:
+  cluster: westus
+  region: westus
+
+patchesStrategicMerge:
+  - configmap-patch.yaml
+  - secret-patch.yaml
+  - ingress-patch.yaml
+
+patches:
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: add
+        path: /spec/template/spec/nodeSelector
+        value:
+          topology.kubernetes.io/region: westus

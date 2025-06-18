@@ -1,0 +1,59 @@
+{{- if .Values.apiProcessing.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-api-processing
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-processing" | nindent 4 }}
+spec:
+  type: {{ .Values.apiProcessing.service.type }}
+  ports:
+  - port: {{ .Values.apiProcessing.service.port }}
+    targetPort: {{ .Values.apiProcessing.service.targetPort }}
+    protocol: TCP
+    name: http
+  selector:
+    {{- include "demo-apps.selectorLabels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-processing" | nindent 4 }}
+{{- end }}
+---
+{{- if .Values.apiStatus.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-api-status
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-status" | nindent 4 }}
+spec:
+  type: {{ .Values.apiStatus.service.type }}
+  ports:
+  - port: {{ .Values.apiStatus.service.port }}
+    targetPort: {{ .Values.apiStatus.service.targetPort }}
+    protocol: TCP
+    name: http
+  selector:
+    {{- include "demo-apps.selectorLabels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "api-status" | nindent 4 }}
+{{- end }}
+---
+{{- if .Values.frontend.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-frontend
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "frontend" | nindent 4 }}
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+  - port: {{ .Values.frontend.service.port }}
+    targetPort: {{ .Values.frontend.service.targetPort }}
+    protocol: TCP
+    name: http
+  selector:
+    {{- include "demo-apps.selectorLabels" . | nindent 4 }}
+    {{- include "demo-apps.componentLabels" "frontend" | nindent 4 }}
+{{- end }}

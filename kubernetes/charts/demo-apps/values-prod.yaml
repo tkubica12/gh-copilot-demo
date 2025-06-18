@@ -1,0 +1,105 @@
+# Production environment values
+global:
+  environment: "prod"
+  region: "eastus"
+  imageTag: "stable"
+  registry: "your-prod-registry.azurecr.io"
+
+# Resource limits for production
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  limits:
+    memory: "1Gi"
+    cpu: "1000m"
+
+# Production replica counts
+apiProcessing:
+  replicaCount: 3
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "2000m"
+  env:
+    STORAGE_ACCOUNT_URL: "https://prodstorageaccount.blob.core.windows.net"
+    STORAGE_CONTAINER: "prod-images"
+    PROCESSED_BASE_URL: "https://api.example.com"
+    SERVICEBUS_FQDN: "prod-servicebus.servicebus.windows.net"
+    SERVICEBUS_QUEUE: "prod-processing-queue"
+    APPLICATIONINSIGHTS_CONNECTION_STRING: "InstrumentationKey=your-prod-key"
+
+apiStatus:
+  replicaCount: 3
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "2000m"
+  env:
+    COSMOS_ACCOUNT_URL: "https://prod-cosmos.documents.azure.com:443/"
+    COSMOS_DB_NAME: "prod-database"
+    COSMOS_CONTAINER_NAME: "prod-results"
+    APPLICATIONINSIGHTS_CONNECTION_STRING: "InstrumentationKey=your-prod-key"
+
+frontend:
+  replicaCount: 3
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+  env:
+    REACT_APP_API_PROCESSING_URL: "https://api.example.com/api/processing"
+    REACT_APP_API_STATUS_URL: "https://api.example.com/api/status"
+
+# HPA settings for production
+hpa:
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 70
+
+# Enhanced PDB for production
+pdb:
+  minAvailable: 2
+
+# Ingress for production
+ingress:
+  hosts:
+    - host: demo-apps.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: frontend
+        - path: /api/processing
+          pathType: Prefix
+          service: api-processing
+        - path: /api/status
+          pathType: Prefix
+          service: api-status
+  tls:
+    - secretName: demo-apps-tls
+      hosts:
+        - demo-apps.example.com
+
+# Production affinity rules
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - demo-apps
+        topologyKey: kubernetes.io/hostname
