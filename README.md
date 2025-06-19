@@ -64,6 +64,9 @@ You can also Fetch specific file from URL directly. There is new standard **llms
 
 ```Did Pinecone introduced MCP support already? When and in what release? #fetch https://docs.pinecone.io/llms-full.txt```
 
+## Custom chat mode
+Switch to MyTeacher chat mode and ask ```Should I migrate to https://gateway-api.sigs.k8s.io/ ?``` or put some file into context and ask ```What is this file about?```.
+
 ## Connect tools via MCP
 Run MCP server in folder [](mcp/random_string_mcp/src/). This runs locally and is configured in ```mcp.json``` file on workspace. 
 
