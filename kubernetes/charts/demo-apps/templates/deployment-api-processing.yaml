@@ -28,7 +28,7 @@ spec:
       - name: api-processing
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
-        image: {{ include "demo-apps.image" .Values.apiProcessing.image }}
+        image: {{ include "demo-apps.image" (dict "root" . "image" .Values.apiProcessing.image) }}
         imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         ports:
         - name: http
