@@ -27,7 +27,7 @@ spec:
       - name: frontend
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
-        image: {{ include "demo-apps.image" .Values.frontend.image }}
+        image: {{ include "demo-apps.image" (dict "root" . "image" .Values.frontend.image) }}
         imagePullPolicy: {{ .Values.global.imagePullPolicy }}
         ports:
         - name: http

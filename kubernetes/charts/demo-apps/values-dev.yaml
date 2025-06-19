@@ -59,7 +59,7 @@ hpa:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
 
-# Ingress for dev
+# Ingress for dev (DEPRECATED - migrate to Gateway API)
 ingress:
   hosts:
     - host: dev-demo-apps.example.com
@@ -77,3 +77,10 @@ ingress:
     - secretName: dev-demo-apps-tls
       hosts:
         - dev-demo-apps.example.com
+
+# Gateway API for dev (RECOMMENDED)
+gateway:
+  enabled: false  # Set to true to use Gateway API instead of Ingress
+  hostname: "dev-demo-apps.example.com"
+  tls:
+    secretName: "dev-demo-apps-tls"

@@ -1,7 +1,31 @@
 apiVersion: v2
 name: demo-apps
-description: A Helm chart for demo applications (api-processing, api-status, frontend)
+description: A Helm chart for demo applications with Gateway API support (api-processing, api-status, frontend)
 type: application
-version: 0.1.0
+version: 0.2.0
 appVersion: "1.0.0"
+keywords:
+  - gateway-api
+  - ingress
+  - microservices
+  - enterprise
+  - security
+home: https://github.com/tkubica12/gh-copilot-demo
+sources:
+  - https://github.com/tkubica12/gh-copilot-demo
+maintainers:
+  - name: tkubica12
+    url: https://github.com/tkubica12
+annotations:
+  "artifacthub.io/changes": |
+    - kind: added
+      description: Gateway API support for modern Kubernetes networking
+    - kind: added  
+      description: Enterprise security features with NetworkPolicy and security headers
+    - kind: added
+      description: Migration guide and backward compatibility with Ingress API
+    - kind: deprecated
+      description: Ingress API usage (will be removed in future versions)
+  "artifacthub.io/containsSecurityUpdates": "true"
+  "artifacthub.io/prerelease": "false"
 dependencies: []
