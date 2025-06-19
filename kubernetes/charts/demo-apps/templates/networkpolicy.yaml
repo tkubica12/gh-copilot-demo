@@ -1,0 +1,59 @@
+{{- if and .Values.gateway.enabled .Values.networkPolicy.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "demo-apps.fullname" . }}-gateway
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "demo-apps.selectorLabels" . | nindent 6 }}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  # Allow traffic from gateway controller
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: {{ .Values.networkPolicy.gatewayNamespace | default "nginx-system" }}
+    ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 8000
+  # Allow traffic from within the same namespace
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: {{ .Release.Namespace }}
+    ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 8000
+  egress:
+  # Allow DNS resolution
+  - to: []
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  # Allow outbound HTTPS for external APIs
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443
+  # Allow communication between application pods
+  - to:
+    - podSelector:
+        matchLabels:
+          {{- include "demo-apps.selectorLabels" . | nindent 10 }}
+    ports:
+    - protocol: TCP
+      port: 80
+    - protocol: TCP
+      port: 8000
+{{- end }}

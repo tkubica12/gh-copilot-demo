@@ -1,0 +1,41 @@
+{{- include "demo-apps.validateNetworking" . -}}
+{{- if .Values.gateway.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: {{ include "demo-apps.fullname" . }}
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+  {{- with .Values.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  gatewayClassName: {{ .Values.gateway.gatewayClassName }}
+  listeners:
+  {{- if .Values.gateway.tls.enabled }}
+  - name: https
+    hostname: {{ .Values.gateway.hostname | quote }}
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: {{ .Values.gateway.tls.secretName }}
+        kind: Secret
+    {{- if .Values.gateway.allowedRoutes }}
+    allowedRoutes:
+      {{- toYaml .Values.gateway.allowedRoutes | nindent 6 }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.gateway.http.enabled }}
+  - name: http
+    hostname: {{ .Values.gateway.hostname | quote }}
+    port: 80
+    protocol: HTTP
+    {{- if .Values.gateway.allowedRoutes }}
+    allowedRoutes:
+      {{- toYaml .Values.gateway.allowedRoutes | nindent 6 }}
+    {{- end }}
+  {{- end }}
+{{- end }}

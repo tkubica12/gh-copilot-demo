@@ -101,3 +101,15 @@ Region helper
 {{- define "demo-apps.region" -}}
 {{- .Values.global.region | default "eastus" -}}
 {{- end }}
+
+{{/*
+Networking validation helper
+*/}}
+{{- define "demo-apps.validateNetworking" -}}
+{{- if and .Values.ingress.enabled .Values.gateway.enabled -}}
+{{- fail "ERROR: Both Ingress and Gateway API are enabled. Please enable only one networking option." -}}
+{{- end -}}
+{{- if and (not .Values.ingress.enabled) (not .Values.gateway.enabled) -}}
+{{- fail "ERROR: Neither Ingress nor Gateway API is enabled. Please enable one networking option." -}}
+{{- end -}}
+{{- end }}

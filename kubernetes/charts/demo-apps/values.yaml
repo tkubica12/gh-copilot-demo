@@ -69,7 +69,8 @@ pdb:
   enabled: true
   minAvailable: 1
 
-# Ingress
+# Ingress (DEPRECATED - will be removed in future versions)
+# Please migrate to Gateway API for enhanced features and future support
 ingress:
   enabled: true
   className: "nginx"
@@ -93,6 +94,129 @@ ingress:
     - secretName: demo-apps-tls
       hosts:
         - demo-apps.example.com
+
+# Gateway API (RECOMMENDED for new deployments)
+# Modern, secure, and feature-rich alternative to Ingress
+gateway:
+  # Set to true to enable Gateway API (requires Gateway API CRDs installed)
+  enabled: false
+  
+  # Gateway class to use (e.g., nginx, istio, envoy-gateway)
+  gatewayClassName: "nginx"
+  
+  # Hostname for the gateway
+  hostname: "demo-apps.example.com"
+  
+  # Optional: namespace where the gateway should be created
+  # If not specified, uses the current namespace
+  namespace: ""
+  
+  # Gateway annotations for additional configuration
+  annotations: {}
+    # Example annotations for enterprise features:
+    # nginx.org/rate-limit: "10r/s"
+    # nginx.org/timeout-upstream: "30s"
+  
+  # HTTP configuration
+  http:
+    enabled: true
+  
+  # TLS configuration
+  tls:
+    enabled: true
+    secretName: "demo-apps-tls"
+  
+  # Allowed routes configuration for security
+  allowedRoutes:
+    namespaces:
+      from: Same
+  
+  # HTTPRoute configuration
+  routes:
+    annotations: {}
+      # Example annotations for observability:
+      # nginx.org/mergeable-ingress-type: "minion"
+    
+    rules:
+      # Frontend route
+      - matches:
+          - path:
+              type: PathPrefix
+              value: "/"
+        backendRefs:
+          - service: frontend
+            port: 80
+        filters:
+          # Security headers for enterprise deployment
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+                - name: "X-Frame-Options"
+                  value: "DENY"
+                - name: "X-Content-Type-Options"
+                  value: "nosniff"
+                - name: "X-XSS-Protection"
+                  value: "1; mode=block"
+                - name: "Referrer-Policy"
+                  value: "strict-origin-when-cross-origin"
+                - name: "Content-Security-Policy"
+                  value: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+      
+      # API Processing route
+      - matches:
+          - path:
+              type: PathPrefix
+              value: "/api/processing"
+        backendRefs:
+          - service: api-processing
+            port: 80
+        filters:
+          # CORS headers for API
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+                - name: "Access-Control-Allow-Origin"
+                  value: "*"
+                - name: "Access-Control-Allow-Methods"
+                  value: "GET, POST, PUT, DELETE, OPTIONS"
+                - name: "Access-Control-Allow-Headers"
+                  value: "Content-Type, Authorization"
+          # Security headers
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+                - name: "X-Content-Type-Options"
+                  value: "nosniff"
+                - name: "X-Frame-Options"
+                  value: "DENY"
+      
+      # API Status route  
+      - matches:
+          - path:
+              type: PathPrefix
+              value: "/api/status"
+        backendRefs:
+          - service: api-status
+            port: 80
+        filters:
+          # CORS headers for API
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+                - name: "Access-Control-Allow-Origin"
+                  value: "*"
+                - name: "Access-Control-Allow-Methods"
+                  value: "GET, POST, PUT, DELETE, OPTIONS"
+                - name: "Access-Control-Allow-Headers"
+                  value: "Content-Type, Authorization"
+          # Security headers
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+                - name: "X-Content-Type-Options"
+                  value: "nosniff"
+                - name: "X-Frame-Options"
+                  value: "DENY"
 
 # Application-specific configurations
 apiProcessing:
@@ -172,3 +296,10 @@ frontend:
     limits:
       memory: "512Mi"
       cpu: "500m"
+
+# NetworkPolicy (Enterprise Security Feature)
+# Enabled automatically when Gateway API is used for enhanced security
+networkPolicy:
+  enabled: true
+  # Namespace where the gateway controller is running
+  gatewayNamespace: "nginx-system"
