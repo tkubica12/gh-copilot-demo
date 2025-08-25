@@ -12,3 +12,5 @@ opentelemetry-instrumentation-openai-v2
 openai
 azure-cosmos
 aiohttp
+markitdown
+pydantic
