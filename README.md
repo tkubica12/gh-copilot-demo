@@ -107,6 +107,8 @@ Than try ```Now add other modes and make UI to switch them easier. Colorful, con
 # Copilot Coding Agent
 Go to Issues and assign it to Copilot Coding Agent. 
 
+You can also work from [Copilot Agents page](https://github.com/copilot/agents).
+
 # Code Review
 After few changes create branch, showcase commit message, PR creation and do Code Review.
 
@@ -114,8 +116,8 @@ After few changes create branch, showcase commit message, PR creation and do Cod
 In GitHub show vulnerabilities and demonstrate autofix.
 
 # Thinking, planning and prototyping with Copilot
-## Copilot Spaces preview
-Try preview at [https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
+## Copilot Spaces
+[https://www.github.com/copilot/spaces](https://www.github.com/copilot/spaces)
 
 ## No-code with GitHub Spark
-[GitHub Spark](https://spark.githubnext.com/)
+[GitHub Spark](https://github.com/spark)
