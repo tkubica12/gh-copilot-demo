@@ -1,0 +1,136 @@
+{{- if .Values.gateway.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "demo-apps.fullname" . }}
+  labels:
+    {{- include "demo-apps.labels" . | nindent 4 }}
+  {{- with .Values.gateway.routes.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+  - name: {{ include "demo-apps.fullname" . }}
+    {{- if .Values.gateway.namespace }}
+    namespace: {{ .Values.gateway.namespace }}
+    {{- end }}
+  {{- if .Values.gateway.hostname }}
+  hostnames:
+  - {{ .Values.gateway.hostname | quote }}
+  {{- end }}
+  rules:
+  {{- range .Values.gateway.routes.rules }}
+  - matches:
+    {{- range .matches }}
+    - path:
+        type: {{ .path.type | default "PathPrefix" }}
+        value: {{ .path.value | quote }}
+      {{- if .headers }}
+      headers:
+        {{- toYaml .headers | nindent 8 }}
+      {{- end }}
+      {{- if .queryParams }}
+      queryParams:
+        {{- toYaml .queryParams | nindent 8 }}
+      {{- end }}
+    {{- end }}
+    backendRefs:
+    {{- range .backendRefs }}
+    - name: {{ include "demo-apps.fullname" $ }}-{{ .service }}
+      port: {{ .port | default 80 }}
+      {{- if .weight }}
+      weight: {{ .weight }}
+      {{- end }}
+    {{- end }}
+    {{- if .filters }}
+    filters:
+      {{- range .filters }}
+      - type: {{ .type }}
+        {{- if eq .type "RequestHeaderModifier" }}
+        requestHeaderModifier:
+          {{- if .requestHeaderModifier.set }}
+          set:
+            {{- range .requestHeaderModifier.set }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .requestHeaderModifier.add }}
+          add:
+            {{- range .requestHeaderModifier.add }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .requestHeaderModifier.remove }}
+          remove:
+            {{- toYaml .requestHeaderModifier.remove | nindent 12 }}
+          {{- end }}
+        {{- end }}
+        {{- if eq .type "ResponseHeaderModifier" }}
+        responseHeaderModifier:
+          {{- if .responseHeaderModifier.set }}
+          set:
+            {{- range .responseHeaderModifier.set }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .responseHeaderModifier.add }}
+          add:
+            {{- range .responseHeaderModifier.add }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .responseHeaderModifier.remove }}
+          remove:
+            {{- toYaml .responseHeaderModifier.remove | nindent 12 }}
+          {{- end }}
+        {{- end }}
+        {{- if eq .type "URLRewrite" }}
+        urlRewrite:
+          {{- if .urlRewrite.path }}
+          path:
+            type: {{ .urlRewrite.path.type }}
+            {{- if .urlRewrite.path.replaceFullPath }}
+            replaceFullPath: {{ .urlRewrite.path.replaceFullPath | quote }}
+            {{- end }}
+            {{- if .urlRewrite.path.replacePrefixMatch }}
+            replacePrefixMatch: {{ .urlRewrite.path.replacePrefixMatch | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .urlRewrite.hostname }}
+          hostname: {{ .urlRewrite.hostname | quote }}
+          {{- end }}
+        {{- end }}
+        {{- if eq .type "RequestRedirect" }}
+        requestRedirect:
+          {{- if .requestRedirect.scheme }}
+          scheme: {{ .requestRedirect.scheme | quote }}
+          {{- end }}
+          {{- if .requestRedirect.hostname }}
+          hostname: {{ .requestRedirect.hostname | quote }}
+          {{- end }}
+          {{- if .requestRedirect.path }}
+          path:
+            type: {{ .requestRedirect.path.type }}
+            {{- if .requestRedirect.path.replaceFullPath }}
+            replaceFullPath: {{ .requestRedirect.path.replaceFullPath | quote }}
+            {{- end }}
+            {{- if .requestRedirect.path.replacePrefixMatch }}
+            replacePrefixMatch: {{ .requestRedirect.path.replacePrefixMatch | quote }}
+            {{- end }}
+          {{- end }}
+          {{- if .requestRedirect.port }}
+          port: {{ .requestRedirect.port }}
+          {{- end }}
+          {{- if .requestRedirect.statusCode }}
+          statusCode: {{ .requestRedirect.statusCode }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
