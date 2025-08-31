@@ -121,3 +121,14 @@ In GitHub show vulnerabilities and demonstrate autofix.
 
 ## No-code with GitHub Spark
 [GitHub Spark](https://github.com/spark)
+
+```
+Create text editor that specializes on creating Kubernetes YAML manifests. Here is how I want it:
+- Keyboard shortcuts similar to Visual Studio Code
+- Syntax highlighting for YAML and for Kubernetes objects, for example known values show have distinctive colors. kind: Pod should look differently from kind: SomethingElse because SomethingElse is not known Kubernetes kind.
+- Editor should suggest completions for Kubernetes objects and fields directly as you type inside text editor together with little bubbles explaining each field - its purpose, possible values
+- Navigation that let user quickly build skeleton of most common Kubernetes objects and some drag and drop features for values inside those objects (for example health check, resource limits etc.)
+- AI chatbot that allows to talk about currently open file
+- Suggestions based on common practice, for example recommend to set resource requests and limits for Pods and Deployments. This should be icon showing number of new suggestions and when user click on it he can acknowledge those. Generate suggestions using AI in background as user is adding objects to the solution.
+- IMPORTANT: Retro style and graphical design must simulate ASCII-based user interfaces for DOS similar to how FoxPro applications looked like.
+```
