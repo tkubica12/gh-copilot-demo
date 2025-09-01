@@ -1,13 +1,38 @@
-# API processing
+# API Processing
 
-This API accepts image uploads, stores them in Azure Blob Storage, and sends a message to Azure Service Bus for processing.
+This API accepts both image and PDF uploads, stores them in Azure Blob Storage for long-term retention, and sends messages to Azure Service Bus for AI processing.
 
 You can access it at `/api/process`.
 
+## Supported File Types
+
+### Images
+- JPEG (image/jpeg, image/jpg)
+- PNG (image/png) 
+- GIF (image/gif)
+- BMP (image/bmp)
+
+### Documents
+- PDF (application/pdf)
+
+## Processing Features
+
+### Images
+- AI-powered image description using Azure OpenAI Vision
+- Stores original images in blob storage
+- Provides detailed descriptions of image content
+
+### PDFs  
+- Content extraction using markitdown library
+- AI-powered document summarization using Azure OpenAI
+- Stores original PDFs in blob storage for forensic purposes
+- Extracts and processes text content from PDF documents
+
 ## Components Used
-- Azure Storage Blob (storing images)
-- Azure Service Bus (sending messages)
-- Azure Monitor (monitoring and logging)
+- Azure Storage Blob (storing images and PDFs)
+- Azure Service Bus (sending processing messages)
+- Azure Monitor (monitoring and audit logging)
+- Azure OpenAI (AI processing for both images and documents)
 
 ## Tests
 We distinguish **unit** and **integration** tests:
