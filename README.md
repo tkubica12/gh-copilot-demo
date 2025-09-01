@@ -104,10 +104,21 @@ Take files from ```frontend``` and using agent mode ask ```Enable dark mode for 
 
 Than try ```Now add other modes and make UI to switch them easier. Colorful, contrast, green and MS DOS```.
 
+More complex example:
+```
+To enhance security frontend should integrate with Entra ID using OpenID Connect to get user identity and make sure it is part od MyDemo security group. Our APIs api-processing and api-status, that interact directly with frontend, should be registered as APIs in Entra and user should consent to access to those.
+
+Implement those changes in code, write comprehensive README explaining how authentication and authorization works in our application and prepare scripts to configure Entra ID according to our requirements. Where key need to be used make sure to use environmental variables and .env capability. Do not forget to modify our Terraform deployment manifests to include newly introduced envs.
+```
+
 # Copilot Coding Agent
 Go to Issues and assign it to Copilot Coding Agent. 
 
 You can also work from [Copilot Agents page](https://github.com/copilot/agents).
+
+Example prompt to use from "delegate to copilot agent" button:
+- ```My worker, unlike other microservices, do not have any unit tests. Write unit tests pytest and create README explaining those tests and how to run those. There is GitHub Actions workflow to build worker when code changes. Add tests to the workflow so we do not build container if tests are failing.```
+- ```I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest.```
 
 # Code Review
 After few changes create branch, showcase commit message, PR creation and do Code Review.
