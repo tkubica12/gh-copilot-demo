@@ -14,6 +14,9 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+from markitdown import MarkItDown
+import io
+import logging
 
 # Load environment variables
 def get_env_var(var_name):
@@ -59,21 +62,57 @@ client = AsyncAzureOpenAI(
     base_url=f"{azure_openai_endpoint}/openai/deployments/{azure_openai_deployment_name}"
 )
 
-async def process_message(msg, receiver):
-    """
-    Process a single message and then complete it.
-    """
+# Initialize MarkItDown for PDF processing
+markdown_converter = MarkItDown()
+
+# Setup logging for auditing
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def is_pdf_file(blob_name: str) -> bool:
+    """Check if the file is a PDF based on extension."""
+    return blob_name.lower().endswith('.pdf')
+
+def extract_pdf_content(pdf_data: bytes) -> str:
+    """Extract text content from PDF using markitdown."""
     try:
-        print(f"Processing message: {msg}")
-        message_body = json.loads(str(msg))
-        blob_name = message_body.get("blob_name", "")
-        id = message_body.get("id", "")
-        blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
-        print(f"Downloading image data from {blob_name}")
-        download_stream = await blob_client.download_blob()
-        image_data = await download_stream.readall()
-        encoded_image = base64.b64encode(image_data).decode("utf-8")
-        print(f"Sending image {blob_name} to OpenAI...")
+        # Create a BytesIO stream from PDF data
+        pdf_stream = io.BytesIO(pdf_data)
+        
+        # Convert PDF to markdown/text
+        result = markdown_converter.convert(pdf_stream)
+        
+        # Return the text content
+        return result.text_content or result.markdown
+    except Exception as e:
+        logger.error(f"Error extracting PDF content: {e}")
+        raise Exception(f"Failed to extract PDF content: {e}")
+
+async def process_pdf_content(pdf_content: str) -> str:
+    """Process PDF content and generate a summary using OpenAI."""
+    try:
+        logger.info("Sending PDF content to OpenAI for summarization...")
+        
+        response = await client.chat.completions.create(
+            model=azure_openai_deployment_name,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant that summarizes document content. Provide a clear, concise summary of the main points from the document."},
+                {"role": "user", "content": f"Please summarize the following document content:\n\n{pdf_content}"}
+            ]
+        )
+        
+        summary = response.choices[0].message.content
+        logger.info(f"Generated summary: {summary[:100]}...")
+        return summary
+        
+    except Exception as e:
+        logger.error(f"Error generating PDF summary: {e}")
+        raise Exception(f"Failed to generate PDF summary: {e}")
+
+async def process_image_content(encoded_image: str) -> str:
+    """Process image content using OpenAI vision."""
+    try:
+        logger.info("Sending image to OpenAI for description...")
         
         response = await client.chat.completions.create(
             model=azure_openai_deployment_name,
@@ -86,16 +125,96 @@ async def process_message(msg, receiver):
             ]
         )
         
-        print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
+        description = response.choices[0].message.content
+        logger.info(f"Generated description: {description[:100]}...")
+        return description
+        
+    except Exception as e:
+        logger.error(f"Error generating image description: {e}")
+        raise Exception(f"Failed to generate image description: {e}")
+
+async def process_message(msg, receiver):
+    """
+    Process a single message and then complete it.
+    Handles both images and PDFs.
+    """
+    try:
+        print(f"Processing message: {msg}")
+        message_body = json.loads(str(msg))
+        blob_name = message_body.get("blob_name", "")
+        id = message_body.get("id", "")
+        
+        # Audit log: Start processing
+        logger.info(f"Starting processing for file: {blob_name}, ID: {id}")
+        
+        blob_client = storage_account_client.get_blob_client(storage_container, blob_name)
+        print(f"Downloading file data from {blob_name}")
+        download_stream = await blob_client.download_blob()
+        file_data = await download_stream.readall()
+        
+        # Audit log: File downloaded
+        logger.info(f"Downloaded file {blob_name}, size: {len(file_data)} bytes")
+        
+        ai_response = ""
+        
+        if is_pdf_file(blob_name):
+            # Process PDF file
+            logger.info(f"Processing PDF file: {blob_name}")
+            
+            try:
+                # Extract content from PDF
+                pdf_content = extract_pdf_content(file_data)
+                logger.info(f"Extracted PDF content, length: {len(pdf_content)} characters")
+                
+                # Generate summary
+                ai_response = await process_pdf_content(pdf_content)
+                
+                # Audit log: PDF processed successfully
+                logger.info(f"Successfully processed PDF {blob_name}, generated summary")
+                
+            except Exception as e:
+                logger.error(f"Error processing PDF {blob_name}: {e}")
+                raise e
+                
+        else:
+            # Process as image file (existing logic)
+            logger.info(f"Processing image file: {blob_name}")
+            
+            try:
+                encoded_image = base64.b64encode(file_data).decode("utf-8")
+                ai_response = await process_image_content(encoded_image)
+                
+                # Audit log: Image processed successfully
+                logger.info(f"Successfully processed image {blob_name}")
+                
+            except Exception as e:
+                logger.error(f"Error processing image {blob_name}: {e}")
+                raise e
+        
+        print("AI response:", f"{ai_response[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
+        
         doc = {
             "id": id,
-            "ai_response": response.choices[0].message.content
+            "ai_response": ai_response,
+            "file_name": blob_name,
+            "file_type": "pdf" if is_pdf_file(blob_name) else "image",
+            "processed_at": message_body.get("timestamp", "")
         }
+        
         await cosmos_container.upsert_item(doc)
+        
+        # Audit log: Successfully saved to database
+        logger.info(f"Successfully saved processing result for {blob_name} to Cosmos DB")
+        
         await receiver.complete_message(msg)
+        
     except Exception as e:
         print(f"Error encountered: {e}. Abandoning message for retry.")
+        
+        # Audit log: Processing failed
+        logger.error(f"Processing failed for message {msg}: {e}")
+        
         await receiver.abandon_message(msg)
         return
 
