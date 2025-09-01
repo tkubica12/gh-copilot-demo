@@ -1,5 +1,50 @@
 # Implementation Log
 
+## 2025-01-XX – Worker Unit Tests and CI Integration Added
+
+Added comprehensive unit testing infrastructure for the worker service and integrated tests into the CI/CD pipeline.
+
+### Decisions
+- Migrated worker from `requirements.txt` to `pyproject.toml` to align with project guidelines for dependency management using `uv`
+- Created unit tests that mock all Azure dependencies (Service Bus, Blob Storage, Cosmos DB, OpenAI) to test business logic in isolation
+- Added CI test step in GitHub Actions workflow that runs tests before container build to prevent deployment of failing code
+- Tests cover environment variable validation, message processing logic, error handling, and edge cases
+- Used dynamic module loading pattern consistent with other services to handle module imports in tests
+
+### Structure
+```
+worker/
+  tests/
+    unit/
+      test_worker.py
+    conftest.py
+  pyproject.toml
+  main.py
+  README.md (updated with test documentation)
+```
+
+### Test Coverage
+- Environment variable validation (`get_env_var` function)
+- Successful message processing workflow
+- Error handling for invalid JSON messages
+- OpenAI API exception handling
+- Cosmos DB exception handling
+- Missing message fields handling
+
+### CI Integration
+- Added `test` job in worker-BUILD.yml workflow that runs before `build-and-push`
+- Tests are run with verbose output and fail fast to provide quick feedback
+- Container build only proceeds if all tests pass
+
+### Files Modified
+- `worker/pyproject.toml` - Created with runtime and test dependencies
+- `worker/tests/conftest.py` - Test fixtures with mocked Azure services
+- `worker/tests/unit/test_worker.py` - Comprehensive unit tests
+- `worker/README.md` - Updated with test documentation and running instructions
+- `worker/Dockerfile` - Updated to use pyproject.toml dependencies
+- `.github/workflows/worker-BUILD.yml` - Added test step before build
+- `worker/requirements.txt` - Removed (migrated to pyproject.toml)
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
