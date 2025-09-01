@@ -1,5 +1,30 @@
 # Implementation Log
 
+## 2025-09-01 – K6 Performance Test Documentation
+
+Created comprehensive README.md documentation for the k6 performance test in the `perftest/` directory.
+
+### Decisions
+- Documented both Docker and local k6 execution methods to accommodate different development environments
+- Included clear configuration options with environment variable reference table
+- Added troubleshooting section for common issues based on testing the setup
+- Provided detailed explanation of test metrics and success criteria
+- Referenced Azure Container App Job deployment for completeness
+
+### Structure
+```
+perftest/
+  README.md         # Comprehensive documentation
+  script.js         # K6 test script (existing)
+  example.jpg       # Test image file (existing)
+  Dockerfile        # Container setup (existing)
+```
+
+### Validation
+- Successfully built Docker container using documented instructions
+- Verified all required files are present and accessible
+- Tested documentation clarity and completeness
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
