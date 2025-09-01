@@ -1,38 +1,40 @@
-# API Processing
+Metadata-Version: 2.4
+Name: api-processing
+Version: 0.1.0
+Summary: FastAPI service for image processing: uploads to Blob and enqueues message to Service Bus
+Author: Demo
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: python-dotenv
+Requires-Dist: azure-identity
+Requires-Dist: azure-storage-blob
+Requires-Dist: azure-servicebus
+Requires-Dist: opentelemetry-api
+Requires-Dist: opentelemetry-sdk
+Requires-Dist: azure-monitor-opentelemetry
+Requires-Dist: azure-core-tracing-opentelemetry
+Requires-Dist: opentelemetry-instrumentation-fastapi
+Requires-Dist: opentelemetry-instrumentation-requests
+Requires-Dist: python-multipart
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-asyncio; extra == "test"
+Requires-Dist: httpx; extra == "test"
+Requires-Dist: asgi-lifespan; extra == "test"
 
-This API accepts both image and PDF uploads, stores them in Azure Blob Storage for long-term retention, and sends messages to Azure Service Bus for AI processing.
+# API processing
+
+This API accepts image uploads, stores them in Azure Blob Storage, and sends a message to Azure Service Bus for processing.
 
 You can access it at `/api/process`.
 
-## Supported File Types
-
-### Images
-- JPEG (image/jpeg, image/jpg)
-- PNG (image/png) 
-- GIF (image/gif)
-- BMP (image/bmp)
-
-### Documents
-- PDF (application/pdf)
-
-## Processing Features
-
-### Images
-- AI-powered image description using Azure OpenAI Vision
-- Stores original images in blob storage
-- Provides detailed descriptions of image content
-
-### PDFs  
-- Content extraction using markitdown library
-- AI-powered document summarization using Azure OpenAI
-- Stores original PDFs in blob storage for forensic purposes
-- Extracts and processes text content from PDF documents
-
 ## Components Used
-- Azure Storage Blob (storing images and PDFs)
-- Azure Service Bus (sending processing messages)
-- Azure Monitor (monitoring and audit logging)
-- Azure OpenAI (AI processing for both images and documents)
+- Azure Storage Blob (storing images)
+- Azure Service Bus (sending messages)
+- Azure Monitor (monitoring and logging)
 
 ## Tests
 We distinguish **unit** and **integration** tests:

@@ -1,5 +1,56 @@
 # Implementation Log
 
+## 2025-09-01 – PDF Processing Feature Added
+
+Implemented AI-enabled PDF processing capability extending the existing image processing pipeline to support PDF documents.
+
+### Key Features Implemented
+- **PDF File Support**: Extended API to accept PDF uploads alongside existing image types
+- **Content Extraction**: Integrated markitdown library for robust PDF text extraction
+- **AI Summarization**: PDF content is summarized using Azure OpenAI text completion API
+- **Audit Logging**: Comprehensive logging throughout the processing pipeline for forensic purposes
+- **Long-term Storage**: Original PDFs stored in Azure Blob Storage for compliance and forensic needs
+- **Backward Compatibility**: All existing image processing functionality remains unchanged
+
+### Technical Implementation
+
+#### API Processing Service (`api-processing/`)
+- Added file type validation for both images and PDFs
+- Enhanced `/api/process` endpoint with proper HTTP status codes (400 for unsupported files)
+- Extended message format with additional metadata (file_type, original_filename, timestamp)
+- Implemented comprehensive audit logging for all processing steps
+
+#### Worker Service (`worker/`)
+- Added markitdown dependency for PDF content extraction
+- Implemented PDF-specific processing pipeline with content extraction and summarization
+- Enhanced message processing to handle both image and PDF files
+- Added detailed audit logging and error handling for PDF processing
+
+#### Testing
+- Added comprehensive unit tests for PDF validation and processing logic
+- Created integration tests validating message format and backward compatibility
+- All existing tests continue to pass ensuring no regression
+- Added worker-specific tests for PDF content extraction functionality
+
+### Architecture Decisions
+- **Reused Existing Infrastructure**: Leveraged existing Service Bus, Blob Storage, and Cosmos DB
+- **Minimal Changes Principle**: Extended existing endpoints rather than creating new ones
+- **Consistent Message Format**: Enhanced existing message structure with additional metadata
+- **Error Handling**: Proper HTTP status codes and detailed error messages for unsupported files
+- **Forensic Support**: Original files stored with metadata for compliance and audit requirements
+
+### Dependencies Added
+- `markitdown`: PDF content extraction library
+- Enhanced logging throughout the pipeline
+- UUID-based file naming for better organization
+
+### Testing Coverage
+- File type validation (PDF, images, unsupported formats)
+- Content extraction and error handling
+- Message format validation
+- Backward compatibility verification
+- End-to-end processing flow validation
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
