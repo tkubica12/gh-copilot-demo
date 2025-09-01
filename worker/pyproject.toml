@@ -1,0 +1,38 @@
+[project]
+name = "worker"
+version = "0.1.0"
+description = "AI worker service that processes images from Service Bus queue using Azure OpenAI and stores results in Cosmos DB"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [ { name = "Demo" } ]
+dependencies = [
+  "python-dotenv",
+  "azure-identity",
+  "azure-storage-blob",
+  "azure-servicebus",
+  "opentelemetry-api",
+  "opentelemetry-sdk",
+  "azure-monitor-opentelemetry",
+  "azure-core-tracing-opentelemetry",
+  "opentelemetry-instrumentation-fastapi",
+  "opentelemetry-instrumentation-requests",
+  "opentelemetry-instrumentation-openai-v2",
+  "openai",
+  "azure-cosmos",
+  "aiohttp",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-asyncio",
+  "pytest-mock",
+]
+
+[tool.uv]
+dev-dependencies = [
+  "pytest",
+  "pytest-asyncio", 
+  "pytest-mock",
+]
