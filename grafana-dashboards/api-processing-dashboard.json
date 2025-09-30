@@ -1,0 +1,79 @@
+{
+  "dashboard": {
+    "title": "API Processing Service",
+    "tags": ["fastapi", "processing"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Request Rate",
+        "type": "graph",
+        "gridPos": {
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{job=\"api-processing\"}[5m])",
+            "legendFormat": "{{method}} {{handler}}"
+          }
+        ]
+      },
+      {
+        "title": "Request Duration",
+        "type": "graph",
+        "gridPos": {
+          "x": 12,
+          "y": 0,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job=\"api-processing\"}[5m]))",
+            "legendFormat": "p95"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{job=\"api-processing\"}[5m]))",
+            "legendFormat": "p50"
+          }
+        ]
+      },
+      {
+        "title": "HTTP Status Codes",
+        "type": "graph",
+        "gridPos": {
+          "x": 0,
+          "y": 8,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "rate(http_requests_total{job=\"api-processing\"}[5m])",
+            "legendFormat": "{{status}}"
+          }
+        ]
+      },
+      {
+        "title": "Request Size",
+        "type": "graph",
+        "gridPos": {
+          "x": 12,
+          "y": 8,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "rate(http_request_size_bytes_sum{job=\"api-processing\"}[5m]) / rate(http_request_size_bytes_count{job=\"api-processing\"}[5m])",
+            "legendFormat": "avg request size"
+          }
+        ]
+      }
+    ],
+    "schemaVersion": 16,
+    "version": 0
+  }
+}

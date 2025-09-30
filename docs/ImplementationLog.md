@@ -1,5 +1,54 @@
 # Implementation Log
 
+## 2025-09-30 – Prometheus and Grafana Integration
+
+Added comprehensive Prometheus metrics exposure for all microservices and Azure Managed Prometheus/Grafana infrastructure.
+
+### Services Updated
+
+#### API Processing Service
+- Added `prometheus-fastapi-instrumentator` to dependencies
+- Configured automatic metrics collection for HTTP requests
+- Metrics exposed at `/metrics` endpoint
+
+#### API Status Service  
+- Added `prometheus-fastapi-instrumentator` to dependencies
+- Configured automatic metrics collection for HTTP requests
+- Metrics exposed at `/metrics` endpoint
+
+#### Worker Service
+- Added `prometheus-client` to dependencies
+- Implemented custom metrics:
+  - `worker_messages_processed_total` - Total messages processed (by status)
+  - `worker_messages_processing_duration_seconds` - Processing time histogram
+  - `worker_openai_requests_total` - OpenAI API calls (by status)
+  - `worker_openai_request_duration_seconds` - OpenAI API call duration
+  - `worker_messages_in_queue` - Current messages being processed
+- Started Prometheus HTTP server on port 8000
+
+### Infrastructure Changes
+
+Created `terraform/prometheus_grafana.tf` with:
+- Azure Monitor Workspace for Prometheus
+- Azure Managed Grafana with System Assigned Identity
+- Data Collection Endpoint for metrics
+- Data Collection Rule for Prometheus metrics
+- Association between Container App Environment and DCR
+- RBAC for Grafana to read from Monitor Workspace
+
+### Dashboards
+
+Created three Grafana dashboard definitions in `grafana-dashboards/`:
+- `api-processing-dashboard.json` - Request rate, duration, status codes, request size
+- `api-status-dashboard.json` - Request rate, duration, status codes, Cosmos DB performance
+- `worker-dashboard.json` - Message processing rate, OpenAI metrics, queue depth
+
+### Decisions
+- Used `prometheus-fastapi-instrumentator` for FastAPI services as it provides zero-configuration automatic instrumentation
+- Used `prometheus-client` for worker service as it's not FastAPI-based and requires custom metrics
+- Exposed worker metrics on port 8000 separate from the main application logic
+- Dashboard JSON files follow Grafana v16 schema for compatibility
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.

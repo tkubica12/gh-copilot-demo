@@ -12,6 +12,7 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="AI processing", description="API to process pictures")
 
@@ -37,6 +38,9 @@ resource = Resource.create({SERVICE_NAME: "Processing API Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
 FastAPIInstrumentor.instrument_app(app)
+
+# Configure Prometheus
+Instrumentator().instrument(app).expose(app)
 
 # CORS
 origins = [os.environ.get("CORS_ORIGIN", "*")]

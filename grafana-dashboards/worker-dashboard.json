@@ -1,0 +1,99 @@
+{
+  "dashboard": {
+    "title": "Worker Service",
+    "tags": ["worker", "ai"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Messages Processed Rate",
+        "type": "graph",
+        "gridPos": {
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "rate(worker_messages_processed_total{job=\"worker\"}[5m])",
+            "legendFormat": "{{status}}"
+          }
+        ]
+      },
+      {
+        "title": "Message Processing Duration",
+        "type": "graph",
+        "gridPos": {
+          "x": 12,
+          "y": 0,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(worker_messages_processing_duration_seconds_bucket{job=\"worker\"}[5m]))",
+            "legendFormat": "p95"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(worker_messages_processing_duration_seconds_bucket{job=\"worker\"}[5m]))",
+            "legendFormat": "p50"
+          }
+        ]
+      },
+      {
+        "title": "OpenAI Request Rate",
+        "type": "graph",
+        "gridPos": {
+          "x": 0,
+          "y": 8,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "rate(worker_openai_requests_total{job=\"worker\"}[5m])",
+            "legendFormat": "{{status}}"
+          }
+        ]
+      },
+      {
+        "title": "OpenAI Request Duration",
+        "type": "graph",
+        "gridPos": {
+          "x": 12,
+          "y": 8,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(worker_openai_request_duration_seconds_bucket{job=\"worker\"}[5m]))",
+            "legendFormat": "p95"
+          },
+          {
+            "expr": "histogram_quantile(0.50, rate(worker_openai_request_duration_seconds_bucket{job=\"worker\"}[5m]))",
+            "legendFormat": "p50"
+          }
+        ]
+      },
+      {
+        "title": "Messages In Queue",
+        "type": "graph",
+        "gridPos": {
+          "x": 0,
+          "y": 16,
+          "w": 12,
+          "h": 8
+        },
+        "targets": [
+          {
+            "expr": "worker_messages_in_queue{job=\"worker\"}",
+            "legendFormat": "messages in queue"
+          }
+        ]
+      }
+    ],
+    "schemaVersion": 16,
+    "version": 0
+  }
+}

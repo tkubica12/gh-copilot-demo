@@ -20,6 +20,7 @@ dependencies = [
   "opentelemetry-instrumentation-requests",
   "python-multipart",
   "aiohttp",
+  "prometheus-fastapi-instrumentator",
 ]
 
 [project.optional-dependencies]
