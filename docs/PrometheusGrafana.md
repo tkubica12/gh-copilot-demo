@@ -66,6 +66,8 @@ This creates:
 - Data Collection Rule for Prometheus metrics
 - RBAC assignments
 
+**Note:** For the worker service metrics to be scraped, you may need to configure the Container App to expose port 8000 internally for Prometheus scraping. This can be done by adding service configuration in the Container App Environment. The API services automatically expose their `/metrics` endpoint on their existing HTTP port (80).
+
 ### 2. Configure Container Apps
 
 The Container Apps are already configured to expose metrics endpoints. The Data Collection Rule automatically scrapes:
