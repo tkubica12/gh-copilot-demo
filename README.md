@@ -1,6 +1,10 @@
 # GitHub Copilot demo
 This repo contains example code to demonstrate GitHub Copilot features. It is not intended to be used in production.
 
+## Documentation
+- [Prometheus and Grafana Monitoring Setup](docs/PrometheusGrafana.md) - Comprehensive guide for metrics collection and visualization
+- [Implementation Log](docs/ImplementationLog.md) - Technical decisions and development history
+
 # In-line code suggestions
 ## Autocomplete
 Open ```main.py``` in ```api-processing``` and type ```# Configure Prometheus``` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.

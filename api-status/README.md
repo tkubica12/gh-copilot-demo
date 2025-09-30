@@ -5,6 +5,42 @@ This API provides the status and results of processed images stored in Azure Cos
 ## Components Used
 - Azure Cosmos DB (reading results)
 - Azure Monitor (monitoring and logging)
+- Prometheus (metrics exposure)
+
+## Prometheus Metrics
+
+The service exposes Prometheus metrics at `/metrics` endpoint.
+
+### Available Metrics
+- `http_requests_total` - Total HTTP requests by method, handler, and status
+- `http_request_duration_seconds` - HTTP request duration histogram
+- `http_request_size_bytes` - HTTP request size
+- `http_response_size_bytes` - HTTP response size
+- `http_requests_in_progress` - Current number of requests being processed
+
+### Testing Metrics Locally
+
+Start the service:
+```bash
+uv sync
+uv run uvicorn main:app --port 8081
+```
+
+Access metrics:
+```bash
+curl http://localhost:8081/metrics
+```
+
+Make a few requests to generate metrics:
+```bash
+# Generate some traffic
+for i in {1..10}; do
+  curl http://localhost:8081/api/status/test-guid-123
+done
+
+# Check metrics again
+curl http://localhost:8081/metrics | grep http_requests_total
+```
 
 ## Tests
 Structure mirrors the processing service:
