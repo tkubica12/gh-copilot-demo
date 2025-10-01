@@ -5,6 +5,14 @@ This API provides the status and results of processed images stored in Azure Cos
 ## Components Used
 - Azure Cosmos DB (reading results)
 - Azure Monitor (monitoring and logging)
+- Prometheus (metrics)
+
+## Metrics
+
+The service exposes Prometheus metrics at the `/metrics` endpoint, including:
+- HTTP request counts by method, path, and status code
+- Request duration histograms
+- HTTP requests in progress
 
 ## Tests
 Structure mirrors the processing service:

@@ -8,6 +8,14 @@ You can access it at `/api/process`.
 - Azure Storage Blob (storing images)
 - Azure Service Bus (sending messages)
 - Azure Monitor (monitoring and logging)
+- Prometheus (metrics)
+
+## Metrics
+
+The service exposes Prometheus metrics at the `/metrics` endpoint, including:
+- HTTP request counts by method, path, and status code
+- Request duration histograms
+- HTTP requests in progress
 
 ## Tests
 We distinguish **unit** and **integration** tests:

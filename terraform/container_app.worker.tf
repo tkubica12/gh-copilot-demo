@@ -14,6 +14,18 @@ resource "azapi_resource" "api_worker" {
       managedEnvironmentId = azurerm_container_app_environment.main.id
       configuration = {
         activeRevisionsMode = "Single"
+        ingress = {
+          external   = false
+          targetPort = 8000
+          exposedPort = 8000
+          transport = "http"
+          traffic = [
+            {
+              latestRevision = true
+              weight         = 100
+            }
+          ]
+        }
         identitySettings = [
           {
             identity  = azurerm_user_assigned_identity.main.id
