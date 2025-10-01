@@ -1,5 +1,39 @@
 # Implementation Log
 
+## 2025-01-XX – Prometheus Metrics and Grafana Monitoring Added
+
+Added Prometheus metrics endpoints to all microservices and configured Azure Monitor Workspace with Managed Grafana for monitoring.
+
+### Changes
+- **API Services (api-processing, api-status)**: Added `prometheus-fastapi-instrumentator` library to expose `/metrics` endpoint with HTTP request metrics (total requests, duration histograms, status codes)
+- **Worker Service**: Added `prometheus-client` library with custom metrics:
+  - `worker_messages_processed_total`: Count of successfully processed messages
+  - `worker_messages_failed_total`: Count of failed messages
+  - `worker_message_processing_seconds`: Processing duration histogram
+  - `worker_queue_depth`: Current queue depth gauge
+  - `worker_openai_api_seconds`: OpenAI API call duration histogram
+- **Infrastructure**: Added Azure Monitor Workspace and Azure Managed Grafana to Terraform
+- **Container App Environment**: Configured OpenTelemetry integration to send metrics to Azure Monitor Workspace
+- **Grafana Dashboards**: Created service-specific dashboards in `grafana-dashboards/` directory:
+  - `api-processing.json`: Request rate, response times, error rates
+  - `api-status.json`: Request rate, response times, status distribution
+  - `worker.json`: Message processing metrics, queue depth, OpenAI API performance
+
+### Architecture Decisions
+- Used `prometheus-fastapi-instrumentator` for FastAPI services as it provides automatic instrumentation with minimal code changes
+- Worker service uses standard `prometheus-client` with custom metrics since it's not a web service
+- Metrics exposed on default ports (FastAPI services on their main port, worker on port 8000)
+- Integrated with existing Azure Monitor/Application Insights setup for comprehensive observability
+
+### Testing
+- Verified `/metrics` endpoint functionality for both API services locally
+- Confirmed metrics format is Prometheus-compatible
+
+### Next Steps
+- Deploy infrastructure changes and verify metrics collection in Azure Monitor Workspace
+- Import Grafana dashboards and configure data sources
+- Consider adding alerting rules based on key metrics (error rates, processing times, queue depth)
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.

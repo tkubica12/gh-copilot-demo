@@ -14,6 +14,8 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from azure.core.settings import settings
 from opentelemetry.sdk.resources import Resource, SERVICE_NAME
 from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+from prometheus_client import Counter, Histogram, Gauge, start_http_server
+import time
 
 # Load environment variables
 def get_env_var(var_name):
@@ -30,6 +32,16 @@ resource = Resource.create({SERVICE_NAME: "AI Worker Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
 OpenAIInstrumentor().instrument()
+
+# Configure Prometheus metrics
+messages_processed = Counter('worker_messages_processed_total', 'Total number of messages processed')
+messages_failed = Counter('worker_messages_failed_total', 'Total number of messages that failed processing')
+processing_duration = Histogram('worker_message_processing_seconds', 'Time spent processing messages')
+queue_depth = Gauge('worker_queue_depth', 'Current queue depth')
+openai_api_duration = Histogram('worker_openai_api_seconds', 'Time spent calling OpenAI API')
+
+prometheus_port = int(os.environ.get("PROMETHEUS_PORT", "8000"))
+start_http_server(prometheus_port)
 
 azure_openai_api_key = get_env_var("AZURE_OPENAI_API_KEY")
 azure_openai_endpoint = get_env_var("AZURE_OPENAI_ENDPOINT")
@@ -63,6 +75,7 @@ async def process_message(msg, receiver):
     """
     Process a single message and then complete it.
     """
+    start_time = time.time()
     try:
         print(f"Processing message: {msg}")
         message_body = json.loads(str(msg))
@@ -75,6 +88,7 @@ async def process_message(msg, receiver):
         encoded_image = base64.b64encode(image_data).decode("utf-8")
         print(f"Sending image {blob_name} to OpenAI...")
         
+        openai_start = time.time()
         response = await client.chat.completions.create(
             model=azure_openai_deployment_name,
             messages=[
@@ -85,6 +99,7 @@ async def process_message(msg, receiver):
                 ]}
             ]
         )
+        openai_api_duration.observe(time.time() - openai_start)
         
         print("OpenAI response:", f"{response.choices[0].message.content[:50]}...")
         print(f"Saving response to Cosmos DB to document with id {id}")
@@ -94,9 +109,13 @@ async def process_message(msg, receiver):
         }
         await cosmos_container.upsert_item(doc)
         await receiver.complete_message(msg)
+        messages_processed.inc()
+        processing_duration.observe(time.time() - start_time)
     except Exception as e:
         print(f"Error encountered: {e}. Abandoning message for retry.")
         await receiver.abandon_message(msg)
+        messages_failed.inc()
+        processing_duration.observe(time.time() - start_time)
         return
 
 async def main():
@@ -108,6 +127,7 @@ async def main():
         async with receiver:
             while True:
                 messages = await receiver.receive_messages(max_message_count=batch_size, max_wait_time=max_wait_time)
+                queue_depth.set(len(messages))
                 if not messages:
                     await asyncio.sleep(1)
                     continue
