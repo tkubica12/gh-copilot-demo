@@ -37,21 +37,10 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [6.2 Security Vulnerability Detection](#62-security-vulnerability-detection)
   - [6.3 Automated Security Fixes](#63-automated-security-fixes)
 - [7. GitHub Spark](#7-github-spark)
-  - [7.1 Example: Kubernetes YAML Editor](#71-example-kubernetes-yaml-editor)
-  - [7.2 Additional Spark Examples](#72-additional-spark-examples)
 - [8. Azure SRE Agent](#8-azure-sre-agent)
   - [8.1 What is Azure SRE Agent?](#81-what-is-azure-sre-agent)
   - [8.2 Key Capabilities](#82-key-capabilities)
-  - [8.3 Example Interactions](#83-example-interactions)
-  - [8.4 Demo Setup](#84-demo-setup)
-  - [8.5 Integration with This Demo](#85-integration-with-this-demo)
-- [9. Model Selection Strategies](#9-model-selection-strategies)
-  - [9.1 Available Models in Copilot](#91-available-models-in-copilot)
-  - [9.2 When to Use Which Model](#92-when-to-use-which-model)
-  - [9.3 Dynamic Model Switching Strategies](#93-dynamic-model-switching-strategies)
-  - [9.4 Experimentation Guide](#94-experimentation-guide)
-  - [9.5 Model Selection Best Practices](#95-model-selection-best-practices)
-  - [TODO / Upcoming Features](#todo--upcoming-features)
+- [TODO](#todo)
 
 ---
 
@@ -86,6 +75,8 @@ Where in my code am I processing messages from Service Bus queues and what is th
 ```
 
 Experiment with different models selection.
+
+**Note**: GitHub Copilot automatically indexes repositories for semantic search to improve context accuracy. For more information, see [Repository indexing](https://docs.github.com/en/copilot/concepts/context/repository-indexing). You can also configure content exclusion to prevent Copilot from accessing sensitive files - see [Excluding content from GitHub Copilot](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot).
 
 ### Documentation Generation
 Create README.md and add all Terraform files to context. Then ask:
@@ -228,6 +219,8 @@ Tailor Copilot's behavior to your team's standards, coding conventions, and oper
 ## 3.1 Custom instructions
 Today VS Code with GitHub Copilot fully support [AGENTS.md](https://agents.md/) standard. See exaple in repository and selected subfolders (good for monorepo situations).
 
+**Note**: Apart from repository custom instructions (`.github/copilot-instructions.md`), you can also configure [personal custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions) for your own preferences and [organization custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions) for team-wide standards.
+
 Tips what to include:
 - Coding style (Terraform structure, code structure, use Pydantic, ...)
 - Frameworks and tools (eg. use FastAPI, uv as package manager, use azurerm provider in Terraform, use Helm charts rather than Kustomize, ...)
@@ -293,7 +286,7 @@ What are common errors when automating email processing? #list_copilot_spaces #g
 
 # 4. Model Context Protocol (MCP) Tools
 
-MCP enables Copilot to interact with external tools and services, dramatically extending its capabilities beyond code generation.
+MCP enables Copilot to interact with external tools and services, dramatically extending its capabilities beyond code generation. For more advanced scenarios, you can also develop [custom VS Code extensions](https://docs.github.com/en/copilot/concepts/extensions) with specialized UI.
 
 ## 4.1 Simple MCP: Random String Generator
 
@@ -429,12 +422,6 @@ Demonstrate **Autofix** capability:
 3. Creates a PR with the remediation
 4. Includes testing recommendations
 
-**📝 TODO:** Create example scenarios:
-- SQL injection vulnerability
-- Dependency with known CVE
-- Secrets in code
-- Insecure cryptography
-
 ---
 
 # 7. GitHub Spark
@@ -442,8 +429,6 @@ Demonstrate **Autofix** capability:
 No-code/low-code prototyping with natural language. Build functional applications without writing code manually.
 
 [GitHub Spark](https://github.com/spark)
-
-## 7.1 Example: Kubernetes YAML Editor
 
 ```
 Create text editor that specializes on creating Kubernetes YAML manifests. Here is how I want it:
@@ -455,14 +440,6 @@ Create text editor that specializes on creating Kubernetes YAML manifests. Here 
 - Suggestions based on common practice, for example recommend to set resource requests and limits for Pods and Deployments. This should be icon showing number of new suggestions and when user clicks on it they can acknowledge those. Generate suggestions using AI in background as user is adding objects to the solution.
 - IMPORTANT: Retro style and graphical design must simulate ASCII-based user interfaces for DOS similar to how FoxPro applications looked like.
 ```
-
-## 7.2 Additional Spark Examples
-
-**📝 TODO:** Add more Spark examples:
-- Cloud cost calculator
-- Infrastructure diagram generator
-- API testing tool
-- Log analyzer
 
 ---
 
@@ -485,118 +462,10 @@ Azure SRE Agent helps teams:
 - **Customizable Workflows**: Follow your team's SRE best practices and runbooks
 - **Dev Integration**: Automatically create work items in GitHub/Azure DevOps with repro steps
 
-## 8.3 Example Interactions
-
-```
-What's the CPU and memory utilization of my app?
-Which resources are unhealthy?
-What changed in my web app last week?
-What alerts are active now?
-```
-
-## 8.4 Demo Setup
-
-**📝 TODO:** Create demo scenario:
-1. Deploy Azure SRE Agent in your subscription
-2. Configure it to monitor demo resource groups
-3. Simulate an incident (high CPU, failed requests)
-4. Show agent detecting, diagnosing, and suggesting remediation
-5. Demonstrate creating GitHub issue with RCA
-
-## 8.5 Integration with This Demo
-
-SRE Agent can monitor:
-- Container Apps (`src/api-processing`, `src/api-status`, `src/frontend`, `src/worker`)
-- Service Bus queues and dead-letter queues
-- Cosmos DB performance
-- Application Insights telemetry
-
-**Learn more**: [Azure SRE Agent Documentation](https://learn.microsoft.com/en-us/azure/sre-agent/overview)
-
 ---
 
-# 9. Model Selection Strategies
+# TODO
 
-Choosing the right AI model for different tasks optimizes quality, speed, and cost.
-
-## 9.1 Available Models in Copilot
-
-- **GPT-4o**: Most capable, best for complex reasoning and multi-step tasks
-- **GPT-4o-mini**: Faster, cost-effective for simpler tasks
-- **Claude 3.5 Sonnet**: Excellent for code generation and refactoring
-- **o1-preview/o1-mini**: Advanced reasoning for complex problem-solving
-- **Local models** (via Ollama): Privacy-focused, offline capability
-
-## 9.2 When to Use Which Model
-
-| Task Type | Recommended Model | Why |
-|-----------|------------------|-----|
-| Simple code completion | GPT-4o-mini, local models | Fast responses, adequate for autocomplete |
-| Complex refactoring | GPT-4o, Claude 3.5 Sonnet | Better understanding of context |
-| Architecture decisions | o1-preview, GPT-4o | Advanced reasoning required |
-| Documentation | GPT-4o-mini, Claude 3.5 Sonnet | Good quality, cost-effective |
-| Security-sensitive code | Local models (Ollama) | Data stays on your machine |
-| Debugging complex issues | GPT-4o, o1-preview | Deep analysis needed |
-
-## 9.3 Dynamic Model Switching Strategies
-
-### During Development
-Start with **faster models** for iteration:
-1. Use **GPT-4o-mini** for rapid prototyping
-2. Switch to **GPT-4o** when hitting complexity limits
-3. Use **local models** for sensitive code sections
-
-### During Code Review
-Use **more powerful models** for thorough analysis:
-1. Switch to **GPT-4o** or **Claude 3.5 Sonnet** for PR reviews
-2. Use **o1-preview** for security and architecture reviews
-3. Leverage advanced reasoning for critical changes
-
-### Cost Optimization Strategy
-```
-Simple tasks → mini/local models
-↓ (if results inadequate)
-Standard tasks → GPT-4o-mini, Claude 3.5 Sonnet
-↓ (if complex reasoning needed)
-Complex tasks → GPT-4o, o1-preview
-```
-
-## 9.4 Experimentation Guide
-
-Try the same prompt with different models:
-
-**Prompt**: `Refactor the Service Bus message processing to use topics instead of queues, update Terraform accordingly`
-
-Compare results from:
-- GPT-4o-mini (speed)
-- GPT-4o (comprehensiveness)
-- Claude 3.5 Sonnet (code quality)
-- Local Deepseek (privacy)
-
-Document which models work best for your team's common scenarios.
-
-## 9.5 Model Selection Best Practices
-
-1. **Start broad, narrow down**: Begin with capable models, optimize later
-2. **Context matters**: Larger context windows (GPT-4o, Claude) for large codebases
-3. **Iterate with feedback**: Note which models give best results for your patterns
-4. **Privacy first**: Use local models for proprietary algorithms or sensitive data
-5. **Cost vs Quality**: Balance project constraints with quality requirements
-
----
-
-## TODO / Upcoming Features
-
-- [ ] Add file from commit examples
-- [ ] MCP marketplace integration guide
-- [ ] AGENTS.md configuration examples
-- [ ] Complete Playwright MCP demo
-- [ ] Complete Database MCP demo
-- [ ] Complete Azure MCP comprehensive examples
-- [ ] Complete GitHub MCP demo
-- [ ] Complete Tavily and Azure docs MCP demo
-- [ ] Create Copilot Space example for multi-repo scenario
-- [ ] Security vulnerability autofix scenarios
 - [ ] More GitHub Spark examples
-- [ ] Azure SRE Agent full demo setup
-- [ ] Model performance comparison matrix
+- [ ] Azure SRE Agent full demo
+- [ ] Copilot CLI
