@@ -6,13 +6,11 @@ This API provides the status and results of processed images stored in Azure Cos
 - Azure Cosmos DB (reading results)
 - Azure Monitor (monitoring and logging)
 
-## Tests
-Structure mirrors the processing service:
+## Dependency Management
 
-- `tests/unit` – unit tests with a fake Cosmos container (no network access).
-- `tests/integration` – requires real Cosmos DB; skipped unless `RUN_INTEGRATION_TESTS=1`.
+This service uses **uv** as the package manager. Dependencies are defined in `pyproject.toml`.
 
-### Install dependencies (uv)
+### Install dependencies
 Base deps (runtime only):
 ```
 uv sync
@@ -23,6 +21,25 @@ uv sync --extra test
 # OR
 uv sync --dev
 ```
+
+### Update dependencies
+After modifying `pyproject.toml`:
+```
+uv sync
+```
+
+### Docker builds
+The Dockerfile uses a `requirements.txt` file generated from `pyproject.toml` for faster and more reliable container builds:
+```
+uv pip compile pyproject.toml -o requirements.txt
+```
+This file is committed to the repository and should be regenerated when dependencies change.
+
+## Tests
+Structure mirrors the processing service:
+
+- `tests/unit` – unit tests with a fake Cosmos container (no network access).
+- `tests/integration` – requires real Cosmos DB; skipped unless `RUN_INTEGRATION_TESTS=1`.
 
 ### Run unit tests only
 ```

@@ -1,0 +1,24 @@
+[project]
+name = "worker"
+version = "0.1.0"
+description = "Worker service for image processing using Azure OpenAI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [ { name = "Demo" } ]
+dependencies = [
+  "python-dotenv",
+  "azure-identity",
+  "azure-storage-blob",
+  "azure-servicebus",
+  "opentelemetry-api",
+  "opentelemetry-sdk",
+  "azure-monitor-opentelemetry",
+  "azure-core-tracing-opentelemetry",
+  "opentelemetry-instrumentation-fastapi",
+  "opentelemetry-instrumentation-requests",
+  "opentelemetry-instrumentation-openai-v2",
+  "openai",
+  "azure-cosmos",
+  "aiohttp",
+]
