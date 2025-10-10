@@ -1,16 +1,60 @@
+<!-- omit from toc -->
 # GitHub Copilot Demo
 This repository contains example code to demonstrate GitHub Copilot features across the development lifecycle - from basic coding assistance to advanced agentic workflows. It is designed for demonstrations and learning, not for production use.
 
 ## Table of Contents
-1. [Copilot as Coding Assistant](#1-copilot-as-coding-assistant)
-2. [Agent Mode](#2-agent-mode)
-3. [Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
-4. [Model Context Protocol (MCP) Tools](#4-model-context-protocol-mcp-tools)
-5. [Copilot Coding Agent](#5-copilot-coding-agent)
-6. [Code Review, Security, and Autofix](#6-code-review-security-and-autofix)
-7. [GitHub Spark](#7-github-spark)
-8. [Azure SRE Agent](#8-azure-sre-agent)
-9. [Model Selection Strategies](#9-model-selection-strategies)
+- [1. Copilot as Coding Assistant](#1-copilot-as-coding-assistant)
+  - [1.1 Inline Code Suggestions](#11-inline-code-suggestions)
+  - [1.2 Chat: Ask and Edit Modes](#12-chat-ask-and-edit-modes)
+  - [1.3 Query Languages (KQL and SQL)](#13-query-languages-kql-and-sql)
+  - [1.4 Vision (Image to Code)](#14-vision-image-to-code)
+  - [1.5 Web Search and Fetch](#15-web-search-and-fetch)
+  - [1.6 Simple Multi-File Editing](#16-simple-multi-file-editing)
+  - [1.7 Context from Git](#17-context-from-git)
+- [2. Agent Mode](#2-agent-mode)
+  - [2.1 Development Workflow Best Practices](#21-development-workflow-best-practices)
+  - [2.2 Simple Multi-File Task](#22-simple-multi-file-task)
+  - [2.3 Complex Task with Testing](#23-complex-task-with-testing)
+- [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
+  - [3.1 Repository-Wide Instructions](#31-repository-wide-instructions)
+  - [3.2 Prompt Files](#32-prompt-files)
+  - [3.3 Custom Chat Modes](#33-custom-chat-modes)
+  - [3.4 Azure Extensions](#34-azure-extensions)
+  - [3.5 Bring Your Own Model (BYOM)](#35-bring-your-own-model-byom)
+  - [3.6 Multi-Repository Planning with Copilot Spaces](#36-multi-repository-planning-with-copilot-spaces)
+- [4. Model Context Protocol (MCP) Tools](#4-model-context-protocol-mcp-tools)
+  - [4.1 Simple MCP: Random String Generator](#41-simple-mcp-random-string-generator)
+  - [4.2 Kubernetes MCP](#42-kubernetes-mcp)
+  - [4.3 Azure MCP](#43-azure-mcp)
+  - [4.4 Tavily Search and Azure Docs MCP](#44-tavily-search-and-azure-docs-mcp)
+  - [4.5 Database MCP](#45-database-mcp)
+  - [4.6 Playwright MCP for Testing](#46-playwright-mcp-for-testing)
+  - [4.7 GitHub MCP](#47-github-mcp)
+- [5. Copilot Coding Agent](#5-copilot-coding-agent)
+  - [5.1 From GitHub Issues](#51-from-github-issues)
+  - [5.2 From Copilot Agents Page](#52-from-copilot-agents-page)
+  - [5.3 Example Delegated Tasks](#53-example-delegated-tasks)
+  - [5.4 When to Use Coding Agent vs Agent Mode](#54-when-to-use-coding-agent-vs-agent-mode)
+- [6. Code Review, Security, and Autofix](#6-code-review-security-and-autofix)
+  - [6.1 Code Review with Copilot](#61-code-review-with-copilot)
+  - [6.2 Security Vulnerability Detection](#62-security-vulnerability-detection)
+  - [6.3 Automated Security Fixes](#63-automated-security-fixes)
+- [7. GitHub Spark](#7-github-spark)
+  - [7.1 Example: Kubernetes YAML Editor](#71-example-kubernetes-yaml-editor)
+  - [7.2 Additional Spark Examples](#72-additional-spark-examples)
+- [8. Azure SRE Agent](#8-azure-sre-agent)
+  - [8.1 What is Azure SRE Agent?](#81-what-is-azure-sre-agent)
+  - [8.2 Key Capabilities](#82-key-capabilities)
+  - [8.3 Example Interactions](#83-example-interactions)
+  - [8.4 Demo Setup](#84-demo-setup)
+  - [8.5 Integration with This Demo](#85-integration-with-this-demo)
+- [9. Model Selection Strategies](#9-model-selection-strategies)
+  - [9.1 Available Models in Copilot](#91-available-models-in-copilot)
+  - [9.2 When to Use Which Model](#92-when-to-use-which-model)
+  - [9.3 Dynamic Model Switching Strategies](#93-dynamic-model-switching-strategies)
+  - [9.4 Experimentation Guide](#94-experimentation-guide)
+  - [9.5 Model Selection Best Practices](#95-model-selection-best-practices)
+  - [TODO / Upcoming Features](#todo--upcoming-features)
 
 ---
 
@@ -163,7 +207,7 @@ Create new service called api-user-profile that provides API for CRUD over user 
 - Implemented in FastAPI
 - No authentication required at this point
 - Unit tests for APIs
-- Integration tests against real endpoints and databases - testing Create, then update, then read, then delete
+- Integration tests against real database - testing Create, then update, then read, then delete
 - User profile contain following fields: userId, userFullName, department
 
 # Implementation steps
@@ -174,50 +218,9 @@ Create new service called api-user-profile that provides API for CRUD over user 
 - Add code to connect to database and write and run integration tests to make sure DB is accessible
 - Write code that will check whether schema exists and if not create it with simple table for user profiles
 - Change CRUD implementation from mocks to real database
-- Write and run integration test against real endpoints
+- Write and run integration test script against real database
 - Write comprehensive README.md with architecture and how to use
 ```
-
-## 2.4 Infrastructure with Intentional Challenges
-
-Simulate real-world scenarios where things don't work on first try:
-
-```
-Deploy a PostgreSQL database in Azure and configure our api-processing to connect to it. Store connection strings securely in Key Vault and configure proper RBAC. The database should be accessible only from our Container Apps.
-
-Note: Intentionally misconfigure the firewall rules or connection string format to simulate a real troubleshooting scenario.
-```
-
-The agent should:
-1. Create Terraform resources
-2. Attempt connection
-3. Diagnose connectivity issues
-4. Fix firewall rules/network configuration
-5. Verify connectivity
-6. Document the solution
-
-## 2.5 Complex Security Integration
-
-```
-To enhance security frontend should integrate with Entra ID using OpenID Connect to get user identity and make sure it is part of MyDemo security group. Our APIs api-processing and api-status, that interact directly with frontend, should be registered as APIs in Entra and user should consent to access to those.
-
-Implement those changes in code, write comprehensive README explaining how authentication and authorization works in our application and prepare scripts to configure Entra ID according to our requirements. Where keys need to be used make sure to use environmental variables and .env capability. Do not forget to modify our Terraform deployment manifests to include newly introduced envs.
-```
-
-## 2.6 Agent Mode Strategies
-
-**When to use Agent Mode:**
-- Multi-file refactoring
-- Feature implementation across frontend/backend/infrastructure
-- Test-driven development workflows
-- Debugging complex issues
-
-**Tips for success:**
-- Provide clear context and constraints
-- Reference existing patterns in codebase
-- Ask agent to update documentation as it works
-- Use `#codebase` to help agent understand project structure
-- Review changes before accepting
 
 ---
 
