@@ -469,3 +469,4 @@ Azure SRE Agent helps teams:
 - [ ] More GitHub Spark examples
 - [ ] Azure SRE Agent full demo
 - [ ] Copilot CLI
+- [ ] Copilot App Modernization
