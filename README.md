@@ -65,10 +65,10 @@ Learn the fundamentals of GitHub Copilot - inline suggestions, chat interactions
 ## 1.1 Inline Code Suggestions
 
 ### Autocomplete
-Open `main.py` in `api-processing` and type `# Configure Prometheus` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
+Open `main.py` in `src/api-processing` and type `# Configure Prometheus` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
 
 ### Next Edit Suggestion
-Open `main.py` in `api-processing` and around line 52 change `credential` to `azure_credential` and wait for suggestions. Copilot will predict your next likely edit.
+Open `main.py` in `src/api-processing` and around line 52 change `credential` to `azure_credential` and wait for suggestions. Copilot will predict your next likely edit.
 
 ## 1.2 Chat: Ask and Edit Modes
 
@@ -103,20 +103,20 @@ Create README.md and add all Terraform files to context. Then ask:
 ## 1.3 Query Languages (KQL and SQL)
 
 ### KQL (Kusto Query Language)
-Attach [query_data.csv](./kql/query_data.csv) and ask:
+Attach [query_data.csv](./demo/kql/query_data.csv) and ask:
 ```
 Give me microsoft Kusto Query (KQL) to display percentage of processor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.
 ```
 
 ### SQL
-Attach [users_denormalized.json](./sql/users_denormalized.json) and ask:
+Attach [users_denormalized.json](./demo/sql/users_denormalized.json) and ask:
 - `Generate CREATE commands for normalized users, addresses and orders using Microsoft SQL.`
 - `Based on data structure, create 10 lines of sample data and make sure it makes sense and foreign keys are respected.`
 - `Give me SQL statement to list userId, name, number of orders and number of addresses for each user.`
 
 ## 1.4 Vision (Image to Code)
 
-Attach [classes.png](./vision/classes.png), create `classes.py` and ask:
+Attach [classes.png](./demo/vision/classes.png), create `classes.py` and ask:
 ```
 Generate code for classes in Python according to attached schema.
 ```
@@ -150,7 +150,7 @@ https://github.com/microsoft/agent-framework
 ```
 
 ## 1.6 Simple Multi-File Editing
-Let's do change that requires modification of various files. When you want to help Copilot to pin specific files, you can add them to explicit context. Add `api-processing/main.py`, `worker/main.py` and terraform files such as `terraform/service_bus.tf` and `terraform/rbac.tf` to context.
+Let's do change that requires modification of various files. When you want to help Copilot to pin specific files, you can add them to explicit context. Add `src/api-processing/main.py`, `src/worker/main.py` and terraform files such as `deploy/terraform/service_bus.tf` and `deploy/terraform/rbac.tf` to context.
 
 Ask:
 ```
@@ -186,7 +186,7 @@ Maintain living documentation in `docs/`:
 
 ## 2.2 Simple Multi-File Task
 
-Take files from `frontend` and using agent mode ask:
+Take files from `src/frontend` and using agent mode ask:
 ```
 Enable dark mode for my frontend. User will have button to switch between light and dark mode. Implement necessary changes in the code and CSS.
 ```
@@ -211,7 +211,7 @@ Create new service called api-user-profile that provides API for CRUD over user 
 - User profile contain following fields: userId, userFullName, department
 
 # Implementation steps
-- Create base folder and uv init
+- Create base folder in src/api-user-profile and uv init
 - Create mocked CRUD APIs and write and run unit tests for it
 - Use Azure CLI to create resource group and Azure Database for PostgreSQL Flexible Server
 - Get access details and credentials for database and store it in .env
@@ -328,7 +328,7 @@ How would I do that, show me [enter][end]
 If I would like to do the steps you did in this chat using Kubernetes CLI next time, how it would look like? [enter][end]
 ```
 
-🎥 See [recording](./video/MCP-Kubernetes.mp4) of this demo.
+🎥 See [recording](./docs/video/MCP-Kubernetes.mp4) of this demo.
 
 ## 4.3 Azure MCP
 
@@ -412,7 +412,7 @@ I have k6 perftest, but no README for it. Create README.md file explaining how t
 
 ### Feature Implementation
 ```
-Add health check endpoints to all microservices (api-processing, api-status, worker). Implement /health and /ready endpoints following Kubernetes probe best practices. Update Kubernetes manifests with proper liveness and readiness probes.
+Add health check endpoints to all microservices (src/api-processing, src/api-status, src/worker). Implement /health and /ready endpoints following Kubernetes probe best practices. Update Kubernetes manifests with proper liveness and readiness probes.
 ```
 
 ## 5.4 When to Use Coding Agent vs Agent Mode
@@ -532,7 +532,7 @@ What alerts are active now?
 ## 8.5 Integration with This Demo
 
 SRE Agent can monitor:
-- Container Apps (`api-processing`, `api-status`, `frontend`, `worker`)
+- Container Apps (`src/api-processing`, `src/api-status`, `src/frontend`, `src/worker`)
 - Service Bus queues and dead-letter queues
 - Cosmos DB performance
 - Application Insights telemetry
