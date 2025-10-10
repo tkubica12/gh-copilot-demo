@@ -9,7 +9,7 @@ EOF
 
 variable "location" {
   type        = string
-  default     = "germanywestcentral"
+  default     = "swedencentral"
   description = <<EOF
 Azure region for resources.
 

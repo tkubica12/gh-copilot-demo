@@ -16,20 +16,18 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [2.2 Simple Multi-File Task](#22-simple-multi-file-task)
   - [2.3 Complex Task with Testing](#23-complex-task-with-testing)
 - [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
-  - [3.1 Repository-Wide Instructions](#31-repository-wide-instructions)
+  - [3.1 Custom instructions](#31-custom-instructions)
   - [3.2 Prompt Files](#32-prompt-files)
   - [3.3 Custom Chat Modes](#33-custom-chat-modes)
-  - [3.4 Azure Extensions](#34-azure-extensions)
-  - [3.5 Bring Your Own Model (BYOM)](#35-bring-your-own-model-byom)
-  - [3.6 Multi-Repository Planning with Copilot Spaces](#36-multi-repository-planning-with-copilot-spaces)
+  - [3.4 Bring Your Own Model (BYOM)](#34-bring-your-own-model-byom)
+  - [3.5 Multi-Repository Planning with Copilot Spaces](#35-multi-repository-planning-with-copilot-spaces)
 - [4. Model Context Protocol (MCP) Tools](#4-model-context-protocol-mcp-tools)
   - [4.1 Simple MCP: Random String Generator](#41-simple-mcp-random-string-generator)
   - [4.2 Kubernetes MCP](#42-kubernetes-mcp)
-  - [4.3 Azure MCP](#43-azure-mcp)
-  - [4.4 Tavily Search and Azure Docs MCP](#44-tavily-search-and-azure-docs-mcp)
+  - [4.3 GitHub MCP](#43-github-mcp)
+  - [4.4 Azure MCP](#44-azure-mcp)
   - [4.5 Database MCP](#45-database-mcp)
   - [4.6 Playwright MCP for Testing](#46-playwright-mcp-for-testing)
-  - [4.7 GitHub MCP](#47-github-mcp)
 - [5. Copilot Coding Agent](#5-copilot-coding-agent)
   - [5.1 From GitHub Issues](#51-from-github-issues)
   - [5.2 From Copilot Agents Page](#52-from-copilot-agents-page)
@@ -228,21 +226,17 @@ Create new service called api-user-profile that provides API for CRUD over user 
 
 Tailor Copilot's behavior to your team's standards, coding conventions, and operational practices.
 
-## 3.1 Repository-Wide Instructions
+## 3.1 Custom instructions
+Today VS Code with GitHub Copilot fully support [AGENTS.md](https://agents.md/) standard. See exaple in repository and selected subfolders (good for monorepo situations).
 
-Instructions in `.github/instructions/` apply automatically based on file patterns:
-
-- **`general.instructions.md`** (applies to `**`): Project-wide standards
-- **`python.instructions.md`** (applies to `**/*.py`): Python-specific conventions
-- **`terraform.instructions.md`** (applies to `**/*.tf`, `**/*.tfvars`): IaC standards
-
-### Example: Coding Convention
-Ask in chat:
-```
-Generate CRUD in Python for product API
-```
-
-You'll get functions using standard Python convention (snake_case).
+Tips what to include:
+- Coding style (Terraform structure, code structure, use Pydantic, ...)
+- Frameworks and tools (eg. use FastAPI, uv as package manager, use azurerm provider in Terraform, use Helm charts rather than Kustomize, ...)
+- Procedures and recommendations (always check solution design, keep implementation log, common errors)
+- Tests and ad-hoc stuff (prefer regular testing, when using something adhoc prefix it and delete afterwards, ...)
+- Common envs and configuration styles (use ini file, use .env, check envs directly vs. use config class, ...)
+- Documentation strategy (use docstrings, do not comment inline what is obvious, ...)
+- Tools (prefer tool use over CLI and scripts, write adhoc test scripts when something becomes too complex, ...)
 
 ## 3.2 Prompt Files
 
@@ -264,14 +258,7 @@ What is this file about?
 
 Custom chat modes provide specialized personas for teaching, reviewing, or domain-specific guidance.
 
-## 3.4 Azure Extensions
-
-Copilot can integrate with Azure services:
-```
-@azure /costs What can you tell me about storage costs in my subscription 673af34d-6b28-41dc-bc7b-f507418045e6
-```
-
-## 3.5 Bring Your Own Model (BYOM)
+## 3.4 Bring Your Own Model (BYOM)
 
 Install `Ollama` and download models:
 
@@ -288,7 +275,7 @@ In Copilot click on **Manage Models** and add Ollama models. Try examples from S
 - Cost optimization with smaller models
 - Experimentation with specialized models
 
-## 3.6 Multi-Repository Planning with Copilot Spaces
+## 3.5 Multi-Repository Planning with Copilot Spaces
 
 [Copilot Spaces](https://www.github.com/copilot/spaces) enables strategic planning across multiple repositories:
 
@@ -297,7 +284,11 @@ In Copilot click on **Manage Models** and add Ollama models. Try examples from S
 - Enterprise-wide technical decisions
 - Design reviews involving multiple teams
 
-**📝 TODO:** Create example Copilot Space configuration for this demo project
+You can also use that knowledge base in your GitHub Copilot agent query via MCP:
+
+```
+What are common errors when automating email processing? #list_copilot_spaces #get_copilot_space 
+```
 
 ---
 
@@ -330,54 +321,53 @@ If I would like to do the steps you did in this chat using Kubernetes CLI next t
 
 🎥 See [recording](./docs/video/MCP-Kubernetes.mp4) of this demo.
 
-## 4.3 Azure MCP
+## 4.3 GitHub MCP
+See all available calls under GitHub MCP.
 
-**📝 TODO:** Add Azure MCP demos:
+Few things to try:
+- `What plans we have for implementing PDF in our app? Check GitHub Issues.` which uses list_issues and get_issue
+- `In what repository am I using Event Sourcing pattern with CosmosDB?` which uses search_code
+- `Our api-processing do have performance issues. Gather information about this service and create GitHub issue and assign tkubica12 to look into it` which uses create_isse
+
+
+## 4.4 Azure MCP
+
 - Query Azure resources (storage accounts, VMs, App Services)
 - Analyze costs and resource utilization
 - Diagnose issues with Azure Monitor
 - Manage Azure resources directly from Copilot
 
-Example prompts to prepare:
-```
-What resources do I have in resource group rg-demo?
-Show me the cost breakdown for the last 30 days
-Are there any alerts firing in my subscription?
-```
+Example prompts to start with:
 
-## 4.4 Tavily Search and Azure Docs MCP
+- `What versions my AKS clusters run?`
+- `See my storage accounts, can I improve resiliency and data protection?`
 
-**📝 TODO:** Add search capabilities:
-- Tavily for web search
-- Azure documentation search
-- Code sample search from Microsoft Learn
-
-Example prompts:
-```
-Search for best practices on Azure Container Apps scaling
-Find code examples for Azure Service Bus with managed identity
-```
 
 ## 4.5 Database MCP
+In our example we will use PostgreSQL extension and MCP server. Deploy Azure Database for PostgreSQL and connect to it. Thank you can try this prompt:
 
-**📝 TODO:** Add database interaction demos:
-- Query Cosmos DB
-- Execute SQL queries against Azure SQL
-- Schema inspection and optimization suggestions
+```
+Connect to PSQL psql-mcp and create table users with following fields:
+- user id
+- user full name
+- address
+- phone
+
+Generate about 100 rows of some test date and insert it.
+```
+
+Then you can use UI of extension to see data in that table.
 
 ## 4.6 Playwright MCP for Testing
 
-**📝 TODO:** Add browser automation:
 - Generate E2E tests
 - Run Playwright tests from Copilot
 - Debug test failures with screenshots
 
-## 4.7 GitHub MCP
+Here is example prompt:
 
-**📝 TODO:** Add GitHub operations:
-- Query issues and PRs
-- Analyze repository insights
-- Automate workflow operations
+`Run my src/frontend in separate terminal and try to submit file /demo/image/example.jpg using Playwright MCP.`
+
 
 ---
 

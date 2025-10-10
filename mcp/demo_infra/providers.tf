@@ -8,27 +8,11 @@ terraform {
       source  = "hashicorp/random"
       version = "~>3"
     }
-    archive = {
-      source  = "hashicorp/archive"
+    helm = {
+      source  = "hashicorp/helm"
       version = "~>2"
-    }
-    azapi = {
-      source  = "Azure/azapi"
-      version = "~>2"
-    }
-    time = {
-      source  = "hashicorp/time"
-      version = "~>0"
     }
   }
-  # backend "azurerm" { # Change this to "local" for local backend
-  #   resource_group_name  = "rg-base"
-  #   storage_account_name = "tomaskubicatf"
-  #   container_name       = "tfstate"
-  #   key                  = "gh-copilot-demo.tfstate"
-  #   use_azuread_auth     = true
-  #   subscription_id      = "673af34d-6b28-41dc-bc7b-f507418045e6"
-  # }
 }
 
 provider "azurerm" {
@@ -59,5 +43,14 @@ provider "azurerm" {
 
 provider "random" {
   # Configuration options
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = azurerm_kubernetes_cluster.main.kube_config[0].host
+    client_certificate     = base64decode(azurerm_kubernetes_cluster.main.kube_config[0].client_certificate)
+    client_key             = base64decode(azurerm_kubernetes_cluster.main.kube_config[0].client_key)
+    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.main.kube_config[0].cluster_ca_certificate)
+  }
 }
 
