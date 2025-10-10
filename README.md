@@ -29,10 +29,9 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [4.5 Database MCP](#45-database-mcp)
   - [4.6 Playwright MCP for Testing](#46-playwright-mcp-for-testing)
 - [5. Copilot Coding Agent](#5-copilot-coding-agent)
-  - [5.1 From GitHub Issues](#51-from-github-issues)
-  - [5.2 From Copilot Agents Page](#52-from-copilot-agents-page)
-  - [5.3 Example Delegated Tasks](#53-example-delegated-tasks)
-  - [5.4 When to Use Coding Agent vs Agent Mode](#54-when-to-use-coding-agent-vs-agent-mode)
+  - [5.1 Example Delegated Tasks](#51-example-delegated-tasks)
+  - [5.2 From GitHub Issues](#52-from-github-issues)
+  - [5.3 When to Use Coding Agent vs Agent Mode](#53-when-to-use-coding-agent-vs-agent-mode)
 - [6. Code Review, Security, and Autofix](#6-code-review-security-and-autofix)
   - [6.1 Code Review with Copilot](#61-code-review-with-copilot)
   - [6.2 Security Vulnerability Detection](#62-security-vulnerability-detection)
@@ -375,37 +374,22 @@ Here is example prompt:
 
 Delegate long-running tasks to Copilot Coding Agent that works asynchronously in the background, committing changes to a branch and opening PRs.
 
-## 5.1 From GitHub Issues
+## 5.1 Example Delegated Tasks
+Use "delegate to copilot agent" button with these prompts:
+
+- `I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
+- `Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
+
+## 5.2 From GitHub Issues
 
 1. Go to **Issues** in your repository
 2. Create or select an issue
 3. Assign it to **Copilot Coding Agent**
 4. Agent will create a branch, implement changes, and open a PR
 
-## 5.2 From Copilot Agents Page
+See [Copilot Agents page](https://github.com/copilot/agents) to manage multiple agent tasks across repositories.
 
-Work from [Copilot Agents page](https://github.com/copilot/agents) to manage multiple agent tasks across repositories.
-
-## 5.3 Example Delegated Tasks
-
-Use "delegate to copilot agent" button with these prompts:
-
-### Add Unit Tests and CI Integration
-```
-My worker, unlike other microservices, does not have any unit tests. Write unit tests using pytest and create README explaining those tests and how to run them. There is GitHub Actions workflow to build worker when code changes. Add tests to the workflow so we do not build container if tests are failing.
-```
-
-### Documentation Task
-```
-I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.
-```
-
-### Feature Implementation
-```
-Add health check endpoints to all microservices (src/api-processing, src/api-status, src/worker). Implement /health and /ready endpoints following Kubernetes probe best practices. Update Kubernetes manifests with proper liveness and readiness probes.
-```
-
-## 5.4 When to Use Coding Agent vs Agent Mode
+## 5.3 When to Use Coding Agent vs Agent Mode
 
 | Use Coding Agent When | Use Agent Mode When |
 |----------------------|---------------------|
