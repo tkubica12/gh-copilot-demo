@@ -7,3 +7,11 @@ This worker listens to messages from an Azure Service Bus queue, processes image
 - Azure Storage Blob (downloading images)
 - Azure OpenAI (processing images)
 - Azure Cosmos DB (storing results)
+
+## Development
+
+### Install dependencies (uv)
+Sync runtime dependencies:
+```
+uv sync
+```
