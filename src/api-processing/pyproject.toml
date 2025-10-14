@@ -13,6 +13,7 @@ dependencies = [
   "azure-identity",
   "azure-storage-blob",
   "azure-servicebus",
+  "aiohttp",
   "opentelemetry-api",
   "opentelemetry-sdk",
   "azure-monitor-opentelemetry",
