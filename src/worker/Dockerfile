@@ -1,14 +1,16 @@
-# Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
-# Set the working directory in the container
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
-# Run main.py when the container launches
-CMD ["python", "main.py"]
+COPY pyproject.toml uv.lock .
+RUN uv sync --frozen --no-dev
+
+COPY main.py .
+
+CMD ["uv", "run", "python", "main.py"]

@@ -54,3 +54,25 @@ Removed reliance on `RUN_INTEGRATION_TESTS` environment flag. Integration tests 
 ### 2025-08-31 – Integration test skip timing fix
 Adjusted integration test modules to load `.env` before evaluating `@pytest.mark.skipif` so that environment variables defined only in the service `.env` file are recognized during collection. Previously the skip condition ran before the autouse fixture loaded `.env`, causing false skips.
 
+## 2025-10-14 – Completed uv migration for all Python services
+
+Extended uv package manager adoption to all remaining Python services, completing the migration from pip + requirements.txt.
+
+### Changes
+- Created `pyproject.toml` for `worker` service with all runtime dependencies.
+- Removed `requirements.txt` from `api-status` and `worker` services (api-processing already removed in previous migration).
+- Updated all Dockerfiles (api-processing, api-status, worker) to use `uv` instead of `pip`:
+  - Multi-stage build copying uv binary from official image
+  - `uv sync --frozen --no-dev` for reproducible dependency installation
+  - `uv run` for command execution
+- Updated worker `README.md` with uv installation and usage instructions.
+- Generated and tracked `uv.lock` files for api-status and worker to ensure reproducible builds.
+
+### Verification
+- Tested `uv sync` successfully on all three services.
+- Built Docker images for all services - builds complete without errors.
+- Ran unit tests for api-processing and api-status - all tests pass.
+
+### Rationale
+Completes the repository-wide standardization on `uv` for Python dependency management as specified in `AGENTS.md`, eliminating all remaining `requirements.txt` files and ensuring consistent tooling across all Python services.
+
