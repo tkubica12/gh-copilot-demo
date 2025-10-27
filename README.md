@@ -477,3 +477,5 @@ Azure SRE Agent helps teams:
 - [ ] Azure SRE Agent full demo
 - [ ] Copilot CLI
 - [ ] Copilot App Modernization
+- [ ] Spec kit ([https://github.com/github/spec-kit](https://github.com/github/spec-kit))
+
