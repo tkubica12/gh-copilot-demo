@@ -54,3 +54,27 @@ Removed reliance on `RUN_INTEGRATION_TESTS` environment flag. Integration tests 
 ### 2025-08-31 – Integration test skip timing fix
 Adjusted integration test modules to load `.env` before evaluating `@pytest.mark.skipif` so that environment variables defined only in the service `.env` file are recognized during collection. Previously the skip condition ran before the autouse fixture loaded `.env`, causing false skips.
 
+## 2025-10-14 – API Processing Service Performance Optimization
+
+Converted `api-processing` service from synchronous to asynchronous Azure SDK clients to eliminate blocking I/O operations and improve concurrent request handling.
+
+### Root Cause
+The endpoint was defined as `async def` but performed synchronous I/O operations (`container_client.upload_blob()` and `servicebus_queue.send_messages()`), blocking the async event loop and preventing efficient concurrent request processing.
+
+### Changes
+- Migrated from sync to async Azure SDK clients: `azure.storage.blob.aio.BlobServiceClient` and `azure.servicebus.aio.ServiceBusClient`
+- Updated blob upload to use `await container_client.upload_blob()`
+- Changed Service Bus message sending to use async context manager with `await sender.send_messages()`
+- Implemented FastAPI lifespan context manager for proper async client initialization and cleanup
+- Added `aiohttp` dependency required for async Azure SDK transport
+- Updated test fixtures to mock async client methods
+
+### Performance Impact
+- Eliminates blocking operations that prevented concurrent request handling
+- Enables true asynchronous I/O throughout the request pipeline
+- Expected significant improvement in throughput and p95 latency under load
+- Better resource utilization through non-blocking operations
+
+### Testing
+All unit tests pass with updated async mocks. Integration tests remain available for validation against real Azure resources.
+

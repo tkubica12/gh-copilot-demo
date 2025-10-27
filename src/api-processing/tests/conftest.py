@@ -59,17 +59,16 @@ def app(monkeypatch, set_env_vars):  # noqa: D401
     uploaded = {}
 
     class FakeContainerClient:
-        def upload_blob(self, name, data, overwrite=False):  # noqa: D401
-            uploaded[name] = data.read() if hasattr(data, "read") else data
+        async def upload_blob(self, name, data, overwrite=False):
+            content = data.read() if hasattr(data, "read") else data
+            uploaded[name] = content
 
     class FakeQueueSender:
         sent_messages = []
 
-        def send_messages(self, message):  # noqa: D401
-            # message has .body (bytes) but in our code we pass ServiceBusMessage(JSON)
-            # We will allow anything and store a parsed json when possible.
+        async def send_messages(self, message):
             body = getattr(message, "body", None)
-            if body is None and hasattr(message, "_body" ):
+            if body is None and hasattr(message, "_body"):
                 body = message._body  # type: ignore  # pragma: no cover
             try:
                 parsed = json.loads(body) if isinstance(body, (bytes, bytearray)) else json.loads(str(message))
@@ -77,9 +76,47 @@ def app(monkeypatch, set_env_vars):  # noqa: D401
                 parsed = str(message)
             self.sent_messages.append(parsed)
 
-    monkeypatch.setattr(main, "container_client", FakeContainerClient())
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, exc_type, exc_val, exc_tb):
+            pass
+
+    class FakeServiceBusClient:
+        def __init__(self, queue_sender):
+            self.queue_sender = queue_sender
+
+        def get_queue_sender(self, queue_name):
+            return self.queue_sender
+
+        async def close(self):
+            pass
+
+    class FakeStorageClient:
+        def __init__(self, container_client):
+            self.container_client = container_client
+
+        def get_container_client(self, container_name):
+            return self.container_client
+
+        async def close(self):
+            pass
+
+    class FakeCredential:
+        async def close(self):
+            pass
+
+    # Set global client references for tests
+    fake_container = FakeContainerClient()
     fake_queue = FakeQueueSender()
-    monkeypatch.setattr(main, "servicebus_queue", fake_queue)
+    fake_servicebus = FakeServiceBusClient(fake_queue)
+    fake_storage = FakeStorageClient(fake_container)
+    fake_credential = FakeCredential()
+    
+    main.container_client = fake_container
+    main.servicebus_client = fake_servicebus
+    main.storage_account_client = fake_storage
+    main.credential = fake_credential
 
     # Expose helpers for assertions
     main._test_uploaded = uploaded  # type: ignore[attr-defined]
