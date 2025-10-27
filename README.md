@@ -231,10 +231,17 @@ Tips what to include:
 - Tools (prefer tool use over CLI and scripts, write adhoc test scripts when something becomes too complex, ...)
 
 ## 3.2 Prompt Files
+Agent is best and using tools, but it is keen to start modifying things. I like to use it more than Aks mode, but must say to not modify anything until we agree on it, and prompt it to research using web and other tools. You can store this in prompt file in `.github/prompts/something.prompt.md` and than simply reference it with `/`.
 
-Clear chat and attach prompt file `camelcase.prompt` and ask again. You'll get different response following camelCase convention.
+```
+/discuss I am currently using pip as package manager for Python. What are alternatives?
+```
 
-Prompt files override default behavior for specific contexts.
+Another example might be with specific styling prompt (overall style belongs to `AGENTS.md` - root or subfolder). For example to override default naming convention in Python (snakecase).
+
+```
+/camelcase Write skeleton of CRUD operation on orders in Python
+```
 
 ## 3.3 Custom Chat Modes
 
