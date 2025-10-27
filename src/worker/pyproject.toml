@@ -1,14 +1,12 @@
 [project]
-name = "api-processing"
+name = "worker"
 version = "0.1.0"
-description = "FastAPI service for image processing: uploads to Blob and enqueues message to Service Bus"
+description = "Worker service for image processing using Azure OpenAI"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [ { name = "Demo" } ]
 dependencies = [
-  "fastapi",
-  "uvicorn",
   "python-dotenv",
   "azure-identity",
   "azure-storage-blob",
@@ -19,21 +17,8 @@ dependencies = [
   "azure-core-tracing-opentelemetry",
   "opentelemetry-instrumentation-fastapi",
   "opentelemetry-instrumentation-requests",
-  "python-multipart",
-]
-
-[project.optional-dependencies]
-test = [
-  "pytest",
-  "pytest-asyncio",
-  "httpx",
-  "asgi-lifespan",
-]
-
-[dependency-groups]
-dev = [
-  "pytest",
-  "pytest-asyncio",
-  "httpx",
-  "asgi-lifespan",
+  "opentelemetry-instrumentation-openai-v2",
+  "openai",
+  "azure-cosmos",
+  "aiohttp",
 ]

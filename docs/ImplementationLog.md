@@ -1,5 +1,21 @@
 # Implementation Log
 
+## 2025-10-10 – Completed uv migration for all Python services
+
+Completed the migration of all Python services (`api-processing`, `api-status`, and `worker`) to use `uv` as package manager with `pyproject.toml` as the authoritative dependency source.
+
+### Changes
+- **api-processing** and **api-status**: Already had `pyproject.toml` but still referenced `requirements.txt` in older implementation log. Generated frozen `requirements.txt` from `pyproject.toml` using `uv pip compile` for Docker builds.
+- **worker**: Created new `pyproject.toml` with all dependencies. Generated `requirements.txt` from it for Docker builds.
+- Updated all service READMEs with comprehensive uv dependency management instructions.
+- Replaced deprecated `[tool.uv].dev-dependencies` with standard `[dependency-groups].dev` in api-processing and api-status.
+- Verified `uv sync` works correctly for all services.
+
+### Rationale
+Docker builds in CI/CD environments can encounter network/SSL issues when using uv directly. By generating `requirements.txt` files from `pyproject.toml` using `uv pip compile`, we maintain the benefits of uv for local development while ensuring reliable Docker builds using standard pip.
+
+Developers use `uv sync` for local development, and when dependencies change in `pyproject.toml`, they regenerate `requirements.txt` with `uv pip compile pyproject.toml -o requirements.txt`.
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
