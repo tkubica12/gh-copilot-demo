@@ -5,7 +5,6 @@ and that concurrent requests can be handled efficiently.
 """
 
 import io
-import asyncio
 import time
 
 

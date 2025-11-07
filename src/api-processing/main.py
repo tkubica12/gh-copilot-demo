@@ -32,7 +32,6 @@ servicebus_queue_name = get_env_var("SERVICEBUS_QUEUE")
 appinsights_connection_string = get_env_var("APPLICATIONINSIGHTS_CONNECTION_STRING")
 
 # Configure Azure Monitor
-appinsights_connection_string = get_env_var("APPLICATIONINSIGHTS_CONNECTION_STRING")
 resource = Resource.create({SERVICE_NAME: "Processing API Service"})
 configure_azure_monitor(connection_string=appinsights_connection_string, resource=resource)
 settings.tracing_implementation = "opentelemetry"
