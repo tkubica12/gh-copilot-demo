@@ -8,11 +8,12 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [1.2 Chat: Ask and Edit Modes](#12-chat-ask-and-edit-modes)
   - [1.3 Query Languages (KQL and SQL)](#13-query-languages-kql-and-sql)
   - [1.4 Vision (Image to Code)](#14-vision-image-to-code)
-  - [1.5 Web Search and Fetch](#15-web-search-and-fetch)
-  - [1.6 Simple Multi-File Editing](#16-simple-multi-file-editing)
-  - [1.7 Context from Git](#17-context-from-git)
+  - [1.5 Browser elements](#15-browser-elements)
+  - [1.6 Web Search and Fetch](#16-web-search-and-fetch)
+  - [1.7 Simple Multi-File Editing](#17-simple-multi-file-editing)
+  - [1.8 Context from Git](#18-context-from-git)
 - [2. Agent Mode](#2-agent-mode)
-  - [2.1 Development Workflow Best Practices](#21-development-workflow-best-practices)
+  - [2.1 Spec-Driven Fevelopment](#21-spec-driven-fevelopment)
   - [2.2 Simple Multi-File Task](#22-simple-multi-file-task)
   - [2.3 Complex Task with Testing](#23-complex-task-with-testing)
 - [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
@@ -66,7 +67,7 @@ Open `main.py` in `src/api-processing` and around line 52 change `credential` to
 - Premium models consume premium requests, most often one per request (1x)
   - 10x models in my opinion are usual not worth the increased cost
   - Switch model when Copilot is not able to move beyond some issue or after previous one finished so you get second opinion
-  - As of October 2025 I combine gpt-5-codex and sonnet 4.5 for coding and gpt-5 or Gemini 2.5 Pro for document writing and brainstorming
+  - As of November 2025 I combine gpt-5-codex and sonnet 4.5 for coding and gpt-5 or Gemini 2.5 Pro for document writing and brainstorming
 
 ### Codebase Search
 Ask Copilot to search and understand your code:
@@ -114,7 +115,10 @@ Create README.md file and in Edit mode follow with:
 Create markdown documentation for classes.py and include mermaid diagram.
 ```
 
-## 1.5 Web Search and Fetch
+## 1.5 Browser elements
+Open Simple Browser (command pallet CTRL+ALT+P and search for it), enter some URL. Click on Add element to chat and ask `What is this element doing?`
+
+## 1.6 Web Search and Fetch
 
 Ask questions about current information:
 
@@ -125,7 +129,7 @@ When did Microsoft released Microsoft Agent Framework SDK for Python and what is
 
 I have Tavily MCP Server (see in later section) so try with tools.
 ```
-When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version?
+When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version? #tavily-search
 ```
 
 But if you have specific documentation in mind, you can just reference it here (eg. llms.txt)
@@ -134,10 +138,11 @@ When did Microsoft released Microsoft Agent Framework SDK for Python and what is
 #fetch 
 https://github.com/microsoft/agent-framework/releases
 https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview
-https://github.com/microsoft/agent-framework
+
+#githubRepo microsoft/agent-framework
 ```
 
-## 1.6 Simple Multi-File Editing
+## 1.7 Simple Multi-File Editing
 Let's do change that requires modification of various files. When you want to help Copilot to pin specific files, you can add them to explicit context. Add `src/api-processing/main.py`, `src/worker/main.py` and terraform files such as `deploy/terraform/service_bus.tf` and `deploy/terraform/rbac.tf` to context.
 
 Ask:
@@ -145,7 +150,7 @@ Ask:
 In this code I am using Service Bus Queues, but I need to move to Service Bus Topics. Make sure to update my Terraform and Python code accordingly and add topic subscriptions and RBAC.
 ```
 
-## 1.7 Context from Git
+## 1.8 Context from Git
 You can see your Git history and add previous versions of files into Copilot chat for reference. Useful when asking for what changed or helping Copilot undo something.
 
 ---
@@ -154,23 +159,37 @@ You can see your Git history and add previous versions of files into Copilot cha
 
 Agent Mode enables Copilot to work autonomously across multiple files, run tests, deploy infrastructure, and iteratively solve complex problems. This section demonstrates progressive complexity and best practices for agentic workflows.
 
-## 2.1 Development Workflow Best Practices
+## 2.1 Spec-Driven Fevelopment
 
 Before starting complex tasks with Agent Mode, establish a solid foundation:
 
-### Solution Design and Planning
+### Spec-kit
+Spec-kit is open source project developed by GitHub with newrly 50k stars and with support for many agents including GitHub Copilot, Cursor, Claude Code, WIndsurf, Codex and others. It is opionated way how to do spec-driven development. It provides guided experience and you can go feature by feature - this is not just for initial setup!
+
+```
+uvx --from git+https://github.com/github/spec-kit.git specify init my_new_project
+code my_new_project
+/speckit.constitution Create principles focused on clarity, simplicity, speed of development
+/speckit.specify Build application that allows for people to easily share ideas in visual way where each user can write sticky note, place it somewhere and facilitator users can organize them spatially. There will be multiple templates to organize this eg. to kanban board, mindmap, but facilitator can also organize freely.
+/speckit.clarify I think we need to enhance specification on how results can be stored, loaded or exported to various formats such as PDF
+/speckit.plan Frontend is Vite with minimal number of libraries. There will be backend service written in Python used to store sticky note content, author and also current spatial layout so everything is persistent.
+/speckit.tasks
+/speckit.analyze Is our plan for Python testable so we can avoid regressions?
+/speckit.implement
+```
+
+See `my_new_project/specs` folder for results. Note spec-kit is in very clever way using prompt.md files as dicsussed later.
+
+### Solution Design, Planning and Execution
+In general idea is to prepare specifications so Copilot can have enough context and guidance. Here is another point of view how this can be done.
+
 Start with high-level design documents:
-- Create `SolutionDesign.md` outlining architecture, components, and integration points
-- Define Product Requirements Document (PRD) for features
-- Break down work into discrete, testable tasks
-
-### Documentation-Driven Development
-Maintain living documentation in `docs/`:
-- **`ImplementationLog.md`**: Track progress, technical decisions, and architectural choices as you implement
-- **`ImplementationPlan.md`**: Create step-by-step plan before major changes
-- **`CommonErrors.md`**: Document issues encountered and their solutions for future reference
-
-💡 **Pro tip**: Ask the agent to update these documents as it works, creating a traceable development history.
+- Define Product Requirements Document **`PRD.md`** for features and business requirements
+- Create **`SOLUTION_DESIGN.md`** outlining architecture, components, and integration points
+- For large projects create separate documents for solution design chapters such as `DATA_SCHEMAS.md`, `API_DEFINITIONS.md`, `AUTHENTICATION.md`, `OBSERVABITY.md`, `INTEGRATIONS.md`, `SECURITY.md` or `TESTING.md`
+- **`IMPLEMENTATION_LOG.md`**: Track progress, technical decisions, and architectural choices as you implement
+- **`IMPLEMENTATION_PLAN.md`**: Create step-by-step plan before major changes
+- **`COMMON_ERRORS.md`**: Document issues encountered and their solutions for future reference
 
 ## 2.2 Simple Multi-File Task
 
@@ -474,6 +493,9 @@ Azure SRE Agent helps teams:
 # TODO
 
 - [ ] More GitHub Spark examples
+- [ ] AgentHQ
+- [ ] Plan mode
+- [ ] Agentic review
 - [ ] Azure SRE Agent full demo
 - [ ] Copilot CLI
 - [ ] Copilot App Modernization

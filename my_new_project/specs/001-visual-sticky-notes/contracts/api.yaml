@@ -1,0 +1,644 @@
+openapi: 3.0.3
+info:
+  title: Visual Sticky Notes Collaboration Platform API
+  description: RESTful API for collaborative sticky note workspace management
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@stickynotes.com
+
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Development server
+  - url: https://api.stickynotes.com/v1
+    description: Production server
+
+paths:
+  # Workspace Management
+  /workspaces:
+    post:
+      summary: Create a new workspace
+      description: Creates a new collaborative workspace with optional template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceRequest'
+      responses:
+        '201':
+          description: Workspace created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '400':
+          description: Invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /workspaces/{workspace_id}:
+    get:
+      summary: Get workspace details
+      description: Retrieves workspace information and metadata
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: Workspace details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+        '404':
+          description: Workspace not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      summary: Update workspace settings
+      description: Updates workspace name, description, or template
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceRequest'
+      responses:
+        '200':
+          description: Workspace updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+
+    delete:
+      summary: Delete workspace
+      description: Permanently deletes workspace and all contained notes
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '204':
+          description: Workspace deleted successfully
+        '403':
+          description: Insufficient permissions
+        '404':
+          description: Workspace not found
+
+  # Sticky Notes Management
+  /workspaces/{workspace_id}/notes:
+    get:
+      summary: Get all notes in workspace
+      description: Retrieves all sticky notes with optional spatial filtering
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - name: x_min
+          in: query
+          schema:
+            type: number
+          description: Minimum X coordinate for spatial filtering
+        - name: x_max
+          in: query
+          schema:
+            type: number
+          description: Maximum X coordinate for spatial filtering
+        - name: y_min
+          in: query
+          schema:
+            type: number
+          description: Minimum Y coordinate for spatial filtering  
+        - name: y_max
+          in: query
+          schema:
+            type: number
+          description: Maximum Y coordinate for spatial filtering
+      responses:
+        '200':
+          description: Notes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StickyNoteResponse'
+                  total_count:
+                    type: integer
+                    description: Total number of notes in workspace
+
+    post:
+      summary: Create a new sticky note
+      description: Creates a new sticky note in the workspace
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStickyNoteRequest'
+      responses:
+        '201':
+          description: Note created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StickyNoteResponse'
+        '400':
+          description: Invalid request data or workspace limits exceeded
+        '404':
+          description: Workspace not found
+
+  /workspaces/{workspace_id}/notes/{note_id}:
+    get:
+      summary: Get specific sticky note
+      description: Retrieves details of a specific sticky note
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - $ref: '#/components/parameters/NoteId'
+      responses:
+        '200':
+          description: Note retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StickyNoteResponse'
+
+    put:
+      summary: Update sticky note
+      description: Updates note content, position, or properties
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - $ref: '#/components/parameters/NoteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStickyNoteRequest'
+      responses:
+        '200':
+          description: Note updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StickyNoteResponse'
+
+    delete:
+      summary: Delete sticky note
+      description: Removes sticky note from workspace
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - $ref: '#/components/parameters/NoteId'
+      responses:
+        '204':
+          description: Note deleted successfully
+
+  # Export/Import Operations
+  /workspaces/{workspace_id}/export:
+    post:
+      summary: Export workspace
+      description: Generates export file in specified format
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+      responses:
+        '202':
+          description: Export initiated, processing asynchronously
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+        '400':
+          description: Invalid export parameters
+
+  /workspaces/{workspace_id}/export/{job_id}:
+    get:
+      summary: Get export job status
+      description: Checks status of asynchronous export operation
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Export job identifier
+      responses:
+        '200':
+          description: Export job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+
+  /workspaces/{workspace_id}/import:
+    post:
+      summary: Import workspace data
+      description: Imports notes from JSON/CSV file
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Import file (JSON or CSV)
+                merge_strategy:
+                  type: string
+                  enum: [replace, merge, append]
+                  default: append
+                  description: How to handle existing notes
+      responses:
+        '200':
+          description: Import completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+
+  # Template Management
+  /templates:
+    get:
+      summary: List available templates
+      description: Retrieves all available workspace templates
+      responses:
+        '200':
+          description: Templates retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  templates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TemplateResponse'
+
+  /workspaces/{workspace_id}/template:
+    put:
+      summary: Apply template to workspace
+      description: Applies organizational template to existing notes
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template_id:
+                  type: string
+                  description: Template identifier to apply
+                preserve_positions:
+                  type: boolean
+                  default: false
+                  description: Whether to preserve manual note positions
+      responses:
+        '200':
+          description: Template applied successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceResponse'
+
+  # Session Management (WebSocket upgrade)
+  /workspaces/{workspace_id}/session:
+    get:
+      summary: WebSocket upgrade endpoint
+      description: Upgrades HTTP connection to WebSocket for real-time collaboration
+      parameters:
+        - $ref: '#/components/parameters/WorkspaceId'
+        - name: user_name
+          in: query
+          schema:
+            type: string
+          description: Optional display name for the session
+      responses:
+        '101':
+          description: WebSocket connection established
+        '404':
+          description: Workspace not found
+
+components:
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Unique workspace identifier
+
+    NoteId:
+      name: note_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Unique note identifier
+
+  schemas:
+    CreateWorkspaceRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Workspace display name
+        description:
+          type: string
+          maxLength: 1000
+          description: Optional workspace description
+        template_id:
+          type: string
+          description: Initial template to apply
+        settings:
+          type: object
+          description: Workspace-specific configuration
+
+    UpdateWorkspaceRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        settings:
+          type: object
+
+    WorkspaceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        is_guest_workspace:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        last_activity_at:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+        template_id:
+          type: string
+          nullable: true
+        canvas_bounds:
+          type: object
+          properties:
+            min_x:
+              type: number
+            max_x:
+              type: number
+            min_y:
+              type: number
+            max_y:
+              type: number
+        settings:
+          type: object
+        note_count:
+          type: integer
+        storage_used:
+          type: integer
+          description: Storage used in bytes
+
+    CreateStickyNoteRequest:
+      type: object
+      required:
+        - content
+        - x_position
+        - y_position
+      properties:
+        content:
+          type: string
+          maxLength: 5000
+          description: Note text content
+        x_position:
+          type: number
+          description: X coordinate in virtual space
+        y_position:
+          type: number
+          description: Y coordinate in virtual space
+        width:
+          type: integer
+          minimum: 100
+          maximum: 500
+          default: 200
+        height:
+          type: integer
+          minimum: 100
+          maximum: 400
+          default: 150
+        color:
+          type: string
+          pattern: '^#[0-9A-Fa-f]{6}$'
+          default: '#FFFF88'
+        author_name:
+          type: string
+          maxLength: 50
+          description: Display name of note creator
+
+    UpdateStickyNoteRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          maxLength: 5000
+        x_position:
+          type: number
+        y_position:
+          type: number
+        width:
+          type: integer
+          minimum: 100
+          maximum: 500
+        height:
+          type: integer
+          minimum: 100
+          maximum: 400
+        color:
+          type: string
+          pattern: '^#[0-9A-Fa-f]{6}$'
+        is_locked:
+          type: boolean
+
+    StickyNoteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        workspace_id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        x_position:
+          type: number
+        y_position:
+          type: number
+        width:
+          type: integer
+        height:
+          type: integer
+        color:
+          type: string
+        author_name:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        is_locked:
+          type: boolean
+        z_index:
+          type: integer
+        metadata:
+          type: object
+
+    ExportRequest:
+      type: object
+      required:
+        - format
+      properties:
+        format:
+          type: string
+          enum: [pdf, png, jpg, json, csv]
+          description: Export format
+        options:
+          type: object
+          properties:
+            include_metadata:
+              type: boolean
+              default: true
+            image_resolution:
+              type: string
+              enum: [low, medium, high]
+              default: medium
+            pdf_layout:
+              type: string
+              enum: [spatial, linear]
+              default: spatial
+
+    ExportJobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        download_url:
+          type: string
+          nullable: true
+          description: Available when status is completed
+        error_message:
+          type: string
+          nullable: true
+          description: Available when status is failed
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+
+    ImportResponse:
+      type: object
+      properties:
+        imported_count:
+          type: integer
+          description: Number of notes successfully imported
+        skipped_count:
+          type: integer
+          description: Number of notes skipped due to duplicates or errors
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+              message:
+                type: string
+
+    TemplateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        preview_image:
+          type: string
+        config:
+          type: object
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          description: Additional error context
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token for user authentication
+
+security:
+  - BearerAuth: []
