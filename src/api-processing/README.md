@@ -4,6 +4,16 @@ This API accepts image uploads, stores them in Azure Blob Storage, and sends a m
 
 You can access it at `/api/process`.
 
+## Performance Optimization
+
+The service uses **async Azure SDK clients** (`azure.storage.blob.aio` and `azure.servicebus.aio`) to enable true asynchronous I/O operations. This allows the service to handle multiple concurrent requests efficiently without blocking the event loop, significantly improving throughput and reducing response latency under load.
+
+Key optimizations:
+- Async blob upload to Azure Storage
+- Async message sending to Service Bus
+- Proper async context management with FastAPI lifespan events
+- Non-blocking I/O operations throughout the request pipeline
+
 ## Components Used
 - Azure Storage Blob (storing images)
 - Azure Service Bus (sending messages)
