@@ -9,13 +9,11 @@ You can access it at `/api/process`.
 - Azure Service Bus (sending messages)
 - Azure Monitor (monitoring and logging)
 
-## Tests
-We distinguish **unit** and **integration** tests:
+## Dependency Management
 
-- Unit tests (under `tests/unit`) run fast, have no external side‑effects and mock all Azure dependencies.
-- Integration tests (under `tests/integration`) talk to real Azure resources (blob + Service Bus). They are **skipped by default**.
+This service uses **uv** as the package manager. Dependencies are defined in `pyproject.toml`.
 
-### Install dependencies (uv)
+### Install dependencies
 Sync base dependencies (runtime only):
 ```
 uv sync
@@ -26,6 +24,25 @@ uv sync --extra test          # use optional dependency group
 # OR install dev deps (duplicates for convenience)
 uv sync --dev
 ```
+
+### Update dependencies
+After modifying `pyproject.toml`:
+```
+uv sync
+```
+
+### Docker builds
+The Dockerfile uses a `requirements.txt` file generated from `pyproject.toml` for faster and more reliable container builds:
+```
+uv pip compile pyproject.toml -o requirements.txt
+```
+This file is committed to the repository and should be regenerated when dependencies change.
+
+## Tests
+We distinguish **unit** and **integration** tests:
+
+- Unit tests (under `tests/unit`) run fast, have no external side‑effects and mock all Azure dependencies.
+- Integration tests (under `tests/integration`) talk to real Azure resources (blob + Service Bus). They are **skipped by default**.
 
 ### Run unit tests only
 ```
