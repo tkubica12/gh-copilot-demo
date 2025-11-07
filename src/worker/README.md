@@ -7,3 +7,19 @@ This worker listens to messages from an Azure Service Bus queue, processes image
 - Azure Storage Blob (downloading images)
 - Azure OpenAI (processing images)
 - Azure Cosmos DB (storing results)
+
+## Development Setup
+
+This project uses [uv](https://docs.astral.sh/uv/) for Python package management.
+
+### Install dependencies
+
+```bash
+uv sync
+```
+
+### Run locally
+
+```bash
+uv run main.py
+```
