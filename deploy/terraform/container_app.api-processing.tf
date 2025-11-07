@@ -34,8 +34,8 @@ resource "azapi_resource" "api_processing" {
             name  = "myapp"
             image = var.API_PROCESSING_IMAGE
             resources = {
-              cpu    = 0.25
-              memory = "0.5Gi"
+              cpu    = 0.5
+              memory = "1Gi"
             }
             env = [
               {

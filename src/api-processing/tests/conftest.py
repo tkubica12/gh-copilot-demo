@@ -59,13 +59,15 @@ def app(monkeypatch, set_env_vars):  # noqa: D401
     uploaded = {}
 
     class FakeContainerClient:
-        def upload_blob(self, name, data, overwrite=False):  # noqa: D401
-            uploaded[name] = data.read() if hasattr(data, "read") else data
+        async def upload_blob(self, name, data, overwrite=False):  # noqa: D401
+            """Async fake upload_blob method."""
+            uploaded[name] = data if isinstance(data, bytes) else (data.read() if hasattr(data, "read") else data)
 
     class FakeQueueSender:
         sent_messages = []
 
-        def send_messages(self, message):  # noqa: D401
+        async def send_messages(self, message):  # noqa: D401
+            """Async fake send_messages method."""
             # message has .body (bytes) but in our code we pass ServiceBusMessage(JSON)
             # We will allow anything and store a parsed json when possible.
             body = getattr(message, "body", None)
