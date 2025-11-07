@@ -1,6 +1,16 @@
 FROM python:3.12-slim
+
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
+COPY pyproject.toml uv.lock .
+RUN uv sync --frozen --no-dev
+
 COPY main.py .
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
