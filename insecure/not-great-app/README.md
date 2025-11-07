@@ -8,10 +8,17 @@ This app uses extremely old versions of packages (circa 2018-2019) that contain 
 
 The pyproject.toml has been created for documentation purposes, but you may need to use an older Python version (3.6-3.8) to actually run this application.
 
+### Migration Notes
+
+During the migration from requirements.txt to pyproject.toml:
+- Removed explicit `urllib3==1.24.1` as it conflicts with `requests==2.18.4` requirements
+- uv resolves `urllib3==1.22` as a transitive dependency from requests (compatible version)
+- The original requirements.txt had conflicting constraints that prevented installation
+
 ## Dependencies
 
 - Flask==0.12.3 (vulnerable)
-- requests==2.18.4 (outdated)
+- requests==2.18.4 (outdated) → pulls urllib3==1.22
 - Django==1.11.20 (vulnerable)
 - Jinja2==2.10 (vulnerable)
 - PyYAML==3.13 (vulnerable)
