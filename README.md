@@ -13,7 +13,7 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [1.7 Simple Multi-File Editing](#17-simple-multi-file-editing)
   - [1.8 Context from Git](#18-context-from-git)
 - [2. Agent Mode](#2-agent-mode)
-  - [2.1 Spec-Driven Fevelopment](#21-spec-driven-fevelopment)
+  - [2.1 Spec-Driven Development](#21-spec-driven-development)
   - [2.2 Simple Multi-File Task](#22-simple-multi-file-task)
   - [2.3 Complex Task with Testing](#23-complex-task-with-testing)
 - [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
@@ -159,7 +159,7 @@ You can see your Git history and add previous versions of files into Copilot cha
 
 Agent Mode enables Copilot to work autonomously across multiple files, run tests, deploy infrastructure, and iteratively solve complex problems. This section demonstrates progressive complexity and best practices for agentic workflows.
 
-## 2.1 Spec-Driven Fevelopment
+## 2.1 Spec-Driven Development
 
 Before starting complex tasks with Agent Mode, establish a solid foundation:
 
