@@ -1,0 +1,17 @@
+[project]
+name = "not-great-app"
+version = "0.1.0"
+description = "Example app with intentionally vulnerable dependencies"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [ { name = "Demo" } ]
+dependencies = [
+  "Flask==0.12.3",
+  "requests==2.18.4",
+  "Django==1.11.20",
+  "Jinja2==2.10",
+  "PyYAML==3.13",
+  "pillow==6.2.1",
+  "lxml==4.3.4",
+  "sqlalchemy==1.2.17",
+]
