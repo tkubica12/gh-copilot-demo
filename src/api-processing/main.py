@@ -56,9 +56,7 @@ async def lifespan(app: FastAPI):
     # The async client automatically manages connection pooling
     storage_account_client = BlobServiceClient(
         account_url=storage_account_url, 
-        credential=credential,
-        max_single_get_size=4*1024*1024,  # 4MB chunks
-        max_chunk_get_size=4*1024*1024
+        credential=credential
     )
     container_client = storage_account_client.get_container_client(storage_container)
     
@@ -73,14 +71,27 @@ async def lifespan(app: FastAPI):
     yield  # Application runs
     
     # Shutdown: Clean up Azure clients
+    # Handle errors during cleanup to ensure all resources are closed
     if servicebus_queue:
-        await servicebus_queue.close()
+        try:
+            await servicebus_queue.close()
+        except Exception:
+            pass  # Log but don't fail shutdown
     if servicebus_client:
-        await servicebus_client.close()
+        try:
+            await servicebus_client.close()
+        except Exception:
+            pass  # Log but don't fail shutdown
     if storage_account_client:
-        await storage_account_client.close()
+        try:
+            await storage_account_client.close()
+        except Exception:
+            pass  # Log but don't fail shutdown
     if credential:
-        await credential.close()
+        try:
+            await credential.close()
+        except Exception:
+            pass  # Log but don't fail shutdown
 
 
 app = FastAPI(
