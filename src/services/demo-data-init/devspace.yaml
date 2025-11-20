@@ -1,0 +1,32 @@
+version: v2beta1
+name: demo-data-init
+
+pipelines:
+  dev:
+    run: |-
+      start_dev api
+
+dev:
+  api:
+    namespace: toytrip-staging
+    labelSelector:
+      app.kubernetes.io/name: demo-data-init
+    container: demo-data-init
+    sync:
+      - path: ./:/app
+        excludePaths:
+          - .git/
+          - .venv/
+          - __pycache__/
+          - data/
+          - uv.lock
+          - devspace.yaml
+      - path: ../../shared/auth:/app/auth
+        excludePaths:
+          - __pycache__/
+    terminal:
+      command: /bin/bash
+      workDir: /app
+    ports:
+      - port: 8010
+        localPort: 18010

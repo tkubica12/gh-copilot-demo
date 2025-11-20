@@ -1,0 +1,20 @@
+[project]
+name = "toytrips-integration-tests"
+version = "0.1.0"
+description = "Integration tests for ToyTrips microservices"
+requires-python = ">=3.11"
+dependencies = [
+  "pytest>=7.4.0",
+  "httpx>=0.25.0",
+  "python-dotenv>=1.0.0",
+  "azure-identity>=1.17.0",
+  "aiohttp>=3.13.2",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "../shared"]
+testpaths = ["."]
+markers = [
+  "integration: marks tests as integration tests (real Azure resources)",
+  "auth: marks tests requiring real authentication",
+]

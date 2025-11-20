@@ -1,21 +1,61 @@
-# AI Image Processor Frontend
-This is simple React frontend for the AI Image Processor application. It allows users to upload images and view the processing status.
+# Toy Service Web Application
 
-## Setup
+Modern React frontend for the Toy Service application.
+
+## Features
+
+- Browse toy catalog with grid layout
+- View toy details
+- Edit toy information (name, description)
+- Upload/delete toy avatars
+- Responsive design with Tailwind CSS
+- TypeScript for type safety
+
+## Prerequisites
+
+- Node.js 18+ and npm
+- Toy Service backend running on http://localhost:8001
+
+## Getting Started
 
 1. Install dependencies:
-   ```
-   npm install
-   ```
+```bash
+npm install
+```
 
-2. Start the development server:
-   ```
-   npm start
-   ```
+2. (Optional) Create `.env` file for custom configuration:
+```bash
+VITE_TOY_SERVICE_URL=http://localhost:8001
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+The application will be available at http://localhost:3000
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## Project Structure
+
+```
+src/
+├── config/          # Configuration files (API)
+├── components/      # Reusable components
+├── pages/           # Page components
+├── routes/          # Route configuration
+├── services/        # API clients
+├── types/           # TypeScript type definitions
+└── main.tsx         # Application entry point
+```
 
 ## Environment Variables
 
-- `REACT_APP_PROCESS_API_URL`: URL for the image processing API.
-- `REACT_APP_STATUS_API_URL`: URL for checking the processing status.
-
-Ensure these are set in the `.env` file.
+- `VITE_TOY_SERVICE_URL` - Backend API base URL (default: http://localhost:8001)

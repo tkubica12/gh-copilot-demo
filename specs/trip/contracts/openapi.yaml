@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: Trip Service
+  version: 1.0.0
+paths:
+  /trip:
+    get:
+      summary: List trips
+      responses:
+        '200':
+          description: List of trips
+    post:
+      summary: Create a new trip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripCreate'
+      responses:
+        '201':
+          description: Trip created
+  /trip/{id}:
+    get:
+      summary: Get trip details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trip details
+  /trip/{id}/gallery:
+    get:
+      summary: Get gallery
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Gallery images
+    post:
+      summary: Upload gallery image
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Image uploaded
+components:
+  schemas:
+    TripCreate:
+      type: object
+      properties:
+        toy_id:
+          type: string
+        destination:
+          type: string
+        start_date:
+          type: string
+          format: date

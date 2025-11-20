@@ -1,0 +1,12 @@
+[project]
+name = "toy-trip-generator"
+version = "0.1.0"
+description = "AI-powered toy trip and gallery generator"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=2.0.0",
+    "azure-identity>=1.19.0",
+    "pillow>=11.0.0",
+    "python-dotenv>=1.0.1",
+]

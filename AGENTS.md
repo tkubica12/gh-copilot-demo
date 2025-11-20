@@ -2,140 +2,122 @@
 
 ## 1. Purpose
 
-Provide a clear, single reference for implementing, extending, and maintaining AI agents and related services (Python backends, data scripts, infra IaC, frontend interactions) in this repository.
+Provide a clear, single reference for implementing, extending, and maintaining AI agents and related services in this repository.
 
 ## 2. Core Principles
 
-1. Favor simplicity and readability over premature abstraction.
-2. Keep functionality self‑documenting; use docstrings, not progress/status comments.
-3. Minimize surface area: small, cohesive modules > large monoliths.
-4. Explicit > implicit for data contracts, configuration, and side effects.
-5. Make cheap experiments disposable (prefixed `adhoc_`), not permanent.
+1. **Simplicity First**: This project is designed for learning. Strive for simplicity and avoid complicated or premature abstractions.
+2. **Self-Documenting Code**: Keep functionality self‑documenting; use docstrings, not progress/status comments.
+3. **Cohesion**: Minimize surface area: small, cohesive modules > large monoliths.
+4. **Explicitness**: Explicit > implicit for data contracts, configuration, and side effects.
+5. **Disposable Experiments**: Make cheap experiments disposable (prefixed `adhoc_`), not permanent.
+6. **Basic Security**: It is OK to start with basic security for learning speed, but always document next steps for production hardening.
+7. **Simple Deployment**: Simple deployment setups without HA are acceptable for this learning environment.
 
 ## 3. Project‑Wide Conventions
 
 ### 3.1 Documentation
-* Primary documentation channel inside code: **docstrings** (revise them whenever code changes behavior or signature).
-* Only add code comments for non‑obvious logic or critical nuances. Never for progress logs, migration notes, or “previous implementation” commentary.
-* Update `docs/ImplementationLog.md` with meaningful architectural or technical decisions (not micro‑steps) when a feature is completed or a design choice is finalized.
-* Add confirmed recurring pitfalls to `docs/CommonErrors.md` (after user confirmation—see Section 6).
-* Each component/service keeps concise run & test instructions in its local `README.md`.
+* **Specs Structure**:
+    * `specs/platform/`: Cross-cutting concerns (Architecture, Data Models, Security).
+    * `specs/services/<service>/`: Service-specific specs (API, Testing, Deployment).
+* **Docstrings**: Primary documentation channel inside code (revise whenever code changes).
+* **Comments**: Only for non‑obvious logic. No progress logs or "previous implementation" notes.
+* **Implementation Log**: Update `docs/ImplementationLog.md` with meaningful technical decisions.
+* **Common Errors**: Add confirmed recurring pitfalls to `docs/CommonErrors.md` (after user confirmation).
+* **README**: Each component/service keeps concise run & test instructions in its local `README.md`.
 
 ### 3.2 Refactoring & Improvements
-Opportunistic simplifications are encouraged. When you see a refactor beyond the immediate task:
-* Perform low‑risk, obviously beneficial cleanups directly (pure simplification, dead code removal).
+* Perform low‑risk, obviously beneficial cleanups directly.
 * For broader architectural shifts, surface a brief rationale in chat before proceeding.
 
 ### 3.3 Experiments & Troubleshooting
-When investigating complex issues:
-1. Prefer quick inline or REPL tests first.
-2. Use PowerShell friendly commands (Windows dev baseline).
-3. Load environment variables from `.env` when relevant.
-4. If a throwaway script is necessary, name it `adhoc_test_<purpose>.py` (see Section 7) and delete after insights are integrated.
+* Consult `docs/CommonErrors.md` first.
+* Use `adhoc_` prefix for disposable scripts.
 
 ### 3.4 Technology Stack
-* Primary backend language: **Python**, package & env management via `uv` (`pyproject.toml` authoritative; avoid `requirements.txt`).
-* API framework: **FastAPI**.
-* Data validation: **Pydantic** models (under `models/`).
-* Frontend: **React** + `assistant-ui` (Tailwind present).
 
-## 4. Python Agent & Service Guidelines
+#### Python (Key Insights)
+* **Version**: Target Python 3.11+.
+* **Style**: Follow PEP 8. Max line length 100 chars. `snake_case` for functions/vars, `PascalCase` for classes. Type hints everywhere.
+* **Dependencies**: Use `pip` with `requirements.txt` (or `uv` if configured). Pin dependencies.
+* **Logging**: Use standard `logging`. No `print` statements in production.
+* **Testing**: Use `pytest`. Unit tests for logic, integration tests for IO.
+* **Security**: Load secrets from `.env`. Validate inputs via Pydantic.
+
+#### Terraform (Key Insights)
+* **Version**: Use latest stable Terraform. Pin versions.
+* **Providers**: Use `azurerm` for standard resources, `azapi` for bleeding-edge.
+* **Structure**: Segment resources by type (`networking.tf`, `rbac.tf`). Keep `main.tf` for config.
+* **Variables**: Rich descriptions, specific types.
+* **State**: Remote state (e.g., Azure Storage). State locking.
+* **Security**: No hardcoded secrets. Use Key Vault or env vars.
+
+## 4. Service Guidelines (Python)
 
 ### 4.1 Structure & Modeling
-* Use Pydantic models for request/response & internal validated schemas. Place in `models/`.
-* Keep service boundaries explicit (e.g., `routes/`, `services/`, `repositories/`).
+* **Layout**: Modular structure (`models/`, `routes/`, `services/`, `utils/`).
+* **Entry Point**: `main.py` for application entry.
+* **Config**: `config.py` for env vars and settings.
 
 ### 4.2 Documentation & Style
-* Every public class/function: docstring specifying purpose, parameters, return value(s), exceptions.
-* Avoid redundant comments explaining obvious code or restating names.
+* Docstrings for every public class/function.
+* Avoid redundant comments.
 
 ### 4.3 Logging
-* Use Python `logging` with appropriate levels: DEBUG (diagnostics), INFO (lifecycle events), WARNING (recoverable anomalies), ERROR (failures), CRITICAL (systemic outages).
-* No print statements in production paths.
+* Log at INFO for lifecycle, DEBUG for diagnostics, WARNING for anomalies, ERROR for failures.
 
 ### 4.4 Testing
-* Use `pytest`.
-* Prefer unit tests (mocks) for logic; integration tests for IO (DB, external HTTP, vector stores, etc.).
-* If a one‑off exploratory script was needed, port validated findings into tests and delete the ad‑hoc script.
+* `pytest` with descriptive names.
+* Mock repositories for unit tests.
+* Integration tests for persistence/API.
 
-### 4.5 Ports & Local Dev
-* Assign distinct default ports per service to avoid collisions (document them in the service `README.md`).
+## 5. Infrastructure as Code (Terraform)
 
-## 5. Infrastructure as Code
+### 5.1 Project Structure
+* Split resources into logical files.
+* Use `variables.tf` and `outputs.tf`.
 
-### 5.1 Providers
-* Use `azurerm` for standard Azure resources.
-* Use `azapi` for bleeding‑edge features unsupported in `azurerm`.
+### 5.2 Coding Conventions
+* **Variables**: Multi-line descriptions, sensible defaults.
+* **Naming**: `snake_case` for resources.
+* **Comments**: Only for non-obvious attributes.
 
-### 5.2 File Organization
-Segment resource types: `networking.tf`, `service_bus.tf`, `rbac.tf`, etc. If a type bloats, split further: `container_app.frontend.tf`, `container_app.backend.tf`.
+### 5.3 State Management
+* Remote backend (Azure Storage).
+* Separate state for environments if applicable.
 
-### 5.3 Variables
-* Always include rich multi‑line descriptions: purpose, type, constraints, examples.
-* Provide sensible defaults where safe.
+## 6. Reinforced Documentation & Logging Rules
 
-### 5.4 Comments
-* Only for non‑obvious attributes or critical justification. No change logs, no progress notes.
-
-### 5.5 Tags
-* Tags optional unless explicitly requested.
-
-## 6. Reinforced Documentation & Logging Rules (Augmented Requirements)
-
-These constraints exist to prevent uncontrolled documentation sprawl and progress leakage into code:
-
-1. Implementation Log Boundaries: Implementation progress, rationale, or “this replaces X” notes belong in `docs/ImplementationLog.md`—never as inline code comments or new files.
-2. Common Errors Workflow: Only after confirming with the user that an issue is broadly relevant, add it to `docs/CommonErrors.md`. Do not create parallel error collections.
-3. Controlled Design Changes: Architectural or behavioral design alterations should be reflected (after approval) in `docs/SolutionDesign.md`. Treat `SolutionDesign.md` as a guiding artifact; do not mutate it unilaterally.
-4. Localized Documentation First: Prefer updating the affected component’s `README.md` for usage/run/test changes before touching high‑level design docs.
-5. Tests over Scratch Scripts: Validate behaviors via `pytest` (unit/integration). Temporary investigative scripts must follow Section 7 and be removed post‑learning.
-6. Communication Channel Priority: To inform about implementation decisions use (a) chat output, (b) component `README.md` (brief), (c) `SolutionDesign.md` (after approval). Do not introduce new permanent doc files unless genuinely required.
-7. New Doc File Exception: If a truly new doc artifact is justified, prefix filename with `ADHOC_` and notify user. Expect eventual consolidation or deletion.
-8. No Progress/History Comments: Ban inline comments like “// updated previous logic” or “# temporary hack (will remove)”—instead record durable decisions in `ImplementationLog.md`.
+1. **Implementation Log**: Update `docs/ImplementationLog.md` autonomously.
+2. **Architecture Decisions**: Propose ADRs for fundamental changes.
+3. **Common Errors**: Consult and propose additions to `docs/CommonErrors.md`.
+4. **No Progress Comments**: Ban inline comments like "// updated logic".
 
 ## 7. Ad‑Hoc / Disposable Artifacts
 
 | Type | Naming Pattern | Purpose | Lifecycle |
 |------|----------------|---------|-----------|
-| Python scratch test | `adhoc_test_*.py` or `adhoc_*.py` | Quick reproduction / isolate behavior | Delete after converting insight into real tests/code |
-| Documentation draft | `ADHOC_*.md` | Rare: staging ground for large doc refactor | Merge content into canonical doc then delete |
-
-Rules:
-* Must not be imported by production code.
-* Must not hold secrets or credentials.
-* Track none of them in long‑term design history; only distilled results.
+| Scratch test | `adhoc_test_*.py` | Quick reproduction | Delete after insight |
+| Doc draft | `ADHOC_*.md` | Staging for docs | Merge and delete |
 
 ## 8. Change Control & Communication
 
-1. Before major architectural changes: summarize intent, risk, alternatives in chat for approval.
-2. After implementing a feature: update relevant docstrings + (if needed) `ImplementationLog.md`.
-3. If you discover systemic flaw: propose remediation path; avoid broad speculative refactors without confirmation.
+1. Summarize intent/risk before major changes.
+2. Update docstrings and logs after implementation.
+3. Propose remediation for systemic flaws.
 
 ## 9. Quick Reference Checklist
 
-Development Flow:
-1. Define/confirm data contract (Pydantic model). 
-2. Write/extend tests (failing first where feasible).
-3. Implement feature (docstrings maintained—no progress comments).
-4. Run `pytest` (unit + integration if relevant).
-5. Update service `README.md` for operational changes.
-6. Log architectural decision in `ImplementationLog.md` if strategic.
-7. Remove any `adhoc_` artifacts created during exploration.
-
-Terraform Flow:
-1. Place resource in appropriate file (create or extend). 
-2. Add rich variable descriptions and smart defaults.
-3. Limit comments to non‑obvious attributes.
-
-Ad‑Hoc Script Flow:
-1. Name with `adhoc_` prefix. 
-2. Isolate experiment. 
-3. Migrate result into tests or code. 
-4. Delete script.
+1. Define/confirm data contract.
+2. Write/extend tests.
+3. Implement feature (docstrings maintained).
+4. Run tests.
+5. Update `README.md`.
+6. Log decision in `ImplementationLog.md`.
+7. Remove `adhoc_` artifacts.
 
 ## 10. Scope & Precedence
 
-This `AGENTS.md` centralizes operational & stylistic guidance. If conflicts arise:
-1. Explicit user instruction (chat) overrides this file case‑by‑case.
-2. `SolutionDesign.md` governs architecture (pending approved changes).
-3. This file governs daily engineering discipline & hygiene.
+1. Explicit user instruction overrides this file.
+2. `specs/` documentation governs architecture.
+3. This file governs daily engineering discipline.

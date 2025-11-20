@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Toy Service
+  version: 1.0.0
+paths:
+  /toy:
+    get:
+      summary: List toys
+      responses:
+        '200':
+          description: List of toys
+    post:
+      summary: Register a new toy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToyCreate'
+      responses:
+        '201':
+          description: Toy created
+  /toy/{id}:
+    get:
+      summary: Get toy details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Toy details
+  /toy/{id}/avatar:
+    post:
+      summary: Upload avatar
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Avatar uploaded
+components:
+  schemas:
+    ToyCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        personality_tags:
+          type: array
+          items:
+            type: string

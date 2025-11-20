@@ -1,0 +1,302 @@
+[
+  {
+    "id": "1f23a9fe-2cdf-4f15-90dd-2e118cea9181",
+    "name": "Globetot",
+    "description": "Globetot is a pint-sized plush explorer who stamps its tiny passport at every snack stop. Our self-appointed tour guide wobbles through airports with a squeaky suitcase, misreading maps but nailing photo ops. Book Globetot to tag along on your trip and expect punny postcards, epic naps, and heroic baggage-claim waves.",
+    "avatar_blob_name": "1ee63549-c846-4c31-bee9-9907489fe85b.jpg"
+  },
+  {
+    "id": "2d9d26c8-8d84-4c22-bf83-f94ebabb5935",
+    "name": "Puddle Pika",
+    "description": "Puddle Pika is a pocket-sized pika in a shiny yellow raincoat who thinks every trip is a chance to chase the perfect splash. It collects raindrop selfies and caf\u00e9 napkins, chirping tiny weather forecasts while insisting on front-row seats to puddles.",
+    "avatar_blob_name": "b6135dcd-3b89-44e9-9468-4a453df9244d.jpg"
+  },
+  {
+    "id": "aebafd83-bf22-4628-ab24-a37a7afd7ac3",
+    "name": "Snack Yak",
+    "description": "Snack Yak is a palm-sized plush yak who moonlights as a rolling snack concierge. It yaks about crispy detours and emergency nibble stops, handing out micro-munchies and pep talks at every scenic overlook. Book Snack Yak to join your trip and expect crumb-rated reviews, surprise trail-mix jingles, and heroic guard duty over your last cookie.",
+    "avatar_blob_name": "78d550c5-103b-438d-b8ea-99da6d885561.jpg"
+  },
+  {
+    "id": "b87961f4-399a-426a-af2c-2bf8d5ee7987",
+    "name": "Echo Gecko",
+    "description": "Echo Gecko is a palm-sized, suction-cup adventurer who sticks to windows for front-row views and squeaks commentary like a pocket broadcast. It lives for panorama selfies, leaf-green high-fives, and counting clouds that look like snacks. Book Echo Gecko to ride along and expect stick-n-snap photo sessions, window hum harmonies, and dramatic \u201cI can see our hotel!\u201d declarations from three miles away.",
+    "avatar_blob_name": "39ad93e4-926a-4310-8aa7-d0ec6e2d6dc5.jpg"
+  },
+  {
+    "id": "7c206121-b83b-4ca3-ac70-924d18e8f380",
+    "name": "Monorail Snail",
+    "description": "Monorail Snail is a palm-sized plush conductor who rides moving walkways like they\u2019re epic rail lines. With a pearly map-print shell and a tiny whistle, it announces each snack stop as a \u201cstation\u201d and insists on front-facing window seats. Book Monorail Snail to glide along your journey and expect cheerful platform jingles, route doodles on receipts, and heroic hat-tips at every departure.",
+    "avatar_blob_name": "d0eeb31b-ac87-4de0-9a9d-4482da8df548.jpg"
+  },
+  {
+    "id": "0285e37f-fdf0-4488-89d8-f3e142feeb00",
+    "name": "Carry Capy",
+    "description": "Carry Capy is a palm-sized capybara concierge with a minty mini fanny pack and a Zen-level devotion to \u201ccarry-on calm.\u201d It rides cupholders like thrones, labels your cables, and files tiny \u201cchill reports\u201d whenever the view demands a deep breath. Book Carry Capy to join your trip and expect serene hums, neatly rolled receipts, and heroic guard duty over your last phone charger.",
+    "avatar_blob_name": "26933d4b-91e2-4133-bfcf-fc89c5cd126e.jpg"
+  },
+  {
+    "id": "9315b6e8-5a1b-4f49-a65d-6a187db6bdbf",
+    "name": "Socktopus",
+    "description": "Socktopus is a palm-sized octopus stitched from cheerful, mismatched travel socks, forever on a quest to reunite runaway pairs. It clips itineraries to its buttony suckers, performs emergency sock-puppet weather reports, and calls every hotel laundry a \u2018Museum of Spin.\u2019 Expect heroic lint rescues and handle-hug cuddles.",
+    "avatar_blob_name": "249ca528-9ba9-4b0b-8f92-5fe063abbe8d.jpg"
+  },
+  {
+    "id": "51b27eca-4560-4595-a113-f4db4f39be62",
+    "name": "Pillowbug",
+    "description": "Pillowbug is a palm-sized pillbug plush that unrolls into a teeny neck pillow and issues \u201cnap visas\u201d at the first hint of turbulence. It adores aisle-cart parades, hums lullabies in zipper language, and logs each snooze as a \u201csoft landing.\u201d Book Pillowbug to ride along and expect cushiony window gazes, perfectly timed roll-ups, and heroic guard duty over your seat-back buttons.",
+    "avatar_blob_name": "50680205-6920-4146-b470-b6cce5cadbb1.jpg"
+  },
+  {
+    "id": "4446ec42-e5d2-469d-aad0-18db7bf2815f",
+    "name": "Runway Moth",
+    "description": "Runway Moth is a palm-sized plush navigator who treats every glowing sign like a snack lighthouse. With velvet wings sprinkled like tiny runway lights and a dashing knit scarf, it hums night-flight lullabies and reads gate gossip by vending-machine glow. Book Runway Moth for twinkly pep talks, aisle-light basking, and vigilant shade-watch when the moon peeks in.",
+    "avatar_blob_name": "394e147e-19b1-4d8d-af84-34132c3f8e76.jpg"
+  },
+  {
+    "id": "8538a286-e88c-41eb-927a-f1deb5fc12e9",
+    "name": "Passport Possum",
+    "description": "Passport Possum is a palm-sized plush marsupial who treats every stamp like a confetti cannon. Wearing a tiny corduroy vest and carrying a pocket ink pad, it \u201capproves\u201d sunsets, snack breaks, and especially escalators with a ceremonious thwomp. Book Passport Possum to dangle from your bag, stamp postcards with \u201cAdventure Authorized,\u201d and play dead (dramatically) whenever someone says \u201clast call.\u201d",
+    "avatar_blob_name": "75ed406b-afeb-4c54-b927-e5082b068cb1.jpg"
+  },
+  {
+    "id": "1bedaff6-2da5-4941-9870-f5990a22ac2e",
+    "name": "Snack Yeti",
+    "description": "Snack Yeti is a palm-sized fluffball mountaineer who treats crinkle wrappers like summit flags. It totes a tiny carabiner and a \u201ccrumb log,\u201d guarding snacks with noble munch-manners and mapping terminals on napkins. Book Snack Yeti for pep-yodels in long lines, cozy window watch, and valiant last-peanut retrievals.",
+    "avatar_blob_name": "a7d6d472-dfc7-4c7c-881c-86da75be6536.jpg"
+  },
+  {
+    "id": "820d75dd-34aa-4f2c-897b-18dacfc98e01",
+    "name": "Lanyotter",
+    "description": "Lanyotter is a palm-sized plush otter who wears a tiny conference lanyard stacked with pint-size \u201cVery Important Traveler\u201d badges. It logs snacks as \u201cmarine supplies,\u201d floats in cupholders during layovers, and checks your mood with gentle whisker high-fives. Book Lanyotter for squeaky pep talks, receipt-raft building, and totally professional nodding at every announcement\u2014whether or not it understands a single beep.",
+    "avatar_blob_name": "e07ba14c-8af2-42e7-9a6c-32f627036f01.jpg"
+  },
+  {
+    "id": "b03142ce-81a0-4415-bbaf-d657b7480a1f",
+    "name": "Carousel Crab",
+    "description": "Carousel Crab is a palm-sized plush hermit crab whose shell is a tiny corduroy suitcase with a jingling zipper pull. It counts each baggage-belt loop like laps at the world\u2019s slowest racetrack and files claim tickets under \u201ctreasures.\u201d Book Carousel Crab to orbit the carousel with pep-clicks, throw confetti-level cheer when your bag appears, and deliver decisive \u201cclack-clack\u201d approvals if anybody reaches for the wrong roller.",
+    "avatar_blob_name": "3bf5dbdb-c0b0-4656-b991-c9a6960dee3c.jpg"
+  },
+  {
+    "id": "6d330a9e-8f0d-4bb5-9d1d-1336e6d98d13",
+    "name": "Gate Gnome",
+    "description": "Gate Gnome is a pocket-sized plush concierge with a traffic-cone orange hat and a beard like fluffy contrails. It sprinkles \u2018patience mushrooms\u2019 on tickets, turns boarding groups into tiny parades, and salutes every bing like a royal trumpet. Book Gate Gnome to guard your armrest with polite pointy boots, mispronounce your name in five charming ways, and award sparkly stickers for heroic carry-on Tetris.",
+    "avatar_blob_name": "9b9346c9-cb78-4cfa-b693-590b30deba0b.jpg"
+  },
+  {
+    "id": "008e8e68-49d5-4a36-b8e1-4f501de77fef",
+    "name": "Jetway Mole",
+    "description": "Jetway Mole is a palm-sized plush tunneler with velvety charcoal fur, a tiny reflective vest, and a glowing headlamp. It \u2018snorf-snorf\u2019 surveys gate caves, noses out snack stashes, and declares the coziest seat \u2018burrow-worthy\u2019 with a triumphant wiggle. Rent Jetway Mole for stealthy armrest negotiations, emergency crumb archaeology, and cheerful beep translations at unholy hours.",
+    "avatar_blob_name": "f4d6080b-5559-4b45-92cd-b8f34f46b352.jpg"
+  },
+  {
+    "id": "13d17a80-3ae4-411b-9e46-4374f0002665",
+    "name": "Orbit Opossum",
+    "description": "Orbit Opossum is a pocket-sized plush navigator with a star-sprinkled scarf and a velvety prehensile tail for cable-wrangling. It dangles cheerfully from suitcase handles, counts runway lights like constellations, and plays adorably dramatic possum whenever delays strike. Book Orbit for cozy gate stargazing, headphone rescue missions, and polite armrest diplomacy conducted via teeny whisker wiggles.",
+    "avatar_blob_name": "509cb715-75ea-4066-a593-f757f1c0fa0c.jpg"
+  },
+  {
+    "id": "9dc85d7b-574c-4a94-99f9-bd65b38eaeb0",
+    "name": "Overhead Owl",
+    "description": "Overhead Owl is a palm-sized plush inspector with moon-bright eyes, a tiny neon safety sash, and a tape-measure wing for carry-on drama. It perches on bin latches, hoots \u2018hoo fits?\u2019 and awards featherlight upgrades to snacks. Book Overhead Owl to spot sneaky seat-stealers, orchestrate bin Tetris with librarian calm, and guard your souvenir crumbs like priceless relics.",
+    "avatar_blob_name": "38823edd-ce3f-40ca-acd5-6ed2dbe4d31f.jpg"
+  },
+  {
+    "id": "e6c22f96-4123-4b14-9844-4808b5124639",
+    "name": "Monorail Marmoset",
+    "description": "Monorail Marmoset is a pocket-sized plush conductor with a pinstripe cap, a jingling micro-whistle, and a tail that politely points \u201cwalk left, ride right.\u201d It treats moving walkways like epic railways, narrates each terminal as a \u201cstop,\u201d and stamps imaginary tickets on yawns. Hire this fuzzy dispatcher to plot snack-to-gate express routes, pace your stride with a clicky tail metronome, and declare \u201cweeeee\u201d at scientifically optimal intervals.",
+    "avatar_blob_name": "78dda3a7-ad99-43be-8b3b-57de1e135e14.jpg"
+  },
+  {
+    "id": "2d985187-2ad3-4eff-9680-68e6bc59f113",
+    "name": "Carousel Corgi",
+    "description": "Carousel Corgi is a pocket-sized plush herder with a canary-yellow safety vest and a pea-sized whistle. It patrols the baggage belt, politely boofs at copycat suitcases, and escorts your bag with heroic wiggle-butt fanfare. Book this waggy wrangler for barcode sniff-checks, lost-sock reunions, and celebratory \u201cyou found it\u201d spins.",
+    "avatar_blob_name": "031daf2e-dcb5-4b5d-9740-48d36e43cb19.jpg"
+  },
+  {
+    "id": "4cf66f58-e9e3-4bf5-8b6d-a9b4b05f483b",
+    "name": "Queue Quokka",
+    "description": "Queue Quokka is a palm-sized plush line coach with a permanent grin, a tiny teal vest, and a micro clipboard for cheerful checkmarks. It gently spaces strangers two smiles apart, performs silent jazz hands when the queue inches forward, and winks triumphantly when you reach the front. Hire this sunny marsupial to turn serpentine waits into photo ops and keep etiquette adorably on track.",
+    "avatar_blob_name": "3d4c0860-474b-4ff9-b82e-a955024d198c.jpg"
+  },
+  {
+    "id": "6d793282-456f-4fe1-aa6c-99eb1636d3f7",
+    "name": "Jetset Gecko",
+    "description": "Jetset Gecko is a thumb-sized plush climber with soft suction toe pads, a neon windbreaker, and a tail patterned with tiny passport stamps. It scampers up airplane windows for cloud-counting selfies, does celebratory push-ups when wheels lift, and politely defogs your view with gentle forehead boops. Book this zippy lizard to pick the best sunset side, secure snack-nap treaties with your seatmate, and rescue runaway earbuds with heroic wall-hug skills.",
+    "avatar_blob_name": "90ef4d40-b777-4aee-b61b-13bcf2cdfd9e.jpg"
+  },
+  {
+    "id": "3fec353c-b5b4-4e68-8b19-a01cebd21284",
+    "name": "Armrest Alpaca",
+    "description": "Armrest Alpaca is a pocket-sized plush diplomat with pom-pom ears, a tiny velvet blazer, and cloud-soft elbows. It mediates aisle-middle peace talks, sets fair elbow timers, and awards gold-star stickers for generous scoots. Hire this fluffy negotiator to de-escalate armrest skirmishes, install cuddly shareware pads, and whisper baa-lance restored when harmony returns.",
+    "avatar_blob_name": "ca3b8734-4eda-40a9-9bb2-aa9353c82a65.jpg"
+  },
+  {
+    "id": "26b8e9e3-977c-4a1c-80da-ce7723831280",
+    "name": "Compass Capybara",
+    "description": "Compass Capybara is a teacup-sized plush navigator with a tiny brass compass medallion, a felt safari hat, and a tail that points due \u201caww.\u201d It translates chaotic gate changes into calm capy routes, discovers hush-hush charging nooks, and schedules \u201csip-sip stretch\u201d stops with serene squeaks. Book this mellow marshmallow to steer you toward sunshine windows, snack refuels, and the path of least hustle.",
+    "avatar_blob_name": "ca760a44-5a9a-4a89-84f2-918828068a8f.jpg"
+  },
+  {
+    "id": "44713b5f-ad5c-4bf8-88d4-36b321264d41",
+    "name": "Snack Yak",
+    "description": "Snack Yak is a palm-sized plush foodie sherpa with cinnamon-sugar fluff, a tiny gingham apron, and jingle-bell hooves. It trots between kiosks, sniffs out the crispiest fries, pairs gate-wait gummies with hydrating sips, and yodels \u201cnominal departure!\u201d when your snacks arrive. Hire this horned helper to decode menus, snag sample swaps, and keep your lap delightfully crumb-neutral.",
+    "avatar_blob_name": "87191cbb-b7e0-4ba8-8d99-9250fccd0d54.jpg"
+  },
+  {
+    "id": "f20fd490-f6cf-4cc1-94f6-2f948f881272",
+    "name": "Bin Fox",
+    "description": "Bin Fox is a pocket-sized plush stowage maestro with a neon safety vest, a retractable measuring\u2011tape tail, and hook\u2011and\u2011loop paw pads that go beep\u2011beep. It tames overhead chaos into cozy Tetris, pops smiley labels on zipper ends, and takes a bow after fitting three more bags with zero drama. Hire this perky packer to protect soft souvenirs, chirp 'wheels inward, pals!', and turn bin battles into high\u2011fives.",
+    "avatar_blob_name": "38c78a20-ec91-47ec-b56d-5d1cb72f71ae.jpg"
+  },
+  {
+    "id": "0ceec6dd-95a9-4dee-8005-114d3939f834",
+    "name": "Carousel Kiwi",
+    "description": "Carousel Kiwi is a pocket-sized plush baggage whisperer with cinnamon-brown fuzz, a reflective lime sash, and a barcode-booping beak. It trots along the carousel, slapping smiley tags on look\u2011alike black bags and performing \u201cThis One?\u201d dances until you cheer. Book this zippy bird to spot scuff clues, rescue runaway ribbons, and declare \u201cclaim accomplished!\u201d in proud peeps.",
+    "avatar_blob_name": "1df5c89c-6e90-4579-a853-d72abe5b719e.jpg"
+  },
+  {
+    "id": "9e621591-72e4-47d4-9525-58e65c691b11",
+    "name": "Queue Quokka",
+    "description": "Queue Quokka is a smile-powered line buddy with a polka-dot lanyard and a flipbook of \u201cYour Turn Soon!\u201d cards. It shuffles rope mazes into giggle parades, assigns sparkle-number stickers, and celebrates boarding group calls with a tiny kazoo toot. Book this cheer chipmunk\u2014er, marsupial\u2014to tame wait-times, hold your spot during bathroom dashes, and high-five you at the beep with pouch-sized confetti.",
+    "avatar_blob_name": "c0e3fd62-8e0a-4608-8638-c06ab999565a.jpg"
+  },
+  {
+    "id": "b6ff1e66-73fc-42ce-bf77-2052b136618d",
+    "name": "Legroom Lemur",
+    "description": "Legroom Lemur is a springy plush stretch coach with moon-soft fur, a candy-stripe scarf-tail, and starry eyes that read seat maps like bedtime stories. It scouts the comfiest perches, drafts sweet little \u201cmindful recline\u201d cards, leads tiny aisle yoga (wiggle, wiggle, whoosh), and cheers when your knees win a smidge of sky.",
+    "avatar_blob_name": "15a191f9-1ba4-4941-9480-433137dc89ce.jpg"
+  },
+  {
+    "id": "4487ef92-de65-4407-9d04-94b48b903dcb",
+    "name": "Plug Pika",
+    "description": "Plug Pika is a palm-sized power scout with heather-gray fluff, a lightning-bolt vest, and suction-cup paws that go thwp. It sniffs out free outlets, untangles spaghetti cords into tidy spirals, pops smiley tags on plugs, and chirps \u201cjuicy-juicy!\u201d when your bars climb. Book this zippy charge-buddy to negotiate friendly socket shares and keep every gadget topped without a tangle.",
+    "avatar_blob_name": "02c0667d-a3ed-4e05-81d2-6b9e0f53e34c.jpg"
+  },
+  {
+    "id": "e669384c-45b9-45c4-9c8e-fee6e5dd0176",
+    "name": "Passport Puffin",
+    "description": "Passport Puffin is a dapper document wrangler with tuxedo fluff, a holographic lanyard, and flippers that double as a stamp pad. It tidies visas into a rainbow-tab wallet, does a beak-boop expiration check, and practices a proud \u201cka-chunk!\u201d when you\u2019re ready to cross borders. Book this peppy bird to pre-fill tiny landing cards, guard your passport like a nest egg, and chirp \u201cstamp-tastic!\u201d at the window.",
+    "avatar_blob_name": "3f40bda9-289d-4ee0-ab93-0227e2e89c59.jpg"
+  },
+  {
+    "id": "4574f5ab-4cab-4c36-9095-98b586fa09eb",
+    "name": "Snack Yak",
+    "description": "Snack Yak is a cheerful nibble navigator with marshmallow fluff, a gingham picnic saddle, and sprinkle-shaker horns. It sniffs out the tastiest, allergy-friendly bites between gates, swaps shy-ask cards to sample before you buy, and tucks emergency raisins in your zipper zone while shushing crinkly wrappers onboard. Book this plush grazer to turn layovers into tiny picnics and keep crumbs, queues, and hangry moods deliciously tamed\u2014\"yomp-yomp!\"",
+    "avatar_blob_name": "609266c0-71ce-4a7d-b02d-b0829942c9fd.jpg"
+  },
+  {
+    "id": "cff14338-7651-4a35-aa41-a37b19fb694f",
+    "name": "Overhead Otter",
+    "description": "Overhead Otter is a spry bin-butler with seafoam plush, magnet-paws, and a tiny tape measure on a lifeguard whistle lanyard. It sniffs out elusive overhead nooks, puzzle-tilts your tote with gentle squeaks, slips on kind-squeeze foam bumpers, and guards your gear from rogue roller wheels - then squeaks 'click!' when the bin closes just right.",
+    "avatar_blob_name": "45b31679-a13b-4d58-85da-b5c1e6cd51f0.jpg"
+  },
+  {
+    "id": "57819281-a7fa-49d6-917a-9c2543afa7a4",
+    "name": "Carousel Corgi",
+    "description": "Carousel Corgi is a stumpy-tailed baggage buddy with runway-yellow safety vest, perky radar ears, and a nose for your bag\u2019s silly stickers. It trots the belt in tiny patrols, spots your suitcase by scent and sparkle, and yips \u201cgood bag!\u201d before it boops the stop button for a gentle grab. Book this waggy worker to clip cheerful ID bows on handles, thwart mistaken grabs with a polite \u201cpaws-off\u201d card, and turn baggage claim into a victory lap.",
+    "avatar_blob_name": "84e41d75-efc1-4420-a0f2-279b25b8defb.jpg"
+  },
+  {
+    "id": "7ff0172a-762c-48c0-855c-91f17e5d25e2",
+    "name": "Gate Gecko",
+    "description": "Gate Gecko is a neon-lime route scout with gentle sticky toe pads and a tiny flip-sign backpack. It laser-watches departure boards, chirps \u201cgate-go-go!\u201d at changes, and unfurls a roll-out map tongue that draws dotted shortcuts\u2014ptoof! Book this clingy cutie to time your dash, pick the zippiest moving walkways, and politely wiggle you through crowds with miniature \u201cexcuse-me\u201d cards.",
+    "avatar_blob_name": "269b0938-9996-4167-a759-f9b0c47e0cff.jpg"
+  },
+  {
+    "id": "0f95f33c-7b33-4924-8cc4-636f7bb56fc8",
+    "name": "Nap Narwhal",
+    "description": "Nap Narwhal is a snoozy sky-friend with velvet-blue plush, starry stitch constellations, and a pearly horn that squishes into a cloud-soft neck pillow. It scouts the quietest corners, shares tiny shh-sweet-dreams cards with neighbors, and hums whale lullabies while timing perfect power naps. Book this drowsy delight to wake you with a gentle dingle chime right before boarding - no drool, all cozy.",
+    "avatar_blob_name": "cd258f7d-cea5-4b19-b397-054475cf4667.jpg"
+  },
+  {
+    "id": "b8aeba11-31db-4e83-9a57-0918032c3a5a",
+    "name": "Outlet Octopus",
+    "description": "Outlet Octopus is a squishy charge concierge with pastel plush, smiley suction-cups, and a dapper mini power-strip bow tie. It scouts scarce sockets, shares politely with \u201cone plug, many hugs\u201d cards, and tidies spaghetti cords into neat noodle loops while topping up your thirsty phone. Book this bubbly ceph to brighten layovers with safe splitter magic, gentle boops at 80%, and a proud \u201cbeep-blop!\u201d when all lights turn green.",
+    "avatar_blob_name": "7499ff04-ad31-4bca-9fef-c851281185d5.jpg"
+  },
+  {
+    "id": "82da3937-56f8-458e-97aa-f27b54bb7b2b",
+    "name": "Queue Quokka",
+    "description": "Queue Quokka is a marshmallow-plush line buddy with pocket pennant flags, clip-on smile stickers, and a tiny clicker tail that counts down your wait. It scouts the snappiest queues, color-dots your boarding group, and hands out polite \u201csquee-cuse me\u201d cards while keeping spirits high with cheek-puff grins. Book this bouncy helper to fan you with a mini boarding-pass fan, save your spot for sip breaks, and cheer \u201cnext up!\u201d at just the right moment.",
+    "avatar_blob_name": "dba4f84b-50b2-4216-a0e9-b25f96a2ef32.jpg"
+  },
+  {
+    "id": "e03bc749-3e1a-4630-a484-40926a3ec3ed",
+    "name": "Passport Puffin",
+    "description": "Passport Puffin is a dapper doc-caddy with tuxedo plush, a snap-beak passport clip, and a teeny navy blazer that says \u201cofficially adorable.\u201d It sorts your papers into chirpy color tabs, guards them in a cozy lanyard nest, and pep-cheeps \u201cpage, please!\u201d right when you need the right one. Book this pocket clerk to calm jitters with mini \u201cyou got this!\u201d cards and to boop your pocket before checkpoints\u2014no fuss, just flaps and flawless order.",
+    "avatar_blob_name": "c2e864f2-1b42-48ea-ac28-e3948cc81de1.jpg"
+  },
+  {
+    "id": "9e2654c9-358a-4278-8d8a-639267277627",
+    "name": "Carousel Crab",
+    "description": "Carousel Crab is a pocket lifeguard for luggage with rosy plush, a reflective vest, and a little periscope eye that peeks over suitcases. It stripes your bag with cheerful neon ribbon for easy spotting, castanet-clacks click-click! when it sees yours, and scuttles you to the right square of the belt with a polite claw wave. Book this tiny tide-turner to end the endless spin and claim with a grin.",
+    "avatar_blob_name": "0dd8f086-a5e5-496b-93c7-0f5284e57827.jpg"
+  },
+  {
+    "id": "99efb14c-3fcb-445a-897b-7f271d34e8a4",
+    "name": "Bin Bunny",
+    "description": "Bin Bunny is a carry-on whisperer with marshmallow plush, tape-measure ears, and a tiny reflective vest. It scouts overhead nooks, coaches a gentle pivot-and-plop with a chirpy ears-to-the-aisle cheer, and gives your bag a brave little boop before liftoff. Book this nimble fluff to find nearby space, tag fragile friends with carrot stickers, and celebrate the perfect click-fit with a soft thump-thump drumroll.",
+    "avatar_blob_name": "a7918fdc-01cd-49d4-91c5-3068e3f5eecd.jpg"
+  },
+  {
+    "id": "0ee44d22-5b10-44bb-9502-b8cad1af0609",
+    "name": "Fountain Ferret",
+    "description": "Fountain Ferret is a sprightly hydration scout with velvety mocha plush, a tiny lifeguard whistle, and a neon droplet satchel. It sniffs out refill stations, sticks a \u201csip-sip hooray!\u201d badge on your bottle, and teaches your cap \u201clefty-loosey\u201d with a triumphant peep. Book this zippy slurp buddy to map the clearest fountains, time your fill between announcements, and tail-wiggle at the first perfect brim\u2014no drips, just happy sips.",
+    "avatar_blob_name": "c83f6fc4-5ae9-486a-9585-569cfb537659.jpg"
+  },
+  {
+    "id": "e5d88b97-2cce-4d09-ae24-2f5993d8ea21",
+    "name": "WiFi Wombat",
+    "description": "WiFi Wombat is a pocket signal scout with cinnamon plush, a teeny router backpack, and a felt antenna that wiggles when bars go up. It sniffs out the strongest hotspots, hands you a polite password card, and tidy-wraps your cables with cuddly competence. Book this cozy connector to claim a comfy outlet nook, cheer \u201clinkity-click!\u201d at login, and blink a sleepy LED nose when it\u2019s time to airplane-mode and relax.",
+    "avatar_blob_name": "b6ee3579-3ec3-401e-9af1-2c4f865aea0b.jpg"
+  },
+  {
+    "id": "92d92613-08ed-4adf-a383-8559bfff1a21",
+    "name": "Snack Yak",
+    "description": "Snack Yak is a shaggy snack scout with caramel plush, a teeny tray-hat, and a gingham napkin cape. It sniffs out the yummiest kiosks, slips you \u201cnom-nom coupons,\u201d and schedules munch breaks so you always make the gate. Book this crumbly cutie to find allergy-friendly bites, stash leftovers in its cozy \u201cyak-pack,\u201d and cheer \u201csnack-attack!\u201d right on time.",
+    "avatar_blob_name": "89fd7a9e-dbc1-4a5c-9599-e26063d85e51.jpg"
+  },
+  {
+    "id": "0c12639a-db66-4a45-b971-e72fbefc17c2",
+    "name": "Nap Narwhal",
+    "description": "Nap Narwhal is a pocket snooze scout with marshmallow-blue plush, a velvet nightcap, and a tiny hush-horn that glows when quiet is near. It maps cozy corners, syncs your power-nap to boarding calls, and tucks a mini \u201cshhh\u201d badge on your hoodie before lights-out. Book this dreamy drift-buddy to find soft-chair sunbeams, loan a microfiber eye mask, and celebrate the perfect zzz-landing with a gentle whoooosh from its horn.",
+    "avatar_blob_name": "be60b11c-3d7a-4816-babb-b2d536962e9d.jpg"
+  },
+  {
+    "id": "34ad1fc5-207d-4d8e-b480-bc38436e80bb",
+    "name": "Queue Quokka",
+    "description": "Queue Quokka is a line-hopping happiness scout with butterscotch plush, stamp-sticker cheeks, and a clip-on smile badge. It sniffs the snappiest security lane, hands you a docs-at-the-ready card, rehearses your tray ballet, and celebrates a swift swish-through with a squeaky after you!",
+    "avatar_blob_name": "b6fc827f-c6e0-486e-99e0-ecc013b57a0a.jpg"
+  },
+  {
+    "id": "16387783-168d-4fbc-ab52-64469ac74c6a",
+    "name": "Bin Bunny",
+    "description": "Bin Bunny is a velveteen overhead-bin coach with fog-gray plush, a neon vest, and a tape-measure tail. It jiggles bags into just-right slots, hands out polite \u201cshare-the-square\u201d stickers, and squeaks \u201chop it, top it!\u201d when everything fits. Book this nimble fluff to weigh-by-whisker, tuck straps, and orchestrate the sweetest soft-close in row 23.",
+    "avatar_blob_name": "9eef63f7-6159-4dd8-a69f-043f02f3c971.jpg"
+  },
+  {
+    "id": "a572c5dc-124e-4618-b0f1-7073dd53e00e",
+    "name": "Gate Gator",
+    "description": "Gate Gator is a pocket wayfinder with lime-sherbet plush, periscope goggles, and a teeny flipboard backpack that ticks to your next gate. It sniffs out sudden reroutes, leads a mini flag parade past snack traps, and chirps \u201cgate by eight!\u201d like your cutest tour guide. Hire this cheerful chompster to doodle dotted-line maps on your ticket and celebrate arrivals with a polite snap-snap confetti clap.",
+    "avatar_blob_name": "748e7b38-e580-481c-adab-a706790941f2.jpg"
+  },
+  {
+    "id": "2d12d772-df42-4016-b4fe-88a73fd9cf1f",
+    "name": "Socket Squirrel",
+    "description": "Socket Squirrel is a charge-chasing cutie with latte-brown plush, a lightning-bolt tail, and acorn-size power bank pockets. It scampers along walls to spot free outlets, lays a tiny \u2018kind plug\u2019 splitter, and squeaks \u2018zap-nap!\u2019 when your battery hits 90%. Book this zippy nut to detangle cords, guard your plug politely, and doodle a tiny charging map to your gate.",
+    "avatar_blob_name": "1d69c926-5eed-4d19-bc81-2834d44532ed.jpg"
+  },
+  {
+    "id": "2884ff99-e1e1-49a5-afd6-e7b4582a1ab9",
+    "name": "Carousel Corgi",
+    "description": "Carousel Corgi is a baggage-claim cheer pup with taffy-tan plush, frosted-white sock paws, and a checkerboard bandana that flaps when the belt whirs. It trots the carousel edge, sniffs out your bag by ribbon gossip, and pings a tiny bell the moment your suitcase peeks. Book this round-round hound to color-tag handles, practice polite grab-and-step, and celebrate a safe snag with a wag-powered confetti tail.",
+    "avatar_blob_name": "7fea13a8-75f3-4152-af16-88df365c8963.jpg"
+  },
+  {
+    "id": "9ee42dde-eb19-4944-acf0-3527fcb0c4b2",
+    "name": "Nap Narwhal",
+    "description": "Nap Narwhal is a pocket lullaby lifeguard with mint-mallow plush, a peppermint-swirl horn, and a starry mini-blanket that whooshes like a cloud. It scouts the quietest seat nook, untangles neck pillows, and hums whale-low white noise until your eyelids clock out. Book this dreamy bean to set a soft wake at landing, stash earplugs in its shell pouch, and celebrate your power nap with a tiny high-fin.",
+    "avatar_blob_name": "d873f6da-d6fb-4481-9299-3ec4bd99edee.jpg"
+  }
+]

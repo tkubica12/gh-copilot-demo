@@ -1,0 +1,1 @@
+"""Toy Registry & Profiles Service."""

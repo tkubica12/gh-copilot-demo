@@ -1,0 +1,1724 @@
+[
+  {
+    "location_name": "Paris",
+    "country_code": "FR",
+    "famous_landmarks": [
+      "Eiffel Tower",
+      "Louvre Museum",
+      "Arc de Triomphe",
+      "Notre-Dame Cathedral",
+      "Sacré-Cœur Basilica",
+      "Palace of Versailles",
+      "Sainte-Chapelle",
+      "Champs-Élysées",
+      "Musée d’Orsay",
+      "Pont Alexandre III"
+    ],
+    "description": "Romantic capital famed for art, fashion, cuisine, and iconic architecture."
+  },
+  {
+    "location_name": "Rome",
+    "country_code": "IT",
+    "famous_landmarks": [
+      "Colosseum",
+      "Trevi Fountain",
+      "Pantheon",
+      "Vatican Museums",
+      "St. Peter’s Basilica",
+      "Roman Forum",
+      "Spanish Steps",
+      "Piazza Navona",
+      "Castel Sant’Angelo",
+      "Sistine Chapel"
+    ],
+    "description": "Ancient city blending millennia of history with Renaissance masterpieces and Vatican City."
+  },
+  {
+    "location_name": "Machu Picchu",
+    "country_code": "PE",
+    "famous_landmarks": [
+      "Inca Citadel Terraces",
+      "Temple of the Sun",
+      "Intihuatana Stone",
+      "Temple of the Three Windows",
+      "Sun Gate (Inti Punku)",
+      "Inca Bridge",
+      "Huayna Picchu",
+      "Sacred Plaza"
+    ],
+    "description": "Mysterious Inca mountaintop city with stunning Andean scenery and sophisticated stonework."
+  },
+  {
+    "location_name": "Kyoto",
+    "country_code": "JP",
+    "famous_landmarks": [
+      "Fushimi Inari Taisha",
+      "Kinkaku-ji (Golden Pavilion)",
+      "Kiyomizu-dera",
+      "Arashiyama Bamboo Grove",
+      "Nijō Castle",
+      "Gion District",
+      "Philosopher’s Path",
+      "Ryoan-ji Rock Garden",
+      "To-ji Pagoda",
+      "Heian Shrine"
+    ],
+    "description": "Historic heart of Japan with temples, gardens, and preserved traditional culture."
+  },
+  {
+    "location_name": "New York City",
+    "country_code": "US",
+    "famous_landmarks": [
+      "Statue of Liberty",
+      "Central Park",
+      "Times Square",
+      "Empire State Building",
+      "Brooklyn Bridge",
+      "Metropolitan Museum of Art",
+      "9/11 Memorial & Museum",
+      "Broadway Theaters",
+      "One World Observatory",
+      "High Line"
+    ],
+    "description": "Global hub of culture and finance with iconic skyline and diverse neighborhoods."
+  },
+  {
+    "location_name": "Cairo",
+    "country_code": "EG",
+    "famous_landmarks": [
+      "Giza Pyramids",
+      "Great Sphinx",
+      "Egyptian Museum",
+      "Khan el-Khalili Bazaar",
+      "Citadel of Saladin",
+      "Al-Azhar Mosque",
+      "Coptic Cairo (Hanging Church)",
+      "Muhammad Ali Mosque",
+      "Saqqara Step Pyramid",
+      "Memphis Open-Air Museum"
+    ],
+    "description": "Gateway to ancient Egyptian wonders and vibrant Middle Eastern culture."
+  },
+  {
+    "location_name": "Istanbul",
+    "country_code": "TR",
+    "famous_landmarks": [
+      "Hagia Sophia",
+      "Blue Mosque",
+      "Topkapi Palace",
+      "Grand Bazaar",
+      "Basilica Cistern",
+      "Galata Tower",
+      "Suleymaniye Mosque",
+      "Dolmabahçe Palace",
+      "Spice Bazaar",
+      "Bosporus Strait"
+    ],
+    "description": "Transcontinental city bridging Europe and Asia with rich Byzantine and Ottoman heritage."
+  },
+  {
+    "location_name": "London",
+    "country_code": "GB",
+    "famous_landmarks": [
+      "Tower of London",
+      "Buckingham Palace",
+      "British Museum",
+      "Big Ben & Houses of Parliament",
+      "London Eye",
+      "Westminster Abbey",
+      "Trafalgar Square",
+      "St Paul’s Cathedral",
+      "Tower Bridge",
+      "Tate Modern"
+    ],
+    "description": "Historic and modern metropolis renowned for royalty, museums, and theater."
+  },
+  {
+    "location_name": "Athens",
+    "country_code": "GR",
+    "famous_landmarks": [
+      "Acropolis of Athens",
+      "Parthenon",
+      "Acropolis Museum",
+      "Ancient Agora",
+      "Temple of Olympian Zeus",
+      "Syntagma Square",
+      "Panathenaic Stadium",
+      "Plaka District",
+      "Odeon of Herodes Atticus",
+      "National Archaeological Museum"
+    ],
+    "description": "Birthplace of democracy with ancient ruins atop a vibrant Mediterranean city."
+  },
+  {
+    "location_name": "Dubai",
+    "country_code": "AE",
+    "famous_landmarks": [
+      "Burj Khalifa",
+      "Palm Jumeirah",
+      "Dubai Mall",
+      "Burj Al Arab",
+      "Dubai Fountain",
+      "Dubai Marina",
+      "Al Fahidi Historic District",
+      "Jumeirah Mosque",
+      "Museum of the Future",
+      "Dubai Frame"
+    ],
+    "description": "Futuristic desert city known for ultra-modern architecture and luxury experiences."
+  },
+  {
+    "location_name": "Bangkok",
+    "country_code": "TH",
+    "famous_landmarks": [
+      "Grand Palace",
+      "Wat Phra Kaew",
+      "Wat Arun",
+      "Wat Pho (Reclining Buddha)",
+      "Chatuchak Weekend Market",
+      "Khao San Road",
+      "Jim Thompson House",
+      "Chao Phraya River",
+      "Erawan Shrine",
+      "Asiatique The Riverfront"
+    ],
+    "description": "Bustling Thai capital blending ornate temples, street food, and lively markets."
+  },
+  {
+    "location_name": "Rio de Janeiro",
+    "country_code": "BR",
+    "famous_landmarks": [
+      "Christ the Redeemer",
+      "Sugarloaf Mountain",
+      "Copacabana Beach",
+      "Ipanema Beach",
+      "Maracanã Stadium",
+      "Selarón Steps",
+      "Tijuca National Park",
+      "Lapa Arches",
+      "Botanical Garden",
+      "Sambadrome"
+    ],
+    "description": "Scenic seaside city famous for carnival, beaches, and dramatic granite peaks."
+  },
+  {
+    "location_name": "Sydney",
+    "country_code": "AU",
+    "famous_landmarks": [
+      "Sydney Opera House",
+      "Sydney Harbour Bridge",
+      "Bondi Beach",
+      "The Rocks",
+      "Royal Botanic Garden",
+      "Taronga Zoo",
+      "Darling Harbour",
+      "Manly Ferry",
+      "Queen Victoria Building",
+      "Barangaroo Reserve"
+    ],
+    "description": "Harbour city celebrated for iconic waterfront architecture and outdoor lifestyle."
+  },
+  {
+    "location_name": "Beijing",
+    "country_code": "CN",
+    "famous_landmarks": [
+      "Forbidden City",
+      "Great Wall (Mutianyu/Badaling)",
+      "Temple of Heaven",
+      "Summer Palace",
+      "Tiananmen Square",
+      "Lama Temple (Yonghe)",
+      "Hutong Alleys",
+      "798 Art District",
+      "Jingshan Park",
+      "Ming Tombs"
+    ],
+    "description": "Capital of China with imperial palaces, ancient walls, and modern political center."
+  },
+  {
+    "location_name": "Agra",
+    "country_code": "IN",
+    "famous_landmarks": [
+      "Taj Mahal",
+      "Agra Fort",
+      "Mehtab Bagh",
+      "Itmad-ud-Daula (Baby Taj)",
+      "Fatehpur Sikri",
+      "Jama Masjid Agra",
+      "Akbar’s Tomb (Sikandra)"
+    ],
+    "description": "Home of the Taj Mahal, a masterpiece of Mughal architecture and symbol of love."
+  },
+  {
+    "location_name": "Jerusalem",
+    "country_code": "IL",
+    "famous_landmarks": [
+      "Western Wall",
+      "Church of the Holy Sepulchre",
+      "Dome of the Rock",
+      "Al-Aqsa Mosque",
+      "Via Dolorosa",
+      "Mount of Olives",
+      "Yad Vashem",
+      "Israel Museum (Dead Sea Scrolls)",
+      "Mahane Yehuda Market",
+      "City of David"
+    ],
+    "description": "Sacred city to three major religions with millennia of layered history."
+  },
+  {
+    "location_name": "Petra",
+    "country_code": "JO",
+    "famous_landmarks": [
+      "Al-Khazneh (The Treasury)",
+      "The Siq",
+      "Monastery (Ad Deir)",
+      "Royal Tombs",
+      "High Place of Sacrifice",
+      "Street of Facades",
+      "Great Temple",
+      "Petra Theater",
+      "Colonnaded Street"
+    ],
+    "description": "Ancient Nabatean city carved into rose-red cliffs, accessible through a narrow canyon."
+  },
+  {
+    "location_name": "Reykjavik",
+    "country_code": "IS",
+    "famous_landmarks": [
+      "Hallgrímskirkja",
+      "Harpa Concert Hall",
+      "Sun Voyager",
+      "Perlan",
+      "Blue Lagoon (nearby)",
+      "Þingvellir National Park (day trip)",
+      "Gullfoss Waterfall",
+      "Geysir Geothermal Area",
+      "Sky Lagoon",
+      "Laugavegur Street"
+    ],
+    "description": "Gateway to Iceland’s geothermal wonders, waterfalls, and northern lights."
+  },
+  {
+    "location_name": "Barcelona",
+    "country_code": "ES",
+    "famous_landmarks": [
+      "Sagrada Família",
+      "Park Güell",
+      "La Rambla",
+      "Casa Batlló",
+      "Casa Milà (La Pedrera)",
+      "Gothic Quarter",
+      "Montjuïc",
+      "Camp Nou",
+      "Picasso Museum",
+      "La Boqueria Market"
+    ],
+    "description": "Mediterranean city famed for Gaudí’s architecture, beaches, and Catalan culture."
+  },
+  {
+    "location_name": "Amsterdam",
+    "country_code": "NL",
+    "famous_landmarks": [
+      "Anne Frank House",
+      "Rijksmuseum",
+      "Van Gogh Museum",
+      "Canal Belt (Grachtengordel)",
+      "Dam Square",
+      "Vondelpark",
+      "Jordaan District",
+      "Royal Palace",
+      "Bloemenmarkt",
+      "A’DAM Lookout"
+    ],
+    "description": "Charming canalside capital known for art museums, cycling, and liberal spirit."
+  },
+  {
+    "location_name": "Cusco",
+    "country_code": "PE",
+    "famous_landmarks": [
+      "Plaza de Armas",
+      "Qorikancha (Temple of the Sun)",
+      "Sacsayhuamán",
+      "San Blas District",
+      "Qenqo",
+      "Tambomachay",
+      "Pisac Ruins (Sacred Valley)",
+      "Ollantaytambo Fortress",
+      "San Pedro Market",
+      "Cathedral of Cusco"
+    ],
+    "description": "Historic Inca capital with colonial architecture and access to the Sacred Valley."
+  },
+  {
+    "location_name": "Cape Town",
+    "country_code": "ZA",
+    "famous_landmarks": [
+      "Table Mountain",
+      "Cape of Good Hope",
+      "Robben Island",
+      "Kirstenbosch Botanical Garden",
+      "Bo-Kaap",
+      "Camps Bay",
+      "V&A Waterfront",
+      "Chapman’s Peak Drive",
+      "Boulders Beach (penguins)",
+      "District Six Museum"
+    ],
+    "description": "Spectacular coastal city framed by mountains, rich history, and diverse culture."
+  },
+  {
+    "location_name": "Queenstown",
+    "country_code": "NZ",
+    "famous_landmarks": [
+      "Lake Wakatipu",
+      "The Remarkables",
+      "Skyline Gondola",
+      "Shotover Jet",
+      "Milford Sound (excursion)",
+      "Glenorchy Scenic Drive",
+      "Arrowtown",
+      "Bungy at Kawarau Bridge",
+      "Ben Lomond Track",
+      "Gibbston Valley Wineries"
+    ],
+    "description": "Adventure capital with alpine scenery and world-class outdoor activities."
+  },
+  {
+    "location_name": "Santorini (Thira)",
+    "country_code": "GR",
+    "famous_landmarks": [
+      "Oia Sunset Viewpoint",
+      "Fira Caldera",
+      "Akrotiri Archaeological Site",
+      "Red Beach",
+      "Ancient Thera",
+      "Amoudi Bay",
+      "Skaros Rock",
+      "Perissa Black Sand Beach",
+      "Santo Wines",
+      "Pyrgos Village"
+    ],
+    "description": "Dramatic caldera island with whitewashed villages and volcanic beaches."
+  },
+  {
+    "location_name": "Venice",
+    "country_code": "IT",
+    "famous_landmarks": [
+      "St. Mark’s Basilica",
+      "Doge’s Palace",
+      "Rialto Bridge",
+      "Grand Canal",
+      "Bridge of Sighs",
+      "Murano Glass Island",
+      "Burano Island",
+      "Peggy Guggenheim Collection",
+      "Teatro La Fenice",
+      "Accademia Gallery"
+    ],
+    "description": "Romantic canal city built on lagoons with exquisite art and architecture."
+  },
+  {
+    "location_name": "Prague",
+    "country_code": "CZ",
+    "famous_landmarks": [
+      "Charles Bridge",
+      "Prague Castle",
+      "Old Town Square & Astronomical Clock",
+      "St. Vitus Cathedral",
+      "Wenceslas Square",
+      "Jewish Quarter (Josefov)",
+      "Dancing House",
+      "Petrin Hill",
+      "Vyšehrad",
+      "National Theatre"
+    ],
+    "description": "Fairytale city of spires with Gothic and Baroque treasures on the Vltava River."
+  },
+  {
+    "location_name": "Santuario de Las Lajas (Ipiales)",
+    "country_code": "CO",
+    "famous_landmarks": [
+      "Las Lajas Basilica",
+      "Guáitara Canyon Bridge",
+      "Mirador de Santuario",
+      "Museo de los Milagros",
+      "Pilgrimage Path",
+      "Waterfall beneath the basilica"
+    ],
+    "description": "Neo-Gothic basilica dramatically spanning a canyon in southern Colombia."
+  },
+  {
+    "location_name": "Havana",
+    "country_code": "CU",
+    "famous_landmarks": [
+      "Old Havana (Habana Vieja)",
+      "Malecón",
+      "El Capitolio",
+      "Plaza de la Catedral",
+      "Castillo del Morro",
+      "Plaza Vieja",
+      "Gran Teatro de La Habana",
+      "Finca Vigía (Hemingway)",
+      "Museum of the Revolution",
+      "Fusterlandia"
+    ],
+    "description": "Colorful time-capsule city with classic cars, music, and colonial plazas."
+  },
+  {
+    "location_name": "Buenos Aires",
+    "country_code": "AR",
+    "famous_landmarks": [
+      "La Boca (Caminito)",
+      "Recoleta Cemetery",
+      "Teatro Colón",
+      "Plaza de Mayo",
+      "Casa Rosada",
+      "Palermo Parks",
+      "San Telmo Market",
+      "Obelisco",
+      "Puerto Madero",
+      "El Ateneo Grand Splendid"
+    ],
+    "description": "European-style Latin metropolis famed for tango, steak, and vibrant neighborhoods."
+  },
+  {
+    "location_name": "Mexico City",
+    "country_code": "MX",
+    "famous_landmarks": [
+      "Zócalo (Plaza de la Constitución)",
+      "Templo Mayor",
+      "Palacio de Bellas Artes",
+      "Chapultepec Castle",
+      "Frida Kahlo Museum (Casa Azul)",
+      "Basilica of Our Lady of Guadalupe",
+      "Xochimilco Canals",
+      "National Museum of Anthropology",
+      "Coyoacán",
+      "Teotihuacan Pyramids (nearby)"
+    ],
+    "description": "Megacity blending Aztec heritage, colonial grandeur, and world-class museums."
+  },
+  {
+    "location_name": "Yosemite Valley",
+    "country_code": "US",
+    "famous_landmarks": [
+      "El Capitan",
+      "Half Dome",
+      "Yosemite Falls",
+      "Tunnel View",
+      "Glacier Point",
+      "Bridalveil Fall",
+      "Mariposa Grove (giant sequoias)",
+      "Mirror Lake",
+      "Valley Loop",
+      "Vernal & Nevada Falls"
+    ],
+    "description": "Granite cliffs and waterfalls in one of America’s most iconic national parks."
+  },
+  {
+    "location_name": "Banff (Townsite)",
+    "country_code": "CA",
+    "famous_landmarks": [
+      "Lake Louise",
+      "Moraine Lake",
+      "Banff Gondola (Sulphur Mountain)",
+      "Bow Falls",
+      "Johnston Canyon",
+      "Lake Minnewanka",
+      "Fairmont Banff Springs",
+      "Peyto Lake",
+      "Vermilion Lakes",
+      "Sunshine Village"
+    ],
+    "description": "Canadian Rockies base for turquoise lakes, glaciers, and alpine adventure."
+  },
+  {
+    "location_name": "Angkor (Siem Reap)",
+    "country_code": "KH",
+    "famous_landmarks": [
+      "Angkor Wat",
+      "Bayon Temple",
+      "Ta Prohm",
+      "Banteay Srei",
+      "Angkor Thom South Gate",
+      "Preah Khan",
+      "Phnom Bakheng",
+      "Terrace of the Elephants",
+      "Neak Pean",
+      "Ta Keo"
+    ],
+    "description": "Vast Khmer temple complex set in the jungle, showcasing intricate stone carvings."
+  },
+  {
+    "location_name": "Hanoi",
+    "country_code": "VN",
+    "famous_landmarks": [
+      "Old Quarter",
+      "Hoan Kiem Lake",
+      "Temple of Literature",
+      "Ho Chi Minh Mausoleum",
+      "One Pillar Pagoda",
+      "Train Street",
+      "Long Bien Bridge",
+      "West Lake",
+      "Thang Long Imperial Citadel",
+      "Hoa Lo Prison"
+    ],
+    "description": "Historic capital with French colonial architecture and rich street food culture."
+  },
+  {
+    "location_name": "Hong Kong",
+    "country_code": "HK",
+    "famous_landmarks": [
+      "Victoria Peak",
+      "Star Ferry",
+      "Tsim Sha Tsui Promenade",
+      "Big Buddha (Tian Tan)",
+      "Man Mo Temple",
+      "Temple Street Night Market",
+      "Ngong Ping 360",
+      "Ten Thousand Buddhas Monastery",
+      "Chi Lin Nunnery",
+      "Dragon’s Back Trail"
+    ],
+    "description": "Dazzling skyline, mountain trails, and East-meets-West culinary scene."
+  },
+  {
+    "location_name": "Singapore",
+    "country_code": "SG",
+    "famous_landmarks": [
+      "Marina Bay Sands",
+      "Gardens by the Bay",
+      "Merlion Park",
+      "Singapore Botanic Gardens",
+      "Chinatown",
+      "Little India",
+      "Kampong Glam",
+      "Hawker Centres (Maxwell/Lau Pa Sat)",
+      "National Gallery",
+      "Sentosa Island"
+    ],
+    "description": "Clean, green city-state famed for futuristic gardens and multicultural cuisine."
+  },
+  {
+    "location_name": "Dubai Creek (Deira & Bur Dubai)",
+    "country_code": "AE",
+    "famous_landmarks": [
+      "Abra Boat Ride",
+      "Gold Souk",
+      "Spice Souk",
+      "Al Seef Heritage Area",
+      "Al Fahidi Fort (Dubai Museum)",
+      "Textile Souk",
+      "Sheikh Saeed Al Maktoum House"
+    ],
+    "description": "Historic heart of Dubai with traditional souks and creekside heritage, contrasting the modern skyline."
+  },
+  {
+    "location_name": "Lisbon",
+    "country_code": "PT",
+    "famous_landmarks": [
+      "Belém Tower",
+      "Jerónimos Monastery",
+      "Alfama District",
+      "Praça do Comércio",
+      "Tram 28 Route",
+      "Castelo de São Jorge",
+      "LX Factory",
+      "MAAT Museum",
+      "Time Out Market",
+      "Padrão dos Descobrimentos"
+    ],
+    "description": "Hilly Atlantic capital with fado music, tiled facades, and maritime heritage."
+  },
+  {
+    "location_name": "Edinburgh",
+    "country_code": "GB",
+    "famous_landmarks": [
+      "Edinburgh Castle",
+      "Royal Mile",
+      "Arthur’s Seat",
+      "Holyrood Palace",
+      "Calton Hill",
+      "Scott Monument",
+      "National Museum of Scotland",
+      "Grassmarket",
+      "Dean Village",
+      "Camera Obscura"
+    ],
+    "description": "Atmospheric city of festivals, volcanic hills, and medieval Old Town."
+  },
+  {
+    "location_name": "Granada",
+    "country_code": "ES",
+    "famous_landmarks": [
+      "Alhambra",
+      "Generalife Gardens",
+      "Albaicín Quarter",
+      "Cathedral of Granada",
+      "Royal Chapel",
+      "Sacromonte Caves",
+      "Mirador de San Nicolás",
+      "Carrera del Darro",
+      "Corral del Carbón",
+      "Bañuelo Arab Baths"
+    ],
+    "description": "Moorish palaces and Andalusian charm beneath the Sierra Nevada mountains."
+  },
+  {
+    "location_name": "Dubrovnik",
+    "country_code": "HR",
+    "famous_landmarks": [
+      "City Walls",
+      "Rector’s Palace",
+      "Stradun",
+      "Fort Lovrijenac",
+      "Dubrovnik Cathedral",
+      "Sponza Palace",
+      "Lokrum Island",
+      "Cable Car to Srđ",
+      "Franciscan Monastery",
+      "Pile Gate"
+    ],
+    "description": "Walled Adriatic city with marble streets and baroque buildings."
+  },
+  {
+    "location_name": "Petronas Twin Towers Area (Kuala Lumpur)",
+    "country_code": "MY",
+    "famous_landmarks": [
+      "Petronas Twin Towers",
+      "Suria KLCC",
+      "KLCC Park",
+      "Aquaria KLCC",
+      "Skybridge & Observation Deck",
+      "Menara KL Tower",
+      "Batu Caves (nearby)",
+      "Bukit Bintang",
+      "Jalan Alor Night Market",
+      "Thean Hou Temple"
+    ],
+    "description": "Modern Malaysian capital with soaring towers and multicultural flavors."
+  },
+  {
+    "location_name": "Phuket",
+    "country_code": "TH",
+    "famous_landmarks": [
+      "Phang Nga Bay (James Bond Island)",
+      "Big Buddha",
+      "Old Phuket Town",
+      "Patong Beach",
+      "Kata & Karon Beaches",
+      "Wat Chalong",
+      "Promthep Cape",
+      "Phi Phi Islands (excursion)",
+      "Bangla Road",
+      "Similan Islands (seasonal)"
+    ],
+    "description": "Tropical island base for beaches, limestone karsts, and Andaman adventures."
+  },
+  {
+    "location_name": "Bali (Ubud)",
+    "country_code": "ID",
+    "famous_landmarks": [
+      "Tegallalang Rice Terraces",
+      "Sacred Monkey Forest",
+      "Ubud Palace",
+      "Campuhan Ridge Walk",
+      "Goa Gajah",
+      "Tirta Empul Temple",
+      "Tegenungan Waterfall",
+      "Saraswati Temple",
+      "Neka Art Museum",
+      "Tukad Cepung Waterfall"
+    ],
+    "description": "Cultural heart of Bali with temples, rice terraces, and wellness retreats."
+  },
+  {
+    "location_name": "Fez",
+    "country_code": "MA",
+    "famous_landmarks": [
+      "Fes el-Bali Medina",
+      "Al Quaraouiyine University",
+      "Chouara Tannery",
+      "Bab Bou Jeloud",
+      "Bou Inania Madrasa",
+      "Dar Batha Museum",
+      "Mellah (Jewish Quarter)",
+      "Seffarine Square",
+      "Jnan Sbil Garden",
+      "Borj Nord"
+    ],
+    "description": "Medieval Moroccan medina maze renowned for crafts and learning."
+  },
+  {
+    "location_name": "Sossusvlei (Namib Desert)",
+    "country_code": "NA",
+    "famous_landmarks": [
+      "Dune 45",
+      "Deadvlei",
+      "Big Daddy Dune",
+      "Sesriem Canyon",
+      "Elim Dune",
+      "Namib-Naukluft Park Gate",
+      "Hidden Vlei"
+    ],
+    "description": "Otherworldly red dunes and clay pans in one of the world’s oldest deserts."
+  },
+  {
+    "location_name": "Salar de Uyuni",
+    "country_code": "BO",
+    "famous_landmarks": [
+      "World’s Largest Salt Flat",
+      "Incahuasi Island (cacti)",
+      "Train Cemetery (Uyuni)",
+      "Salt Hotels",
+      "Tunupa Volcano",
+      "Ojos de Sal",
+      "Dakar Monument",
+      "Mirror Effect (wet season)",
+      "Colchani Village"
+    ],
+    "description": "Vast reflective salt flats offering surreal landscapes and stargazing."
+  },
+  {
+    "location_name": "Galápagos (Puerto Ayora base)",
+    "country_code": "EC",
+    "famous_landmarks": [
+      "Charles Darwin Research Station",
+      "Tortuga Bay",
+      "Los Gemelos Craters",
+      "Bartolomé Island (Pinnacle Rock)",
+      "North Seymour (blue-footed boobies)",
+      "Kicker Rock",
+      "Santa Fe Island",
+      "Isabela’s Sierra Negra Volcano",
+      "El Chato Tortoise Reserve",
+      "Las Grietas"
+    ],
+    "description": "Unique archipelago with fearless wildlife that inspired evolutionary theory."
+  },
+  {
+    "location_name": "Serengeti (Seronera)",
+    "country_code": "TZ",
+    "famous_landmarks": [
+      "Great Migration Routes",
+      "Seronera Valley",
+      "Ngorongoro Crater (nearby)",
+      "Grumeti River",
+      "Moru Kopjes",
+      "Naabi Hill Gate",
+      "Retina Hippo Pool",
+      "Balloon Safari",
+      "Olduvai Gorge",
+      "Lake Ndutu (seasonal)"
+    ],
+    "description": "Endless savannah hosting the Great Migration and Big Five wildlife."
+  },
+  {
+    "location_name": "Marrakesh",
+    "country_code": "MA",
+    "famous_landmarks": [
+      "Jemaa el-Fnaa",
+      "Koutoubia Mosque",
+      "Bahia Palace",
+      "Saadian Tombs",
+      "Majorelle Garden & Yves Saint Laurent Museum",
+      "Ben Youssef Madrasa",
+      "El Badi Palace",
+      "Medina Souks",
+      "Menara Gardens",
+      "Bab Agnaou"
+    ],
+    "description": "Vibrant city of souks, palaces, and desert gateways."
+  },
+  {
+    "location_name": "Zanzibar (Stone Town)",
+    "country_code": "TZ",
+    "famous_landmarks": [
+      "Stone Town Alleys",
+      "House of Wonders",
+      "Old Fort",
+      "Forodhani Gardens",
+      "Freddie Mercury’s Birthplace",
+      "Darajani Market",
+      "Prison Island (Changuu)",
+      "Jozani Forest (red colobus)",
+      "Spice Plantations",
+      "Nungwi Beach"
+    ],
+    "description": "Spice island with Swahili-Arab heritage and turquoise beaches."
+  },
+  {
+    "location_name": "Petropavlovsk-Kamchatsky",
+    "country_code": "RU",
+    "famous_landmarks": [
+      "Avacha Bay",
+      "Mutnovsky Volcano",
+      "Gorely Volcano",
+      "Vilyuchik Volcano",
+      "Valley of Geysers (helicopter)",
+      "Khalaktyrsky Black Sand Beach",
+      "Three Brothers Rocks",
+      "Paratunka Hot Springs",
+      "Avachinsky Volcano",
+      "Ksudach Caldera"
+    ],
+    "description": "Remote Russian Far East gateway to active volcanoes and geysers."
+  },
+  {
+    "location_name": "Hallstatt",
+    "country_code": "AT",
+    "famous_landmarks": [
+      "Hallstatt Lake Promenade",
+      "Hallstatt Skywalk",
+      "Dachstein Ice Cave",
+      "Five Fingers Lookout",
+      "Salt Mine (Salzwelten)",
+      "Bone House (Beinhaus)",
+      "Market Square",
+      "Evangelical Church",
+      "Gosausseen",
+      "Waldbachstrub Waterfall"
+    ],
+    "description": "Picture-perfect alpine village with ancient salt mining history."
+  },
+  {
+    "location_name": "Budapest",
+    "country_code": "HU",
+    "famous_landmarks": [
+      "Buda Castle",
+      "Parliament Building",
+      "Fisherman’s Bastion",
+      "Széchenyi Thermal Bath",
+      "Chain Bridge",
+      "St. Stephen’s Basilica",
+      "Gellért Hill",
+      "Heroes’ Square",
+      "Great Market Hall",
+      "Ruin Bars (District VII)"
+    ],
+    "description": "Thermal bath capital split by the Danube with grand architecture."
+  },
+  {
+    "location_name": "Kraków",
+    "country_code": "PL",
+    "famous_landmarks": [
+      "Wawel Castle",
+      "Main Market Square (Rynek)",
+      "St. Mary’s Basilica",
+      "Kazimierz (Jewish Quarter)",
+      "Cloth Hall (Sukiennice)",
+      "Barbican",
+      "Oskar Schindler’s Factory",
+      "Wieliczka Salt Mine (nearby)",
+      "Planty Park",
+      "Collegium Maius"
+    ],
+    "description": "Preserved medieval city with poignant WWII history and vibrant culture."
+  },
+  {
+    "location_name": "Tbilisi",
+    "country_code": "GE",
+    "famous_landmarks": [
+      "Narikala Fortress",
+      "Sulfur Baths (Abanotubani)",
+      "Metekhi Church",
+      "Bridge of Peace",
+      "Rustaveli Avenue",
+      "Holy Trinity Cathedral (Sameba)",
+      "Mother of Georgia Statue",
+      "Fabrika",
+      "Mtatsminda Funicular",
+      "Dry Bridge Market"
+    ],
+    "description": "Eurasian crossroads with eclectic architecture and famous wine culture."
+  },
+  {
+    "location_name": "Seoul",
+    "country_code": "KR",
+    "famous_landmarks": [
+      "Gyeongbokgung Palace",
+      "Bukchon Hanok Village",
+      "N Seoul Tower",
+      "Myeongdong",
+      "Changdeokgung & Huwon",
+      "Dongdaemun Design Plaza",
+      "Insadong",
+      "Hongdae",
+      "Bongeunsa Temple",
+      "Cheonggyecheon Stream"
+    ],
+    "description": "High-tech city infused with palaces, K-culture, and mountain trails."
+  },
+  {
+    "location_name": "Taipei",
+    "country_code": "TW",
+    "famous_landmarks": [
+      "Taipei 101",
+      "Chiang Kai-shek Memorial Hall",
+      "National Palace Museum",
+      "Elephant Mountain Trail",
+      "Shilin Night Market",
+      "Longshan Temple",
+      "Ximending",
+      "Beitou Hot Springs",
+      "Maokong Gondola",
+      "Raohe Night Market"
+    ],
+    "description": "Friendly foodie capital with night markets and a world-class museum collection."
+  },
+  {
+    "location_name": "Jaipur",
+    "country_code": "IN",
+    "famous_landmarks": [
+      "Amber Fort",
+      "Hawa Mahal",
+      "City Palace",
+      "Jantar Mantar",
+      "Nahargarh Fort",
+      "Jaigarh Fort",
+      "Albert Hall Museum",
+      "Patrika Gate",
+      "Jal Mahal",
+      "Bazaars of Johari & Bapu"
+    ],
+    "description": "Pink City of Rajasthan known for forts, palaces, and colorful bazaars."
+  },
+  {
+    "location_name": "Lhasa",
+    "country_code": "CN",
+    "famous_landmarks": [
+      "Potala Palace",
+      "Jokhang Temple",
+      "Barkhor Street",
+      "Norbulingka Palace",
+      "Sera Monastery",
+      "Drepung Monastery",
+      "Ramoche Temple",
+      "Ani Tsankhung Nunnery",
+      "Chakpori Hill",
+      "Drak Yerpa (nearby)"
+    ],
+    "description": "Spiritual Tibetan city with monasteries and dramatic high-altitude setting."
+  },
+  {
+    "location_name": "Lalibela",
+    "country_code": "ET",
+    "famous_landmarks": [
+      "Bet Giyorgis (St. George)",
+      "Biete Medhane Alem",
+      "Biete Maryam",
+      "Biete Amanuel",
+      "Biete Abba Libanos",
+      "Northwestern Cluster Churches",
+      "Tunnel of Baptism",
+      "Ashetan Maryam Monastery"
+    ],
+    "description": "Rock-hewn medieval churches carved into volcanic tuff, a pilgrimage site."
+  },
+  {
+    "location_name": "Chefchaouen",
+    "country_code": "MA",
+    "famous_landmarks": [
+      "Blue-Washed Medina Streets",
+      "Outa el Hammam Square",
+      "Kasbah Museum",
+      "Ras Elma Waterfall",
+      "Spanish Mosque Viewpoint",
+      "Akchour Waterfalls (nearby)",
+      "Grand Mosque",
+      "Uta el-Hammam Gardens"
+    ],
+    "description": "Photogenic ‘Blue City’ nestled in Morocco’s Rif Mountains."
+  },
+  {
+    "location_name": "Abu Simbel",
+    "country_code": "EG",
+    "famous_landmarks": [
+      "Great Temple of Ramses II",
+      "Small Temple of Nefertari",
+      "Colossal Statues Façade",
+      "Hypostyle Hall",
+      "Relocated Site Above Lake Nasser",
+      "Sun Festival Alignment",
+      "Visitor Centre"
+    ],
+    "description": "Monumental rock temples relocated to save them from Lake Nasser’s waters."
+  },
+  {
+    "location_name": "Matera",
+    "country_code": "IT",
+    "famous_landmarks": [
+      "Sassi Cave Dwellings",
+      "Matera Cathedral",
+      "Casa Grotta di Vico Solitario",
+      "Church of Santa Maria de Idris",
+      "Palombaro Lungo Cistern",
+      "Belvedere Murgia Timone",
+      "San Pietro Caveoso",
+      "Rock Churches Park (Murgia)",
+      "Piazza Vittorio Veneto",
+      "Tramontano Castle"
+    ],
+    "description": "Ancient cave city reborn as a cultural hub and UNESCO site."
+  },
+  {
+    "location_name": "Seville",
+    "country_code": "ES",
+    "famous_landmarks": [
+      "Seville Cathedral & Giralda",
+      "Real Alcázar",
+      "Plaza de España",
+      "Metropol Parasol",
+      "Barrio Santa Cruz",
+      "Triana",
+      "Torre del Oro",
+      "Maria Luisa Park",
+      "Archivo de Indias",
+      "Maestranza Bullring"
+    ],
+    "description": "Andalusian capital of flamenco, Mudejar palaces, and citrus-scented squares."
+  },
+  {
+    "location_name": "Zermatt",
+    "country_code": "CH",
+    "famous_landmarks": [
+      "Matterhorn",
+      "Gornergrat Railway",
+      "Klein Matterhorn (Matterhorn Glacier Paradise)",
+      "Five Lakes Walk",
+      "Sunnegga",
+      "Gorner Gorge",
+      "Hinterdorf Old Village",
+      "Riffelsee",
+      "Furi Suspension Bridge",
+      "Schwarzsee"
+    ],
+    "description": "Car-free alpine resort at the foot of the Matterhorn with year-round skiing."
+  },
+  {
+    "location_name": "Sapporo",
+    "country_code": "JP",
+    "famous_landmarks": [
+      "Odori Park",
+      "Sapporo Beer Museum",
+      "Historic Village of Hokkaido",
+      "Hokkaido Shrine",
+      "Tanukikoji Shopping Street",
+      "Mt. Moiwa Ropeway",
+      "Shiroi Koibito Park",
+      "Otaru Canal (nearby)",
+      "Sapporo Clock Tower",
+      "Moerenuma Park"
+    ],
+    "description": "Northern Japanese city known for snow festival, ramen, and beer culture."
+  },
+  {
+    "location_name": "Phnom Penh",
+    "country_code": "KH",
+    "famous_landmarks": [
+      "Royal Palace & Silver Pagoda",
+      "Tuol Sleng Genocide Museum",
+      "Choeung Ek Killing Fields",
+      "Wat Phnom",
+      "National Museum of Cambodia",
+      "Central Market (Phsar Thmei)",
+      "Independence Monument",
+      "Russian Market",
+      "Sisowath Quay",
+      "Olympic Stadium"
+    ],
+    "description": "Cambodia’s capital blending Khmer royal heritage with sobering recent history."
+  },
+  {
+    "location_name": "Amman",
+    "country_code": "JO",
+    "famous_landmarks": [
+      "Amman Citadel",
+      "Roman Theatre",
+      "Rainbow Street",
+      "King Abdullah I Mosque",
+      "Jordan Museum",
+      "Darat al Funun",
+      "Qasr al-Abd (Iraq al-Amir)",
+      "Royal Automobile Museum",
+      "Jerash (day trip)",
+      "Abdali Boulevard"
+    ],
+    "description": "Modern-meets-ancient city on rolling hills, gateway to Jordan’s antiquities."
+  },
+  {
+    "location_name": "Hội An",
+    "country_code": "VN",
+    "famous_landmarks": [
+      "Ancient Town Lantern Streets",
+      "Japanese Covered Bridge",
+      "Tan Ky Old House",
+      "Assembly Hall of the Fujian Chinese",
+      "An Bang Beach",
+      "Tra Que Vegetable Village",
+      "Chàm Islands (nearby)",
+      "My Son Sanctuary (day trip)",
+      "Hoi An Night Market",
+      "Thu Bon River Boat Ride"
+    ],
+    "description": "Beautifully preserved trading port with lantern-lit evenings and tailor shops."
+  },
+  {
+    "location_name": "Borobudur (Magelang)",
+    "country_code": "ID",
+    "famous_landmarks": [
+      "Borobudur Temple",
+      "Stupa Terraces",
+      "Mendut Temple",
+      "Pawon Temple",
+      "Punthuk Setumbu Sunrise Viewpoint",
+      "Chicken Church (Gereja Ayam)",
+      "Elo River Rafting",
+      "Candi Selogriyo"
+    ],
+    "description": "World’s largest Buddhist temple with intricate reliefs and sunrise vistas."
+  },
+  {
+    "location_name": "Wadi Rum",
+    "country_code": "JO",
+    "famous_landmarks": [
+      "Seven Pillars of Wisdom",
+      "Khazali Canyon",
+      "Lawrence’s Spring",
+      "Um Fruth Rock Bridge",
+      "Burdah Rock Bridge",
+      "Red Sand Dunes",
+      "Nabataean Inscriptions",
+      "Al-Hash Mountain",
+      "Wadi Rum Village",
+      "Camel and 4x4 Desert Tours"
+    ],
+    "description": "Mars-like desert of sandstone mountains and Bedouin camps."
+  },
+  {
+    "location_name": "Luang Prabang",
+    "country_code": "LA",
+    "famous_landmarks": [
+      "Wat Xieng Thong",
+      "Mount Phousi",
+      "Kuang Si Falls",
+      "Alms Giving Ceremony",
+      "Royal Palace Museum",
+      "Pak Ou Caves",
+      "Night Market",
+      "Tat Sae Waterfalls",
+      "Wat Mai",
+      "Ock Pop Tok Living Crafts Centre"
+    ],
+    "description": "Serene Laotian town where Mekong meets Nam Khan, filled with temples and waterfalls."
+  },
+  {
+    "location_name": "Great Barrier Reef (Cairns/Port Douglas)",
+    "country_code": "AU",
+    "famous_landmarks": [
+      "Outer Reef Pontoon Sites",
+      "Low Isles",
+      "Michaelmas Cay",
+      "Ribbon Reefs",
+      "Agincourt Reef",
+      "Fitzroy Island",
+      "Green Island",
+      "Cape Tribulation (nearby)",
+      "Daintree Rainforest (nearby)",
+      "Kuranda Scenic Railway"
+    ],
+    "description": "World’s largest coral reef system with unparalleled marine biodiversity."
+  },
+  {
+    "location_name": "Jericoacoara",
+    "country_code": "BR",
+    "famous_landmarks": [
+      "Duna do Pôr do Sol (Sunset Dune)",
+      "Pedra Furada Arch",
+      "Jericoacoara Beach",
+      "Lagoa do Paraíso",
+      "Tatajuba Dunes",
+      "Mangue Seco",
+      "Guriú Mangroves (seahorses)",
+      "Serrote Trail",
+      "Preá Beach",
+      "Buggy & Kitesurf Spots"
+    ],
+    "description": "Remote Brazilian beach village with dunes, lagoons, and steady winds for kiting."
+  },
+  {
+    "location_name": "Siwa Oasis",
+    "country_code": "EG",
+    "famous_landmarks": [
+      "Shali Fortress",
+      "Temple of the Oracle of Amun",
+      "Cleopatra’s Bath (Ain Guba)",
+      "Fatnas Island",
+      "Great Sand Sea Dunes",
+      "Gebel al-Mawta (Mountain of the Dead)",
+      "Salt Lakes",
+      "Dakror Mountain",
+      "Bir Wahed Hot Springs"
+    ],
+    "description": "Isolated oasis near Libyan border with Berber culture and salt lakes."
+  },
+  {
+    "location_name": "Cappadocia (Göreme)",
+    "country_code": "TR",
+    "famous_landmarks": [
+      "Göreme Open-Air Museum",
+      "Fairy Chimneys (Pasabag)",
+      "Uchisar Castle",
+      "Derinkuyu Underground City",
+      "Ihlara Valley",
+      "Love Valley",
+      "Red & Rose Valleys",
+      "Hot Air Balloon Flights",
+      "Avanos Pottery",
+      "Ortahisar"
+    ],
+    "description": "Surreal volcanic landscapes and cave dwellings best seen from a balloon."
+  },
+  {
+    "location_name": "Azores (São Miguel - Ponta Delgada)",
+    "country_code": "PT",
+    "famous_landmarks": [
+      "Sete Cidades Crater Lakes",
+      "Lagoa do Fogo",
+      "Furnas Hot Springs",
+      "Terra Nostra Garden",
+      "Salto do Cabrito",
+      "Caldeira Velha",
+      "Ponta da Ferraria",
+      "Ribeira dos Caldeirões",
+      "Islet of Vila Franca do Campo",
+      "Pineapple Plantations"
+    ],
+    "description": "Mid-Atlantic volcanic islands with emerald lakes and geothermal baths."
+  },
+  {
+    "location_name": "Tallinn",
+    "country_code": "EE",
+    "famous_landmarks": [
+      "Toompea Hill & Castle",
+      "Alexander Nevsky Cathedral",
+      "Town Hall Square (Raekoja plats)",
+      "St. Catherine’s Passage",
+      "Viru Gate",
+      "Kadriorg Palace",
+      "Seaplane Harbour Museum",
+      "Telliskivi Creative City",
+      "Balti Jaama Turg",
+      "KGB Prison Cells"
+    ],
+    "description": "Medieval walled Old Town fused with cutting-edge digital culture."
+  },
+  {
+    "location_name": "Reims (Champagne)",
+    "country_code": "FR",
+    "famous_landmarks": [
+      "Reims Cathedral (Notre-Dame)",
+      "Palace of Tau",
+      "Basilica of Saint-Remi",
+      "Avenue de Champagne (Épernay)",
+      "Pommery Cellars",
+      "Taittinger Caves",
+      "Veuve Clicquot House",
+      "Foujita Chapel",
+      "Hautvillers Abbey",
+      "Fort de la Pompelle"
+    ],
+    "description": "Coronation city of French kings and gateway to Champagne houses."
+  },
+  {
+    "location_name": "Antelope Canyon (Page)",
+    "country_code": "US",
+    "famous_landmarks": [
+      "Upper Antelope Canyon",
+      "Lower Antelope Canyon",
+      "Horseshoe Bend",
+      "Lake Powell",
+      "Glen Canyon Dam",
+      "Antelope Point Marina",
+      "Navajo Village Heritage Center",
+      "Waterholes Canyon",
+      "Wahweap Overlook"
+    ],
+    "description": "Striated slot canyons with ethereal light beams on Navajo land."
+  },
+  {
+    "location_name": "Rothenburg ob der Tauber",
+    "country_code": "DE",
+    "famous_landmarks": [
+      "Plönlein",
+      "Town Walls & Towers",
+      "St. Jakob’s Church",
+      "Market Square & Town Hall Tower",
+      "Medieval Crime Museum",
+      "Käthe Wohlfahrt Christmas Village",
+      "Burggarten",
+      "Double Bridge (Tauber)",
+      "Spital Bastion",
+      "Schneeballen Shops"
+    ],
+    "description": "Quintessential medieval Bavarian town with intact fortifications."
+  },
+  {
+    "location_name": "Nairobi",
+    "country_code": "KE",
+    "famous_landmarks": [
+      "Nairobi National Park",
+      "David Sheldrick Wildlife Trust",
+      "Giraffe Centre",
+      "Karen Blixen Museum",
+      "Bomas of Kenya",
+      "Karura Forest",
+      "Railway Museum",
+      "Kazuri Beads",
+      "Ngong Hills",
+      "National Museum of Kenya"
+    ],
+    "description": "Only capital city with a national park, blending wildlife with urban life."
+  },
+  {
+    "location_name": "Svalbard (Longyearbyen)",
+    "country_code": "SJ",
+    "famous_landmarks": [
+      "Global Seed Vault (not publicly accessible, viewpoint)",
+      "Svalbard Museum",
+      "Coal Mine 3",
+      "Hiorthfjellet Hikes",
+      "Isfjord Boat Trips",
+      "Pyramiden Ghost Town",
+      "Northern Lights/Winter",
+      "Midnight Sun/Summer",
+      "Adventfjorden",
+      "Dog Sledding Routes"
+    ],
+    "description": "High Arctic archipelago for polar landscapes, wildlife, and extreme seasons."
+  },
+  {
+    "location_name": "Hall of Supreme Harmony Area (Beijing Forbidden City)",
+    "country_code": "CN",
+    "famous_landmarks": [
+      "Gate of Supreme Harmony",
+      "Hall of Supreme Harmony",
+      "Hall of Central Harmony",
+      "Hall of Preserving Harmony",
+      "Meridian Gate",
+      "Imperial Garden",
+      "Nine-Dragon Screen",
+      "Treasure Gallery",
+      "Corner Towers",
+      "Golden Water Bridges"
+    ],
+    "description": "Core ceremonial complex within the Forbidden City showcasing imperial grandeur."
+  },
+  {
+    "location_name": "Kotor",
+    "country_code": "ME",
+    "famous_landmarks": [
+      "Kotor Old Town",
+      "San Giovanni Fortress (Fort of St. John)",
+      "Kotor Cathedral (St. Tryphon)",
+      "Bay of Kotor Fjord",
+      "Piazza of the Arms",
+      "Maritime Museum",
+      "Our Lady of the Rocks (Perast)",
+      "Pima Palace",
+      "Clock Tower",
+      "Gurdic Gate"
+    ],
+    "description": "Walled Adriatic gem on a fjord-like bay with dramatic mountain backdrops."
+  },
+  {
+    "location_name": "Bled",
+    "country_code": "SI",
+    "famous_landmarks": [
+      "Lake Bled",
+      "Bled Island Church (Assumption)",
+      "Bled Castle",
+      "Ojstrica Viewpoint",
+      "Mala Osojnica Hike",
+      "Vintgar Gorge",
+      "Straža Bled Toboggan",
+      "Blejski Vintgar Bridge",
+      "Church of St. Martin",
+      "Cream Cake Cafés"
+    ],
+    "description": "Storybook alpine lake with island church and cliff-top castle."
+  },
+  {
+    "location_name": "Santiago",
+    "country_code": "CL",
+    "famous_landmarks": [
+      "Cerro San Cristóbal",
+      "Plaza de Armas",
+      "La Moneda Palace",
+      "Barrio Lastarria",
+      "Sky Costanera",
+      "Museum of Memory and Human Rights",
+      "Bellavista & La Chascona",
+      "Bicentenario Park",
+      "Barrio Italia",
+      "Santa Lucía Hill"
+    ],
+    "description": "Andean capital mixing modern districts with colonial plazas and culture."
+  },
+  {
+    "location_name": "Cartagena",
+    "country_code": "CO",
+    "famous_landmarks": [
+      "Walled City (Ciudad Amurallada)",
+      "Castillo San Felipe de Barajas",
+      "Getsemaní Street Art",
+      "Clock Tower Gate",
+      "Plaza Santo Domingo",
+      "Convento de la Popa",
+      "Las Bóvedas",
+      "Café del Mar Ramparts",
+      "Rosario Islands (nearby)",
+      "Bocagrande"
+    ],
+    "description": "Colorful Caribbean port with fortified walls and lively plazas."
+  },
+  {
+    "location_name": "Kingston (Blue Mountains Gate)",
+    "country_code": "JM",
+    "famous_landmarks": [
+      "Bob Marley Museum",
+      "Devon House",
+      "National Gallery of Jamaica",
+      "Blue Mountain Peak Trail",
+      "Hope Botanical Gardens",
+      "Port Royal",
+      "Lime Cay",
+      "Coronation Market",
+      "Lime Tree Farm Coffee Tours",
+      "Emancipation Park"
+    ],
+    "description": "Cultural heartbeat of Jamaica and access point to Blue Mountain coffee country."
+  },
+  {
+    "location_name": "Quito",
+    "country_code": "EC",
+    "famous_landmarks": [
+      "La Compañía de Jesús",
+      "Plaza Grande",
+      "Basílica del Voto Nacional",
+      "TelefériQo",
+      "Mitad del Mundo Monument",
+      "San Francisco Church",
+      "El Panecillo (Virgin Statue)",
+      "Calle La Ronda",
+      "Itchimbía Park",
+      "Capilla del Hombre"
+    ],
+    "description": "High-altitude capital with a beautifully preserved colonial center on the equator."
+  },
+  {
+    "location_name": "Salzburg",
+    "country_code": "AT",
+    "famous_landmarks": [
+      "Hohensalzburg Fortress",
+      "Mirabell Gardens",
+      "Mozart’s Birthplace",
+      "Salzburg Cathedral",
+      "Getreidegasse",
+      "Hellbrunn Palace & Trick Fountains",
+      "St. Peter’s Abbey",
+      "Mönchsberg Lift & Museum",
+      "Leopoldskron Palace",
+      "Untersberg Cable Car"
+    ],
+    "description": "Baroque city of music set against the Alps, Mozart’s hometown."
+  },
+  {
+    "location_name": "Rapa Nui (Easter Island - Hanga Roa)",
+    "country_code": "CL",
+    "famous_landmarks": [
+      "Ahu Tongariki",
+      "Rano Raraku Quarry",
+      "Anakena Beach",
+      "Orongo Ceremonial Village",
+      "Rano Kau Crater",
+      "Tahai Ceremonial Complex",
+      "Puna Pau",
+      "Ahu Akivi",
+      "Te Pito Kura",
+      "Ana Te Pahu Cave"
+    ],
+    "description": "Remote Polynesian island famous for enigmatic moai statues and volcanic craters."
+  },
+  {
+    "location_name": "Victoria Falls (Livingstone)",
+    "country_code": "ZM",
+    "famous_landmarks": [
+      "Victoria Falls (Mosi-oa-Tunya)",
+      "Knife-Edge Bridge",
+      "Devil’s Pool (seasonal)",
+      "Zambezi River Sunset Cruise",
+      "Livingstone Island",
+      "Helicopter Flight of Angels",
+      "Mosi-oa-Tunya National Park",
+      "Victoria Falls Bridge",
+      "Boiling Pot Trail",
+      "Mukuni Village"
+    ],
+    "description": "One of the world’s largest waterfalls, straddling Zambia and Zimbabwe."
+  },
+  {
+    "location_name": "Ngapali Beach",
+    "country_code": "MM",
+    "famous_landmarks": [
+      "Ngapali Main Beach",
+      "Pearl Island Boat Trip",
+      "Thandwe Market",
+      "Linthar Fishing Village",
+      "Z-Viewpoint Pagoda",
+      "Elephant Camp (ethical options vary)",
+      "Snorkeling Reefs",
+      "Kinmaw Pagoda",
+      "Sunset Seafood Shacks"
+    ],
+    "description": "Serene Bay of Bengal beach with palm-lined sands and fishing villages."
+  },
+  {
+    "location_name": "Lofoten Islands (Reine)",
+    "country_code": "NO",
+    "famous_landmarks": [
+      "Reinebringen Hike",
+      "Hamnøy Bridge Viewpoint",
+      "Kvalvika Beach",
+      "Nusfjord",
+      "Haukland & Uttakleiv Beaches",
+      "Svolvær Trollfjord Cruise",
+      "Henningsvær",
+      "Å Village",
+      "Rambergstranda",
+      "Lofotr Viking Museum"
+    ],
+    "description": "Dramatic Arctic archipelago with jagged peaks and colorful fishing villages."
+  },
+  {
+    "location_name": "Pamukkale (Hierapolis)",
+    "country_code": "TR",
+    "famous_landmarks": [
+      "Travertine Terraces",
+      "Hierapolis Theatre",
+      "Cleopatra’s Pool",
+      "Necropolis of Hierapolis",
+      "Frontinus Gate",
+      "St. Philip Martyrium",
+      "Pamukkale Castle",
+      "Antique Pool Museum",
+      "Sacred Pool Complex",
+      "Byzantine Church"
+    ],
+    "description": "Thermal travertine pools cascading down white cliffs beside ancient ruins."
+  },
+  {
+    "location_name": "Tulum",
+    "country_code": "MX",
+    "famous_landmarks": [
+      "Tulum Archaeological Zone",
+      "Gran Cenote",
+      "Cenote Dos Ojos",
+      "Sian Ka’an Biosphere Reserve",
+      "Tulum Beach",
+      "Coba Ruins (nearby)",
+      "Kaan Luum Lagoon",
+      "Casa Malca",
+      "Tulum Pueblo",
+      "Cenote Calavera"
+    ],
+    "description": "Riviera Maya town with cliff-top Mayan ruins and crystalline cenotes."
+  },
+  {
+    "location_name": "Gyeongju",
+    "country_code": "KR",
+    "famous_landmarks": [
+      "Bulguksa Temple",
+      "Seokguram Grotto",
+      "Tumuli Park (Daereungwon)",
+      "Anapji (Donggung Palace and Wolji Pond)",
+      "Cheomseongdae Observatory",
+      "Gyeongju National Museum",
+      "Yangdong Folk Village",
+      "Poseokjeong",
+      "Bomun Lake",
+      "Namsan Mountain Buddha Carvings"
+    ],
+    "description": "Open-air museum of Silla Kingdom relics and temples."
+  },
+  {
+    "location_name": "Inverness (Loch Ness)",
+    "country_code": "GB",
+    "famous_landmarks": [
+      "Loch Ness",
+      "Urquhart Castle",
+      "Inverness Castle Viewpoint",
+      "Culloden Battlefield (nearby)",
+      "Clava Cairns",
+      "Ness Islands",
+      "Fort George",
+      "Glen Affric",
+      "Eden Court Theatre",
+      "Inverness Cathedral"
+    ],
+    "description": "Gateway to the Scottish Highlands and myths of the Loch Ness Monster."
+  },
+  {
+    "location_name": "Chiang Mai",
+    "country_code": "TH",
+    "famous_landmarks": [
+      "Doi Suthep Temple",
+      "Old City Moats & Gates",
+      "Wat Chedi Luang",
+      "Night Bazaar",
+      "Elephant Nature Park (ethical)",
+      "Doi Inthanon National Park",
+      "Sunday Walking Street",
+      "Wat Phra Singh",
+      "Warorot Market",
+      "Mae Sa Waterfalls"
+    ],
+    "description": "Northern Thai cultural hub with temples, markets, and mountain adventures."
+  },
+  {
+    "location_name": "Montreal",
+    "country_code": "CA",
+    "famous_landmarks": [
+      "Old Montreal",
+      "Notre-Dame Basilica of Montreal",
+      "Mount Royal Park",
+      "Jean-Talon Market",
+      "Biodome & Olympic Park",
+      "Plateau Mont-Royal Murals",
+      "Atwater Market",
+      "St. Joseph’s Oratory",
+      "Underground City",
+      "Lachine Canal"
+    ],
+    "description": "Bilingual cultural capital blending European charm and North American energy."
+  },
+  {
+    "location_name": "Valparaíso",
+    "country_code": "CL",
+    "famous_landmarks": [
+      "Cerro Alegre & Cerro Concepción",
+      "Ascensores (Funiculars)",
+      "La Sebastiana (Neruda House)",
+      "Plaza Sotomayor",
+      "Museo a Cielo Abierto (Open-Air Museum)",
+      "Paseo Gervasoni",
+      "Port of Valparaíso",
+      "Calle Ecuador",
+      "Paseo 21 de Mayo",
+      "Artillería Funicular"
+    ],
+    "description": "Bohemian port city with colorful hillside murals and historic funiculars."
+  }
+]

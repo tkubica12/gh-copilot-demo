@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Addon Service
+  version: 1.0.0
+paths:
+  /addon/order:
+    post:
+      summary: Order an addon
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddonOrder'
+      responses:
+        '201':
+          description: Order placed
+  /addon/{id}:
+    get:
+      summary: Get order status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order status
+components:
+  schemas:
+    AddonOrder:
+      type: object
+      properties:
+        trip_id:
+          type: string
+        item_name:
+          type: string

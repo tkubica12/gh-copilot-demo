@@ -1,38 +1,36 @@
-# Stage 1: Build the React app
-FROM node:18-alpine AS build
+# Build stage
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
+# Copy package files
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Build the React app
+# Build the application
 RUN npm run build
 
-# Stage 2: Serve the app with Nginx
+# Production stage
 FROM nginx:alpine
 
-# Install gettext
-RUN apk add --no-cache gettext
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy the build output to Nginx's default public directory
-COPY --from=build /app/build /usr/share/nginx/html
+# Copy built assets from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
-# Expose port 80
+# Expose port
 EXPOSE 80
 
-# Set entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
-
-# Start Nginx server
+# Use custom entrypoint to generate env-config.js at runtime
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

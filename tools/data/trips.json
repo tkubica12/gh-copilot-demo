@@ -1,0 +1,3970 @@
+[
+  {
+    "trip_id": "3503f67d-cbb4-4e22-98a2-219f61679fcf",
+    "toy_id": "7c206121-b83b-4ca3-ac70-924d18e8f380",
+    "toy_name": "Monorail Snail",
+    "title": "Monorail Snail’s Santiago Skyline Scoot",
+    "description": "Monorail Snail zips along sleek rails from the colonial charm of Plaza de Armas to the shimmering halls of La Moneda Palace, waving a tiny flag at every turn. It spirals up Cerro San Cristóbal for a snail’s-eye view, slides through artsy Barrio Lastarria for colorful stickers, and twirls up Sky Costanera to touch the clouds with its little antennae. From cobblestones to skyscrapers, this shell-on-the-go explores the Andean capital with a gleeful glide and a squeaky “¡Vamos!”",
+    "location_name": "Santiago",
+    "country_code": "CL",
+    "gallery_images": [
+      {
+        "image_id": "13fe3f27-2432-44f4-b107-d749324bad74",
+        "blob_name": "13fe3f27-2432-44f4-b107-d749324bad74.jpg",
+        "landmark": "La Moneda Palace",
+        "caption": "Monorail Snail at La Moneda Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "25adf4ca-0e8c-492a-a7fd-bd9fefe720b7",
+        "blob_name": "25adf4ca-0e8c-492a-a7fd-bd9fefe720b7.jpg",
+        "landmark": "Cerro San Cristóbal",
+        "caption": "Monorail Snail at Cerro San Cristóbal",
+        "source": "generated"
+      },
+      {
+        "image_id": "9f752ba8-fbdc-46e1-b778-b4db4a267b26",
+        "blob_name": "9f752ba8-fbdc-46e1-b778-b4db4a267b26.jpg",
+        "landmark": "Bellavista & La Chascona",
+        "caption": "Monorail Snail at Bellavista & La Chascona",
+        "source": "generated"
+      },
+      {
+        "image_id": "49c68036-35aa-485e-ab6e-e71111aae600",
+        "blob_name": "49c68036-35aa-485e-ab6e-e71111aae600.jpg",
+        "landmark": "Plaza de Armas",
+        "caption": "Monorail Snail at Plaza de Armas",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "b344f21e-b50e-409c-b6e7-c795c7107e87",
+    "toy_id": "7c206121-b83b-4ca3-ac70-924d18e8f380",
+    "toy_name": "Monorail Snail",
+    "title": "Monorail Snail’s Beijing Wall-to-Wall Wondercrawl",
+    "description": "All aboard the tiny track! Monorail Snail zips past Tiananmen Square, slides through the gates of the Forbidden City, and spirals around the Temple of Heaven like a curvy noodle. With a shell-sized cable-car glide at Mutianyu on the Great Wall and a splashy loop around the breezy lakes of the Summer Palace, this little traveler will shellebrate Beijing’s grand past and zippy present in true toy-on-track style.",
+    "location_name": "Beijing",
+    "country_code": "CN",
+    "gallery_images": [
+      {
+        "image_id": "1709b705-6b0d-4578-a14c-644d2818c70f",
+        "blob_name": "1709b705-6b0d-4578-a14c-644d2818c70f.jpg",
+        "landmark": "Great Wall (Mutianyu)",
+        "caption": "Monorail Snail at Great Wall (Mutianyu)",
+        "source": "generated"
+      },
+      {
+        "image_id": "660945e6-a6a4-4931-b6c8-87822f07fb32",
+        "blob_name": "660945e6-a6a4-4931-b6c8-87822f07fb32.jpg",
+        "landmark": "Summer Palace",
+        "caption": "Monorail Snail at Summer Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "52d42449-66ff-4336-9fb3-eccf20af7f85",
+        "blob_name": "52d42449-66ff-4336-9fb3-eccf20af7f85.jpg",
+        "landmark": "Temple of Heaven",
+        "caption": "Monorail Snail at Temple of Heaven",
+        "source": "generated"
+      },
+      {
+        "image_id": "cfe924b8-1018-4c36-b968-1e70efb0782c",
+        "blob_name": "cfe924b8-1018-4c36-b968-1e70efb0782c.jpg",
+        "landmark": "Hutong Alleys",
+        "caption": "Monorail Snail at Hutong Alleys",
+        "source": "generated"
+      },
+      {
+        "image_id": "df80443d-1667-41c4-b9c4-b9d8fd4b94da",
+        "blob_name": "df80443d-1667-41c4-b9c4-b9d8fd4b94da.jpg",
+        "landmark": "Forbidden City",
+        "caption": "Monorail Snail at Forbidden City",
+        "source": "generated"
+      },
+      {
+        "image_id": "6d67a4ef-d425-4d51-9c63-d80221f2ebc3",
+        "blob_name": "6d67a4ef-d425-4d51-9c63-d80221f2ebc3.jpg",
+        "landmark": "798 Art District",
+        "caption": "Monorail Snail at 798 Art District",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "6b9f93fe-d63e-4433-ad88-77321ad42b3b",
+    "toy_id": "7c206121-b83b-4ca3-ac70-924d18e8f380",
+    "toy_name": "Monorail Snail",
+    "title": "Monorail Snail’s Jungle-Temple Trot",
+    "description": "Monorail Snail zooms along mossy stone rails, peeking at sunrise spires of Angkor Wat and grinning at the smiling faces of Bayon Temple. It wiggles through Ta Prohm’s tangled tree roots, twirls past the pink-carved magic of Banteay Srei, and does a triumphant shell-shimmy under Angkor Thom’s South Gate. With every clickety-clack, our tiny traveler collects carvings, stories, and jungle giggles!",
+    "location_name": "Angkor (Siem Reap)",
+    "country_code": "KH",
+    "gallery_images": [
+      {
+        "image_id": "12e228e2-9719-4e9e-98a1-a68cfc508678",
+        "blob_name": "12e228e2-9719-4e9e-98a1-a68cfc508678.jpg",
+        "landmark": "Ta Prohm",
+        "caption": "Monorail Snail at Ta Prohm",
+        "source": "generated"
+      },
+      {
+        "image_id": "3b70ccf7-b1f8-4a2c-9c92-d1952e3ca2fd",
+        "blob_name": "3b70ccf7-b1f8-4a2c-9c92-d1952e3ca2fd.jpg",
+        "landmark": "Bayon Temple",
+        "caption": "Monorail Snail at Bayon Temple",
+        "source": "generated"
+      },
+      {
+        "image_id": "b5857ef7-adff-4fc5-8943-b2d62a1c1b5b",
+        "blob_name": "b5857ef7-adff-4fc5-8943-b2d62a1c1b5b.jpg",
+        "landmark": "Angkor Thom South Gate",
+        "caption": "Monorail Snail at Angkor Thom South Gate",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "35296e98-b010-40a6-98f9-5ece1629f572",
+    "toy_id": "0285e37f-fdf0-4488-89d8-f3e142feeb00",
+    "toy_name": "Carry Capy",
+    "title": "Carry Capy’s Montreal Mischief & Maple Adventure",
+    "description": "Carry Capy scampers through cobblestone Old Montreal, tipping a tiny beret at the glowing Notre-Dame Basilica before riding a pocket-sized funicular up Mount Royal for skyline snuggles. At Jean-Talon Market, our snacky capy nibbles mini maple treats, then bounces to the Biodome and Olympic Park to meet penguin pals and try a pretend podium pose. It’s a bilingual bonanza where every “bonjour!” and “hello!” earns Carry Capy a new giggle and a grand capy-doodle memory.",
+    "location_name": "Montreal",
+    "country_code": "CA",
+    "gallery_images": [
+      {
+        "image_id": "0c857f52-3511-488d-a80d-fd46965664b8",
+        "blob_name": "0c857f52-3511-488d-a80d-fd46965664b8.jpg",
+        "landmark": "Notre-Dame Basilica of Montreal",
+        "caption": "Carry Capy at Notre-Dame Basilica of Montreal",
+        "source": "generated"
+      },
+      {
+        "image_id": "1acd9742-cca7-47a5-b336-67d3d6dd2c87",
+        "blob_name": "1acd9742-cca7-47a5-b336-67d3d6dd2c87.jpg",
+        "landmark": "Old Montreal",
+        "caption": "Carry Capy at Old Montreal",
+        "source": "generated"
+      },
+      {
+        "image_id": "1cd3f631-4b0e-4eb8-96d3-8e81c82bde8a",
+        "blob_name": "1cd3f631-4b0e-4eb8-96d3-8e81c82bde8a.jpg",
+        "landmark": "Jean-Talon Market",
+        "caption": "Carry Capy at Jean-Talon Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "f612f622-bda1-46f9-a3c0-21fd2f97e59d",
+        "blob_name": "f612f622-bda1-46f9-a3c0-21fd2f97e59d.jpg",
+        "landmark": "Mount Royal Park",
+        "caption": "Carry Capy at Mount Royal Park",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "0d5adcf2-88ec-4a0f-964d-89ab8934ca48",
+    "toy_id": "0285e37f-fdf0-4488-89d8-f3e142feeb00",
+    "toy_name": "Carry Capy",
+    "title": "Carry Capy’s Sun-Splashed Ngapali Nuzzle",
+    "description": "Carry Capy wiggles into the warm sands of Ngapali Main Beach, trading tiny pawprints for seashell treasures and palm-shade naps. A bobbing boat whisks our plush explorer to Pearl Island for splashy snorkel peeks, then it scampers through Thandwe Market sniffing spices and jingling bracelets before waving to friendly fishers in Linthar Village and twirling at the Z-Viewpoint Pagoda for a golden sunset spin.",
+    "location_name": "Ngapali Beach",
+    "country_code": "MM",
+    "gallery_images": [
+      {
+        "image_id": "54a4382f-4727-4110-b20c-5540ece2c453",
+        "blob_name": "54a4382f-4727-4110-b20c-5540ece2c453.jpg",
+        "landmark": "Ngapali Main Beach",
+        "caption": "Carry Capy at Ngapali Main Beach",
+        "source": "generated"
+      },
+      {
+        "image_id": "23913301-5b85-4939-8549-96bd577ee313",
+        "blob_name": "23913301-5b85-4939-8549-96bd577ee313.jpg",
+        "landmark": "Z-Viewpoint Pagoda",
+        "caption": "Carry Capy at Z-Viewpoint Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "370d7e96-72a5-452b-8504-c9dcc30b80db",
+        "blob_name": "370d7e96-72a5-452b-8504-c9dcc30b80db.jpg",
+        "landmark": "Linthar Fishing Village",
+        "caption": "Carry Capy at Linthar Fishing Village",
+        "source": "generated"
+      },
+      {
+        "image_id": "32cb4fb5-7af6-4523-baee-f9cdaf2d8132",
+        "blob_name": "32cb4fb5-7af6-4523-baee-f9cdaf2d8132.jpg",
+        "landmark": "Pearl Island Boat Trip",
+        "caption": "Carry Capy at Pearl Island Boat Trip",
+        "source": "generated"
+      },
+      {
+        "image_id": "ef289b1e-2832-4786-987d-f01a506d378d",
+        "blob_name": "ef289b1e-2832-4786-987d-f01a506d378d.jpg",
+        "landmark": "Sunset Seafood Shacks",
+        "caption": "Carry Capy at Sunset Seafood Shacks",
+        "source": "generated"
+      },
+      {
+        "image_id": "460e2f21-e401-4d09-9ace-9f2cb1064cbf",
+        "blob_name": "460e2f21-e401-4d09-9ace-9f2cb1064cbf.jpg",
+        "landmark": "Kinmaw Pagoda",
+        "caption": "Carry Capy at Kinmaw Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "1c17e1c4-4e08-42d0-ad64-0e22a22a0386",
+        "blob_name": "1c17e1c4-4e08-42d0-ad64-0e22a22a0386.jpg",
+        "landmark": "Thandwe Market",
+        "caption": "Carry Capy at Thandwe Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "d25813f8-e24e-4272-ac3f-4644ebf9db7a",
+        "blob_name": "d25813f8-e24e-4272-ac3f-4644ebf9db7a.jpg",
+        "landmark": "Snorkeling Reefs",
+        "caption": "Carry Capy at Snorkeling Reefs",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "614fd0c1-1987-4c24-b8e0-e88fbc040b52",
+    "toy_id": "0285e37f-fdf0-4488-89d8-f3e142feeb00",
+    "toy_name": "Carry Capy",
+    "title": "Carry Capy’s Phnom Penh Palace Prowl",
+    "description": "Carry Capy scampers through Phnom Penh, tail twitching at the glitter of the Royal Palace and Silver Pagoda, counting shiny tiles like treasure! With brave button-eyes, our plush explorer learns gentle lessons at Tuol Sleng and the Choeung Ek Killing Fields, then bounces back with bell chimes at Wat Phnom and mask-filled wonders at the National Museum of Cambodia. It’s a royal romp, a history hug, and a museum marvel—all in one capy-tastic Cambodian adventure!",
+    "location_name": "Phnom Penh",
+    "country_code": "KH",
+    "gallery_images": [
+      {
+        "image_id": "d99f9178-e0fa-4e8d-9a99-5fcb02aa75bf",
+        "blob_name": "d99f9178-e0fa-4e8d-9a99-5fcb02aa75bf.jpg",
+        "landmark": "Tuol Sleng Genocide Museum",
+        "caption": "Carry Capy at Tuol Sleng Genocide Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "d04f4449-9c84-44a6-a2a4-6c6326c9cb50",
+        "blob_name": "d04f4449-9c84-44a6-a2a4-6c6326c9cb50.jpg",
+        "landmark": "Choeung Ek Killing Fields",
+        "caption": "Carry Capy at Choeung Ek Killing Fields",
+        "source": "generated"
+      },
+      {
+        "image_id": "3f8ab6e7-380c-43ae-b61b-bba07f16d850",
+        "blob_name": "3f8ab6e7-380c-43ae-b61b-bba07f16d850.jpg",
+        "landmark": "Wat Phnom",
+        "caption": "Carry Capy at Wat Phnom",
+        "source": "generated"
+      },
+      {
+        "image_id": "dd2a9dc3-1af9-47b0-a95d-e168cdcd5c40",
+        "blob_name": "dd2a9dc3-1af9-47b0-a95d-e168cdcd5c40.jpg",
+        "landmark": "Royal Palace & Silver Pagoda",
+        "caption": "Carry Capy at Royal Palace & Silver Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "6d805c4c-b6aa-4244-b6a4-34340001f8d3",
+        "blob_name": "6d805c4c-b6aa-4244-b6a4-34340001f8d3.jpg",
+        "landmark": "National Museum of Cambodia",
+        "caption": "Carry Capy at National Museum of Cambodia",
+        "source": "generated"
+      },
+      {
+        "image_id": "6ee79f57-bbf2-443e-b977-5e37523caaf2",
+        "blob_name": "6ee79f57-bbf2-443e-b977-5e37523caaf2.jpg",
+        "landmark": "Central Market (Phsar Thmei)",
+        "caption": "Carry Capy at Central Market (Phsar Thmei)",
+        "source": "generated"
+      },
+      {
+        "image_id": "6e1a4a33-8f81-40c7-9d93-8fc4f438a97d",
+        "blob_name": "6e1a4a33-8f81-40c7-9d93-8fc4f438a97d.jpg",
+        "landmark": "Independence Monument",
+        "caption": "Carry Capy at Independence Monument",
+        "source": "generated"
+      },
+      {
+        "image_id": "83ede422-242f-432a-929f-4aab883500e2",
+        "blob_name": "83ede422-242f-432a-929f-4aab883500e2.jpg",
+        "landmark": "Sisowath Quay",
+        "caption": "Carry Capy at Sisowath Quay",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "07dfa28a-41c6-42d6-96f8-cb6586329d9b",
+    "toy_id": "9315b6e8-5a1b-4f49-a65d-6a187db6bdbf",
+    "toy_name": "Socktopus",
+    "title": "Socktopus’s Bangkok Bounce-About",
+    "description": "Socktopus wiggles its eight cozy toes through Bangkok’s glittering temples—peeking at emerald magic in Wat Phra Kaew, bowing to the giant Reclining Buddha at Wat Pho, and ferry-hopping to Wat Arun’s sparkly spires. Between noodle slurps and mango sticky rice munches, our soft adventurer swirls through the Grand Palace’s golden glitz and dives into the treasure maze of Chatuchak Market to find the snazziest sock-sized souvenirs. It’s a stitch-tastic, tuk-tuk-tastic romp in Thailand’s bustling capital!",
+    "location_name": "Bangkok",
+    "country_code": "TH",
+    "gallery_images": [
+      {
+        "image_id": "78700a72-9198-49f0-9e7b-f55a506e1c95",
+        "blob_name": "78700a72-9198-49f0-9e7b-f55a506e1c95.jpg",
+        "landmark": "Wat Arun",
+        "caption": "Socktopus at Wat Arun",
+        "source": "generated"
+      },
+      {
+        "image_id": "d2967b2e-3ad8-4e4b-bbe8-84846237d966",
+        "blob_name": "d2967b2e-3ad8-4e4b-bbe8-84846237d966.jpg",
+        "landmark": "Chatuchak Weekend Market",
+        "caption": "Socktopus at Chatuchak Weekend Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "1baaa8a9-37e8-40b5-ac02-6a0e45e338af",
+        "blob_name": "1baaa8a9-37e8-40b5-ac02-6a0e45e338af.jpg",
+        "landmark": "Wat Pho (Reclining Buddha)",
+        "caption": "Socktopus at Wat Pho (Reclining Buddha)",
+        "source": "generated"
+      },
+      {
+        "image_id": "9b3b0826-7b75-41b4-9500-f5218ba3b90e",
+        "blob_name": "9b3b0826-7b75-41b4-9500-f5218ba3b90e.jpg",
+        "landmark": "Grand Palace",
+        "caption": "Socktopus at Grand Palace",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "ef4520b7-77b5-4aab-a2e7-d62f62c5b21e",
+    "toy_id": "9315b6e8-5a1b-4f49-a65d-6a187db6bdbf",
+    "toy_name": "Socktopus",
+    "title": "Socktopus’s London Lights & Royal Sights",
+    "description": "Socktopus wriggles into London for a whirl of royal waves and clockwork thrills! It’ll tentacle-tip the Tower of London’s tales, blink up at Big Ben, spin with glee on the London Eye, and shuffle past treasures at the British Museum before practicing a posh curtsey at Buckingham Palace. With every squishy step, this eight-socked explorer turns the city’s theaters and streets into a stage of giggles and grandeur.",
+    "location_name": "London",
+    "country_code": "GB",
+    "gallery_images": [
+      {
+        "image_id": "6932d2d6-fd82-469d-a6e8-8784e48597f8",
+        "blob_name": "6932d2d6-fd82-469d-a6e8-8784e48597f8.jpg",
+        "landmark": "London Eye",
+        "caption": "Socktopus at London Eye",
+        "source": "generated"
+      },
+      {
+        "image_id": "6cda23f1-f215-4415-aca0-b48260c27342",
+        "blob_name": "6cda23f1-f215-4415-aca0-b48260c27342.jpg",
+        "landmark": "St Paul’s Cathedral",
+        "caption": "Socktopus at St Paul’s Cathedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "7787e62b-0ecf-4d91-acb3-e11c8d402f27",
+        "blob_name": "7787e62b-0ecf-4d91-acb3-e11c8d402f27.jpg",
+        "landmark": "Westminster Abbey",
+        "caption": "Socktopus at Westminster Abbey",
+        "source": "generated"
+      },
+      {
+        "image_id": "6a567c51-2e92-4c1e-a885-380dac5721c3",
+        "blob_name": "6a567c51-2e92-4c1e-a885-380dac5721c3.jpg",
+        "landmark": "Big Ben & Houses of Parliament",
+        "caption": "Socktopus at Big Ben & Houses of Parliament",
+        "source": "generated"
+      },
+      {
+        "image_id": "2336a746-59fb-4c4b-8f4d-2a587fb5549e",
+        "blob_name": "2336a746-59fb-4c4b-8f4d-2a587fb5549e.jpg",
+        "landmark": "Tower Bridge",
+        "caption": "Socktopus at Tower Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "75c7d579-77d2-4fa2-9c86-5ca8c9454bb2",
+        "blob_name": "75c7d579-77d2-4fa2-9c86-5ca8c9454bb2.jpg",
+        "landmark": "Buckingham Palace",
+        "caption": "Socktopus at Buckingham Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "f42ed85d-e3ab-4147-aa6b-edac4ac87d7d",
+        "blob_name": "f42ed85d-e3ab-4147-aa6b-edac4ac87d7d.jpg",
+        "landmark": "British Museum",
+        "caption": "Socktopus at British Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "eedfe36d-9a45-4652-ab11-7c72d4a1a59b",
+        "blob_name": "eedfe36d-9a45-4652-ab11-7c72d4a1a59b.jpg",
+        "landmark": "Trafalgar Square",
+        "caption": "Socktopus at Trafalgar Square",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "0f329a14-86f5-4291-9b46-276a5168c7c3",
+    "toy_id": "51b27eca-4560-4595-a113-f4db4f39be62",
+    "toy_name": "Pillowbug",
+    "title": "Pillowbug’s Taj-Tastic Agra Adventure",
+    "description": "Pillowbug flutters into Agra to bask in the moonlit glow of the Taj Mahal, the shiniest love-letter in marble! It scuttles along the red ramparts of Agra Fort, tiptoes through Mehtab Bagh for picture-perfect river views, and plays peekaboo with the Baby Taj’s delicate carvings. With a day-trip dash to Fatehpur Sikri, our cuddly explorer stamps its tiny passport with monumental memories and giggles galore.",
+    "location_name": "Agra",
+    "country_code": "IN",
+    "gallery_images": [
+      {
+        "image_id": "663113af-a5df-4089-84ca-c67eb15842c3",
+        "blob_name": "663113af-a5df-4089-84ca-c67eb15842c3.jpg",
+        "landmark": "Mehtab Bagh",
+        "caption": "Pillowbug at Mehtab Bagh",
+        "source": "generated"
+      },
+      {
+        "image_id": "e6dab4d2-0ed1-410f-bedd-83548a2dbbfe",
+        "blob_name": "e6dab4d2-0ed1-410f-bedd-83548a2dbbfe.jpg",
+        "landmark": "Fatehpur Sikri",
+        "caption": "Pillowbug at Fatehpur Sikri",
+        "source": "generated"
+      },
+      {
+        "image_id": "b0f2a599-9f48-466a-bc52-30f1384ec136",
+        "blob_name": "b0f2a599-9f48-466a-bc52-30f1384ec136.jpg",
+        "landmark": "Itmad-ud-Daula (Baby Taj)",
+        "caption": "Pillowbug at Itmad-ud-Daula (Baby Taj)",
+        "source": "generated"
+      },
+      {
+        "image_id": "f9ca409d-faef-4567-a3f3-d15b18344ed9",
+        "blob_name": "f9ca409d-faef-4567-a3f3-d15b18344ed9.jpg",
+        "landmark": "Agra Fort",
+        "caption": "Pillowbug at Agra Fort",
+        "source": "generated"
+      },
+      {
+        "image_id": "c0c5b348-1b1e-4073-af65-48bc2c8572b5",
+        "blob_name": "c0c5b348-1b1e-4073-af65-48bc2c8572b5.jpg",
+        "landmark": "Taj Mahal",
+        "caption": "Pillowbug at Taj Mahal",
+        "source": "generated"
+      },
+      {
+        "image_id": "1584f1d4-4c4c-4fa9-9198-3dcb5ad4d0ef",
+        "blob_name": "1584f1d4-4c4c-4fa9-9198-3dcb5ad4d0ef.jpg",
+        "landmark": "Akbar’s Tomb (Sikandra)",
+        "caption": "Pillowbug at Akbar’s Tomb (Sikandra)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "1aff27f2-0a27-4a60-a3e8-07fd4544c3b7",
+    "toy_id": "51b27eca-4560-4595-a113-f4db4f39be62",
+    "toy_name": "Pillowbug",
+    "title": "Pillowbug’s Kingston & Blue Mountain Bounce",
+    "description": "Pillowbug flutters into Jamaica’s cultural heartbeat, bopping to reggae vibes at the Bob Marley Museum and nibbling sweet scoops at Devon House. With tiny antennae pointing skyward, our cuddly explorer trots the Blue Mountain Peak Trail for a sunrise peek, then twirls through Hope Botanical Gardens and the National Gallery’s colors like a living paintbrush. It’s a coffee-scented, rhythm-filled romp at the Blue Mountains Gate where every leaf, beat, and bean says “Ya mon!”",
+    "location_name": "Kingston (Blue Mountains Gate)",
+    "country_code": "JM",
+    "gallery_images": [
+      {
+        "image_id": "88eae8c8-135c-4429-bac2-e40b1d7f8275",
+        "blob_name": "88eae8c8-135c-4429-bac2-e40b1d7f8275.jpg",
+        "landmark": "Port Royal",
+        "caption": "Pillowbug at Port Royal",
+        "source": "generated"
+      },
+      {
+        "image_id": "2e5f2f10-00f0-4bd4-85a8-77d1bb413d82",
+        "blob_name": "2e5f2f10-00f0-4bd4-85a8-77d1bb413d82.jpg",
+        "landmark": "Hope Botanical Gardens",
+        "caption": "Pillowbug at Hope Botanical Gardens",
+        "source": "generated"
+      },
+      {
+        "image_id": "b2c9ae43-dff8-4018-ad4c-90232955983e",
+        "blob_name": "b2c9ae43-dff8-4018-ad4c-90232955983e.jpg",
+        "landmark": "Devon House",
+        "caption": "Pillowbug at Devon House",
+        "source": "generated"
+      },
+      {
+        "image_id": "a89741d7-2572-485f-b461-a4754667d8ee",
+        "blob_name": "a89741d7-2572-485f-b461-a4754667d8ee.jpg",
+        "landmark": "Bob Marley Museum",
+        "caption": "Pillowbug at Bob Marley Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "ff6aab53-61c8-4ed1-bdf8-562867d43c60",
+        "blob_name": "ff6aab53-61c8-4ed1-bdf8-562867d43c60.jpg",
+        "landmark": "Blue Mountain Peak Trail",
+        "caption": "Pillowbug at Blue Mountain Peak Trail",
+        "source": "generated"
+      },
+      {
+        "image_id": "583ed6b4-4141-4249-8f50-47811b855613",
+        "blob_name": "583ed6b4-4141-4249-8f50-47811b855613.jpg",
+        "landmark": "Coronation Market",
+        "caption": "Pillowbug at Coronation Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "9753d87e-fc60-4c2c-8c18-f9735e8cd05c",
+        "blob_name": "9753d87e-fc60-4c2c-8c18-f9735e8cd05c.jpg",
+        "landmark": "Lime Cay",
+        "caption": "Pillowbug at Lime Cay",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "b2beaaf8-b455-4505-88f0-30df36c5a514",
+    "toy_id": "4446ec42-e5d2-469d-aad0-18db7bf2815f",
+    "toy_name": "Runway Moth",
+    "title": "Runway Moth’s Breezy Ngapali Flutter",
+    "description": "Runway Moth flutters along the silky sands of Ngapali Main Beach, hitching a tiny sail on a Pearl Island boat to chase sparkly sea breezes. It peeks at shiny shells, trades giggly stories with nets at Linthar Fishing Village, and twirls up to the Z-Viewpoint Pagoda for a sunset glow. A snack-sized swoop through Thandwe Market adds crunchy treats and colorful trinkets for a perfect beachy buzz!",
+    "location_name": "Ngapali Beach",
+    "country_code": "MM",
+    "gallery_images": [
+      {
+        "image_id": "3a849f10-e229-4b34-a901-2c4278daad31",
+        "blob_name": "3a849f10-e229-4b34-a901-2c4278daad31.jpg",
+        "landmark": "Linthar Fishing Village",
+        "caption": "Runway Moth at Linthar Fishing Village",
+        "source": "generated"
+      },
+      {
+        "image_id": "e55fdad6-38ae-4e4d-9541-608a11e75862",
+        "blob_name": "e55fdad6-38ae-4e4d-9541-608a11e75862.jpg",
+        "landmark": "Z-Viewpoint Pagoda",
+        "caption": "Runway Moth at Z-Viewpoint Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "46cee864-cb08-4742-a02e-00471b9eded9",
+        "blob_name": "46cee864-cb08-4742-a02e-00471b9eded9.jpg",
+        "landmark": "Pearl Island Boat Trip",
+        "caption": "Runway Moth at Pearl Island Boat Trip",
+        "source": "generated"
+      },
+      {
+        "image_id": "e43995a9-1280-4a49-b011-d76a87c54d96",
+        "blob_name": "e43995a9-1280-4a49-b011-d76a87c54d96.jpg",
+        "landmark": "Ngapali Main Beach",
+        "caption": "Runway Moth at Ngapali Main Beach",
+        "source": "generated"
+      },
+      {
+        "image_id": "a66df13e-3fa5-4354-b239-398c13cd423b",
+        "blob_name": "a66df13e-3fa5-4354-b239-398c13cd423b.jpg",
+        "landmark": "Thandwe Market",
+        "caption": "Runway Moth at Thandwe Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "9ef31c50-4e9c-443a-92f3-9554e05721ee",
+        "blob_name": "9ef31c50-4e9c-443a-92f3-9554e05721ee.jpg",
+        "landmark": "Sunset Seafood Shacks",
+        "caption": "Runway Moth at Sunset Seafood Shacks",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "22b43503-e090-4035-b1b9-e19faa9df760",
+    "toy_id": "4446ec42-e5d2-469d-aad0-18db7bf2815f",
+    "toy_name": "Runway Moth",
+    "title": "Runway Moth’s High-Altitude Cusco Catwalk",
+    "description": "Runway Moth flutters into the historic Inca capital, twirling past the Plaza de Armas like a tiny supermodel on a stone runway! It will bask in the golden glow of Qorikancha, zig-zag across Sacsayhuamán’s mighty walls, and play hide-and-peek in the mysterious grooves of Qenqo. After a stylish glide through the artsy San Blas District, our fashion-forward moth strikes a pose, ready for Sacred Valley breezes and Andean applause!",
+    "location_name": "Cusco",
+    "country_code": "PE",
+    "gallery_images": [
+      {
+        "image_id": "492aaab5-5fc5-4511-a5c0-a265c0951e64",
+        "blob_name": "492aaab5-5fc5-4511-a5c0-a265c0951e64.jpg",
+        "landmark": "Sacsayhuamán",
+        "caption": "Runway Moth at Sacsayhuamán",
+        "source": "generated"
+      },
+      {
+        "image_id": "646a798e-a4c1-46ab-8976-cbf2048a8430",
+        "blob_name": "646a798e-a4c1-46ab-8976-cbf2048a8430.jpg",
+        "landmark": "Qorikancha (Temple of the Sun)",
+        "caption": "Runway Moth at Qorikancha (Temple of the Sun)",
+        "source": "generated"
+      },
+      {
+        "image_id": "1baebd30-22ec-4499-8946-a52186d57c70",
+        "blob_name": "1baebd30-22ec-4499-8946-a52186d57c70.jpg",
+        "landmark": "San Pedro Market",
+        "caption": "Runway Moth at San Pedro Market",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "5b706f0e-da89-4562-9e0a-c45729794250",
+    "toy_id": "4446ec42-e5d2-469d-aad0-18db7bf2815f",
+    "toy_name": "Runway Moth",
+    "title": "Runway Moth’s Balloon-Breezed Göreme Adventure",
+    "description": "Runway Moth flutters into Cappadocia to hitch a sunrise hot-air balloon ride, brushing wings against cotton-candy skies and surreal volcanic spires. It will peek into cave churches at the Göreme Open-Air Museum, play hide-and-seek among the Fairy Chimneys in Pasabag, and zip up to Uchisar Castle for a cliff-top wing stretch—then dive into Derinkuyu’s underground maze before a scenic swoop through the lush Ihlara Valley. A breezy, bobbing, cave-hopping escapade perfect for a stylish little moth on the move!",
+    "location_name": "Göreme, Cappadocia",
+    "country_code": "TR",
+    "gallery_images": [
+      {
+        "image_id": "ad391f86-277c-45c7-a34e-aa0940e2573e",
+        "blob_name": "ad391f86-277c-45c7-a34e-aa0940e2573e.jpg",
+        "landmark": "Fairy Chimneys (Pasabag)",
+        "caption": "Runway Moth at Fairy Chimneys (Pasabag)",
+        "source": "generated"
+      },
+      {
+        "image_id": "8964fd61-8ca4-4c26-ae66-551e45f090f0",
+        "blob_name": "8964fd61-8ca4-4c26-ae66-551e45f090f0.jpg",
+        "landmark": "Derinkuyu Underground City",
+        "caption": "Runway Moth at Derinkuyu Underground City",
+        "source": "generated"
+      },
+      {
+        "image_id": "5eb6b885-1866-4269-b316-d7d4708675a8",
+        "blob_name": "5eb6b885-1866-4269-b316-d7d4708675a8.jpg",
+        "landmark": "Uchisar Castle",
+        "caption": "Runway Moth at Uchisar Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "36b56561-594b-4166-9e0a-718539491276",
+        "blob_name": "36b56561-594b-4166-9e0a-718539491276.jpg",
+        "landmark": "Göreme Open-Air Museum",
+        "caption": "Runway Moth at Göreme Open-Air Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "96aac51b-8a30-414a-bbc8-12d30a50138d",
+        "blob_name": "96aac51b-8a30-414a-bbc8-12d30a50138d.jpg",
+        "landmark": "Ihlara Valley",
+        "caption": "Runway Moth at Ihlara Valley",
+        "source": "generated"
+      },
+      {
+        "image_id": "ef613669-e283-4517-8ae9-d1f221c7b27a",
+        "blob_name": "ef613669-e283-4517-8ae9-d1f221c7b27a.jpg",
+        "landmark": "Love Valley",
+        "caption": "Runway Moth at Love Valley",
+        "source": "generated"
+      },
+      {
+        "image_id": "3a1de730-af08-4319-9f4a-6ca294176271",
+        "blob_name": "3a1de730-af08-4319-9f4a-6ca294176271.jpg",
+        "landmark": "Red & Rose Valleys",
+        "caption": "Runway Moth at Red & Rose Valleys",
+        "source": "generated"
+      },
+      {
+        "image_id": "e1d625c0-b23f-4e65-b2cb-d4755c5ef5e5",
+        "blob_name": "e1d625c0-b23f-4e65-b2cb-d4755c5ef5e5.jpg",
+        "landmark": "Hot Air Balloon Flights",
+        "caption": "Runway Moth at Hot Air Balloon Flights",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "c686f30e-7cc0-44ed-8c5e-e7bfc70596c2",
+    "toy_id": "8538a286-e88c-41eb-927a-f1deb5fc12e9",
+    "toy_name": "Passport Possum",
+    "title": "Passport Possum’s Dubrovnik Marble Dash",
+    "description": "Passport Possum scampers along the gleaming Stradun, tail swishing like a knight’s plume as he peeks through baroque doorways and squeaks hello to stone lions. He tiptoes atop the mighty City Walls for sky-high views, then plays hide-and-peek behind Fort Lovrijenac’s battlements before practicing polite possum curtsies in the elegant Rector’s Palace and Dubrovnik Cathedral. By sunset, our pint-sized traveler is a wall-walking, marble-street master of Adriatic adventure!",
+    "location_name": "Dubrovnik",
+    "country_code": "HR",
+    "gallery_images": [
+      {
+        "image_id": "2f27a230-7d05-4cb1-b4e9-b5800dbc93e1",
+        "blob_name": "2f27a230-7d05-4cb1-b4e9-b5800dbc93e1.jpg",
+        "landmark": "Cable Car to Srđ",
+        "caption": "Passport Possum at Cable Car to Srđ",
+        "source": "generated"
+      },
+      {
+        "image_id": "b01b4718-39cc-41b4-b58b-490dad69d116",
+        "blob_name": "b01b4718-39cc-41b4-b58b-490dad69d116.jpg",
+        "landmark": "Stradun",
+        "caption": "Passport Possum at Stradun",
+        "source": "generated"
+      },
+      {
+        "image_id": "75f6c320-c485-4b2d-a215-2da0da413594",
+        "blob_name": "75f6c320-c485-4b2d-a215-2da0da413594.jpg",
+        "landmark": "Fort Lovrijenac",
+        "caption": "Passport Possum at Fort Lovrijenac",
+        "source": "generated"
+      },
+      {
+        "image_id": "7be0f606-1bdf-4952-a052-2e1483d08582",
+        "blob_name": "7be0f606-1bdf-4952-a052-2e1483d08582.jpg",
+        "landmark": "Franciscan Monastery",
+        "caption": "Passport Possum at Franciscan Monastery",
+        "source": "generated"
+      },
+      {
+        "image_id": "d164fed4-1f53-4a4d-94b0-d34abdefcc29",
+        "blob_name": "d164fed4-1f53-4a4d-94b0-d34abdefcc29.jpg",
+        "landmark": "Rector’s Palace",
+        "caption": "Passport Possum at Rector’s Palace",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "107b58bd-b138-40c5-9fa1-4ebb7bc85eb5",
+    "toy_id": "8538a286-e88c-41eb-927a-f1deb5fc12e9",
+    "toy_name": "Passport Possum",
+    "title": "Passport Possum’s Amsterdam Amble",
+    "description": "Passport Possum pedals a tiny bike along the glittering Canal Belt, tail swishing as they squeak past historic bridges and houseboats. They marvel at masterpieces in the Rijksmuseum and Van Gogh Museum, whisper a brave hello at the Anne Frank House, and twirl in Dam Square where pigeons become parade partners. With cheese nibbles, stroopwafel crumbs, and canal reflections, it’s a paws-itively Dutch adventure!",
+    "location_name": "Amsterdam",
+    "country_code": "NL",
+    "gallery_images": [
+      {
+        "image_id": "76ac4cbd-f040-4456-9a5f-c661a34085ca",
+        "blob_name": "76ac4cbd-f040-4456-9a5f-c661a34085ca.jpg",
+        "landmark": "Van Gogh Museum",
+        "caption": "Passport Possum at Van Gogh Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "67b36d77-a0dd-4478-a00c-3ce3240bbb3a",
+        "blob_name": "67b36d77-a0dd-4478-a00c-3ce3240bbb3a.jpg",
+        "landmark": "Dam Square",
+        "caption": "Passport Possum at Dam Square",
+        "source": "generated"
+      },
+      {
+        "image_id": "fe58e7b8-7c93-4a92-addf-9058fc7f7ff5",
+        "blob_name": "fe58e7b8-7c93-4a92-addf-9058fc7f7ff5.jpg",
+        "landmark": "A’DAM Lookout",
+        "caption": "Passport Possum at A’DAM Lookout",
+        "source": "generated"
+      },
+      {
+        "image_id": "10c38edd-ab3c-4895-9e6b-fc2747d99dea",
+        "blob_name": "10c38edd-ab3c-4895-9e6b-fc2747d99dea.jpg",
+        "landmark": "Canal Belt (Grachtengordel)",
+        "caption": "Passport Possum at Canal Belt (Grachtengordel)",
+        "source": "generated"
+      },
+      {
+        "image_id": "0b9dd68e-e94f-44a8-b851-e023087f8bb3",
+        "blob_name": "0b9dd68e-e94f-44a8-b851-e023087f8bb3.jpg",
+        "landmark": "Rijksmuseum",
+        "caption": "Passport Possum at Rijksmuseum",
+        "source": "generated"
+      },
+      {
+        "image_id": "8ea9dd63-9618-4155-9afd-2bc8d9b990e8",
+        "blob_name": "8ea9dd63-9618-4155-9afd-2bc8d9b990e8.jpg",
+        "landmark": "Bloemenmarkt",
+        "caption": "Passport Possum at Bloemenmarkt",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "d5e5c759-24b3-4a8c-aa59-cca93dd62f3b",
+    "toy_id": "1bedaff6-2da5-4941-9870-f5990a22ac2e",
+    "toy_name": "Snack Yeti",
+    "title": "Snack Yeti’s Dazzling Dubai Dash",
+    "description": "Snack Yeti zooms through a glittering desert playground, nibbling treats while peeking from the sky-high Burj Khalifa! It splashes to the rhythm of the Dubai Fountain, rides a monorail to the palm-shaped Palm Jumeirah, and window-shops giant goodies at Dubai Mall before posing for a luxe selfie by the sail-shaped Burj Al Arab. This toy-sized adventure is all sparkle, snacks, and skyscraper giggles!",
+    "location_name": "Dubai",
+    "country_code": "AE",
+    "gallery_images": [
+      {
+        "image_id": "439ace89-683a-427b-84fe-0422dadb10c0",
+        "blob_name": "439ace89-683a-427b-84fe-0422dadb10c0.jpg",
+        "landmark": "Burj Khalifa",
+        "caption": "Snack Yeti at Burj Khalifa",
+        "source": "generated"
+      },
+      {
+        "image_id": "5472e185-2e91-4782-9ab3-e65c8bde65e5",
+        "blob_name": "5472e185-2e91-4782-9ab3-e65c8bde65e5.jpg",
+        "landmark": "Burj Al Arab",
+        "caption": "Snack Yeti at Burj Al Arab",
+        "source": "generated"
+      },
+      {
+        "image_id": "b7f171da-679e-4283-963e-645eeb1a1669",
+        "blob_name": "b7f171da-679e-4283-963e-645eeb1a1669.jpg",
+        "landmark": "Dubai Fountain",
+        "caption": "Snack Yeti at Dubai Fountain",
+        "source": "generated"
+      },
+      {
+        "image_id": "0c6d6d37-eb54-4645-8211-22e0d6d1edfa",
+        "blob_name": "0c6d6d37-eb54-4645-8211-22e0d6d1edfa.jpg",
+        "landmark": "Dubai Mall",
+        "caption": "Snack Yeti at Dubai Mall",
+        "source": "generated"
+      },
+      {
+        "image_id": "98b14c68-f0f5-41cf-9bf6-5866333cdbfd",
+        "blob_name": "98b14c68-f0f5-41cf-9bf6-5866333cdbfd.jpg",
+        "landmark": "Palm Jumeirah",
+        "caption": "Snack Yeti at Palm Jumeirah",
+        "source": "generated"
+      },
+      {
+        "image_id": "15d22546-fa8c-4c3c-ac47-53cef9ca0907",
+        "blob_name": "15d22546-fa8c-4c3c-ac47-53cef9ca0907.jpg",
+        "landmark": "Al Fahidi Historic District",
+        "caption": "Snack Yeti at Al Fahidi Historic District",
+        "source": "generated"
+      },
+      {
+        "image_id": "8172da47-753a-4bcb-97b2-5ea1d34f63a6",
+        "blob_name": "8172da47-753a-4bcb-97b2-5ea1d34f63a6.jpg",
+        "landmark": "Dubai Marina",
+        "caption": "Snack Yeti at Dubai Marina",
+        "source": "generated"
+      },
+      {
+        "image_id": "40073e7f-f514-47d7-b93a-688dd49eb5d0",
+        "blob_name": "40073e7f-f514-47d7-b93a-688dd49eb5d0.jpg",
+        "landmark": "Museum of the Future",
+        "caption": "Snack Yeti at Museum of the Future",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "6408d75c-35a3-4484-bb4c-f6fd3f8b696f",
+    "toy_id": "820d75dd-34aa-4f2c-897b-18dacfc98e01",
+    "toy_name": "Lanyotter",
+    "title": "Lanyotter’s Ubud Jungle Jamboree",
+    "description": "Lanyotter wiggles through emerald Tegallalang Rice Terraces, surfing leaf-rafts and squeaking hello to scarecrow guardians. In the Sacred Monkey Forest, our plush explorer trades giggles with cheeky macaques, then paddles along the Campuhan Ridge breeze for sunset sparkle. A royal wave at Ubud Palace and a peek into the mysterious Goa Gajah cave round out a day of otterly awesome Balinese magic!",
+    "location_name": "Ubud, Bali",
+    "country_code": "ID",
+    "gallery_images": [
+      {
+        "image_id": "2f6ecc27-2cdf-48f2-8b76-d5f8077a4182",
+        "blob_name": "2f6ecc27-2cdf-48f2-8b76-d5f8077a4182.jpg",
+        "landmark": "Campuhan Ridge Walk",
+        "caption": "Lanyotter at Campuhan Ridge Walk",
+        "source": "generated"
+      },
+      {
+        "image_id": "cd1c0a2c-abfe-4602-b052-ff10e2e682ab",
+        "blob_name": "cd1c0a2c-abfe-4602-b052-ff10e2e682ab.jpg",
+        "landmark": "Tegallalang Rice Terraces",
+        "caption": "Lanyotter at Tegallalang Rice Terraces",
+        "source": "generated"
+      },
+      {
+        "image_id": "d3ab956b-3c56-4508-b1e5-c1cec7ba2d48",
+        "blob_name": "d3ab956b-3c56-4508-b1e5-c1cec7ba2d48.jpg",
+        "landmark": "Ubud Palace",
+        "caption": "Lanyotter at Ubud Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "0dca3f8b-bae3-4da3-9bfd-d98ce643240c",
+        "blob_name": "0dca3f8b-bae3-4da3-9bfd-d98ce643240c.jpg",
+        "landmark": "Goa Gajah",
+        "caption": "Lanyotter at Goa Gajah",
+        "source": "generated"
+      },
+      {
+        "image_id": "e401b3ef-b67e-4101-a1f9-6e9a52b482c5",
+        "blob_name": "e401b3ef-b67e-4101-a1f9-6e9a52b482c5.jpg",
+        "landmark": "Sacred Monkey Forest",
+        "caption": "Lanyotter at Sacred Monkey Forest",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "ab70ef90-b64a-4e37-beb4-909a77edda0b",
+    "toy_id": "b03142ce-81a0-4415-bbaf-d657b7480a1f",
+    "toy_name": "Carousel Crab",
+    "title": "Carousel Crab’s Serengeti Spin in Seronera",
+    "description": "Carousel Crab scuttles onto the golden savannah, hitching tiny rides on safari jeeps to chase the thunder of the Great Migration along the Seronera Valley! It plays hide-and-peek among the Moru Kopjes, waves a claw at lions and leopards, and splashes at the Grumeti River while daydreaming of crater-sized adventures at nearby Ngorongoro. Every whirl is a wild, toy-sized safari twirl under endless, sun-sparkled skies!",
+    "location_name": "Serengeti (Seronera)",
+    "country_code": "TZ",
+    "gallery_images": [
+      {
+        "image_id": "d34cb70a-2000-458f-bdcc-2983acf5eba2",
+        "blob_name": "d34cb70a-2000-458f-bdcc-2983acf5eba2.jpg",
+        "landmark": "Grumeti River",
+        "caption": "Carousel Crab at Grumeti River",
+        "source": "generated"
+      },
+      {
+        "image_id": "af71b3c9-cc3e-4b01-bef8-01cea8616755",
+        "blob_name": "af71b3c9-cc3e-4b01-bef8-01cea8616755.jpg",
+        "landmark": "Retina Hippo Pool",
+        "caption": "Carousel Crab at Retina Hippo Pool",
+        "source": "generated"
+      },
+      {
+        "image_id": "6054a136-cd0a-4e93-b1ed-fb66844c0edc",
+        "blob_name": "6054a136-cd0a-4e93-b1ed-fb66844c0edc.jpg",
+        "landmark": "Seronera Valley",
+        "caption": "Carousel Crab at Seronera Valley",
+        "source": "generated"
+      },
+      {
+        "image_id": "e04df1cf-289a-4cf5-838d-1c1c9419b5e6",
+        "blob_name": "e04df1cf-289a-4cf5-838d-1c1c9419b5e6.jpg",
+        "landmark": "Moru Kopjes",
+        "caption": "Carousel Crab at Moru Kopjes",
+        "source": "generated"
+      },
+      {
+        "image_id": "b0a8440c-29dc-4ae4-8875-8104cfed3f2d",
+        "blob_name": "b0a8440c-29dc-4ae4-8875-8104cfed3f2d.jpg",
+        "landmark": "Great Migration Routes",
+        "caption": "Carousel Crab at Great Migration Routes",
+        "source": "generated"
+      },
+      {
+        "image_id": "5781bcb3-e852-4c82-a54f-8f0645ccc757",
+        "blob_name": "5781bcb3-e852-4c82-a54f-8f0645ccc757.jpg",
+        "landmark": "Naabi Hill Gate",
+        "caption": "Carousel Crab at Naabi Hill Gate",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "d911244f-5867-4ada-bba3-702fcb64bd33",
+    "toy_id": "b03142ce-81a0-4415-bbaf-d657b7480a1f",
+    "toy_name": "Carousel Crab",
+    "title": "Carousel Crab’s Fez-tastic Medina Maze Adventure",
+    "description": "Carousel Crab scuttles into the winding alleys of Fes el-Bali, clicking claws with delight at glittering zellige tiles and jingling brass lanterns. Our brave toy scholar peeks into Al Quaraouiyine University, waves at dye-swirling vats in Chouara Tannery, and spins through Bab Bou Jeloud’s blue gate before tip-tapping to the ornate Bou Inania Madrasa. Every cobblestone becomes a carousel as Crab collects tiny trinkets and tall tales from the magical medina!",
+    "location_name": "Fez",
+    "country_code": "MA",
+    "gallery_images": [
+      {
+        "image_id": "66776efc-9de7-4b10-8e4a-5d2c3d7cc01c",
+        "blob_name": "66776efc-9de7-4b10-8e4a-5d2c3d7cc01c.jpg",
+        "landmark": "Borj Nord",
+        "caption": "Carousel Crab at Borj Nord",
+        "source": "generated"
+      },
+      {
+        "image_id": "521fb2d5-9bfb-46d5-adbe-bf397928b569",
+        "blob_name": "521fb2d5-9bfb-46d5-adbe-bf397928b569.jpg",
+        "landmark": "Chouara Tannery",
+        "caption": "Carousel Crab at Chouara Tannery",
+        "source": "generated"
+      },
+      {
+        "image_id": "30475650-7592-4537-b5d6-bf12ff7f7095",
+        "blob_name": "30475650-7592-4537-b5d6-bf12ff7f7095.jpg",
+        "landmark": "Al Quaraouiyine University",
+        "caption": "Carousel Crab at Al Quaraouiyine University",
+        "source": "generated"
+      },
+      {
+        "image_id": "0a3e7fd7-f4fd-4d60-9a1b-c70137b8299e",
+        "blob_name": "0a3e7fd7-f4fd-4d60-9a1b-c70137b8299e.jpg",
+        "landmark": "Bab Bou Jeloud",
+        "caption": "Carousel Crab at Bab Bou Jeloud",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "8f84325a-2afe-4b30-b29d-a66d79cf10b9",
+    "toy_id": "6d330a9e-8f0d-4bb5-9d1d-1336e6d98d13",
+    "toy_name": "Gate Gnome",
+    "title": "Gate Gnome’s Siwan Sandcapade",
+    "description": "Gate Gnome toddles into the shimmering Siwa Oasis, hopping from the ancient Shali Fortress to the whispering Temple of the Oracle of Amun where secrets tickle his tiny ears. He splashes in Cleopatra’s Bath, skips across Fatnas Island’s palm-framed shores, and slides down the Great Sand Sea dunes like a pint-sized desert surfer, all while learning Berber tales beside sparkling salt lakes. It’s a sun-sparkled safari of history, magic, and sandy giggles!",
+    "location_name": "Siwa Oasis",
+    "country_code": "EG",
+    "gallery_images": [
+      {
+        "image_id": "4cb964c0-478a-4c3f-a2d9-5507209adebe",
+        "blob_name": "4cb964c0-478a-4c3f-a2d9-5507209adebe.jpg",
+        "landmark": "Fatnas Island",
+        "caption": "Gate Gnome at Fatnas Island",
+        "source": "generated"
+      },
+      {
+        "image_id": "7cd7dca7-75f0-491c-a42e-ba58df7a2ced",
+        "blob_name": "7cd7dca7-75f0-491c-a42e-ba58df7a2ced.jpg",
+        "landmark": "Shali Fortress",
+        "caption": "Gate Gnome at Shali Fortress",
+        "source": "generated"
+      },
+      {
+        "image_id": "7779f245-6843-476e-b3b0-b1706dd31aac",
+        "blob_name": "7779f245-6843-476e-b3b0-b1706dd31aac.jpg",
+        "landmark": "Great Sand Sea Dunes",
+        "caption": "Gate Gnome at Great Sand Sea Dunes",
+        "source": "generated"
+      },
+      {
+        "image_id": "e4dbcb51-9b49-4d0d-8520-a7cf9072540d",
+        "blob_name": "e4dbcb51-9b49-4d0d-8520-a7cf9072540d.jpg",
+        "landmark": "Temple of the Oracle of Amun",
+        "caption": "Gate Gnome at Temple of the Oracle of Amun",
+        "source": "generated"
+      },
+      {
+        "image_id": "8f8bff36-5601-47f3-b055-b5f1b5946f51",
+        "blob_name": "8f8bff36-5601-47f3-b055-b5f1b5946f51.jpg",
+        "landmark": "Cleopatra’s Bath (Ain Guba)",
+        "caption": "Gate Gnome at Cleopatra’s Bath (Ain Guba)",
+        "source": "generated"
+      },
+      {
+        "image_id": "324ec17b-b39f-422e-9eaf-0f15c65f25a2",
+        "blob_name": "324ec17b-b39f-422e-9eaf-0f15c65f25a2.jpg",
+        "landmark": "Gebel al-Mawta (Mountain of the Dead)",
+        "caption": "Gate Gnome at Gebel al-Mawta (Mountain of the Dead)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "a000b3e1-7421-4edc-a01c-7bbede57c673",
+    "toy_id": "6d330a9e-8f0d-4bb5-9d1d-1336e6d98d13",
+    "toy_name": "Gate Gnome",
+    "title": "Gate Gnome’s Havana Hop-and-Bop",
+    "description": "Gate Gnome zips through Havana like a tiny time traveler, hitching rides on gleaming classic cars and waving at the waves along the Malecón. He salsa-shuffles through Old Havana’s cobbled streets, peeks up at grand El Capitolio, rings an imaginary bell in Plaza de la Catedral, and stands guard at Castillo del Morro like the bravest little lighthouse buddy. It’s a colorful, music-filled adventure where every plaza feels like a playground!",
+    "location_name": "Havana",
+    "country_code": "CU",
+    "gallery_images": [
+      {
+        "image_id": "eacd2c92-8dfb-4b26-b27b-daf8449e2149",
+        "blob_name": "eacd2c92-8dfb-4b26-b27b-daf8449e2149.jpg",
+        "landmark": "Malecón",
+        "caption": "Gate Gnome at Malecón",
+        "source": "generated"
+      },
+      {
+        "image_id": "10b9d015-58b1-4fe4-bf0f-f25f2023d525",
+        "blob_name": "10b9d015-58b1-4fe4-bf0f-f25f2023d525.jpg",
+        "landmark": "Plaza de la Catedral",
+        "caption": "Gate Gnome at Plaza de la Catedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "9f265988-67ab-46bd-bb34-a8069748c1aa",
+        "blob_name": "9f265988-67ab-46bd-bb34-a8069748c1aa.jpg",
+        "landmark": "Fusterlandia",
+        "caption": "Gate Gnome at Fusterlandia",
+        "source": "generated"
+      },
+      {
+        "image_id": "f61b7f09-13c0-4eaf-af5f-e85fe3e29441",
+        "blob_name": "f61b7f09-13c0-4eaf-af5f-e85fe3e29441.jpg",
+        "landmark": "El Capitolio",
+        "caption": "Gate Gnome at El Capitolio",
+        "source": "generated"
+      },
+      {
+        "image_id": "42f0759b-06d2-4895-a791-3ff24f032879",
+        "blob_name": "42f0759b-06d2-4895-a791-3ff24f032879.jpg",
+        "landmark": "Castillo del Morro",
+        "caption": "Gate Gnome at Castillo del Morro",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "d4dbf5f2-91be-4f8e-a30e-d4e75a1437ba",
+    "toy_id": "008e8e68-49d5-4a36-b8e1-4f501de77fef",
+    "toy_name": "Jetway Mole",
+    "title": "Jetway Mole’s Queenstown Thrill-Quill Quest",
+    "description": "Jetway Mole burrows into the adventure capital, zipping past Lake Wakatipu’s sparkling shores and popping up to admire The Remarkables’ snowy crowns. A whoosh up the Skyline Gondola leads to squeaks of delight, then it’s paws-in-the-air on the Shotover Jet for splashy speed! For the grand finale, our intrepid toy takes a day-trip to Milford Sound, nose twitching at towering waterfalls and toy-sized fjord magic.",
+    "location_name": "Queenstown",
+    "country_code": "NZ",
+    "gallery_images": [
+      {
+        "image_id": "6d09354b-e53f-4475-a98d-6c137eee1cbe",
+        "blob_name": "6d09354b-e53f-4475-a98d-6c137eee1cbe.jpg",
+        "landmark": "The Remarkables",
+        "caption": "Jetway Mole at The Remarkables",
+        "source": "generated"
+      },
+      {
+        "image_id": "86b144bd-1977-46a8-b8fc-f1d018bf12cc",
+        "blob_name": "86b144bd-1977-46a8-b8fc-f1d018bf12cc.jpg",
+        "landmark": "Lake Wakatipu",
+        "caption": "Jetway Mole at Lake Wakatipu",
+        "source": "generated"
+      },
+      {
+        "image_id": "676637f9-619e-4ded-9898-47426814b494",
+        "blob_name": "676637f9-619e-4ded-9898-47426814b494.jpg",
+        "landmark": "Skyline Gondola",
+        "caption": "Jetway Mole at Skyline Gondola",
+        "source": "generated"
+      },
+      {
+        "image_id": "01d113a8-6447-4c19-84ed-dcbb6c56c90e",
+        "blob_name": "01d113a8-6447-4c19-84ed-dcbb6c56c90e.jpg",
+        "landmark": "Bungy at Kawarau Bridge",
+        "caption": "Jetway Mole at Bungy at Kawarau Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "6e033142-c86f-44db-9435-b1306387876f",
+        "blob_name": "6e033142-c86f-44db-9435-b1306387876f.jpg",
+        "landmark": "Arrowtown",
+        "caption": "Jetway Mole at Arrowtown",
+        "source": "generated"
+      },
+      {
+        "image_id": "c9cf9bba-5ac1-4235-bd75-36ef1bd093cd",
+        "blob_name": "c9cf9bba-5ac1-4235-bd75-36ef1bd093cd.jpg",
+        "landmark": "Glenorchy Scenic Drive",
+        "caption": "Jetway Mole at Glenorchy Scenic Drive",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "4cc71d9a-13f4-4d31-bc34-a5cea01d134e",
+    "toy_id": "008e8e68-49d5-4a36-b8e1-4f501de77fef",
+    "toy_name": "Jetway Mole",
+    "title": "Jetway Mole’s Venetian Voyage",
+    "description": "Jetway Mole scurries aboard a gondola, whisking past shimmering palazzi on the Grand Canal while waving a tiny paw at the legendary Rialto Bridge. With button eyes wide, Jetway explores St. Mark’s Basilica’s glittering mosaics, tiptoes through the storied halls of the Doge’s Palace, and lets out a squeaky sigh while crossing the dreamy Bridge of Sighs. It’s a lagoon-side romp of art, arches, and toy-sized triumphs in the most romantic canal city!",
+    "location_name": "Venice",
+    "country_code": "IT",
+    "gallery_images": [
+      {
+        "image_id": "d32050ba-7f7c-4761-9cc5-faf4ac17b7d9",
+        "blob_name": "d32050ba-7f7c-4761-9cc5-faf4ac17b7d9.jpg",
+        "landmark": "Burano Island",
+        "caption": "Jetway Mole at Burano Island",
+        "source": "generated"
+      },
+      {
+        "image_id": "7ee57e03-1d54-4ba0-9243-0f4a6af2aa63",
+        "blob_name": "7ee57e03-1d54-4ba0-9243-0f4a6af2aa63.jpg",
+        "landmark": "Rialto Bridge",
+        "caption": "Jetway Mole at Rialto Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "368eb2c6-8620-4b6b-a706-a7c11aaf1b78",
+        "blob_name": "368eb2c6-8620-4b6b-a706-a7c11aaf1b78.jpg",
+        "landmark": "Bridge of Sighs",
+        "caption": "Jetway Mole at Bridge of Sighs",
+        "source": "generated"
+      },
+      {
+        "image_id": "cfe4fdc2-d432-4e47-b6fd-bae9efaa9255",
+        "blob_name": "cfe4fdc2-d432-4e47-b6fd-bae9efaa9255.jpg",
+        "landmark": "Teatro La Fenice",
+        "caption": "Jetway Mole at Teatro La Fenice",
+        "source": "generated"
+      },
+      {
+        "image_id": "773b9f61-e879-44a1-bd74-9047aa31e6f7",
+        "blob_name": "773b9f61-e879-44a1-bd74-9047aa31e6f7.jpg",
+        "landmark": "St. Mark’s Basilica",
+        "caption": "Jetway Mole at St. Mark’s Basilica",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "34942e91-9ce0-4194-a4a5-47f21e35181e",
+    "toy_id": "008e8e68-49d5-4a36-b8e1-4f501de77fef",
+    "toy_name": "Jetway Mole",
+    "title": "Jetway Mole’s Galápagos Giggle-Glide",
+    "description": "From a cozy burrow base in Puerto Ayora, Jetway Mole scampers to the Charles Darwin Research Station to meet giant tortoise “neighbors” and compare shell sizes with a giggle. He digs for beachy treasures at Tortuga Bay, pops up by Los Gemelos craters to peek into the earth’s secrets, and hop-skips onto boat rides to Bartolomé Island’s Pinnacle Rock and North Seymour, where blue-footed boobies show off their silly dance moves for a very VIP toy visitor.",
+    "location_name": "Puerto Ayora, Galápagos",
+    "country_code": "EC",
+    "gallery_images": [
+      {
+        "image_id": "11765e2e-4e50-45bc-96c0-48cb42c4195e",
+        "blob_name": "11765e2e-4e50-45bc-96c0-48cb42c4195e.jpg",
+        "landmark": "Tortuga Bay",
+        "caption": "Jetway Mole at Tortuga Bay",
+        "source": "generated"
+      },
+      {
+        "image_id": "52e3c353-c08d-4113-9048-c93c4e0d8099",
+        "blob_name": "52e3c353-c08d-4113-9048-c93c4e0d8099.jpg",
+        "landmark": "Los Gemelos Craters",
+        "caption": "Jetway Mole at Los Gemelos Craters",
+        "source": "generated"
+      },
+      {
+        "image_id": "85feb598-8242-4c6f-9377-651807f25773",
+        "blob_name": "85feb598-8242-4c6f-9377-651807f25773.jpg",
+        "landmark": "North Seymour (blue-footed boobies)",
+        "caption": "Jetway Mole at North Seymour (blue-footed boobies)",
+        "source": "generated"
+      },
+      {
+        "image_id": "59ac6415-117d-41f6-97d4-73ea8500f285",
+        "blob_name": "59ac6415-117d-41f6-97d4-73ea8500f285.jpg",
+        "landmark": "Charles Darwin Research Station",
+        "caption": "Jetway Mole at Charles Darwin Research Station",
+        "source": "generated"
+      },
+      {
+        "image_id": "74d396cd-db1e-4fe0-8d9e-e173e6c30536",
+        "blob_name": "74d396cd-db1e-4fe0-8d9e-e173e6c30536.jpg",
+        "landmark": "Bartolomé Island (Pinnacle Rock)",
+        "caption": "Jetway Mole at Bartolomé Island (Pinnacle Rock)",
+        "source": "generated"
+      },
+      {
+        "image_id": "aec788c6-cd0a-4766-9527-d3550b6a47f5",
+        "blob_name": "aec788c6-cd0a-4766-9527-d3550b6a47f5.jpg",
+        "landmark": "Kicker Rock",
+        "caption": "Jetway Mole at Kicker Rock",
+        "source": "generated"
+      },
+      {
+        "image_id": "2934d734-48fd-442a-9125-412fbff2509d",
+        "blob_name": "2934d734-48fd-442a-9125-412fbff2509d.jpg",
+        "landmark": "Las Grietas",
+        "caption": "Jetway Mole at Las Grietas",
+        "source": "generated"
+      },
+      {
+        "image_id": "afaa637c-7ffe-467c-9614-af44631e7038",
+        "blob_name": "afaa637c-7ffe-467c-9614-af44631e7038.jpg",
+        "landmark": "El Chato Tortoise Reserve",
+        "caption": "Jetway Mole at El Chato Tortoise Reserve",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "b3f68417-f82e-4377-afea-061198249f49",
+    "toy_id": "13d17a80-3ae4-411b-9e46-4374f0002665",
+    "toy_name": "Orbit Opossum",
+    "title": "Orbit Opossum’s Fez-tastic Medina Maze Quest",
+    "description": "Orbit Opossum scampers through the winding lanes of Fes el-Bali, tail twitching as tiny paws collect dazzling crafts and shiny trinkets. They peek into Al Quaraouiyine University to ‘study’ squeaks of wisdom, tiptoe past the colorful vats of Chouara Tannery, and pose for a grand toy-portrait at Bab Bou Jeloud before practicing pocket-sized prayers of pattern at Bou Inania Madrasa. It’s a swirl of scents, tiles, and treasure hunts perfect for an intrepid opossum explorer!",
+    "location_name": "Fez (Fes)",
+    "country_code": "MA",
+    "gallery_images": [
+      {
+        "image_id": "e9a4410a-5a13-4ca4-86f4-e155be19e0e8",
+        "blob_name": "e9a4410a-5a13-4ca4-86f4-e155be19e0e8.jpg",
+        "landmark": "Bab Bou Jeloud",
+        "caption": "Orbit Opossum at Bab Bou Jeloud",
+        "source": "generated"
+      },
+      {
+        "image_id": "73cb41b1-4ce3-437d-b366-93e118271157",
+        "blob_name": "73cb41b1-4ce3-437d-b366-93e118271157.jpg",
+        "landmark": "Bou Inania Madrasa",
+        "caption": "Orbit Opossum at Bou Inania Madrasa",
+        "source": "generated"
+      },
+      {
+        "image_id": "a36e6215-e882-4350-ad99-78f14e08bb49",
+        "blob_name": "a36e6215-e882-4350-ad99-78f14e08bb49.jpg",
+        "landmark": "Jnan Sbil Garden",
+        "caption": "Orbit Opossum at Jnan Sbil Garden",
+        "source": "generated"
+      },
+      {
+        "image_id": "b6918954-8507-4cc7-80e8-a130566d3ef7",
+        "blob_name": "b6918954-8507-4cc7-80e8-a130566d3ef7.jpg",
+        "landmark": "Seffarine Square",
+        "caption": "Orbit Opossum at Seffarine Square",
+        "source": "generated"
+      },
+      {
+        "image_id": "8ba0de36-17df-4e8c-a04f-0abab6853cc3",
+        "blob_name": "8ba0de36-17df-4e8c-a04f-0abab6853cc3.jpg",
+        "landmark": "Chouara Tannery",
+        "caption": "Orbit Opossum at Chouara Tannery",
+        "source": "generated"
+      },
+      {
+        "image_id": "3acf9802-6f60-4809-bf37-7b5ff67406eb",
+        "blob_name": "3acf9802-6f60-4809-bf37-7b5ff67406eb.jpg",
+        "landmark": "Al Quaraouiyine University",
+        "caption": "Orbit Opossum at Al Quaraouiyine University",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "d3aca213-27c8-454c-b30d-c61c55e1905b",
+    "toy_id": "9dc85d7b-574c-4a94-99f9-bd65b38eaeb0",
+    "toy_name": "Overhead Owl",
+    "title": "Overhead Owl’s Sky-High Dubai Soar",
+    "description": "Overhead Owl flutters into Dubai’s glittering skyline, perching atop the mighty Burj Khalifa to hoot hello to the desert sun! With wing-tips twirling over the Palm Jumeirah, this curious toy glides past the Dubai Fountain’s dancing waters, swoops through the mega-playground of Dubai Mall, and winks at the sail-shaped Burj Al Arab for a luxe feather-fluff. It’s a whirlwind of sparkle, swoop, and skyscraper-sized fun!",
+    "location_name": "Dubai",
+    "country_code": "AE",
+    "gallery_images": [
+      {
+        "image_id": "b650629b-51fa-4ff1-b8fa-37c780237dcf",
+        "blob_name": "b650629b-51fa-4ff1-b8fa-37c780237dcf.jpg",
+        "landmark": "Burj Khalifa",
+        "caption": "Overhead Owl at Burj Khalifa",
+        "source": "generated"
+      },
+      {
+        "image_id": "397f3c22-37fe-485f-80fe-13c356d3f30b",
+        "blob_name": "397f3c22-37fe-485f-80fe-13c356d3f30b.jpg",
+        "landmark": "Palm Jumeirah",
+        "caption": "Overhead Owl at Palm Jumeirah",
+        "source": "generated"
+      },
+      {
+        "image_id": "b5477903-cb32-4d08-adee-8cca417a9ab2",
+        "blob_name": "b5477903-cb32-4d08-adee-8cca417a9ab2.jpg",
+        "landmark": "Al Fahidi Historic District",
+        "caption": "Overhead Owl at Al Fahidi Historic District",
+        "source": "generated"
+      },
+      {
+        "image_id": "f430cee0-3a74-4ea7-840b-7124b916ad53",
+        "blob_name": "f430cee0-3a74-4ea7-840b-7124b916ad53.jpg",
+        "landmark": "Burj Al Arab",
+        "caption": "Overhead Owl at Burj Al Arab",
+        "source": "generated"
+      },
+      {
+        "image_id": "e4394423-841b-4887-98b2-9ed294f51226",
+        "blob_name": "e4394423-841b-4887-98b2-9ed294f51226.jpg",
+        "landmark": "Dubai Marina",
+        "caption": "Overhead Owl at Dubai Marina",
+        "source": "generated"
+      },
+      {
+        "image_id": "76571efa-46f6-41ee-bfa8-e56d3f5ce4d9",
+        "blob_name": "76571efa-46f6-41ee-bfa8-e56d3f5ce4d9.jpg",
+        "landmark": "Museum of the Future",
+        "caption": "Overhead Owl at Museum of the Future",
+        "source": "generated"
+      },
+      {
+        "image_id": "4d8b7879-0915-4eaa-9c3d-084aab0647d7",
+        "blob_name": "4d8b7879-0915-4eaa-9c3d-084aab0647d7.jpg",
+        "landmark": "Dubai Frame",
+        "caption": "Overhead Owl at Dubai Frame",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "c5888c72-5e73-43a6-9778-23292ea57298",
+    "toy_id": "9dc85d7b-574c-4a94-99f9-bd65b38eaeb0",
+    "toy_name": "Overhead Owl",
+    "title": "Overhead Owl’s Breathtaking Bled Soar",
+    "description": "Overhead Owl flutters above the sapphire shimmer of Lake Bled, hooting happily at the tiny island church like a fairytale jewel in the water. With a swoop past the cliff-top Bled Castle and a victorious glide to the Ojstrica and Mala Osojnica viewpoints, our feathery toy explorer snaps sky-high selfies and counts boats like twinkling beetles below. It’s a lakeside legend in miniature, where every breeze feels like a wing-powered whoosh of wonder!",
+    "location_name": "Bled",
+    "country_code": "SI",
+    "gallery_images": [
+      {
+        "image_id": "299840a8-6799-447f-814e-2489e0e98cd0",
+        "blob_name": "299840a8-6799-447f-814e-2489e0e98cd0.jpg",
+        "landmark": "Ojstrica Viewpoint",
+        "caption": "Overhead Owl at Ojstrica Viewpoint",
+        "source": "generated"
+      },
+      {
+        "image_id": "a8562828-a4e8-4519-b5b3-6eb9c7f3fd2e",
+        "blob_name": "a8562828-a4e8-4519-b5b3-6eb9c7f3fd2e.jpg",
+        "landmark": "Lake Bled",
+        "caption": "Overhead Owl at Lake Bled",
+        "source": "generated"
+      },
+      {
+        "image_id": "3a66b50d-6dd0-4696-8111-a8849820a091",
+        "blob_name": "3a66b50d-6dd0-4696-8111-a8849820a091.jpg",
+        "landmark": "Vintgar Gorge",
+        "caption": "Overhead Owl at Vintgar Gorge",
+        "source": "generated"
+      },
+      {
+        "image_id": "89d5794a-d84e-4c8a-9396-39d6a3c26772",
+        "blob_name": "89d5794a-d84e-4c8a-9396-39d6a3c26772.jpg",
+        "landmark": "Bled Island Church (Assumption)",
+        "caption": "Overhead Owl at Bled Island Church (Assumption)",
+        "source": "generated"
+      },
+      {
+        "image_id": "518d57ce-9da1-4ea1-a101-d95bf450bfea",
+        "blob_name": "518d57ce-9da1-4ea1-a101-d95bf450bfea.jpg",
+        "landmark": "Bled Castle",
+        "caption": "Overhead Owl at Bled Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "51488b0a-4026-4e30-8b0f-2e188b56e0bb",
+        "blob_name": "51488b0a-4026-4e30-8b0f-2e188b56e0bb.jpg",
+        "landmark": "Cream Cake Cafés",
+        "caption": "Overhead Owl at Cream Cake Cafés",
+        "source": "generated"
+      },
+      {
+        "image_id": "7a7bf8a7-480a-48e2-95b5-3777759b65e8",
+        "blob_name": "7a7bf8a7-480a-48e2-95b5-3777759b65e8.jpg",
+        "landmark": "Straža Bled Toboggan",
+        "caption": "Overhead Owl at Straža Bled Toboggan",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "0732ac02-42ff-4639-a14b-6ede63184a6c",
+    "toy_id": "9dc85d7b-574c-4a94-99f9-bd65b38eaeb0",
+    "toy_name": "Overhead Owl",
+    "title": "Overhead Owl’s Dubrovnik Sky-High Soar",
+    "description": "Overhead Owl flutters above Dubrovnik’s gleaming marble Stradun, peeking over the mighty City Walls like a feathery lookout. With a swoop past Fort Lovrijenac and a curious blink at the baroque beauty of Rector’s Palace and Dubrovnik Cathedral, our toy explorer hoots with delight at every sun-sparkled stone. By day it’s a rooftop glide, by dusk it’s a lantern-lit perch—perfect for an owl-eye view of the Adriatic sparkle!",
+    "location_name": "Dubrovnik",
+    "country_code": "HR",
+    "gallery_images": [
+      {
+        "image_id": "2203f53a-0a38-4281-847f-8bfaf7857505",
+        "blob_name": "2203f53a-0a38-4281-847f-8bfaf7857505.jpg",
+        "landmark": "City Walls",
+        "caption": "Overhead Owl at City Walls",
+        "source": "generated"
+      },
+      {
+        "image_id": "cef39fdb-e838-4238-a49e-af0f5c73fbf3",
+        "blob_name": "cef39fdb-e838-4238-a49e-af0f5c73fbf3.jpg",
+        "landmark": "Stradun",
+        "caption": "Overhead Owl at Stradun",
+        "source": "generated"
+      },
+      {
+        "image_id": "8c6a6bd9-5fec-4c4b-ae9d-55f0e8bcb36a",
+        "blob_name": "8c6a6bd9-5fec-4c4b-ae9d-55f0e8bcb36a.jpg",
+        "landmark": "Rector’s Palace",
+        "caption": "Overhead Owl at Rector’s Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "299ddaae-8ee3-4898-8801-d3bf604cc7ed",
+        "blob_name": "299ddaae-8ee3-4898-8801-d3bf604cc7ed.jpg",
+        "landmark": "Fort Lovrijenac",
+        "caption": "Overhead Owl at Fort Lovrijenac",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "1487c2a7-b1b2-46e6-b6d4-9ac6e08b8391",
+    "toy_id": "e6c22f96-4123-4b14-9844-4808b5124639",
+    "toy_name": "Monorail Marmoset",
+    "title": "Monorail Marmoset’s Siwan Safari Splash",
+    "description": "Monorail Marmoset zooms into the desert to explore Siwa’s ancient secrets, squeaking atop Shali Fortress like a tiny rail-riding ranger. It consults the Temple of the Oracle of Amun for toy-sized wisdom, cannonballs into Cleopatra’s Bath with bubbly giggles, and glides past mirror-bright salt lakes to Fatnas Island for a sunset shimmy. Finally, it whooshes down the Great Sand Sea dunes, treating every sandy swoop like a miniature monorail track!",
+    "location_name": "Siwa Oasis",
+    "country_code": "EG",
+    "gallery_images": [
+      {
+        "image_id": "5262b77a-d411-4d21-8a12-1f91da06646c",
+        "blob_name": "5262b77a-d411-4d21-8a12-1f91da06646c.jpg",
+        "landmark": "Great Sand Sea Dunes",
+        "caption": "Monorail Marmoset at Great Sand Sea Dunes",
+        "source": "generated"
+      },
+      {
+        "image_id": "cf90545a-ad93-4c7a-be95-9f0238d80869",
+        "blob_name": "cf90545a-ad93-4c7a-be95-9f0238d80869.jpg",
+        "landmark": "Cleopatra’s Bath (Ain Guba)",
+        "caption": "Monorail Marmoset at Cleopatra’s Bath (Ain Guba)",
+        "source": "generated"
+      },
+      {
+        "image_id": "f12b7435-4896-4d75-a738-49d96bf716aa",
+        "blob_name": "f12b7435-4896-4d75-a738-49d96bf716aa.jpg",
+        "landmark": "Shali Fortress",
+        "caption": "Monorail Marmoset at Shali Fortress",
+        "source": "generated"
+      },
+      {
+        "image_id": "a79fa6cb-6e3c-489a-bc8e-314c2d6cc1c6",
+        "blob_name": "a79fa6cb-6e3c-489a-bc8e-314c2d6cc1c6.jpg",
+        "landmark": "Temple of the Oracle of Amun",
+        "caption": "Monorail Marmoset at Temple of the Oracle of Amun",
+        "source": "generated"
+      },
+      {
+        "image_id": "6a879926-1111-468a-a21c-e45cda78154d",
+        "blob_name": "6a879926-1111-468a-a21c-e45cda78154d.jpg",
+        "landmark": "Fatnas Island",
+        "caption": "Monorail Marmoset at Fatnas Island",
+        "source": "generated"
+      },
+      {
+        "image_id": "a403a259-6c19-48b7-a4f3-c55bda5078ad",
+        "blob_name": "a403a259-6c19-48b7-a4f3-c55bda5078ad.jpg",
+        "landmark": "Salt Lakes",
+        "caption": "Monorail Marmoset at Salt Lakes",
+        "source": "generated"
+      },
+      {
+        "image_id": "b529df9a-1c42-4b57-aa80-739bae90c37e",
+        "blob_name": "b529df9a-1c42-4b57-aa80-739bae90c37e.jpg",
+        "landmark": "Gebel al-Mawta (Mountain of the Dead)",
+        "caption": "Monorail Marmoset at Gebel al-Mawta (Mountain of the Dead)",
+        "source": "generated"
+      },
+      {
+        "image_id": "d465ca68-f2a8-4b8f-aa85-9292adb0e093",
+        "blob_name": "d465ca68-f2a8-4b8f-aa85-9292adb0e093.jpg",
+        "landmark": "Bir Wahed Hot Springs",
+        "caption": "Monorail Marmoset at Bir Wahed Hot Springs",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "60dd6455-e038-4a47-a8c4-28bbe13b7885",
+    "toy_id": "e6c22f96-4123-4b14-9844-4808b5124639",
+    "toy_name": "Monorail Marmoset",
+    "title": "Monorail Marmoset’s Parisian Whirlwind",
+    "description": "All aboard! Monorail Marmoset zips through the City of Light, riding imaginary rails from the twinkling Eiffel Tower to the art-tastic Louvre where tiny paws wave at Mona Lisa. After a triumphant loop around the Arc de Triomphe, our plush pioneer glides past Notre-Dame’s gargoyles and climbs to Sacré-Cœur for a high-altitude squeak, ending with a celebratory croissant crumb dance on a café chair.",
+    "location_name": "Paris",
+    "country_code": "FR",
+    "gallery_images": [
+      {
+        "image_id": "35dce31b-9a40-42c4-b4eb-5d9faf13355b",
+        "blob_name": "35dce31b-9a40-42c4-b4eb-5d9faf13355b.jpg",
+        "landmark": "Eiffel Tower",
+        "caption": "Monorail Marmoset at Eiffel Tower",
+        "source": "generated"
+      },
+      {
+        "image_id": "6c0004c4-bc56-4a2a-95f2-aea6fb6e0b75",
+        "blob_name": "6c0004c4-bc56-4a2a-95f2-aea6fb6e0b75.jpg",
+        "landmark": "Louvre Museum",
+        "caption": "Monorail Marmoset at Louvre Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "eee97fef-dfe8-40fc-8a71-68c4571033b0",
+        "blob_name": "eee97fef-dfe8-40fc-8a71-68c4571033b0.jpg",
+        "landmark": "Notre-Dame Cathedral",
+        "caption": "Monorail Marmoset at Notre-Dame Cathedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "d9f1876b-5671-40ab-8c28-84d6cad487bc",
+        "blob_name": "d9f1876b-5671-40ab-8c28-84d6cad487bc.jpg",
+        "landmark": "Sacré-Cœur Basilica",
+        "caption": "Monorail Marmoset at Sacré-Cœur Basilica",
+        "source": "generated"
+      },
+      {
+        "image_id": "3615be5f-a111-4582-94d5-4e4bfd47500b",
+        "blob_name": "3615be5f-a111-4582-94d5-4e4bfd47500b.jpg",
+        "landmark": "Arc de Triomphe",
+        "caption": "Monorail Marmoset at Arc de Triomphe",
+        "source": "generated"
+      },
+      {
+        "image_id": "5f2b3957-6be8-4557-95d0-36534bdfe4b1",
+        "blob_name": "5f2b3957-6be8-4557-95d0-36534bdfe4b1.jpg",
+        "landmark": "Palace of Versailles",
+        "caption": "Monorail Marmoset at Palace of Versailles",
+        "source": "generated"
+      },
+      {
+        "image_id": "8efadac9-7c8f-4085-b213-cb3dc516d571",
+        "blob_name": "8efadac9-7c8f-4085-b213-cb3dc516d571.jpg",
+        "landmark": "Pont Alexandre III",
+        "caption": "Monorail Marmoset at Pont Alexandre III",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "853bbd1b-b59a-4431-9bc9-749065afc160",
+    "toy_id": "e6c22f96-4123-4b14-9844-4808b5124639",
+    "toy_name": "Monorail Marmoset",
+    "title": "Monorail Marmoset’s Montréal Mélange",
+    "description": "Clackety-clack! Monorail Marmoset zips into Montréal to nibble maple treats at Jean‑Talon Market, swing through Old Montréal’s cobblestone charm, and marvel at the glowing blues of the Notre‑Dame Basilica. After a peek at penguins in the Biodome and a whoosh up Mount Royal for skyline views, our tiny traveler chatters “bonjour/hello” to this bilingual wonderland with tail-twirling excitement!",
+    "location_name": "Montreal",
+    "country_code": "CA",
+    "gallery_images": [
+      {
+        "image_id": "41f31da6-1768-4a7d-9fce-d4352b646df9",
+        "blob_name": "41f31da6-1768-4a7d-9fce-d4352b646df9.jpg",
+        "landmark": "Lachine Canal",
+        "caption": "Monorail Marmoset at Lachine Canal",
+        "source": "generated"
+      },
+      {
+        "image_id": "223b4cb9-50a3-4c5e-a628-f04858b910bc",
+        "blob_name": "223b4cb9-50a3-4c5e-a628-f04858b910bc.jpg",
+        "landmark": "Mount Royal Park",
+        "caption": "Monorail Marmoset at Mount Royal Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "3f20f3a5-cc3f-4ed9-b20e-b547c3fc9acd",
+        "blob_name": "3f20f3a5-cc3f-4ed9-b20e-b547c3fc9acd.jpg",
+        "landmark": "Jean-Talon Market",
+        "caption": "Monorail Marmoset at Jean-Talon Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "7dd6dbbf-5f16-4d1f-81c9-34d6140aa1b7",
+        "blob_name": "7dd6dbbf-5f16-4d1f-81c9-34d6140aa1b7.jpg",
+        "landmark": "Notre-Dame Basilica of Montreal",
+        "caption": "Monorail Marmoset at Notre-Dame Basilica of Montreal",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "495795d8-d750-49a8-b6be-a1d32b61537c",
+    "toy_id": "2d985187-2ad3-4eff-9680-68e6bc59f113",
+    "toy_name": "Carousel Corgi",
+    "title": "Carousel Corgi’s Montréal Merry-Go-Round",
+    "description": "Carousel Corgi prances through cobblestoned Old Montréal, wagging at the grand Notre‑Dame Basilica before zooming up Mount Royal for a tail-windy skyline peek. Sniffing out tasty treats at Jean‑Talon Market and bouncing through Biodome & Olympic Park, this playful pup swaps “bonjour” and “hello” as it spins between European charm and North American zing!",
+    "location_name": "Montreal",
+    "country_code": "CA",
+    "gallery_images": [
+      {
+        "image_id": "e2af964f-51ed-4fac-a64e-c7cf51fddc84",
+        "blob_name": "e2af964f-51ed-4fac-a64e-c7cf51fddc84.jpg",
+        "landmark": "Jean-Talon Market",
+        "caption": "Carousel Corgi at Jean-Talon Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "02adbf3b-e9fa-4ed1-b6b4-f44cfc0faece",
+        "blob_name": "02adbf3b-e9fa-4ed1-b6b4-f44cfc0faece.jpg",
+        "landmark": "Mount Royal Park",
+        "caption": "Carousel Corgi at Mount Royal Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "401f5eb6-db69-408f-bfe6-75cabe85457c",
+        "blob_name": "401f5eb6-db69-408f-bfe6-75cabe85457c.jpg",
+        "landmark": "Notre-Dame Basilica of Montreal",
+        "caption": "Carousel Corgi at Notre-Dame Basilica of Montreal",
+        "source": "generated"
+      },
+      {
+        "image_id": "91cef7c9-9f22-426f-8180-ce5fc8c7748f",
+        "blob_name": "91cef7c9-9f22-426f-8180-ce5fc8c7748f.jpg",
+        "landmark": "Old Montreal",
+        "caption": "Carousel Corgi at Old Montreal",
+        "source": "generated"
+      },
+      {
+        "image_id": "2eca321f-ab5e-4fca-a748-7bc66942f01e",
+        "blob_name": "2eca321f-ab5e-4fca-a748-7bc66942f01e.jpg",
+        "landmark": "Lachine Canal",
+        "caption": "Carousel Corgi at Lachine Canal",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "f81737c0-a41d-4499-abae-4db3c108cf37",
+    "toy_id": "4cf66f58-e9e3-4bf5-8b6d-a9b4b05f483b",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Chiang Mai Temple-Trek Adventure",
+    "description": "Queue Quokka hops through Chiang Mai’s Old City gates, bouncing from Wat Chedi Luang to the sparkling Doi Suthep with paws poised for panoramic selfies. At night, this pocket-sized explorer zigzags the Night Bazaar for tiny trinkets and tasty toy-sized treats, then cheers on gentle giants at the ethical Elephant Nature Park. It’s a mountain-meets-market romp packed with culture, lanterns, and quokka-level grins!",
+    "location_name": "Chiang Mai",
+    "country_code": "TH",
+    "gallery_images": [
+      {
+        "image_id": "72dc7d6e-accd-479f-8dbe-ba9a23d36ae7",
+        "blob_name": "72dc7d6e-accd-479f-8dbe-ba9a23d36ae7.jpg",
+        "landmark": "Wat Chedi Luang",
+        "caption": "Queue Quokka at Wat Chedi Luang",
+        "source": "generated"
+      },
+      {
+        "image_id": "3aa66ee1-286b-4fc6-b6d0-6ab772041d4f",
+        "blob_name": "3aa66ee1-286b-4fc6-b6d0-6ab772041d4f.jpg",
+        "landmark": "Doi Inthanon National Park",
+        "caption": "Queue Quokka at Doi Inthanon National Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "8a0db51f-533a-4bd5-aa6e-38b11a493edf",
+        "blob_name": "8a0db51f-533a-4bd5-aa6e-38b11a493edf.jpg",
+        "landmark": "Warorot Market",
+        "caption": "Queue Quokka at Warorot Market",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "3045e902-3c9e-48c4-b74f-cdb852c5ad6a",
+    "toy_id": "4cf66f58-e9e3-4bf5-8b6d-a9b4b05f483b",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Fez-tastic Medina Maze Mission",
+    "description": "Queue Quokka hops into the winding lanes of Fes el-Bali, sniffing out colorful crafts and following spice-scented trails to Bab Bou Jeloud’s dazzling blue gate. Our plush explorer peeks over vats at the Chouara Tannery, learns legendary lessons at Al Quaraouiyine University, and twirls through the ornate tiles of Bou Inania Madrasa—collecting tiny trinkets and big stories along the way. It’s a pocket-sized quest through Morocco’s most magical maze of learning and leather!",
+    "location_name": "Fez",
+    "country_code": "MA",
+    "gallery_images": [
+      {
+        "image_id": "0c09b545-d937-411e-9854-1f491498dcc9",
+        "blob_name": "0c09b545-d937-411e-9854-1f491498dcc9.jpg",
+        "landmark": "Bab Bou Jeloud",
+        "caption": "Queue Quokka at Bab Bou Jeloud",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "a84d3d05-ca97-49fc-9942-2302e07a1352",
+    "toy_id": "6d793282-456f-4fe1-aa6c-99eb1636d3f7",
+    "toy_name": "Jetset Gecko",
+    "title": "Jetset Gecko’s Creekside Treasure Dash",
+    "description": "Jetset Gecko skitters along the banks of Dubai Creek, hopping onto a bobbing abra to zip between Deira’s glittering Gold Souk and the fragrant Spice Souk like a tiny explorer on a shiny scavenger hunt. In Bur Dubai, our gecko pal peeks into the Al Fahidi Fort at the Dubai Museum, then tiptoes through Al Seef’s heritage lanes, playing hide-and-seek with dhow shadows and the modern skyline. It’s a twinkly blend of old-world charm and skyscraper sparkle—perfect for a daring, pocket-sized adventurer!",
+    "location_name": "Dubai Creek (Deira & Bur Dubai)",
+    "country_code": "AE",
+    "gallery_images": [
+      {
+        "image_id": "f6c91955-4e14-439a-be36-1fca54aac772",
+        "blob_name": "f6c91955-4e14-439a-be36-1fca54aac772.jpg",
+        "landmark": "Al Fahidi Fort (Dubai Museum)",
+        "caption": "Jetset Gecko at Al Fahidi Fort (Dubai Museum)",
+        "source": "generated"
+      },
+      {
+        "image_id": "fde7bd87-8b68-40a4-b88b-b4dced2c5fa4",
+        "blob_name": "fde7bd87-8b68-40a4-b88b-b4dced2c5fa4.jpg",
+        "landmark": "Abra Boat Ride",
+        "caption": "Jetset Gecko at Abra Boat Ride",
+        "source": "generated"
+      },
+      {
+        "image_id": "fd737891-617a-45bb-8930-38e12e979fe6",
+        "blob_name": "fd737891-617a-45bb-8930-38e12e979fe6.jpg",
+        "landmark": "Al Seef Heritage Area",
+        "caption": "Jetset Gecko at Al Seef Heritage Area",
+        "source": "generated"
+      },
+      {
+        "image_id": "f51802ac-a5f9-4f72-869a-0bd5753e10f8",
+        "blob_name": "f51802ac-a5f9-4f72-869a-0bd5753e10f8.jpg",
+        "landmark": "Gold Souk",
+        "caption": "Jetset Gecko at Gold Souk",
+        "source": "generated"
+      },
+      {
+        "image_id": "177e867e-ce2c-4cee-9c23-b0d57ae89cb7",
+        "blob_name": "177e867e-ce2c-4cee-9c23-b0d57ae89cb7.jpg",
+        "landmark": "Textile Souk",
+        "caption": "Jetset Gecko at Textile Souk",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "92c2c8b9-4b52-4773-ab7b-6c40e469bb6b",
+    "toy_id": "6d793282-456f-4fe1-aa6c-99eb1636d3f7",
+    "toy_name": "Jetset Gecko",
+    "title": "Jetset Gecko’s Neon Nibble Hong Kong Adventure",
+    "description": "Jetset Gecko zips across the harbor on the Star Ferry, tail-tapping to the rhythm of the city’s dazzling skyline before wiggling up Victoria Peak for toy-sized panorama poses. Between kung-fu hops at Man Mo Temple and noodle-slurping sprints along the Tsim Sha Tsui Promenade, our gecko glides to the Big Buddha for a peaceful gecko bow and mountain-trail mischief. It’s an East-meets-West feast of sights, snacks, and skyscraper sparkle—perfect for a pocket-sized explorer!",
+    "location_name": "Hong Kong",
+    "country_code": "HK",
+    "gallery_images": [
+      {
+        "image_id": "24ba93d6-d632-4a08-a68d-a4f9ebf70233",
+        "blob_name": "24ba93d6-d632-4a08-a68d-a4f9ebf70233.jpg",
+        "landmark": "Dragon’s Back Trail",
+        "caption": "Jetset Gecko at Dragon’s Back Trail",
+        "source": "generated"
+      },
+      {
+        "image_id": "84bd33ac-f3df-47a8-9684-2bba703d851c",
+        "blob_name": "84bd33ac-f3df-47a8-9684-2bba703d851c.jpg",
+        "landmark": "Man Mo Temple",
+        "caption": "Jetset Gecko at Man Mo Temple",
+        "source": "generated"
+      },
+      {
+        "image_id": "893720eb-9417-4781-ab17-d2f492524581",
+        "blob_name": "893720eb-9417-4781-ab17-d2f492524581.jpg",
+        "landmark": "Big Buddha (Tian Tan)",
+        "caption": "Jetset Gecko at Big Buddha (Tian Tan)",
+        "source": "generated"
+      },
+      {
+        "image_id": "45aaae4b-ebca-4fa0-9b6b-54985f6eba58",
+        "blob_name": "45aaae4b-ebca-4fa0-9b6b-54985f6eba58.jpg",
+        "landmark": "Victoria Peak",
+        "caption": "Jetset Gecko at Victoria Peak",
+        "source": "generated"
+      },
+      {
+        "image_id": "9eb61595-aaae-4cd1-8924-0dc8481edd6f",
+        "blob_name": "9eb61595-aaae-4cd1-8924-0dc8481edd6f.jpg",
+        "landmark": "Temple Street Night Market",
+        "caption": "Jetset Gecko at Temple Street Night Market",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "fae16c96-3481-417f-9862-29f812cdd15d",
+    "toy_id": "3fec353c-b5b4-4e68-8b19-a01cebd21284",
+    "toy_name": "Armrest Alpaca",
+    "title": "Armrest Alpaca’s Havana Hooray!",
+    "description": "Armrest Alpaca trots into Havana where classic cars rumble like friendly herds and salsa rhythms make hooves tap! They’ll peek around Old Havana’s cobblestone corners, wave to waves along the Malecón, and pose for a plushy portrait by El Capitolio. With a lighthouse lookout at Castillo del Morro and a jaunty jig in Plaza de la Catedral, this alpaca’s adventure is stitched with sunshine, music, and colorful colonial charm!",
+    "location_name": "Havana",
+    "country_code": "CU",
+    "gallery_images": [
+      {
+        "image_id": "d20a06a0-d56f-4024-b28b-225ad7adca60",
+        "blob_name": "d20a06a0-d56f-4024-b28b-225ad7adca60.jpg",
+        "landmark": "Plaza de la Catedral",
+        "caption": "Armrest Alpaca at Plaza de la Catedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "85764c3d-dff7-4b35-9139-c1892e4c10e6",
+        "blob_name": "85764c3d-dff7-4b35-9139-c1892e4c10e6.jpg",
+        "landmark": "El Capitolio",
+        "caption": "Armrest Alpaca at El Capitolio",
+        "source": "generated"
+      },
+      {
+        "image_id": "fade9e98-a867-4338-95de-d8fabd3ea88d",
+        "blob_name": "fade9e98-a867-4338-95de-d8fabd3ea88d.jpg",
+        "landmark": "Old Havana (Habana Vieja)",
+        "caption": "Armrest Alpaca at Old Havana (Habana Vieja)",
+        "source": "generated"
+      },
+      {
+        "image_id": "b10f9e92-b45c-4c29-be08-af3b295b12d9",
+        "blob_name": "b10f9e92-b45c-4c29-be08-af3b295b12d9.jpg",
+        "landmark": "Malecón",
+        "caption": "Armrest Alpaca at Malecón",
+        "source": "generated"
+      },
+      {
+        "image_id": "e9d4dbb9-0492-4e89-99df-12108dbea679",
+        "blob_name": "e9d4dbb9-0492-4e89-99df-12108dbea679.jpg",
+        "landmark": "Castillo del Morro",
+        "caption": "Armrest Alpaca at Castillo del Morro",
+        "source": "generated"
+      },
+      {
+        "image_id": "f8ee2e42-e6ee-4400-9619-122c13f52049",
+        "blob_name": "f8ee2e42-e6ee-4400-9619-122c13f52049.jpg",
+        "landmark": "Plaza Vieja",
+        "caption": "Armrest Alpaca at Plaza Vieja",
+        "source": "generated"
+      },
+      {
+        "image_id": "a3adbca2-b4d1-4c94-b055-79c2ab38f6d4",
+        "blob_name": "a3adbca2-b4d1-4c94-b055-79c2ab38f6d4.jpg",
+        "landmark": "Fusterlandia",
+        "caption": "Armrest Alpaca at Fusterlandia",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "d0c68f25-a0fa-4f38-92f2-ed7036383ea6",
+    "toy_id": "3fec353c-b5b4-4e68-8b19-a01cebd21284",
+    "toy_name": "Armrest Alpaca",
+    "title": "Armrest Alpaca’s Spice-Path Safari",
+    "description": "Armrest Alpaca trots through the twisty Stone Town alleys, sniffing cinnamon breezes and peeking at carved doors taller than a stack of plush pillows. They marvel at the House of Wonders, prance by the Old Fort, and nibble imaginary snacks at Forodhani Gardens while humming “Don’t Stop Me Now” near Freddie Mercury’s birthplace. With turquoise tides winking nearby, every cobblestone becomes a mini-adventure for a curious, cushion-loving alpaca!",
+    "location_name": "Zanzibar (Stone Town)",
+    "country_code": "TZ",
+    "gallery_images": [
+      {
+        "image_id": "74435e35-55fd-4df4-aab8-675e3fff137f",
+        "blob_name": "74435e35-55fd-4df4-aab8-675e3fff137f.jpg",
+        "landmark": "Forodhani Gardens",
+        "caption": "Armrest Alpaca at Forodhani Gardens",
+        "source": "generated"
+      },
+      {
+        "image_id": "a2c90d7d-6777-4a96-ae44-ec725366a60b",
+        "blob_name": "a2c90d7d-6777-4a96-ae44-ec725366a60b.jpg",
+        "landmark": "House of Wonders",
+        "caption": "Armrest Alpaca at House of Wonders",
+        "source": "generated"
+      },
+      {
+        "image_id": "78f3ab61-82a1-4bbb-ba18-7b25985c43f0",
+        "blob_name": "78f3ab61-82a1-4bbb-ba18-7b25985c43f0.jpg",
+        "landmark": "Stone Town Alleys",
+        "caption": "Armrest Alpaca at Stone Town Alleys",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "e9253234-a1f7-4630-98d5-284cfe1163bd",
+    "toy_id": "3fec353c-b5b4-4e68-8b19-a01cebd21284",
+    "toy_name": "Armrest Alpaca",
+    "title": "Armrest Alpaca’s Wild-in-the-City Nairobi Adventure",
+    "description": "Armrest Alpaca trots into the only capital city with its very own national park, where skyscrapers peek over savannah grass as lions lounge like VIPs! Our plush explorer will bottle-feed giggles at the David Sheldrick Wildlife Trust, meet long-necked buddies at the Giraffe Centre, and sip pretend tea at the Karen Blixen Museum before hoof-shaking to drum beats at Bomas of Kenya. With hooves tapping and fluff flapping, Nairobi’s urban-wild mashup makes every street a safari for a cozy alpaca hero!",
+    "location_name": "Nairobi",
+    "country_code": "KE",
+    "gallery_images": [
+      {
+        "image_id": "4b4b067e-829c-4dfd-a4a4-19baec260a4b",
+        "blob_name": "4b4b067e-829c-4dfd-a4a4-19baec260a4b.jpg",
+        "landmark": "Nairobi National Park",
+        "caption": "Armrest Alpaca at Nairobi National Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "ee80f265-2a27-4aa6-b5e2-1d148e300a42",
+        "blob_name": "ee80f265-2a27-4aa6-b5e2-1d148e300a42.jpg",
+        "landmark": "Giraffe Centre",
+        "caption": "Armrest Alpaca at Giraffe Centre",
+        "source": "generated"
+      },
+      {
+        "image_id": "9987e309-e805-4dcb-97d4-d786d9f86429",
+        "blob_name": "9987e309-e805-4dcb-97d4-d786d9f86429.jpg",
+        "landmark": "Railway Museum",
+        "caption": "Armrest Alpaca at Railway Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "37eb473f-0691-4fd5-bc87-d9ffe187ffd9",
+        "blob_name": "37eb473f-0691-4fd5-bc87-d9ffe187ffd9.jpg",
+        "landmark": "Karen Blixen Museum",
+        "caption": "Armrest Alpaca at Karen Blixen Museum",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "478de397-3d06-424f-bbd8-8940ea0d2ff8",
+    "toy_id": "26b8e9e3-977c-4a1c-80da-ce7723831280",
+    "toy_name": "Compass Capybara",
+    "title": "Compass Capybara’s Sparkling Singapore Safari",
+    "description": "Compass Capybara scampers through a clean, green wonderland—zooming past the Merlion for a splashy selfie, gliding under the supertrees of Gardens by the Bay, and peeking over Marina Bay Sands like a tiny explorer on a giant’s hat. Between nibbling on multicultural treats in Chinatown and sniffing blossoms at the Botanic Gardens, this pint-sized adventurer discovers futuristic fun and foodie delights at every turn!",
+    "location_name": "Singapore",
+    "country_code": "SG",
+    "gallery_images": [
+      {
+        "image_id": "c5b7819a-c510-42d4-a06e-1b8688c57fd2",
+        "blob_name": "c5b7819a-c510-42d4-a06e-1b8688c57fd2.jpg",
+        "landmark": "Chinatown",
+        "caption": "Compass Capybara at Chinatown",
+        "source": "generated"
+      },
+      {
+        "image_id": "bfc0a003-fa0e-49c2-8129-9a9b8338ddd1",
+        "blob_name": "bfc0a003-fa0e-49c2-8129-9a9b8338ddd1.jpg",
+        "landmark": "Marina Bay Sands",
+        "caption": "Compass Capybara at Marina Bay Sands",
+        "source": "generated"
+      },
+      {
+        "image_id": "3cc82140-c600-4864-8547-97792499d446",
+        "blob_name": "3cc82140-c600-4864-8547-97792499d446.jpg",
+        "landmark": "Gardens by the Bay",
+        "caption": "Compass Capybara at Gardens by the Bay",
+        "source": "generated"
+      },
+      {
+        "image_id": "5319e64e-9e89-4413-930a-b04fb92f7057",
+        "blob_name": "5319e64e-9e89-4413-930a-b04fb92f7057.jpg",
+        "landmark": "Hawker Centres (Maxwell/Lau Pa Sat)",
+        "caption": "Compass Capybara at Hawker Centres (Maxwell/Lau Pa Sat)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "71830adb-a4c3-467b-8b3d-3e63d087b86a",
+    "toy_id": "f20fd490-f6cf-4cc1-94f6-2f948f881272",
+    "toy_name": "Bin Fox",
+    "title": "Bin Fox’s Kraków Castle Capers",
+    "description": "Bin Fox scampers across cobbled streets to the mighty Wawel Castle, peeking from tiny battlements and posing like a plushy prince! He bounces through the bustling Main Market Square, chiming hello to St. Mary’s Basilica and sniffing out treasures in the Cloth Hall. As evening falls, Bin Fox paws gently through Kazimierz, learning brave stories while nibbling a sweet zapiekanka and twirling to lively street music.",
+    "location_name": "Kraków",
+    "country_code": "PL",
+    "gallery_images": [
+      {
+        "image_id": "9afd3b8b-9fcc-414f-8ccf-a32a2dac2560",
+        "blob_name": "9afd3b8b-9fcc-414f-8ccf-a32a2dac2560.jpg",
+        "landmark": "Wawel Castle",
+        "caption": "Bin Fox at Wawel Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "16545c0f-d121-4f4f-a6ef-6003eb227769",
+        "blob_name": "16545c0f-d121-4f4f-a6ef-6003eb227769.jpg",
+        "landmark": "Barbican",
+        "caption": "Bin Fox at Barbican",
+        "source": "generated"
+      },
+      {
+        "image_id": "3b1944da-4a75-4ab8-85ec-794c510cb58d",
+        "blob_name": "3b1944da-4a75-4ab8-85ec-794c510cb58d.jpg",
+        "landmark": "Cloth Hall (Sukiennice)",
+        "caption": "Bin Fox at Cloth Hall (Sukiennice)",
+        "source": "generated"
+      },
+      {
+        "image_id": "8af3a3cc-7743-4228-ad91-9a0434a5a891",
+        "blob_name": "8af3a3cc-7743-4228-ad91-9a0434a5a891.jpg",
+        "landmark": "St. Mary’s Basilica",
+        "caption": "Bin Fox at St. Mary’s Basilica",
+        "source": "generated"
+      },
+      {
+        "image_id": "78cdebf1-2883-4fc9-a380-0392cfa30661",
+        "blob_name": "78cdebf1-2883-4fc9-a380-0392cfa30661.jpg",
+        "landmark": "Kazimierz (Jewish Quarter)",
+        "caption": "Bin Fox at Kazimierz (Jewish Quarter)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "adf9bbfc-2103-46ad-a09c-28a9ea12fe1c",
+    "toy_id": "9e621591-72e4-47d4-9525-58e65c691b11",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Jaipur Jamboree",
+    "description": "Queue Quokka bounces into the Pink City, tail twitching with delight as it peeks through the honeycomb windows of Hawa Mahal and plays hide-and-seek among the grand halls of City Palace. It scampers up to Amber Fort for royal rampart romps, counts cosmic curiosities at Jantar Mantar, and watches the sun paint Nahargarh Fort gold before haggling for tiny turbans in the colorful bazaars. Jaipur sparkles like a toy chest, and our adventurous quokka is ready to squeak with wonder!",
+    "location_name": "Jaipur",
+    "country_code": "IN",
+    "gallery_images": [
+      {
+        "image_id": "5f853d3f-3d99-4d24-b0ae-7d6266348e81",
+        "blob_name": "5f853d3f-3d99-4d24-b0ae-7d6266348e81.jpg",
+        "landmark": "Amber Fort",
+        "caption": "Queue Quokka at Amber Fort",
+        "source": "generated"
+      },
+      {
+        "image_id": "0f7994c7-e71e-47be-9ced-68a029d422cc",
+        "blob_name": "0f7994c7-e71e-47be-9ced-68a029d422cc.jpg",
+        "landmark": "Jal Mahal",
+        "caption": "Queue Quokka at Jal Mahal",
+        "source": "generated"
+      },
+      {
+        "image_id": "b64cfaef-026b-437b-b6e3-4ef9b9d3e3f0",
+        "blob_name": "b64cfaef-026b-437b-b6e3-4ef9b9d3e3f0.jpg",
+        "landmark": "Hawa Mahal",
+        "caption": "Queue Quokka at Hawa Mahal",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "82657d52-9dd4-4f5f-aba5-06eb08c24561",
+    "toy_id": "9e621591-72e4-47d4-9525-58e65c691b11",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Canyon Glow Adventure",
+    "description": "Queue Quokka scampers into the striated slot canyons, chasing dancing sunbeams that sprinkle sparkles across its tiny backpack! It wiggles through Upper and Lower Antelope Canyon, peers over the curvy cliff at Horseshoe Bend, and splashes a paw in Lake Powell before waving at the mighty Glen Canyon Dam. Every twisty tunnel becomes a playground where shadows and light play hide-and-seek with our brave, bouncy toy explorer.",
+    "location_name": "Antelope Canyon (Page)",
+    "country_code": "US",
+    "gallery_images": [
+      {
+        "image_id": "b86219df-1a9d-4449-b850-f9e9d6fe0ce7",
+        "blob_name": "b86219df-1a9d-4449-b850-f9e9d6fe0ce7.jpg",
+        "landmark": "Lower Antelope Canyon",
+        "caption": "Queue Quokka at Lower Antelope Canyon",
+        "source": "generated"
+      },
+      {
+        "image_id": "d2b1b973-a480-452f-abd7-15ab2324b994",
+        "blob_name": "d2b1b973-a480-452f-abd7-15ab2324b994.jpg",
+        "landmark": "Horseshoe Bend",
+        "caption": "Queue Quokka at Horseshoe Bend",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "8e3f7d5b-ca91-4774-8573-ba5507a3376c",
+    "toy_id": "b6ff1e66-73fc-42ce-bf77-2052b136618d",
+    "toy_name": "Legroom Lemur",
+    "title": "Legroom Lemur’s Phnom Penh Pounce",
+    "description": "Legroom Lemur bounds through Cambodia’s capital, tail swishing past the gleaming Royal Palace and the shimmering Silver Pagoda like a royal court jester on tiny toy toes. With thoughtful quiet steps at Tuol Sleng and the Choeung Ek memorial, our plush explorer honors history before scampering up Wat Phnom’s hill and peeking at ancient treasures in the National Museum. From sparkle to solemn, it’s a big-hearted hop through Phnom Penh’s stories, perfectly sized for a curious lemur toy.",
+    "location_name": "Phnom Penh",
+    "country_code": "KH",
+    "gallery_images": [
+      {
+        "image_id": "2a1a048f-8fee-4a6e-b55a-c2a9253df818",
+        "blob_name": "2a1a048f-8fee-4a6e-b55a-c2a9253df818.jpg",
+        "landmark": "Royal Palace & Silver Pagoda",
+        "caption": "Legroom Lemur at Royal Palace & Silver Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "26a0142c-db1b-4bed-af89-e987c5464c72",
+        "blob_name": "26a0142c-db1b-4bed-af89-e987c5464c72.jpg",
+        "landmark": "Wat Phnom",
+        "caption": "Legroom Lemur at Wat Phnom",
+        "source": "generated"
+      },
+      {
+        "image_id": "560568a0-f109-48bc-a270-9137e7c0da1c",
+        "blob_name": "560568a0-f109-48bc-a270-9137e7c0da1c.jpg",
+        "landmark": "Choeung Ek Killing Fields",
+        "caption": "Legroom Lemur at Choeung Ek Killing Fields",
+        "source": "generated"
+      },
+      {
+        "image_id": "80ba725c-32ad-407b-8365-47aa2ebd43c9",
+        "blob_name": "80ba725c-32ad-407b-8365-47aa2ebd43c9.jpg",
+        "landmark": "Tuol Sleng Genocide Museum",
+        "caption": "Legroom Lemur at Tuol Sleng Genocide Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "a480218e-2fc3-4748-bf0e-99a940ad29a8",
+        "blob_name": "a480218e-2fc3-4748-bf0e-99a940ad29a8.jpg",
+        "landmark": "National Museum of Cambodia",
+        "caption": "Legroom Lemur at National Museum of Cambodia",
+        "source": "generated"
+      },
+      {
+        "image_id": "90543156-4e4c-4947-93b3-280a55c8990b",
+        "blob_name": "90543156-4e4c-4947-93b3-280a55c8990b.jpg",
+        "landmark": "Sisowath Quay",
+        "caption": "Legroom Lemur at Sisowath Quay",
+        "source": "generated"
+      },
+      {
+        "image_id": "c78164ac-a320-4611-bb6f-9bd0cb9e1b13",
+        "blob_name": "c78164ac-a320-4611-bb6f-9bd0cb9e1b13.jpg",
+        "landmark": "Independence Monument",
+        "caption": "Legroom Lemur at Independence Monument",
+        "source": "generated"
+      },
+      {
+        "image_id": "ecb49667-8791-42ba-aed3-92aa30366bd9",
+        "blob_name": "ecb49667-8791-42ba-aed3-92aa30366bd9.jpg",
+        "landmark": "Central Market (Phsar Thmei)",
+        "caption": "Legroom Lemur at Central Market (Phsar Thmei)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "9c9a45a1-b375-4357-945d-7fe71221462b",
+    "toy_id": "4487ef92-de65-4407-9d04-94b48b903dcb",
+    "toy_name": "Plug Pika",
+    "title": "Plug Pika’s Rothenburg Rampart Romp",
+    "description": "Plug Pika zips into Rothenburg ob der Tauber, ready to charge up medieval magic! It scampers through the storybook Plönlein, plays peekaboo atop the Town Walls & Towers, and beeps bravely past the Medieval Crime Museum. After a twinkle-stop at St. Jakob’s Church, Plug Pika buzzes to Market Square to boop the Town Hall Tower and spark a skyline selfie!",
+    "location_name": "Rothenburg ob der Tauber",
+    "country_code": "DE",
+    "gallery_images": [
+      {
+        "image_id": "f7e91cba-a2a5-47b6-8561-b6523b5b8ead",
+        "blob_name": "f7e91cba-a2a5-47b6-8561-b6523b5b8ead.jpg",
+        "landmark": "St. Jakob’s Church",
+        "caption": "Plug Pika at St. Jakob’s Church",
+        "source": "generated"
+      },
+      {
+        "image_id": "6f81c26c-f04d-471a-a80b-9212b13b6e7e",
+        "blob_name": "6f81c26c-f04d-471a-a80b-9212b13b6e7e.jpg",
+        "landmark": "Double Bridge (Tauber)",
+        "caption": "Plug Pika at Double Bridge (Tauber)",
+        "source": "generated"
+      },
+      {
+        "image_id": "4c6aef05-942a-4cde-b22e-a7129178c15e",
+        "blob_name": "4c6aef05-942a-4cde-b22e-a7129178c15e.jpg",
+        "landmark": "Burggarten",
+        "caption": "Plug Pika at Burggarten",
+        "source": "generated"
+      },
+      {
+        "image_id": "ec0c5ea3-c0bf-44ba-8e6f-cad9527f0892",
+        "blob_name": "ec0c5ea3-c0bf-44ba-8e6f-cad9527f0892.jpg",
+        "landmark": "Town Walls & Towers",
+        "caption": "Plug Pika at Town Walls & Towers",
+        "source": "generated"
+      },
+      {
+        "image_id": "4819e24c-8946-4c1b-8bd7-664fc0823e3f",
+        "blob_name": "4819e24c-8946-4c1b-8bd7-664fc0823e3f.jpg",
+        "landmark": "Plönlein",
+        "caption": "Plug Pika at Plönlein",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "1132c25d-7471-4f0d-9d3d-eba7eaf4c8e8",
+    "toy_id": "e669384c-45b9-45c4-9c8e-fee6e5dd0176",
+    "toy_name": "Passport Puffin",
+    "title": "Passport Puffin’s Phnom Penh Palace Quest",
+    "description": "Passport Puffin flutters into Phnom Penh to sparkle-check the Royal Palace’s gleaming roofs and tiptoe through the Silver Pagoda in search of shiny treasures. With brave, button-eyed curiosity, Puffin learns gentle history lessons at Tuol Sleng and the Choeung Ek Killing Fields, then hops up Wat Phnom’s hill for a beak-to-sky view before swooping to the National Museum to meet ancient Khmer guardians. It’s a royal, reflective, and feather-flipping adventure in Cambodia’s captivating capital!",
+    "location_name": "Phnom Penh",
+    "country_code": "KH",
+    "gallery_images": [
+      {
+        "image_id": "fb1283ed-52fd-4834-86ea-a92fbb4f6b42",
+        "blob_name": "fb1283ed-52fd-4834-86ea-a92fbb4f6b42.jpg",
+        "landmark": "Central Market (Phsar Thmei)",
+        "caption": "Passport Puffin at Central Market (Phsar Thmei)",
+        "source": "generated"
+      },
+      {
+        "image_id": "5ead77f9-635a-4afd-93f8-473f4332fa67",
+        "blob_name": "5ead77f9-635a-4afd-93f8-473f4332fa67.jpg",
+        "landmark": "Royal Palace & Silver Pagoda",
+        "caption": "Passport Puffin at Royal Palace & Silver Pagoda",
+        "source": "generated"
+      },
+      {
+        "image_id": "b6010d75-9e2f-48bd-86eb-b1c64f99f719",
+        "blob_name": "b6010d75-9e2f-48bd-86eb-b1c64f99f719.jpg",
+        "landmark": "Tuol Sleng Genocide Museum",
+        "caption": "Passport Puffin at Tuol Sleng Genocide Museum",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "2d14144f-b594-4621-9b96-00d344823c66",
+    "toy_id": "4574f5ab-4cab-4c36-9095-98b586fa09eb",
+    "toy_name": "Snack Yak",
+    "title": "Snack Yak’s Lisbon Licks & Tiles Adventure",
+    "description": "Snack Yak trots over Lisbon’s sunny hills, jingling along to fado while nibbling sight-sized treats between dazzling azulejo tiles! It clops past the Belém Tower and Jerónimos Monastery, swoops down Tram 28’s twisty route, peeks around Alfama’s maze-y lanes, and prances into the grand Praça do Comércio for a snack-tacular seaside pose. With sea breezes, bell towers, and tile-bright streets, this yak’s hooves are set on a maritime munch-and-moo tour!",
+    "location_name": "Lisbon",
+    "country_code": "PT",
+    "gallery_images": [
+      {
+        "image_id": "5051ef61-e910-48f7-a6b7-b735e13647d9",
+        "blob_name": "5051ef61-e910-48f7-a6b7-b735e13647d9.jpg",
+        "landmark": "MAAT Museum",
+        "caption": "Snack Yak at MAAT Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "10b1121a-d729-4836-a88f-e2ef15babba5",
+        "blob_name": "10b1121a-d729-4836-a88f-e2ef15babba5.jpg",
+        "landmark": "Belém Tower",
+        "caption": "Snack Yak at Belém Tower",
+        "source": "generated"
+      },
+      {
+        "image_id": "6c9d88db-6abf-429c-958b-ded1924e3f86",
+        "blob_name": "6c9d88db-6abf-429c-958b-ded1924e3f86.jpg",
+        "landmark": "Castelo de São Jorge",
+        "caption": "Snack Yak at Castelo de São Jorge",
+        "source": "generated"
+      },
+      {
+        "image_id": "5cb9c9b6-dfb2-4a55-8350-826de0600423",
+        "blob_name": "5cb9c9b6-dfb2-4a55-8350-826de0600423.jpg",
+        "landmark": "Alfama District",
+        "caption": "Snack Yak at Alfama District",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "7d6e7b40-453e-4c28-955a-663964f3c6df",
+    "toy_id": "cff14338-7651-4a35-aa41-a37b19fb694f",
+    "toy_name": "Overhead Otter",
+    "title": "Overhead Otter’s Andaman Splash-Tacular",
+    "description": "Overhead Otter soars above sapphire waves to spy the towering limestone karsts of Phang Nga Bay—“Bond-worthy” hideouts perfect for an otter-sized secret mission! He’ll wiggle whiskers at the serene Big Buddha, bounce through the colorful shophouses of Old Phuket Town, and practice sandy belly slides on Patong, Kata, and Karon Beaches. With seashell souvenirs and sunset giggles, this tropical toy adventure is a fin-flipping Phuket fiesta!",
+    "location_name": "Phuket",
+    "country_code": "TH",
+    "gallery_images": [
+      {
+        "image_id": "b94dd0f9-21ff-412a-98ff-d79ad245d060",
+        "blob_name": "b94dd0f9-21ff-412a-98ff-d79ad245d060.jpg",
+        "landmark": "Promthep Cape",
+        "caption": "Overhead Otter at Promthep Cape",
+        "source": "generated"
+      },
+      {
+        "image_id": "0379be8e-54a9-4bce-9e92-bf743fcc5b20",
+        "blob_name": "0379be8e-54a9-4bce-9e92-bf743fcc5b20.jpg",
+        "landmark": "Big Buddha",
+        "caption": "Overhead Otter at Big Buddha",
+        "source": "generated"
+      },
+      {
+        "image_id": "bf9f7a3e-84ce-44d4-a40e-0587b12f4283",
+        "blob_name": "bf9f7a3e-84ce-44d4-a40e-0587b12f4283.jpg",
+        "landmark": "Phang Nga Bay (James Bond Island)",
+        "caption": "Overhead Otter at Phang Nga Bay (James Bond Island)",
+        "source": "generated"
+      },
+      {
+        "image_id": "83287da7-f389-4d67-91bb-473aeafb0053",
+        "blob_name": "83287da7-f389-4d67-91bb-473aeafb0053.jpg",
+        "landmark": "Old Phuket Town",
+        "caption": "Overhead Otter at Old Phuket Town",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "3eec79b8-a842-4d8c-935d-d90ee1b5e3a5",
+    "toy_id": "cff14338-7651-4a35-aa41-a37b19fb694f",
+    "toy_name": "Overhead Otter",
+    "title": "Overhead Otter’s Seronera Safari Scamper",
+    "description": "Overhead Otter pops up above the tall grasses to spot thundering herds on the Great Migration routes, then swoops to the Seronera Valley for a peek at prowling lions and leaping gazelles. Our adventurous toy paddles by the Grumeti River (otter-approved!), scrambles atop the Moru Kopjes for a grand lookout, and twirls its tail toward the nearby Ngorongoro Crater for a crater-sized wow. It’s a whisker-wiggling, savannah-surfing spree packed with Big Five bragging rights!",
+    "location_name": "Serengeti (Seronera)",
+    "country_code": "TZ",
+    "gallery_images": [
+      {
+        "image_id": "fc4e3f30-57ba-4d6a-82f5-1eb130eaebf7",
+        "blob_name": "fc4e3f30-57ba-4d6a-82f5-1eb130eaebf7.jpg",
+        "landmark": "Great Migration Routes (Seronera Valley view)",
+        "caption": "Overhead Otter at Great Migration Routes (Seronera Valley view)",
+        "source": "generated"
+      },
+      {
+        "image_id": "24fa764d-b96d-41b3-97d6-bfc0dcd05d95",
+        "blob_name": "24fa764d-b96d-41b3-97d6-bfc0dcd05d95.jpg",
+        "landmark": "Moru Kopjes",
+        "caption": "Overhead Otter at Moru Kopjes",
+        "source": "generated"
+      },
+      {
+        "image_id": "2eb8971a-8b92-47ba-a7be-565664065187",
+        "blob_name": "2eb8971a-8b92-47ba-a7be-565664065187.jpg",
+        "landmark": "Retina Hippo Pool",
+        "caption": "Overhead Otter at Retina Hippo Pool",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "db6e539d-a46a-456f-bad5-25b5a40b7e81",
+    "toy_id": "cff14338-7651-4a35-aa41-a37b19fb694f",
+    "toy_name": "Overhead Otter",
+    "title": "Overhead Otter’s Roman Splash-tacular",
+    "description": "Overhead Otter paddles through Rome’s timeless wonders, whisking past the mighty Colosseum like a tiny gladiator with a squeaky floatie! He flips a lucky coin into the Trevi Fountain, nose-twitches at the echoing grandeur of the Pantheon, and scoots his whiskers through the Vatican Museums before peeking up at the soaring splendor of St. Peter’s Basilica. It’s a tail-wiggling tour where ancient stone and splashy fun make the perfect otter-sized adventure!",
+    "location_name": "Rome",
+    "country_code": "IT",
+    "gallery_images": [
+      {
+        "image_id": "b33933d9-ba24-4dde-90d9-77dad801cbb5",
+        "blob_name": "b33933d9-ba24-4dde-90d9-77dad801cbb5.jpg",
+        "landmark": "Colosseum",
+        "caption": "Overhead Otter at Colosseum",
+        "source": "generated"
+      },
+      {
+        "image_id": "46a7780f-041f-44b1-9bc0-440b88e5289b",
+        "blob_name": "46a7780f-041f-44b1-9bc0-440b88e5289b.jpg",
+        "landmark": "Pantheon",
+        "caption": "Overhead Otter at Pantheon",
+        "source": "generated"
+      },
+      {
+        "image_id": "a208bb9d-f210-43a2-9e41-ddc91d458b25",
+        "blob_name": "a208bb9d-f210-43a2-9e41-ddc91d458b25.jpg",
+        "landmark": "Roman Forum",
+        "caption": "Overhead Otter at Roman Forum",
+        "source": "generated"
+      },
+      {
+        "image_id": "dd11ff81-0dac-412e-9aa8-e87a40359be9",
+        "blob_name": "dd11ff81-0dac-412e-9aa8-e87a40359be9.jpg",
+        "landmark": "Trevi Fountain",
+        "caption": "Overhead Otter at Trevi Fountain",
+        "source": "generated"
+      },
+      {
+        "image_id": "d589aab8-a424-4e63-904b-b4c43b81ecf1",
+        "blob_name": "d589aab8-a424-4e63-904b-b4c43b81ecf1.jpg",
+        "landmark": "Vatican Museums",
+        "caption": "Overhead Otter at Vatican Museums",
+        "source": "generated"
+      },
+      {
+        "image_id": "c1097153-b4e9-4d2e-b0a4-29c4cb013247",
+        "blob_name": "c1097153-b4e9-4d2e-b0a4-29c4cb013247.jpg",
+        "landmark": "Spanish Steps",
+        "caption": "Overhead Otter at Spanish Steps",
+        "source": "generated"
+      },
+      {
+        "image_id": "67076075-dca9-4bf8-aa84-2de95e0f2b01",
+        "blob_name": "67076075-dca9-4bf8-aa84-2de95e0f2b01.jpg",
+        "landmark": "Castel Sant’Angelo",
+        "caption": "Overhead Otter at Castel Sant’Angelo",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "438c2398-1d6b-4050-89be-961de83c3762",
+    "toy_id": "7ff0172a-762c-48c0-855c-91f17e5d25e2",
+    "toy_name": "Gate Gecko",
+    "title": "Gate Gecko’s Matera Cave-Caper",
+    "description": "Gate Gecko scampers through the sun-baked Sassi, peeking into cozy cave homes and practicing echo-y gecko chirps in the Palombaro Lungo’s giant underground cistern. After tail-tapping at Casa Grotta di Vico Solitario, our intrepid toy climbs to the Church of Santa Maria de Idris and waves at the Matera Cathedral’s skyline spires. With stone walls as playgrounds and ancient alleys as adventure paths, Gate Gecko turns Matera’s UNESCO magic into a gecko-sized grand tale!",
+    "location_name": "Matera",
+    "country_code": "IT",
+    "gallery_images": [
+      {
+        "image_id": "f616be60-0e52-49f7-b30e-98cbeeb59bf4",
+        "blob_name": "f616be60-0e52-49f7-b30e-98cbeeb59bf4.jpg",
+        "landmark": "Church of Santa Maria de Idris",
+        "caption": "Gate Gecko at Church of Santa Maria de Idris",
+        "source": "generated"
+      },
+      {
+        "image_id": "76929fea-3f57-42e7-8ebd-31d07afcdfa7",
+        "blob_name": "76929fea-3f57-42e7-8ebd-31d07afcdfa7.jpg",
+        "landmark": "Casa Grotta di Vico Solitario",
+        "caption": "Gate Gecko at Casa Grotta di Vico Solitario",
+        "source": "generated"
+      },
+      {
+        "image_id": "207ee4a1-644b-4443-8ab5-16eee698296e",
+        "blob_name": "207ee4a1-644b-4443-8ab5-16eee698296e.jpg",
+        "landmark": "Matera Cathedral",
+        "caption": "Gate Gecko at Matera Cathedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "a085a200-1886-468e-99a2-5be40f7d61ad",
+        "blob_name": "a085a200-1886-468e-99a2-5be40f7d61ad.jpg",
+        "landmark": "Sassi Cave Dwellings",
+        "caption": "Gate Gecko at Sassi Cave Dwellings",
+        "source": "generated"
+      },
+      {
+        "image_id": "5ce47d54-3ecd-40d7-b882-8799216247ea",
+        "blob_name": "5ce47d54-3ecd-40d7-b882-8799216247ea.jpg",
+        "landmark": "Palombaro Lungo Cistern",
+        "caption": "Gate Gecko at Palombaro Lungo Cistern",
+        "source": "generated"
+      },
+      {
+        "image_id": "0c31f757-8dc9-41a5-8af5-68dd269b3c0e",
+        "blob_name": "0c31f757-8dc9-41a5-8af5-68dd269b3c0e.jpg",
+        "landmark": "Belvedere Murgia Timone",
+        "caption": "Gate Gecko at Belvedere Murgia Timone",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "e79d3ad7-3369-4cb6-a624-b9b059e54623",
+    "toy_id": "7ff0172a-762c-48c0-855c-91f17e5d25e2",
+    "toy_name": "Gate Gecko",
+    "title": "Gate Gecko's Kyoto Temple Trek",
+    "description": "Gate Gecko scampers through Kyoto’s storied gates, counting vermilion torii at Fushimi Inari like magical doorways to adventure! It gleams at the Golden Pavilion, hops along Kiyomizu-dera’s wooden stage, and tiptoes through Arashiyama’s whispering bamboo, before practicing tiny tail-bows at Nijō Castle. With every shrine bell and garden pebble, this curious toy finds ancient wonders around every corner!",
+    "location_name": "Kyoto",
+    "country_code": "JP",
+    "gallery_images": [
+      {
+        "image_id": "560c1b33-8d69-460e-a834-865769342216",
+        "blob_name": "560c1b33-8d69-460e-a834-865769342216.jpg",
+        "landmark": "Kinkaku-ji (Golden Pavilion)",
+        "caption": "Gate Gecko at Kinkaku-ji (Golden Pavilion)",
+        "source": "generated"
+      },
+      {
+        "image_id": "a098c09c-83c9-488b-a88b-8c549c0df675",
+        "blob_name": "a098c09c-83c9-488b-a88b-8c549c0df675.jpg",
+        "landmark": "Fushimi Inari Taisha",
+        "caption": "Gate Gecko at Fushimi Inari Taisha",
+        "source": "generated"
+      },
+      {
+        "image_id": "4fdc02f2-139c-4c81-a835-2ffb2e00a561",
+        "blob_name": "4fdc02f2-139c-4c81-a835-2ffb2e00a561.jpg",
+        "landmark": "Arashiyama Bamboo Grove",
+        "caption": "Gate Gecko at Arashiyama Bamboo Grove",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "9b84f5e3-58ce-4180-9f41-8a3d24fb7598",
+    "toy_id": "0f95f33c-7b33-4924-8cc4-636f7bb56fc8",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Cartagena Splash & Dash",
+    "description": "Nap Narwhal zooms past the golden Clock Tower Gate, tail-tapping to the rhythm of plaza musicians before diving into the colors of Getsemaní’s street art for a fin-tastic photo shoot. He bobbles along the Walled City’s fortified walls like a brave little sea-scout, then mounts a tiny toy expedition to Castillo San Felipe de Barajas, finishing with giggles and glow at Plaza Santo Domingo’s lively night vibes. It’s a swashbuckling, salsa-sparkled adventure in a Caribbean kaleidoscope!",
+    "location_name": "Cartagena",
+    "country_code": "CO",
+    "gallery_images": [
+      {
+        "image_id": "819896c3-5597-45f3-8955-0244098d3ccc",
+        "blob_name": "819896c3-5597-45f3-8955-0244098d3ccc.jpg",
+        "landmark": "Walled City (Ciudad Amurallada)",
+        "caption": "Nap Narwhal at Walled City (Ciudad Amurallada)",
+        "source": "generated"
+      },
+      {
+        "image_id": "17327886-33a5-49d1-9a0e-e746df566d4d",
+        "blob_name": "17327886-33a5-49d1-9a0e-e746df566d4d.jpg",
+        "landmark": "Getsemaní Street Art",
+        "caption": "Nap Narwhal at Getsemaní Street Art",
+        "source": "generated"
+      },
+      {
+        "image_id": "38fcf5e9-b2da-43cf-a962-33a9c6012734",
+        "blob_name": "38fcf5e9-b2da-43cf-a962-33a9c6012734.jpg",
+        "landmark": "Castillo San Felipe de Barajas",
+        "caption": "Nap Narwhal at Castillo San Felipe de Barajas",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "fdd8650f-263e-4c32-a422-f39e6ffc203c",
+    "toy_id": "0f95f33c-7b33-4924-8cc4-636f7bb56fc8",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Tbilisi Tail-Flips",
+    "description": "Nap Narwhal splashes into Georgia’s capital, gliding past the shimmering Bridge of Peace and up to Narikala Fortress for skyline snout-gazing. He’ll bubble-bliss at the steamy sulfur baths of Abanotubani, twirl his fin by Metekhi Church, and wiggle down Rustaveli Avenue sniffing out grape-juice galore in the city famed for wine. It’s a fin-tastic romp through an eclectic crossroads where every street hums with stories and splashy surprises!",
+    "location_name": "Tbilisi",
+    "country_code": "GE",
+    "gallery_images": [
+      {
+        "image_id": "49a036f0-1ca4-4a6a-97b1-b140158e81ed",
+        "blob_name": "49a036f0-1ca4-4a6a-97b1-b140158e81ed.jpg",
+        "landmark": "Sulfur Baths (Abanotubani)",
+        "caption": "Nap Narwhal at Sulfur Baths (Abanotubani)",
+        "source": "generated"
+      },
+      {
+        "image_id": "f4d8c6b1-92c6-44df-80be-c45f690476f3",
+        "blob_name": "f4d8c6b1-92c6-44df-80be-c45f690476f3.jpg",
+        "landmark": "Rustaveli Avenue",
+        "caption": "Nap Narwhal at Rustaveli Avenue",
+        "source": "generated"
+      },
+      {
+        "image_id": "45f420c9-ab7f-4229-9845-875676a3185e",
+        "blob_name": "45f420c9-ab7f-4229-9845-875676a3185e.jpg",
+        "landmark": "Narikala Fortress",
+        "caption": "Nap Narwhal at Narikala Fortress",
+        "source": "generated"
+      },
+      {
+        "image_id": "13caa092-f844-4371-8a45-994c813e404e",
+        "blob_name": "13caa092-f844-4371-8a45-994c813e404e.jpg",
+        "landmark": "Metekhi Church",
+        "caption": "Nap Narwhal at Metekhi Church",
+        "source": "generated"
+      },
+      {
+        "image_id": "274c303e-6259-452f-82ee-88cff48f6151",
+        "blob_name": "274c303e-6259-452f-82ee-88cff48f6151.jpg",
+        "landmark": "Bridge of Peace",
+        "caption": "Nap Narwhal at Bridge of Peace",
+        "source": "generated"
+      },
+      {
+        "image_id": "0e9348b6-ee71-43e5-b85a-47ef6f570442",
+        "blob_name": "0e9348b6-ee71-43e5-b85a-47ef6f570442.jpg",
+        "landmark": "Holy Trinity Cathedral (Sameba)",
+        "caption": "Nap Narwhal at Holy Trinity Cathedral (Sameba)",
+        "source": "generated"
+      },
+      {
+        "image_id": "030ca938-1df4-444e-b2ed-32274aa4f9e2",
+        "blob_name": "030ca938-1df4-444e-b2ed-32274aa4f9e2.jpg",
+        "landmark": "Mother of Georgia Statue",
+        "caption": "Nap Narwhal at Mother of Georgia Statue",
+        "source": "generated"
+      },
+      {
+        "image_id": "16e88295-b4ad-4910-87a6-b36638c39f49",
+        "blob_name": "16e88295-b4ad-4910-87a6-b36638c39f49.jpg",
+        "landmark": "Dry Bridge Market",
+        "caption": "Nap Narwhal at Dry Bridge Market",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "a6146722-51ae-4f4b-b7b6-cb369f39924c",
+    "toy_id": "0f95f33c-7b33-4924-8cc4-636f7bb56fc8",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Nairobi Safari Splash",
+    "description": "Nap Narwhal dives into Nairobi’s wild-meets-city magic, peeking at lions lounging in Nairobi National Park while taxis zip by like speedy zebras! He’ll nuzzle baby elephants at the David Sheldrick Wildlife Trust, stretch his snout to greet giraffes at the Giraffe Centre, and swish through stories at the Karen Blixen Museum. To top it off, he’ll shimmy his fin to vibrant dances at Bomas of Kenya—urban waves and wildlife wonders all in one fin-tastic adventure!",
+    "location_name": "Nairobi",
+    "country_code": "KE",
+    "gallery_images": [
+      {
+        "image_id": "18a09066-aa30-4a28-ab07-ca3e69b61654",
+        "blob_name": "18a09066-aa30-4a28-ab07-ca3e69b61654.jpg",
+        "landmark": "Bomas of Kenya",
+        "caption": "Nap Narwhal at Bomas of Kenya",
+        "source": "generated"
+      },
+      {
+        "image_id": "b80f1bb0-ff2b-4e89-9451-3eb2ee7e7b0a",
+        "blob_name": "b80f1bb0-ff2b-4e89-9451-3eb2ee7e7b0a.jpg",
+        "landmark": "Giraffe Centre",
+        "caption": "Nap Narwhal at Giraffe Centre",
+        "source": "generated"
+      },
+      {
+        "image_id": "8eeaf7bc-f226-4b26-9b15-ae26f4491660",
+        "blob_name": "8eeaf7bc-f226-4b26-9b15-ae26f4491660.jpg",
+        "landmark": "Nairobi National Park",
+        "caption": "Nap Narwhal at Nairobi National Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "e7e51e20-1793-46d5-8d27-085ca116a898",
+        "blob_name": "e7e51e20-1793-46d5-8d27-085ca116a898.jpg",
+        "landmark": "Karen Blixen Museum",
+        "caption": "Nap Narwhal at Karen Blixen Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "dc9b1589-0aa9-46a6-ac6f-40aa06fa1a06",
+        "blob_name": "dc9b1589-0aa9-46a6-ac6f-40aa06fa1a06.jpg",
+        "landmark": "David Sheldrick Wildlife Trust",
+        "caption": "Nap Narwhal at David Sheldrick Wildlife Trust",
+        "source": "generated"
+      },
+      {
+        "image_id": "f3ff1f5b-2ae3-41e5-89e2-ab71bfc5e700",
+        "blob_name": "f3ff1f5b-2ae3-41e5-89e2-ab71bfc5e700.jpg",
+        "landmark": "Karura Forest",
+        "caption": "Nap Narwhal at Karura Forest",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "fbfd8ebe-bf12-417b-bed7-54bb20d324ac",
+    "toy_id": "b8aeba11-31db-4e83-9a57-0918032c3a5a",
+    "toy_name": "Outlet Octopus",
+    "title": "Outlet Octopus’s Santiago Skyline Splash",
+    "description": "Outlet Octopus wiggles its eight plug-tastic arms through Santiago’s sparkly mix of old and new—zooming up Sky Costanera for a dizzy view, then twirling down to Plaza de Armas to play hop-tiles around colonial arches. It’ll scuttle up Cerro San Cristóbal for a mountaintop selfie, peek at the presidential pomp at La Moneda Palace, and slink into artsy Barrio Lastarria for street-mural hide-and-seek and snack-sized churro bites. Santiago’s Andes backdrop makes every tentacle bounce feel like a mountain-sized adventure!",
+    "location_name": "Santiago",
+    "country_code": "CL",
+    "gallery_images": [
+      {
+        "image_id": "f04ad87c-dd6a-404f-887c-a894196e06d5",
+        "blob_name": "f04ad87c-dd6a-404f-887c-a894196e06d5.jpg",
+        "landmark": "Museum of Memory and Human Rights",
+        "caption": "Outlet Octopus at Museum of Memory and Human Rights",
+        "source": "generated"
+      },
+      {
+        "image_id": "4e98bcaa-0fdc-4f18-bcd6-32c31f9b7f3a",
+        "blob_name": "4e98bcaa-0fdc-4f18-bcd6-32c31f9b7f3a.jpg",
+        "landmark": "Cerro San Cristóbal",
+        "caption": "Outlet Octopus at Cerro San Cristóbal",
+        "source": "generated"
+      },
+      {
+        "image_id": "f7f284f9-b070-4b08-b1cd-1bfdfbf210a9",
+        "blob_name": "f7f284f9-b070-4b08-b1cd-1bfdfbf210a9.jpg",
+        "landmark": "Plaza de Armas",
+        "caption": "Outlet Octopus at Plaza de Armas",
+        "source": "generated"
+      },
+      {
+        "image_id": "fbe3c4da-6897-4a6b-8a84-58e63ab5ca2d",
+        "blob_name": "fbe3c4da-6897-4a6b-8a84-58e63ab5ca2d.jpg",
+        "landmark": "Sky Costanera",
+        "caption": "Outlet Octopus at Sky Costanera",
+        "source": "generated"
+      },
+      {
+        "image_id": "a6938d6b-7098-4f37-8ca2-cdd5636592f6",
+        "blob_name": "a6938d6b-7098-4f37-8ca2-cdd5636592f6.jpg",
+        "landmark": "Barrio Lastarria",
+        "caption": "Outlet Octopus at Barrio Lastarria",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "bba5e0ff-ce73-4a24-b440-9b3bea926d8a",
+    "toy_id": "b8aeba11-31db-4e83-9a57-0918032c3a5a",
+    "toy_name": "Outlet Octopus",
+    "title": "Outlet Octopus’s London Lights & Royal Sights",
+    "description": "Outlet Octopus wiggles its tentacles across the Thames, blinking with delight at Big Ben’s tick-tock and the glittering London Eye spins! It’ll swap stories with Beefeaters at the Tower of London, wave a suction-cup salute to the guards at Buckingham Palace, and museum-hop through the British Museum’s treasures like a curious cephalopod. By night, our plug-powered pal soaks up spotlight sparkle in the theater district, charging up on pure London magic!",
+    "location_name": "London",
+    "country_code": "GB",
+    "gallery_images": [
+      {
+        "image_id": "d13357d2-6a8e-4743-bfa0-7255873c4db7",
+        "blob_name": "d13357d2-6a8e-4743-bfa0-7255873c4db7.jpg",
+        "landmark": "St Paul’s Cathedral",
+        "caption": "Outlet Octopus at St Paul’s Cathedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "9acf0857-3e65-4227-aa35-7594837df31b",
+        "blob_name": "9acf0857-3e65-4227-aa35-7594837df31b.jpg",
+        "landmark": "Big Ben & Houses of Parliament",
+        "caption": "Outlet Octopus at Big Ben & Houses of Parliament",
+        "source": "generated"
+      },
+      {
+        "image_id": "13cc6a1d-427b-4842-8ae7-88a5fad64d34",
+        "blob_name": "13cc6a1d-427b-4842-8ae7-88a5fad64d34.jpg",
+        "landmark": "Tower Bridge",
+        "caption": "Outlet Octopus at Tower Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "93143c78-5712-46c1-ad74-1906233e6513",
+        "blob_name": "93143c78-5712-46c1-ad74-1906233e6513.jpg",
+        "landmark": "Buckingham Palace",
+        "caption": "Outlet Octopus at Buckingham Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "bea2eb87-fac1-42ab-b590-5435397a7369",
+        "blob_name": "bea2eb87-fac1-42ab-b590-5435397a7369.jpg",
+        "landmark": "British Museum",
+        "caption": "Outlet Octopus at British Museum",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "7a002e83-dd21-4974-930b-88a545313bcf",
+    "toy_id": "82da3937-56f8-458e-97aa-f27b54bb7b2b",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Bouncy Bled Bonanza",
+    "description": "Queue Quokka paddles across sparkling Lake Bled, tail-twitching with excitement to ring the wish-bell at the island church! After a castle caper atop the cliff, our adventurous toy scampers up Ojstrica and Mala Osojnica for postcard-perfect views that make its button eyes twinkle. With every hop, Bled becomes a fairytale playground of gleaming water, storybook spires, and chocolaty kremšnita rewards.",
+    "location_name": "Bled",
+    "country_code": "SI",
+    "gallery_images": [
+      {
+        "image_id": "3feaf31b-1853-49e0-811b-8f6c3bbef665",
+        "blob_name": "3feaf31b-1853-49e0-811b-8f6c3bbef665.jpg",
+        "landmark": "Bled Castle",
+        "caption": "Queue Quokka at Bled Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "77c81211-9c25-45dd-aa98-5fd222d3a36f",
+        "blob_name": "77c81211-9c25-45dd-aa98-5fd222d3a36f.jpg",
+        "landmark": "Bled Island Church (Assumption)",
+        "caption": "Queue Quokka at Bled Island Church (Assumption)",
+        "source": "generated"
+      },
+      {
+        "image_id": "eb913233-e6ae-4192-97e8-f3df4014d999",
+        "blob_name": "eb913233-e6ae-4192-97e8-f3df4014d999.jpg",
+        "landmark": "Ojstrica Viewpoint",
+        "caption": "Queue Quokka at Ojstrica Viewpoint",
+        "source": "generated"
+      },
+      {
+        "image_id": "b988288e-632c-42ed-b1bd-9e9a1f381ba9",
+        "blob_name": "b988288e-632c-42ed-b1bd-9e9a1f381ba9.jpg",
+        "landmark": "Lake Bled",
+        "caption": "Queue Quokka at Lake Bled",
+        "source": "generated"
+      },
+      {
+        "image_id": "4133ec97-426b-4d19-a967-c92db517a74e",
+        "blob_name": "4133ec97-426b-4d19-a967-c92db517a74e.jpg",
+        "landmark": "Mala Osojnica Hike",
+        "caption": "Queue Quokka at Mala Osojnica Hike",
+        "source": "generated"
+      },
+      {
+        "image_id": "86a06d90-10f2-4928-9d47-15bdb7905393",
+        "blob_name": "86a06d90-10f2-4928-9d47-15bdb7905393.jpg",
+        "landmark": "Straža Bled Toboggan",
+        "caption": "Queue Quokka at Straža Bled Toboggan",
+        "source": "generated"
+      },
+      {
+        "image_id": "6cc2ef0b-12cc-48b5-830c-e35b626bef5e",
+        "blob_name": "6cc2ef0b-12cc-48b5-830c-e35b626bef5e.jpg",
+        "landmark": "Vintgar Gorge",
+        "caption": "Queue Quokka at Vintgar Gorge",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "7ec30f56-6f1a-4451-8aec-c78eed172da8",
+    "toy_id": "e03bc749-3e1a-4630-a484-40926a3ec3ed",
+    "toy_name": "Passport Puffin",
+    "title": "Passport Puffin’s Dazzling Dubai Dash",
+    "description": "Passport Puffin flutters into a futuristic desert playground, craning its plush neck to peek from the top of the Burj Khalifa and splashing with sparkly glee at the twinkling Dubai Fountain! It waddles along Palm Jumeirah’s curvy fronds, window-shops for shiny treasures at Dubai Mall, and poses for a glamorous seaside selfie with the sail-shaped Burj Al Arab—luxury feathers, activated!",
+    "location_name": "Dubai",
+    "country_code": "AE",
+    "gallery_images": [
+      {
+        "image_id": "0e8e47f9-510a-4107-a823-ff11ce9c0a92",
+        "blob_name": "0e8e47f9-510a-4107-a823-ff11ce9c0a92.jpg",
+        "landmark": "Dubai Marina",
+        "caption": "Passport Puffin at Dubai Marina",
+        "source": "generated"
+      },
+      {
+        "image_id": "2b299434-b472-4cc5-a2d1-7d8aa60b55c1",
+        "blob_name": "2b299434-b472-4cc5-a2d1-7d8aa60b55c1.jpg",
+        "landmark": "Burj Khalifa",
+        "caption": "Passport Puffin at Burj Khalifa",
+        "source": "generated"
+      },
+      {
+        "image_id": "abee5794-e78a-497a-8a22-137c07353d05",
+        "blob_name": "abee5794-e78a-497a-8a22-137c07353d05.jpg",
+        "landmark": "Al Fahidi Historic District",
+        "caption": "Passport Puffin at Al Fahidi Historic District",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "ab908e5f-6bb5-4a82-a1bf-59fd7dcebf1d",
+    "toy_id": "e03bc749-3e1a-4630-a484-40926a3ec3ed",
+    "toy_name": "Passport Puffin",
+    "title": "Passport Puffin’s Matterhorn Magic Getaway",
+    "description": "Passport Puffin flutters into car‑free Zermatt, hopping aboard the Gornergrat Railway for sky‑high views of the mighty Matterhorn! Our feathery explorer slides down year‑round snowy slopes at Klein Matterhorn’s Glacier Paradise, splashes through the Five Lakes Walk looking for mountain reflections, and zooms to sunny Sunnegga for a picnic with alpine marmots. It’s a beak-bopping, snow-sparkling adventure fit for a puffin with a passport!",
+    "location_name": "Zermatt",
+    "country_code": "CH",
+    "gallery_images": [
+      {
+        "image_id": "31c9fb1c-d02c-41b2-aa8e-60576e61b2b5",
+        "blob_name": "31c9fb1c-d02c-41b2-aa8e-60576e61b2b5.jpg",
+        "landmark": "Matterhorn",
+        "caption": "Passport Puffin at Matterhorn",
+        "source": "generated"
+      },
+      {
+        "image_id": "185b1ff1-ab6d-4647-bd27-5d1fef52e8fc",
+        "blob_name": "185b1ff1-ab6d-4647-bd27-5d1fef52e8fc.jpg",
+        "landmark": "Hinterdorf Old Village",
+        "caption": "Passport Puffin at Hinterdorf Old Village",
+        "source": "generated"
+      },
+      {
+        "image_id": "f3296698-46a7-48fd-8537-985296bb3286",
+        "blob_name": "f3296698-46a7-48fd-8537-985296bb3286.jpg",
+        "landmark": "Gornergrat Railway",
+        "caption": "Passport Puffin at Gornergrat Railway",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "02ad5942-a69c-411a-9307-921d733dac4d",
+    "toy_id": "9e2654c9-358a-4278-8d8a-639267277627",
+    "toy_name": "Carousel Crab",
+    "title": "Carousel Crab’s Equatorial Quito Quest",
+    "description": "Carousel Crab scuttles into high-altitude Quito, pinching the thin air with delight while twirling past the golden glow of La Compañía de Jesús and waving to new friends in Plaza Grande. It climbs the Basílica del Voto Nacional’s Gothic towers for a sky-high peek, glides up the TelefériQo to tickle the clouds, and shimmy-shimmies to the Mitad del Mundo Monument to split its claws between hemispheres. With every spin, this brave little crustacean discovers colonial charms and equatorial magic in a city that’s as vibrant as its carousel stripes!",
+    "location_name": "Quito",
+    "country_code": "EC",
+    "gallery_images": [
+      {
+        "image_id": "75b26ddd-06ec-40e9-bea6-5f4d59348a03",
+        "blob_name": "75b26ddd-06ec-40e9-bea6-5f4d59348a03.jpg",
+        "landmark": "Calle La Ronda",
+        "caption": "Carousel Crab at Calle La Ronda",
+        "source": "generated"
+      },
+      {
+        "image_id": "d28a7583-eb75-45b1-90f0-a7889b492ea6",
+        "blob_name": "d28a7583-eb75-45b1-90f0-a7889b492ea6.jpg",
+        "landmark": "TelefériQo",
+        "caption": "Carousel Crab at TelefériQo",
+        "source": "generated"
+      },
+      {
+        "image_id": "0fc43897-e9e1-457b-bc88-27fc3b441872",
+        "blob_name": "0fc43897-e9e1-457b-bc88-27fc3b441872.jpg",
+        "landmark": "Basílica del Voto Nacional",
+        "caption": "Carousel Crab at Basílica del Voto Nacional",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "ead6d6ea-4e2a-487f-842e-5dcfab306ce8",
+    "toy_id": "99efb14c-3fcb-445a-897b-7f271d34e8a4",
+    "toy_name": "Bin Bunny",
+    "title": "Bin Bunny’s Jerusalem Jumps and Hops",
+    "description": "Bin Bunny hops through history in Jerusalem, peeking at the shimmering Dome of the Rock, wiggling whiskers at the Western Wall’s gentle whispers, and tiptoeing along the storied Via Dolorosa. With tiny paws, Bin Bunny explores the Church of the Holy Sepulchre and gazes toward Al-Aqsa Mosque, collecting ancient tales like carrot-shaped souvenirs. Every cobblestone becomes a playground as this brave bunny bounces through a city where legends leap to life!",
+    "location_name": "Jerusalem",
+    "country_code": "IL",
+    "gallery_images": [
+      {
+        "image_id": "6398b8a4-926d-4414-8bcd-66bb71fb11d9",
+        "blob_name": "6398b8a4-926d-4414-8bcd-66bb71fb11d9.jpg",
+        "landmark": "Al-Aqsa Mosque",
+        "caption": "Bin Bunny at Al-Aqsa Mosque",
+        "source": "generated"
+      },
+      {
+        "image_id": "f221e672-cd3d-47a9-8846-ef230040413a",
+        "blob_name": "f221e672-cd3d-47a9-8846-ef230040413a.jpg",
+        "landmark": "Via Dolorosa",
+        "caption": "Bin Bunny at Via Dolorosa",
+        "source": "generated"
+      },
+      {
+        "image_id": "46d15a8a-432f-4723-9233-79e3ac7751a5",
+        "blob_name": "46d15a8a-432f-4723-9233-79e3ac7751a5.jpg",
+        "landmark": "Dome of the Rock",
+        "caption": "Bin Bunny at Dome of the Rock",
+        "source": "generated"
+      },
+      {
+        "image_id": "928369ad-0afa-49ea-8bd1-5a2174a81016",
+        "blob_name": "928369ad-0afa-49ea-8bd1-5a2174a81016.jpg",
+        "landmark": "Western Wall",
+        "caption": "Bin Bunny at Western Wall",
+        "source": "generated"
+      },
+      {
+        "image_id": "98dfa3d5-4989-4f53-b581-3b3805a440a6",
+        "blob_name": "98dfa3d5-4989-4f53-b581-3b3805a440a6.jpg",
+        "landmark": "Church of the Holy Sepulchre",
+        "caption": "Bin Bunny at Church of the Holy Sepulchre",
+        "source": "generated"
+      },
+      {
+        "image_id": "5e1edf86-24dc-4ab8-af71-92dcb55ded5d",
+        "blob_name": "5e1edf86-24dc-4ab8-af71-92dcb55ded5d.jpg",
+        "landmark": "Mahane Yehuda Market",
+        "caption": "Bin Bunny at Mahane Yehuda Market",
+        "source": "generated"
+      },
+      {
+        "image_id": "f8422e30-9acc-41e8-a17f-e63ac9d8aa8a",
+        "blob_name": "f8422e30-9acc-41e8-a17f-e63ac9d8aa8a.jpg",
+        "landmark": "Mount of Olives",
+        "caption": "Bin Bunny at Mount of Olives",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "59388a2d-a564-4e41-b1f3-9bc175fe65e6",
+    "toy_id": "0ee44d22-5b10-44bb-9502-b8cad1af0609",
+    "toy_name": "Fountain Ferret",
+    "title": "Fountain Ferret’s Polar Pounce in Longyearbyen",
+    "description": "Fountain Ferret scampers through the High Arctic, peeking at the legendary Global Seed Vault from its frosty lookout and squeaking stories at the Svalbard Museum’s polar treasures. With a tiny miner’s helmet, the brave toy explores Coal Mine 3, then hops aboard an Isfjord boat to wave at whales and puffins as glaciers sparkle. After a tail-twitching Hiorthfjellet hike, our ferret friend practices snow-hops under the midnight sun (or dancing auroras) in the world’s coziest polar playground.",
+    "location_name": "Longyearbyen, Svalbard",
+    "country_code": "SJ",
+    "gallery_images": [
+      {
+        "image_id": "e81651f5-4e99-4b7f-a1fa-2c8928792278",
+        "blob_name": "e81651f5-4e99-4b7f-a1fa-2c8928792278.jpg",
+        "landmark": "Global Seed Vault (viewpoint)",
+        "caption": "Fountain Ferret at Global Seed Vault (viewpoint)",
+        "source": "generated"
+      },
+      {
+        "image_id": "ffab8fa1-f86b-4c27-94cd-9b2ced838882",
+        "blob_name": "ffab8fa1-f86b-4c27-94cd-9b2ced838882.jpg",
+        "landmark": "Isfjord Boat Trips",
+        "caption": "Fountain Ferret at Isfjord Boat Trips",
+        "source": "generated"
+      },
+      {
+        "image_id": "d4efcfc6-f58f-47b1-8ba3-0fb7cabea93d",
+        "blob_name": "d4efcfc6-f58f-47b1-8ba3-0fb7cabea93d.jpg",
+        "landmark": "Hiorthfjellet Hikes",
+        "caption": "Fountain Ferret at Hiorthfjellet Hikes",
+        "source": "generated"
+      },
+      {
+        "image_id": "99befaf2-07b3-4f5c-9206-ef699e92bfbc",
+        "blob_name": "99befaf2-07b3-4f5c-9206-ef699e92bfbc.jpg",
+        "landmark": "Svalbard Museum",
+        "caption": "Fountain Ferret at Svalbard Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "d2dd5146-e988-4e2a-aeac-a71b22d8fac0",
+        "blob_name": "d2dd5146-e988-4e2a-aeac-a71b22d8fac0.jpg",
+        "landmark": "Coal Mine 3",
+        "caption": "Fountain Ferret at Coal Mine 3",
+        "source": "generated"
+      },
+      {
+        "image_id": "2ebbb6a4-04bd-4b94-a05d-7a4193625003",
+        "blob_name": "2ebbb6a4-04bd-4b94-a05d-7a4193625003.jpg",
+        "landmark": "Pyramiden Ghost Town",
+        "caption": "Fountain Ferret at Pyramiden Ghost Town",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "18d5e30e-0e32-476f-a736-57e804ca9183",
+    "toy_id": "e5d88b97-2cce-4d09-ae24-2f5993d8ea21",
+    "toy_name": "WiFi Wombat",
+    "title": "WiFi Wombat’s Bubbly Reims Rumble",
+    "description": "WiFi Wombat zooms into the coronation city to high-five gargoyles at the mighty Notre-Dame de Reims and tiptoe through the regal halls of the Palace of Tau. With a plush-sized pop, our techy marsupial explores Pommery’s underground chalk caves, then wiggle-waddles down Épernay’s Avenue de Champagne for fizzy photo ops—finally sniffing ancient stories at the Basilica of Saint-Remi. It’s a sparkle-loaded romp where every cork pop sounds like a victory cheer for a curious toy explorer!",
+    "location_name": "Reims (Champagne)",
+    "country_code": "FR",
+    "gallery_images": [
+      {
+        "image_id": "0413e75f-c4f6-48c6-969e-fdcc084ccdd3",
+        "blob_name": "0413e75f-c4f6-48c6-969e-fdcc084ccdd3.jpg",
+        "landmark": "Pommery Cellars",
+        "caption": "WiFi Wombat at Pommery Cellars",
+        "source": "generated"
+      },
+      {
+        "image_id": "1f21c1f3-3804-4212-b8ec-b2d02dd480d9",
+        "blob_name": "1f21c1f3-3804-4212-b8ec-b2d02dd480d9.jpg",
+        "landmark": "Avenue de Champagne (Épernay)",
+        "caption": "WiFi Wombat at Avenue de Champagne (Épernay)",
+        "source": "generated"
+      },
+      {
+        "image_id": "e4514f44-433a-4098-b9d7-69dd3e1e876d",
+        "blob_name": "e4514f44-433a-4098-b9d7-69dd3e1e876d.jpg",
+        "landmark": "Palace of Tau",
+        "caption": "WiFi Wombat at Palace of Tau",
+        "source": "generated"
+      },
+      {
+        "image_id": "34144a5b-b0c1-4827-b951-150eecc06a96",
+        "blob_name": "34144a5b-b0c1-4827-b951-150eecc06a96.jpg",
+        "landmark": "Basilica of Saint-Remi",
+        "caption": "WiFi Wombat at Basilica of Saint-Remi",
+        "source": "generated"
+      },
+      {
+        "image_id": "bd117bf3-5d70-46f9-a3a9-74d213371ae2",
+        "blob_name": "bd117bf3-5d70-46f9-a3a9-74d213371ae2.jpg",
+        "landmark": "Reims Cathedral (Notre-Dame)",
+        "caption": "WiFi Wombat at Reims Cathedral (Notre-Dame)",
+        "source": "generated"
+      },
+      {
+        "image_id": "0954900c-b68e-4c49-9426-29b3e68b6f5f",
+        "blob_name": "0954900c-b68e-4c49-9426-29b3e68b6f5f.jpg",
+        "landmark": "Taittinger Caves",
+        "caption": "WiFi Wombat at Taittinger Caves",
+        "source": "generated"
+      },
+      {
+        "image_id": "16d2c89a-69c8-4562-86f2-ae529ae0d86f",
+        "blob_name": "16d2c89a-69c8-4562-86f2-ae529ae0d86f.jpg",
+        "landmark": "Foujita Chapel (Notre-Dame-de-la-Paix)",
+        "caption": "WiFi Wombat at Foujita Chapel (Notre-Dame-de-la-Paix)",
+        "source": "generated"
+      },
+      {
+        "image_id": "0ce15ec7-c70f-4bb7-b684-33bfa3336c5a",
+        "blob_name": "0ce15ec7-c70f-4bb7-b684-33bfa3336c5a.jpg",
+        "landmark": "Veuve Clicquot House",
+        "caption": "WiFi Wombat at Veuve Clicquot House",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "95499b9e-7375-4b1a-9bf2-db5fd7de97d2",
+    "toy_id": "92d92613-08ed-4adf-a383-8559bfff1a21",
+    "toy_name": "Snack Yak",
+    "title": "Snack Yak’s São Miguel Splash & Snack Safari",
+    "description": "Snack Yak trots into Ponta Delgada, bounding from emerald crater rims to bubbling Furnas pots with a happy yak-yip! It slurps steam at Terra Nostra’s toasty geothermal pool, peeks over the twin blues of Sete Cidades, and chomps picnic treats by Lagoa do Fogo before whooshing past Salto do Cabrito’s waterfall mist. With hooves tapping and snack sack packed, this toy explorer turns volcanic vibes into a delicious, splashy island romp!",
+    "location_name": "Ponta Delgada, São Miguel (Azores)",
+    "country_code": "PT",
+    "gallery_images": [
+      {
+        "image_id": "9f87f9b9-84a6-44b1-8825-86991eb81e68",
+        "blob_name": "9f87f9b9-84a6-44b1-8825-86991eb81e68.jpg",
+        "landmark": "Sete Cidades Crater Lakes",
+        "caption": "Snack Yak at Sete Cidades Crater Lakes",
+        "source": "generated"
+      },
+      {
+        "image_id": "0461208d-5362-4014-9567-06652a844150",
+        "blob_name": "0461208d-5362-4014-9567-06652a844150.jpg",
+        "landmark": "Lagoa do Fogo",
+        "caption": "Snack Yak at Lagoa do Fogo",
+        "source": "generated"
+      },
+      {
+        "image_id": "2b98951b-ae98-4ca8-857a-0f468009d736",
+        "blob_name": "2b98951b-ae98-4ca8-857a-0f468009d736.jpg",
+        "landmark": "Salto do Cabrito",
+        "caption": "Snack Yak at Salto do Cabrito",
+        "source": "generated"
+      },
+      {
+        "image_id": "6ccf6411-d355-4286-9074-90a52bcb6a08",
+        "blob_name": "6ccf6411-d355-4286-9074-90a52bcb6a08.jpg",
+        "landmark": "Furnas Hot Springs",
+        "caption": "Snack Yak at Furnas Hot Springs",
+        "source": "generated"
+      },
+      {
+        "image_id": "d3532418-de8f-40cc-8a22-0645bc8087fc",
+        "blob_name": "d3532418-de8f-40cc-8a22-0645bc8087fc.jpg",
+        "landmark": "Terra Nostra Garden",
+        "caption": "Snack Yak at Terra Nostra Garden",
+        "source": "generated"
+      },
+      {
+        "image_id": "195b8ef8-9dcc-4a81-9235-0372adfee678",
+        "blob_name": "195b8ef8-9dcc-4a81-9235-0372adfee678.jpg",
+        "landmark": "Islet of Vila Franca do Campo",
+        "caption": "Snack Yak at Islet of Vila Franca do Campo",
+        "source": "generated"
+      },
+      {
+        "image_id": "3af1f2ba-4d97-4f6b-87a1-8fcf2bd89a80",
+        "blob_name": "3af1f2ba-4d97-4f6b-87a1-8fcf2bd89a80.jpg",
+        "landmark": "Ponta da Ferraria",
+        "caption": "Snack Yak at Ponta da Ferraria",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "7d3de6d0-03e0-4297-9aa9-db52b295950c",
+    "toy_id": "92d92613-08ed-4adf-a383-8559bfff1a21",
+    "toy_name": "Snack Yak",
+    "title": "Snack Yak’s Reef-Rolling Cairns Capers",
+    "description": "Snack Yak splashes into the sparkling blues off Cairns and Port Douglas, bobbing aboard to pontoon playgrounds on the Outer Reef! Our snack-loving adventurer snorkels with clownfish at Low Isles and Michaelmas Cay, then zip-zags along the Ribbon Reefs to Agincourt Reef, waving at curious turtles and swirling schools of glittery fish. With bubbles like soda pop and coral castles galore, it’s a fin-tastic feast for a toy’s eyes!",
+    "location_name": "Great Barrier Reef (Cairns/Port Douglas)",
+    "country_code": "AU",
+    "gallery_images": [
+      {
+        "image_id": "04847c51-5059-46d8-82eb-eeb625d949c1",
+        "blob_name": "04847c51-5059-46d8-82eb-eeb625d949c1.jpg",
+        "landmark": "Low Isles",
+        "caption": "Snack Yak at Low Isles",
+        "source": "generated"
+      },
+      {
+        "image_id": "2d77fd33-d83e-494a-8d6b-149ed53c7d67",
+        "blob_name": "2d77fd33-d83e-494a-8d6b-149ed53c7d67.jpg",
+        "landmark": "Ribbon Reefs",
+        "caption": "Snack Yak at Ribbon Reefs",
+        "source": "generated"
+      },
+      {
+        "image_id": "43464bc1-7097-44e2-b85d-580a9eb40aaf",
+        "blob_name": "43464bc1-7097-44e2-b85d-580a9eb40aaf.jpg",
+        "landmark": "Outer Reef Pontoon Sites",
+        "caption": "Snack Yak at Outer Reef Pontoon Sites",
+        "source": "generated"
+      },
+      {
+        "image_id": "aff1110e-a757-433a-b1ec-37ea4697d7e4",
+        "blob_name": "aff1110e-a757-433a-b1ec-37ea4697d7e4.jpg",
+        "landmark": "Agincourt Reef",
+        "caption": "Snack Yak at Agincourt Reef",
+        "source": "generated"
+      },
+      {
+        "image_id": "27022b30-e027-4bd8-8d78-59cd943cfc4e",
+        "blob_name": "27022b30-e027-4bd8-8d78-59cd943cfc4e.jpg",
+        "landmark": "Michaelmas Cay",
+        "caption": "Snack Yak at Michaelmas Cay",
+        "source": "generated"
+      },
+      {
+        "image_id": "14bc7e94-0c89-4334-84c1-1a412fe1970e",
+        "blob_name": "14bc7e94-0c89-4334-84c1-1a412fe1970e.jpg",
+        "landmark": "Fitzroy Island",
+        "caption": "Snack Yak at Fitzroy Island",
+        "source": "generated"
+      },
+      {
+        "image_id": "565fd0d7-e6e9-4d16-8267-d579db02059a",
+        "blob_name": "565fd0d7-e6e9-4d16-8267-d579db02059a.jpg",
+        "landmark": "Kuranda Scenic Railway",
+        "caption": "Snack Yak at Kuranda Scenic Railway",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "b28a0557-ce9a-47d1-b35e-64be9c5597c3",
+    "toy_id": "92d92613-08ed-4adf-a383-8559bfff1a21",
+    "toy_name": "Snack Yak",
+    "title": "Snack Yak’s Tulum Treasure Splash",
+    "description": "Snack Yak clip-clops along the cliff-edge ruins at the Tulum Archaeological Zone, munching imaginary mango chips while gazing at turquoise waves below. Then it cannon-yaks into crystalline cenotes—Gran Cenote and Dos Ojos—playing peek-a-boo with fish and echoing yak-yodels through caverns before trotting to powdery Tulum Beach. For a wild finale, our snack-loving yak tiptoes through Sian Ka’an’s biosphere jungle, spotting fluttery friends and dreaming up tropical treat quests!",
+    "location_name": "Tulum",
+    "country_code": "MX",
+    "gallery_images": [
+      {
+        "image_id": "87c8f911-3e0b-4a94-8216-6ef4cbba5b32",
+        "blob_name": "87c8f911-3e0b-4a94-8216-6ef4cbba5b32.jpg",
+        "landmark": "Tulum Beach",
+        "caption": "Snack Yak at Tulum Beach",
+        "source": "generated"
+      },
+      {
+        "image_id": "90d3caa8-5abe-49c3-ae4b-1b145661c444",
+        "blob_name": "90d3caa8-5abe-49c3-ae4b-1b145661c444.jpg",
+        "landmark": "Cenote Dos Ojos",
+        "caption": "Snack Yak at Cenote Dos Ojos",
+        "source": "generated"
+      },
+      {
+        "image_id": "e195fe58-5bf5-459e-86dc-5b587b2834fe",
+        "blob_name": "e195fe58-5bf5-459e-86dc-5b587b2834fe.jpg",
+        "landmark": "Gran Cenote",
+        "caption": "Snack Yak at Gran Cenote",
+        "source": "generated"
+      },
+      {
+        "image_id": "d9b47c45-ecad-4e1d-b4ef-0d892ba86ef1",
+        "blob_name": "d9b47c45-ecad-4e1d-b4ef-0d892ba86ef1.jpg",
+        "landmark": "Tulum Archaeological Zone",
+        "caption": "Snack Yak at Tulum Archaeological Zone",
+        "source": "generated"
+      },
+      {
+        "image_id": "895d3f9f-77cd-4c28-853a-638aed82e9c0",
+        "blob_name": "895d3f9f-77cd-4c28-853a-638aed82e9c0.jpg",
+        "landmark": "Sian Ka’an Biosphere Reserve",
+        "caption": "Snack Yak at Sian Ka’an Biosphere Reserve",
+        "source": "generated"
+      },
+      {
+        "image_id": "34619e80-a9de-4338-b6f8-5d8bb416ce4f",
+        "blob_name": "34619e80-a9de-4338-b6f8-5d8bb416ce4f.jpg",
+        "landmark": "Coba Ruins (nearby)",
+        "caption": "Snack Yak at Coba Ruins (nearby)",
+        "source": "generated"
+      },
+      {
+        "image_id": "81118f1e-c82e-45fd-8171-d9c82e46d90a",
+        "blob_name": "81118f1e-c82e-45fd-8171-d9c82e46d90a.jpg",
+        "landmark": "Kaan Luum Lagoon",
+        "caption": "Snack Yak at Kaan Luum Lagoon",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "5255160d-366e-4fea-9d46-66307eb419eb",
+    "toy_id": "0c12639a-db66-4a45-b971-e72fbefc17c2",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Balloon-Whisked Cappadocian Capers",
+    "description": "Nap Narwhal inflates imagination and drifts at dawn over Göreme’s swirly stone cupcakes in a hot-air balloon, waving a fin at the Fairy Chimneys of Pasabag below. He snuggles into cozy cave corners at the Göreme Open-Air Museum, flippers up for a peek from Uchisar Castle’s lofty lookout, then swooshes through the secret tunnels of Derinkuyu and splashes along the green ribbon of Ihlara Valley. It’s a dreamy, rock-candy wonderland where every pebble whispers, “Adventure!”",
+    "location_name": "Göreme (Cappadocia)",
+    "country_code": "TR",
+    "gallery_images": [
+      {
+        "image_id": "7ff5d24e-a46c-48b5-be5c-9e91d7595f32",
+        "blob_name": "7ff5d24e-a46c-48b5-be5c-9e91d7595f32.jpg",
+        "landmark": "Uchisar Castle",
+        "caption": "Nap Narwhal at Uchisar Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "6ad85a60-4326-4ef5-baf7-93f72af976c3",
+        "blob_name": "6ad85a60-4326-4ef5-baf7-93f72af976c3.jpg",
+        "landmark": "Göreme Open-Air Museum",
+        "caption": "Nap Narwhal at Göreme Open-Air Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "15173283-d2e0-48e1-a70b-5518cc1d49df",
+        "blob_name": "15173283-d2e0-48e1-a70b-5518cc1d49df.jpg",
+        "landmark": "Fairy Chimneys (Pasabag)",
+        "caption": "Nap Narwhal at Fairy Chimneys (Pasabag)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "bf9727ea-3905-4b8d-a735-511457ad80fb",
+    "toy_id": "34ad1fc5-207d-4d8e-b480-bc38436e80bb",
+    "toy_name": "Queue Quokka",
+    "title": "Queue Quokka’s Balloon-Bobble Cappadocia Quest",
+    "description": "Queue Quokka bounces into Göreme, where sunrise hot-air balloons lift our plush pioneer over swirling tuff valleys and wiggly Fairy Chimneys! After peeking into cozy cave churches at the Göreme Open-Air Museum, QQ scampers up Uchisar Castle for a tail-wagging panorama, then tunnels through Derinkuyu like a pocket-sized spelunker before hop-hopping along the lush Ihlara Valley. It’s a fluff-tastic adventure through volcanic wonderlands made for curious toys!",
+    "location_name": "Cappadocia (Göreme)",
+    "country_code": "TR",
+    "gallery_images": [
+      {
+        "image_id": "f4a0a79e-25f2-494b-b39e-c446347cc2c0",
+        "blob_name": "f4a0a79e-25f2-494b-b39e-c446347cc2c0.jpg",
+        "landmark": "Derinkuyu Underground City",
+        "caption": "Queue Quokka at Derinkuyu Underground City",
+        "source": "generated"
+      },
+      {
+        "image_id": "212321f1-945c-484b-826b-f17807b21c34",
+        "blob_name": "212321f1-945c-484b-826b-f17807b21c34.jpg",
+        "landmark": "Uchisar Castle",
+        "caption": "Queue Quokka at Uchisar Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "a7c8ab05-c76f-48a1-a373-f6ff8357def2",
+        "blob_name": "a7c8ab05-c76f-48a1-a373-f6ff8357def2.jpg",
+        "landmark": "Fairy Chimneys (Pasabag)",
+        "caption": "Queue Quokka at Fairy Chimneys (Pasabag)",
+        "source": "generated"
+      },
+      {
+        "image_id": "82f6c18d-c237-40ef-9cf2-a643e0c07db0",
+        "blob_name": "82f6c18d-c237-40ef-9cf2-a643e0c07db0.jpg",
+        "landmark": "Göreme Open-Air Museum",
+        "caption": "Queue Quokka at Göreme Open-Air Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "c2c412c6-886f-4f81-aadf-e999e261e90e",
+        "blob_name": "c2c412c6-886f-4f81-aadf-e999e261e90e.jpg",
+        "landmark": "Hot Air Balloon Flights (Göreme)",
+        "caption": "Queue Quokka at Hot Air Balloon Flights (Göreme)",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "11c37ef2-c4d3-4947-b4a4-7bfda2c29305",
+    "toy_id": "16387783-168d-4fbc-ab52-64469ac74c6a",
+    "toy_name": "Bin Bunny",
+    "title": "Bin Bunny’s Acropolis Hop-along Adventure",
+    "description": "Bin Bunny bounds through Athens, boinging up to the Acropolis to admire the Parthenon’s mighty marbles and peek at treasures in the Acropolis Museum. He plays hide-and-seek among the columns of the Temple of Olympian Zeus, then scampers to the Ancient Agora to nibble imaginary carrots while listening for whispers of democracy. With sea breezes and sun-sparkles, this bunny’s Mediterranean hop turns history into hoppy fun!",
+    "location_name": "Athens",
+    "country_code": "GR",
+    "gallery_images": [
+      {
+        "image_id": "3935f25f-f311-4844-a78b-831f66d3b099",
+        "blob_name": "3935f25f-f311-4844-a78b-831f66d3b099.jpg",
+        "landmark": "Temple of Olympian Zeus",
+        "caption": "Bin Bunny at Temple of Olympian Zeus",
+        "source": "generated"
+      },
+      {
+        "image_id": "760bba48-c5c0-4098-8e8f-46dd7a317776",
+        "blob_name": "760bba48-c5c0-4098-8e8f-46dd7a317776.jpg",
+        "landmark": "Parthenon",
+        "caption": "Bin Bunny at Parthenon",
+        "source": "generated"
+      },
+      {
+        "image_id": "63350334-ac28-4164-9320-0a8eb6eac739",
+        "blob_name": "63350334-ac28-4164-9320-0a8eb6eac739.jpg",
+        "landmark": "Plaka District",
+        "caption": "Bin Bunny at Plaka District",
+        "source": "generated"
+      },
+      {
+        "image_id": "d36f29d1-1de7-49b8-b1a0-776eb4702727",
+        "blob_name": "d36f29d1-1de7-49b8-b1a0-776eb4702727.jpg",
+        "landmark": "Acropolis Museum",
+        "caption": "Bin Bunny at Acropolis Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "41baecf0-f504-4cd1-b94e-fa574c5e40bf",
+        "blob_name": "41baecf0-f504-4cd1-b94e-fa574c5e40bf.jpg",
+        "landmark": "Panathenaic Stadium",
+        "caption": "Bin Bunny at Panathenaic Stadium",
+        "source": "generated"
+      },
+      {
+        "image_id": "b968e009-f91f-4eca-bf42-9c1946da3fed",
+        "blob_name": "b968e009-f91f-4eca-bf42-9c1946da3fed.jpg",
+        "landmark": "Ancient Agora",
+        "caption": "Bin Bunny at Ancient Agora",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "daefff52-dd2a-45c4-9416-ed130fa20d6f",
+    "toy_id": "16387783-168d-4fbc-ab52-64469ac74c6a",
+    "toy_name": "Bin Bunny",
+    "title": "Bin Bunny’s Acropolis Hop-tacular",
+    "description": "Bin Bunny bounds through Athens, thumping happily from the Acropolis to the Parthenon, counting columns like giant carrot sticks. Between museum marvels at the Acropolis Museum and ancient whispers in the Agora, our fluffy explorer practices tiny toga twirls and bunny-hops beneath the Temple of Olympian Zeus. Sun-splashed rooftops, olivey breezes, and mythic tales make this Mediterranean adventure a hop above the rest!",
+    "location_name": "Athens",
+    "country_code": "GR",
+    "gallery_images": [
+      {
+        "image_id": "2da686da-8590-411d-be14-71d1d122f86b",
+        "blob_name": "2da686da-8590-411d-be14-71d1d122f86b.jpg",
+        "landmark": "Panathenaic Stadium",
+        "caption": "Bin Bunny at Panathenaic Stadium",
+        "source": "generated"
+      },
+      {
+        "image_id": "46ce58cb-5e49-486c-8cf6-d7a792044d80",
+        "blob_name": "46ce58cb-5e49-486c-8cf6-d7a792044d80.jpg",
+        "landmark": "Parthenon",
+        "caption": "Bin Bunny at Parthenon",
+        "source": "generated"
+      },
+      {
+        "image_id": "b234ef6c-2740-4030-b008-cd2697dd7fa4",
+        "blob_name": "b234ef6c-2740-4030-b008-cd2697dd7fa4.jpg",
+        "landmark": "Temple of Olympian Zeus",
+        "caption": "Bin Bunny at Temple of Olympian Zeus",
+        "source": "generated"
+      },
+      {
+        "image_id": "77e43820-5305-44fa-abe5-c180d4715c01",
+        "blob_name": "77e43820-5305-44fa-abe5-c180d4715c01.jpg",
+        "landmark": "Plaka District",
+        "caption": "Bin Bunny at Plaka District",
+        "source": "generated"
+      },
+      {
+        "image_id": "f8fae887-1ce3-4d1a-82a9-d0ceb3be7707",
+        "blob_name": "f8fae887-1ce3-4d1a-82a9-d0ceb3be7707.jpg",
+        "landmark": "Odeon of Herodes Atticus",
+        "caption": "Bin Bunny at Odeon of Herodes Atticus",
+        "source": "generated"
+      },
+      {
+        "image_id": "3df4e58a-985f-4537-ad2b-96b5fabb19fb",
+        "blob_name": "3df4e58a-985f-4537-ad2b-96b5fabb19fb.jpg",
+        "landmark": "Syntagma Square",
+        "caption": "Bin Bunny at Syntagma Square",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "75b94d5d-12ef-458a-9fab-313472612652",
+    "toy_id": "a572c5dc-124e-4618-b0f1-7073dd53e00e",
+    "toy_name": "Gate Gator",
+    "title": "Gate Gator’s Queenstown Quest",
+    "description": "Gate Gator zips into the adventure capital, tail swishing as it rides the Skyline Gondola to spy on The Remarkables and splashes along the shores of sparkling Lake Wakatipu. With a roar of tiny courage, it zooms on the Shotover Jet, then day-trips to mystical Milford Sound to greet waterfalls with gator grins. It’s a toy-sized epic of alpine thrills, gleaming lakes, and sky-high giggles!",
+    "location_name": "Queenstown",
+    "country_code": "NZ",
+    "gallery_images": [
+      {
+        "image_id": "ec4f3c85-4655-418e-8512-ff9cc24e86d9",
+        "blob_name": "ec4f3c85-4655-418e-8512-ff9cc24e86d9.jpg",
+        "landmark": "Glenorchy Scenic Drive",
+        "caption": "Gate Gator at Glenorchy Scenic Drive",
+        "source": "generated"
+      },
+      {
+        "image_id": "94a11c68-9ca1-45b7-9a61-6fe9f68c0c96",
+        "blob_name": "94a11c68-9ca1-45b7-9a61-6fe9f68c0c96.jpg",
+        "landmark": "The Remarkables",
+        "caption": "Gate Gator at The Remarkables",
+        "source": "generated"
+      },
+      {
+        "image_id": "b58f1238-b4e4-46ce-aa3f-8a2e3c70d57b",
+        "blob_name": "b58f1238-b4e4-46ce-aa3f-8a2e3c70d57b.jpg",
+        "landmark": "Arrowtown",
+        "caption": "Gate Gator at Arrowtown",
+        "source": "generated"
+      },
+      {
+        "image_id": "6aed460d-9d97-4696-9d67-a7ed1868477f",
+        "blob_name": "6aed460d-9d97-4696-9d67-a7ed1868477f.jpg",
+        "landmark": "Skyline Gondola",
+        "caption": "Gate Gator at Skyline Gondola",
+        "source": "generated"
+      },
+      {
+        "image_id": "ef65c44a-e84c-412e-92ab-9ea1e0d05b43",
+        "blob_name": "ef65c44a-e84c-412e-92ab-9ea1e0d05b43.jpg",
+        "landmark": "Bungy at Kawarau Bridge",
+        "caption": "Gate Gator at Bungy at Kawarau Bridge",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "8519a4e9-5a55-4a3c-b28c-b5572dc0a60b",
+    "toy_id": "a572c5dc-124e-4618-b0f1-7073dd53e00e",
+    "toy_name": "Gate Gator",
+    "title": "Gate Gator's Snowy Slurp & Stomp in Sapporo",
+    "description": "Gate Gator zips through frosty Odori Park, tail-swishing at giant snow sculptures and collecting snowflake high-fives. He slurps steamy bowls of miso ramen, practices bubbly burps at the Sapporo Beer Museum, and time-travels through the Historic Village of Hokkaido like a tiny scaly samurai. With a shrine-side bow at Hokkaido Shrine and a treasure dash down Tanukikoji Shopping Street, this gator’s scales sparkle with Hokkaido magic!",
+    "location_name": "Sapporo",
+    "country_code": "JP",
+    "gallery_images": [
+      {
+        "image_id": "69d5d0b8-cb13-42bb-8aa6-b65281c3028f",
+        "blob_name": "69d5d0b8-cb13-42bb-8aa6-b65281c3028f.jpg",
+        "landmark": "Odori Park",
+        "caption": "Gate Gator at Odori Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "398ef0cc-06a5-42fc-9846-fe583e0fea53",
+        "blob_name": "398ef0cc-06a5-42fc-9846-fe583e0fea53.jpg",
+        "landmark": "Tanukikoji Shopping Street",
+        "caption": "Gate Gator at Tanukikoji Shopping Street",
+        "source": "generated"
+      },
+      {
+        "image_id": "1d1db6ca-6ee9-42cf-8f30-6f791639f571",
+        "blob_name": "1d1db6ca-6ee9-42cf-8f30-6f791639f571.jpg",
+        "landmark": "Sapporo Beer Museum",
+        "caption": "Gate Gator at Sapporo Beer Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "ccdd8300-30e4-4ce3-ba6f-5b593ca227e7",
+        "blob_name": "ccdd8300-30e4-4ce3-ba6f-5b593ca227e7.jpg",
+        "landmark": "Historic Village of Hokkaido",
+        "caption": "Gate Gator at Historic Village of Hokkaido",
+        "source": "generated"
+      },
+      {
+        "image_id": "c577ab89-b4fe-41ad-a229-a611b9d84851",
+        "blob_name": "c577ab89-b4fe-41ad-a229-a611b9d84851.jpg",
+        "landmark": "Hokkaido Shrine",
+        "caption": "Gate Gator at Hokkaido Shrine",
+        "source": "generated"
+      },
+      {
+        "image_id": "784339ba-18fa-4beb-811c-c173ee180559",
+        "blob_name": "784339ba-18fa-4beb-811c-c173ee180559.jpg",
+        "landmark": "Moerenuma Park",
+        "caption": "Gate Gator at Moerenuma Park",
+        "source": "generated"
+      },
+      {
+        "image_id": "b2d7a981-bbd0-4a32-8f8b-8cf364210d82",
+        "blob_name": "b2d7a981-bbd0-4a32-8f8b-8cf364210d82.jpg",
+        "landmark": "Mt. Moiwa Ropeway",
+        "caption": "Gate Gator at Mt. Moiwa Ropeway",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "308b8119-4f19-4b84-9fc5-95330e1f081c",
+    "toy_id": "a572c5dc-124e-4618-b0f1-7073dd53e00e",
+    "toy_name": "Gate Gator",
+    "title": "Gate Gator’s Tallinn Time-Portal Trot",
+    "description": "Gate Gator snaps its scaly suitcase and zips through Tallinn’s time-portals—peeking over Toompea Hill for castle views, then posing mighty and mini at Alexander Nevsky Cathedral’s onion domes. It tiptoes along St. Catherine’s Passage to find artisan treasures, swishes its tail at Viru Gate like a proud gatekeeper, and twirls in Town Hall Square where medieval magic meets digital sparkle. By sunset, our brave toy explorer has bridged centuries with a grin and a clack!",
+    "location_name": "Tallinn",
+    "country_code": "EE",
+    "gallery_images": [
+      {
+        "image_id": "9986bf99-0499-4809-ab21-063006010cc8",
+        "blob_name": "9986bf99-0499-4809-ab21-063006010cc8.jpg",
+        "landmark": "St. Catherine’s Passage",
+        "caption": "Gate Gator at St. Catherine’s Passage",
+        "source": "generated"
+      },
+      {
+        "image_id": "5b8d386a-6296-4ac6-8e9a-09c8bdd2064e",
+        "blob_name": "5b8d386a-6296-4ac6-8e9a-09c8bdd2064e.jpg",
+        "landmark": "Town Hall Square (Raekoja plats)",
+        "caption": "Gate Gator at Town Hall Square (Raekoja plats)",
+        "source": "generated"
+      },
+      {
+        "image_id": "8b4db2a0-5be6-4836-aeec-b42143f97696",
+        "blob_name": "8b4db2a0-5be6-4836-aeec-b42143f97696.jpg",
+        "landmark": "Alexander Nevsky Cathedral",
+        "caption": "Gate Gator at Alexander Nevsky Cathedral",
+        "source": "generated"
+      },
+      {
+        "image_id": "d569d31a-0f38-4401-8cd7-210818d881d2",
+        "blob_name": "d569d31a-0f38-4401-8cd7-210818d881d2.jpg",
+        "landmark": "Viru Gate",
+        "caption": "Gate Gator at Viru Gate",
+        "source": "generated"
+      },
+      {
+        "image_id": "b95045da-c240-42f6-ac45-c81449715dc8",
+        "blob_name": "b95045da-c240-42f6-ac45-c81449715dc8.jpg",
+        "landmark": "Toompea Hill & Castle",
+        "caption": "Gate Gator at Toompea Hill & Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "eecbe60e-0cf0-42b5-9981-02947e655cd5",
+        "blob_name": "eecbe60e-0cf0-42b5-9981-02947e655cd5.jpg",
+        "landmark": "Kadriorg Palace",
+        "caption": "Gate Gator at Kadriorg Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "a36c0876-7a24-4689-a79c-d00b084f2492",
+        "blob_name": "a36c0876-7a24-4689-a79c-d00b084f2492.jpg",
+        "landmark": "Seaplane Harbour Museum",
+        "caption": "Gate Gator at Seaplane Harbour Museum",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "2010c967-3b12-4063-87a1-2a1f7d8e1abc",
+    "toy_id": "2d12d772-df42-4016-b4fe-88a73fd9cf1f",
+    "toy_name": "Socket Squirrel",
+    "title": "Socket Squirrel’s Frosty Fjord Frolic",
+    "description": "Socket Squirrel scampers into Longyearbyen, where glittering glaciers and midnight sun (or polar night!) turn every bolt into a twinkle. From peeking at the legendary Global Seed Vault’s icy hillside viewpoint to tinkering with history at Svalbard Museum and clattering through Coal Mine 3 like a brave little miner, our toy explorer is all spark and squeak. Then it zips across Isfjord by boat, waving its tiny tail at seabirds and dreaming of conquering Hiorthfjellet’s snowy trails for a squeaky summit selfie!",
+    "location_name": "Longyearbyen, Svalbard",
+    "country_code": "SJ",
+    "gallery_images": [
+      {
+        "image_id": "e247ed4a-aff7-4b54-8543-bef31f4824a3",
+        "blob_name": "e247ed4a-aff7-4b54-8543-bef31f4824a3.jpg",
+        "landmark": "Global Seed Vault (viewpoint)",
+        "caption": "Socket Squirrel at Global Seed Vault (viewpoint)",
+        "source": "generated"
+      },
+      {
+        "image_id": "309a2511-e15c-4fd2-8503-d6a0e18405b6",
+        "blob_name": "309a2511-e15c-4fd2-8503-d6a0e18405b6.jpg",
+        "landmark": "Pyramiden Ghost Town",
+        "caption": "Socket Squirrel at Pyramiden Ghost Town",
+        "source": "generated"
+      },
+      {
+        "image_id": "67c36a28-e6c3-4d68-b352-50af268f9a90",
+        "blob_name": "67c36a28-e6c3-4d68-b352-50af268f9a90.jpg",
+        "landmark": "Svalbard Museum",
+        "caption": "Socket Squirrel at Svalbard Museum",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "6c0aebb0-d3fc-4ba6-a9af-cebb2ab26569",
+    "toy_id": "2d12d772-df42-4016-b4fe-88a73fd9cf1f",
+    "toy_name": "Socket Squirrel",
+    "title": "Socket Squirrel’s Budapest Bath-Bridge Bonanza",
+    "description": "Socket Squirrel scampers across the mighty Chain Bridge, tail twirling as the Danube sparkles below! It climbs the turrets of Fisherman’s Bastion to squeak at Buda Castle and the grand Parliament Building, then cannonballs into the bubbly Széchenyi Thermal Bath for a splashy soak. With acorn snacks and skyline selfies, this tiny traveler turns Budapest into a big, nutty adventure!",
+    "location_name": "Budapest",
+    "country_code": "HU",
+    "gallery_images": [
+      {
+        "image_id": "5bf27c7b-d6ad-41b9-9235-58bbced33178",
+        "blob_name": "5bf27c7b-d6ad-41b9-9235-58bbced33178.jpg",
+        "landmark": "Fisherman’s Bastion",
+        "caption": "Socket Squirrel at Fisherman’s Bastion",
+        "source": "generated"
+      },
+      {
+        "image_id": "02d93506-bb30-4128-96a1-3a3b596af505",
+        "blob_name": "02d93506-bb30-4128-96a1-3a3b596af505.jpg",
+        "landmark": "Széchenyi Thermal Bath",
+        "caption": "Socket Squirrel at Széchenyi Thermal Bath",
+        "source": "generated"
+      },
+      {
+        "image_id": "5a14c6d3-de20-45ef-b6ec-5927eee8973d",
+        "blob_name": "5a14c6d3-de20-45ef-b6ec-5927eee8973d.jpg",
+        "landmark": "Chain Bridge",
+        "caption": "Socket Squirrel at Chain Bridge",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "bfd4a718-f53d-4920-93f4-c7e9b55264b6",
+    "toy_id": "9ee42dde-eb19-4944-acf0-3527fcb0c4b2",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Edinburgh Enchantment",
+    "description": "Nap Narwhal flips his fin through the misty magic of Edinburgh, gliding from the storybook cobbles of the Royal Mile up to the cliff-top majesty of Edinburgh Castle. He’ll perch on Calton Hill for toy-sized panoramas, bounce over to Holyrood Palace for a royal wave, and then puff up Arthur’s Seat like a brave little mountain narwhal to crown the city’s volcanic views. Between festival sparkle and medieval whispers, every nook becomes a cozy nap spot and a thrilling tale!",
+    "location_name": "Edinburgh",
+    "country_code": "GB",
+    "gallery_images": [
+      {
+        "image_id": "0f09e3e8-53b0-4ee5-ba2a-079367259fbf",
+        "blob_name": "0f09e3e8-53b0-4ee5-ba2a-079367259fbf.jpg",
+        "landmark": "Calton Hill",
+        "caption": "Nap Narwhal at Calton Hill",
+        "source": "generated"
+      },
+      {
+        "image_id": "ca69bc93-1d93-4fb9-ace3-f26664c56525",
+        "blob_name": "ca69bc93-1d93-4fb9-ace3-f26664c56525.jpg",
+        "landmark": "Edinburgh Castle",
+        "caption": "Nap Narwhal at Edinburgh Castle",
+        "source": "generated"
+      },
+      {
+        "image_id": "4c3544f3-13b6-4b99-b22a-20cd07ca44a3",
+        "blob_name": "4c3544f3-13b6-4b99-b22a-20cd07ca44a3.jpg",
+        "landmark": "Royal Mile",
+        "caption": "Nap Narwhal at Royal Mile",
+        "source": "generated"
+      },
+      {
+        "image_id": "56cfb85e-7f40-4ba6-bee7-6f995d7b33ba",
+        "blob_name": "56cfb85e-7f40-4ba6-bee7-6f995d7b33ba.jpg",
+        "landmark": "Arthur’s Seat",
+        "caption": "Nap Narwhal at Arthur’s Seat",
+        "source": "generated"
+      },
+      {
+        "image_id": "5394cf5d-8042-4177-8f8d-93fe30692f4c",
+        "blob_name": "5394cf5d-8042-4177-8f8d-93fe30692f4c.jpg",
+        "landmark": "Holyrood Palace",
+        "caption": "Nap Narwhal at Holyrood Palace",
+        "source": "generated"
+      },
+      {
+        "image_id": "c18a7291-46f2-4e22-8d38-64ca8e73ba37",
+        "blob_name": "c18a7291-46f2-4e22-8d38-64ca8e73ba37.jpg",
+        "landmark": "Scott Monument",
+        "caption": "Nap Narwhal at Scott Monument",
+        "source": "generated"
+      },
+      {
+        "image_id": "2a1976aa-2a80-414e-81f2-71d76cec43c0",
+        "blob_name": "2a1976aa-2a80-414e-81f2-71d76cec43c0.jpg",
+        "landmark": "National Museum of Scotland",
+        "caption": "Nap Narwhal at National Museum of Scotland",
+        "source": "generated"
+      },
+      {
+        "image_id": "9c7299cd-5650-43b0-bac7-f6302e841750",
+        "blob_name": "9c7299cd-5650-43b0-bac7-f6302e841750.jpg",
+        "landmark": "Dean Village",
+        "caption": "Nap Narwhal at Dean Village",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "0293b7c9-cef3-4e44-883a-9e1de4599035",
+    "toy_id": "9ee42dde-eb19-4944-acf0-3527fcb0c4b2",
+    "toy_name": "Nap Narwhal",
+    "title": "Nap Narwhal’s Parisian Peekaboo",
+    "description": "Nap Narwhal twirls his tiny flippers through Paris, popping up at the Eiffel Tower for a sparkly skyline peek and sliding past chic fashion windows like a stylish sea unicorn. He splashes into a wave of masterpieces at the Louvre, plays ring-around-the-Arc de Triomphe, hums with the bells of Notre-Dame, and bounces up to Sacré-Cœur for a dreamy marshmallow-cloud view. Between croissant cuddles and café giggles, this narwhal is on a fin-tastic, artful romp through the City of Love!",
+    "location_name": "Paris",
+    "country_code": "FR",
+    "gallery_images": [
+      {
+        "image_id": "268f86a6-5f73-468b-9f53-5e8c00edcc0f",
+        "blob_name": "268f86a6-5f73-468b-9f53-5e8c00edcc0f.jpg",
+        "landmark": "Eiffel Tower",
+        "caption": "Nap Narwhal at Eiffel Tower",
+        "source": "generated"
+      },
+      {
+        "image_id": "b2567242-2ac7-4d06-9d1e-d09c63c626c3",
+        "blob_name": "b2567242-2ac7-4d06-9d1e-d09c63c626c3.jpg",
+        "landmark": "Louvre Museum",
+        "caption": "Nap Narwhal at Louvre Museum",
+        "source": "generated"
+      },
+      {
+        "image_id": "43e7477e-beab-4044-a9a5-660d3fcaf8f0",
+        "blob_name": "43e7477e-beab-4044-a9a5-660d3fcaf8f0.jpg",
+        "landmark": "Pont Alexandre III",
+        "caption": "Nap Narwhal at Pont Alexandre III",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "ec41c566-74f1-4dc0-a45f-499c3ab7cd77",
+    "toy_id": "1f23a9fe-2cdf-4f15-90dd-2e118cea9181",
+    "toy_name": "Globetot",
+    "title": "Globetot’s Thundering Victoria Falls Frolic",
+    "description": "Globetot zips to Livingstone to feel the earth tremble at Mosi-oa-Tunya, where misty rainbows sprinkle sparkle-drops on tiny travel toes! Our brave toy tiptoes across Knife-Edge Bridge for splashy views, peeks over to Livingstone Island, and (in the safe season) waves hello to Devil’s Pool like a fearless floaty. As the sun melts into gold, Globetot lounges on a Zambezi River sunset cruise, counting hippo bobbles and collecting sky-colored stickers for its suitcase!",
+    "location_name": "Victoria Falls (Livingstone)",
+    "country_code": "ZM",
+    "gallery_images": [
+      {
+        "image_id": "a6165e99-80ec-4dce-b835-140d6779bdff",
+        "blob_name": "a6165e99-80ec-4dce-b835-140d6779bdff.jpg",
+        "landmark": "Victoria Falls (Mosi-oa-Tunya)",
+        "caption": "Globetot at Victoria Falls (Mosi-oa-Tunya)",
+        "source": "generated"
+      },
+      {
+        "image_id": "0374ed5d-1e8a-48a1-b949-295662730aba",
+        "blob_name": "0374ed5d-1e8a-48a1-b949-295662730aba.jpg",
+        "landmark": "Devil’s Pool (seasonal)",
+        "caption": "Globetot at Devil’s Pool (seasonal)",
+        "source": "generated"
+      },
+      {
+        "image_id": "b556c73c-0c10-4b0e-b489-98eb52224b32",
+        "blob_name": "b556c73c-0c10-4b0e-b489-98eb52224b32.jpg",
+        "landmark": "Zambezi River Sunset Cruise",
+        "caption": "Globetot at Zambezi River Sunset Cruise",
+        "source": "generated"
+      },
+      {
+        "image_id": "8a29ecd7-4cbf-4ca3-9fcb-f82ffdd6362a",
+        "blob_name": "8a29ecd7-4cbf-4ca3-9fcb-f82ffdd6362a.jpg",
+        "landmark": "Helicopter Flight of Angels",
+        "caption": "Globetot at Helicopter Flight of Angels",
+        "source": "generated"
+      },
+      {
+        "image_id": "44f9653e-786e-4d78-9e4d-ab2af685ae3f",
+        "blob_name": "44f9653e-786e-4d78-9e4d-ab2af685ae3f.jpg",
+        "landmark": "Knife-Edge Bridge",
+        "caption": "Globetot at Knife-Edge Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "db95bfb8-7926-4692-97e2-669cb34ba2df",
+        "blob_name": "db95bfb8-7926-4692-97e2-669cb34ba2df.jpg",
+        "landmark": "Victoria Falls Bridge",
+        "caption": "Globetot at Victoria Falls Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "f7fd6bdb-804a-4cd9-8226-a7e2977e0a41",
+        "blob_name": "f7fd6bdb-804a-4cd9-8226-a7e2977e0a41.jpg",
+        "landmark": "Mosi-oa-Tunya National Park",
+        "caption": "Globetot at Mosi-oa-Tunya National Park",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "31bc707e-af49-46a3-b3f7-519a922f7be3",
+    "toy_id": "2d9d26c8-8d84-4c22-bf83-f94ebabb5935",
+    "toy_name": "Puddle Pika",
+    "title": "Puddle Pika’s Venetian Splashabout",
+    "description": "Puddle Pika zips across the Grand Canal on a gondola, tail twitching as charming palazzos and the Rialto Bridge glide by like a storybook come to life. They peek at shimmering mosaics in St. Mark’s Basilica, scamper through the Doge’s Palace, and play hide-and-squeak under the Bridge of Sighs. With every splashy step on lagoon breezes, Venice becomes a maze of marvels just the right size for a pint‑sized explorer!",
+    "location_name": "Venice",
+    "country_code": "IT",
+    "gallery_images": [
+      {
+        "image_id": "79412d81-73fb-4c51-8807-c0e2724d3049",
+        "blob_name": "79412d81-73fb-4c51-8807-c0e2724d3049.jpg",
+        "landmark": "Rialto Bridge",
+        "caption": "Puddle Pika at Rialto Bridge",
+        "source": "generated"
+      },
+      {
+        "image_id": "42cc30a6-bad6-4f09-98d8-e7cb68e60d37",
+        "blob_name": "42cc30a6-bad6-4f09-98d8-e7cb68e60d37.jpg",
+        "landmark": "Burano Island",
+        "caption": "Puddle Pika at Burano Island",
+        "source": "generated"
+      },
+      {
+        "image_id": "893542e2-0e22-4b99-a86b-1693ea607218",
+        "blob_name": "893542e2-0e22-4b99-a86b-1693ea607218.jpg",
+        "landmark": "St. Mark’s Basilica",
+        "caption": "Puddle Pika at St. Mark’s Basilica",
+        "source": "generated"
+      },
+      {
+        "image_id": "742f96d4-df79-4f82-aae0-292ff95fe1ff",
+        "blob_name": "742f96d4-df79-4f82-aae0-292ff95fe1ff.jpg",
+        "landmark": "Bridge of Sighs",
+        "caption": "Puddle Pika at Bridge of Sighs",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "0b6ef2a1-0100-4b91-9f70-37b4ae71c351",
+    "toy_id": "aebafd83-bf22-4628-ab24-a37a7afd7ac3",
+    "toy_name": "Snack Yak",
+    "title": "Snack Yak’s Lalibela Rock-Quest",
+    "description": "Snack Yak trots into Lalibela to explore legendary rock-hewn churches carved straight from the volcanic tuff—like a secret stone playground! The yak will tip-hoof past Bet Giyorgis (St. George) and peek into Biete Medhane Alem, Biete Maryam, Biete Amanuel, and Biete Abba Libanos, collecting pebble-sized “souvenirs” of stories along the way. Pilgrim paths become yak tracks as Snack Yak ‘yak-yodels’ through echoing passageways and marvels at ancient carvings that feel larger than a jumbo snack pack!",
+    "location_name": "Lalibela",
+    "country_code": "ET",
+    "gallery_images": [
+      {
+        "image_id": "7c89565c-f23f-4fbf-b47f-45a93c9a3829",
+        "blob_name": "7c89565c-f23f-4fbf-b47f-45a93c9a3829.jpg",
+        "landmark": "Biete Maryam",
+        "caption": "Snack Yak at Biete Maryam",
+        "source": "generated"
+      },
+      {
+        "image_id": "50aadf4b-650b-4294-bcd5-05e55f0d52bf",
+        "blob_name": "50aadf4b-650b-4294-bcd5-05e55f0d52bf.jpg",
+        "landmark": "Biete Medhane Alem",
+        "caption": "Snack Yak at Biete Medhane Alem",
+        "source": "generated"
+      },
+      {
+        "image_id": "9752eb9d-ddba-483f-bfa2-dbc5e55611a8",
+        "blob_name": "9752eb9d-ddba-483f-bfa2-dbc5e55611a8.jpg",
+        "landmark": "Biete Abba Libanos",
+        "caption": "Snack Yak at Biete Abba Libanos",
+        "source": "generated"
+      },
+      {
+        "image_id": "8eb7d493-01b0-4258-b9f6-ba048942f282",
+        "blob_name": "8eb7d493-01b0-4258-b9f6-ba048942f282.jpg",
+        "landmark": "Biete Amanuel",
+        "caption": "Snack Yak at Biete Amanuel",
+        "source": "generated"
+      },
+      {
+        "image_id": "1b02bf96-90e6-4cd1-877a-702b53c9198a",
+        "blob_name": "1b02bf96-90e6-4cd1-877a-702b53c9198a.jpg",
+        "landmark": "Bet Giyorgis (St. George)",
+        "caption": "Snack Yak at Bet Giyorgis (St. George)",
+        "source": "generated"
+      },
+      {
+        "image_id": "d2fc6f85-e36b-4b04-9c65-40f016b88871",
+        "blob_name": "d2fc6f85-e36b-4b04-9c65-40f016b88871.jpg",
+        "landmark": "Northwestern Cluster Churches",
+        "caption": "Snack Yak at Northwestern Cluster Churches",
+        "source": "generated"
+      },
+      {
+        "image_id": "9db9314f-5d68-4f4c-ac0b-668b14d67f06",
+        "blob_name": "9db9314f-5d68-4f4c-ac0b-668b14d67f06.jpg",
+        "landmark": "Tunnel of Baptism",
+        "caption": "Snack Yak at Tunnel of Baptism",
+        "source": "generated"
+      },
+      {
+        "image_id": "05c953ab-b4a6-4980-af19-877c01d35e2d",
+        "blob_name": "05c953ab-b4a6-4980-af19-877c01d35e2d.jpg",
+        "landmark": "Ashetan Maryam Monastery",
+        "caption": "Snack Yak at Ashetan Maryam Monastery",
+        "source": "generated"
+      }
+    ]
+  },
+  {
+    "trip_id": "740c0d87-d417-486a-9003-dda3d02e942f",
+    "toy_id": "b87961f4-399a-426a-af2c-2bf8d5ee7987",
+    "toy_name": "Echo Gecko",
+    "title": "Echo Gecko’s Sparkling Reims Romp",
+    "description": "Echo Gecko skitters into the coronation capital, craning up at the lofty spires of Notre-Dame de Reims before practicing a teeny royal wave at the Palace of Tau. Down in the cool Pommery cellars, our tiny traveler echoes through bubbly halls, then bounces to the Basilica of Saint-Remi for a knightly gecko quest. A quick dash to Épernay’s Avenue de Champagne tops it off—where every pop sounds like a cheer for Echo’s glittery, grape-tastic adventure!",
+    "location_name": "Reims (Champagne)",
+    "country_code": "FR",
+    "gallery_images": [
+      {
+        "image_id": "a84b39b7-8fc2-40e5-a380-70786a30fd26",
+        "blob_name": "a84b39b7-8fc2-40e5-a380-70786a30fd26.jpg",
+        "landmark": "Pommery Cellars",
+        "caption": "Echo Gecko at Pommery Cellars",
+        "source": "generated"
+      },
+      {
+        "image_id": "e2c8a566-cfd8-4c77-a180-1cee1cfbe97f",
+        "blob_name": "e2c8a566-cfd8-4c77-a180-1cee1cfbe97f.jpg",
+        "landmark": "Palace of Tau",
+        "caption": "Echo Gecko at Palace of Tau",
+        "source": "generated"
+      },
+      {
+        "image_id": "a2f8a153-6c20-421c-838b-5762138d7ae0",
+        "blob_name": "a2f8a153-6c20-421c-838b-5762138d7ae0.jpg",
+        "landmark": "Reims Cathedral (Notre-Dame)",
+        "caption": "Echo Gecko at Reims Cathedral (Notre-Dame)",
+        "source": "generated"
+      },
+      {
+        "image_id": "6fee3127-ae1e-4b1a-aee4-d57374d4116b",
+        "blob_name": "6fee3127-ae1e-4b1a-aee4-d57374d4116b.jpg",
+        "landmark": "Basilica of Saint-Remi",
+        "caption": "Echo Gecko at Basilica of Saint-Remi",
+        "source": "generated"
+      },
+      {
+        "image_id": "17802fba-9f31-4ecb-bbfe-ae5b2ceb08a6",
+        "blob_name": "17802fba-9f31-4ecb-bbfe-ae5b2ceb08a6.jpg",
+        "landmark": "Avenue de Champagne (Épernay)",
+        "caption": "Echo Gecko at Avenue de Champagne (Épernay)",
+        "source": "generated"
+      },
+      {
+        "image_id": "0f84f2f6-f1a8-47cb-b74a-1b3d0e52cff8",
+        "blob_name": "0f84f2f6-f1a8-47cb-b74a-1b3d0e52cff8.jpg",
+        "landmark": "Foujita Chapel",
+        "caption": "Echo Gecko at Foujita Chapel",
+        "source": "generated"
+      }
+    ]
+  }
+]

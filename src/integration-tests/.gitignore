@@ -1,0 +1,20 @@
+# Ignore environment configuration and test artifacts
+.env
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test output
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
