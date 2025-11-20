@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException, status
 
 from models import ImportRequest, ImportResponse
 from services.importer import DemoDataImportService
+from metrics import import_operations_total, toys_imported_total, trips_imported_total, photos_imported_total
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,15 @@ async def trigger_import(
             include_toys=request.include_toys,
             include_trips=request.include_trips,
         )
+        import_operations_total.labels(status="success").inc()
+        
+        # Track imported items
+        toys_imported_total.inc(summary.get("toys_created", 0))
+        trips_imported_total.inc(summary.get("trips_created", 0))
+        photos_imported_total.inc(summary.get("photos_uploaded", 0))
+        
     except Exception as exc:  # pragma: no cover - surfaced as HTTP error
+        import_operations_total.labels(status="failure").inc()
         logger.exception("Demo data import failed")
         raise HTTPException(status_code=502, detail="Demo data import failed") from exc
 
