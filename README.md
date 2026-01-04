@@ -3,16 +3,16 @@
 This repository contains example code to demonstrate GitHub Copilot features across the development lifecycle - from basic coding assistance to advanced agentic workflows. It is designed for demonstrations and learning, not for production use.
 
 ## Table of Contents
-- [1. Copilot as Coding Assistant](#1-copilot-as-coding-assistant)
+- [1. Copilot basics and coding assistance](#1-copilot-basics-and-coding-assistance)
   - [1.1 Inline Code Suggestions](#11-inline-code-suggestions)
-  - [1.2 Chat: Ask and Edit Modes](#12-chat-ask-and-edit-modes)
+  - [1.2 Chat](#12-chat)
   - [1.3 Query Languages (KQL and SQL)](#13-query-languages-kql-and-sql)
   - [1.4 Vision (Image to Code)](#14-vision-image-to-code)
   - [1.5 Browser elements](#15-browser-elements)
   - [1.6 Web Search and Fetch](#16-web-search-and-fetch)
   - [1.7 Simple Multi-File Editing](#17-simple-multi-file-editing)
   - [1.8 Context from Git](#18-context-from-git)
-- [2. Agent Mode](#2-agent-mode)
+- [2. Agentic approach to development](#2-agentic-approach-to-development)
   - [2.1 Complex Task with Testing](#21-complex-task-with-testing)
   - [2.2 Spec-Driven Development](#22-spec-driven-development)
   - [2.3 Multi-Repository Planning with Copilot Spaces](#23-multi-repository-planning-with-copilot-spaces)
@@ -28,10 +28,11 @@ This repository contains example code to demonstrate GitHub Copilot features acr
   - [4.4 Azure MCP](#44-azure-mcp)
   - [4.5 Database MCP](#45-database-mcp)
   - [4.6 Playwright MCP for Testing](#46-playwright-mcp-for-testing)
-- [5. Copilot Coding Agent](#5-copilot-coding-agent)
-  - [5.1 Example Delegated Tasks](#51-example-delegated-tasks)
-  - [5.2 From GitHub Issues](#52-from-github-issues)
-  - [5.3 When to Use Coding Agent vs Agent Mode](#53-when-to-use-coding-agent-vs-agent-mode)
+- [5. Using parallel coding agents](#5-using-parallel-coding-agents)
+  - [5.1 Manual use of CLI coding agent](#51-manual-use-of-cli-coding-agent)
+  - [5.2 Managing agents from IDE](#52-managing-agents-from-ide)
+  - [5.3 Managing agents from cloud](#53-managing-agents-from-cloud)
+  - [5.4 When to use which](#54-when-to-use-which)
 - [6. Code Review, Security, and Autofix](#6-code-review-security-and-autofix)
   - [6.1 Code Review with Copilot](#61-code-review-with-copilot)
   - [6.2 Security Vulnerability Detection](#62-security-vulnerability-detection)
@@ -44,7 +45,7 @@ This repository contains example code to demonstrate GitHub Copilot features acr
 
 ---
 
-# 1. Copilot as Coding Assistant
+# 1. Copilot basics and coding assistance
 
 Learn the fundamentals of GitHub Copilot - inline suggestions, chat interactions, and quick code generation tasks.
 
@@ -56,18 +57,18 @@ Open `main.py` in `src/services/toy` and type `# Configure Prometheus` and wait 
 ### Next Edit Suggestion
 Open `main.py` in `src/services/toy` and around line 25 change `logger` to `logging` and wait for suggestions. Copilot will predict your next likely edit.
 
-## 1.2 Chat: Ask and Edit Modes
+## 1.2 Chat
 
 ### Model selection
-- Auto - let Copilot decide what model to use, if it selects premium model than 1x gets discounted to 0.9x
-- Base models do not consume premium requests (0x)
+- **Auto** - let Copilot decide what model to use and get 10% discount if it selects premium request (eg. 0.9x rather than 1x)
+- **Base models** do not consume premium requests (0x)
   - Use it for simple text tasks and searches. 
-  - As of October 2025 I prefer GPT-5-mini
-- Premium models consume premium requests, most often one per request (1x)
-  - 10x models if available work just slightly better and are order of magnitude more expensive and slow, typically you will not prefer those
+  - As of January** 2026 I prefer **GPT-5-mini**
+- **Premium models** consume premium requests, most often one per request (1x)
   - Switch model when Copilot is not able to move beyond some issue or after previous one finished so you get second opinion
-  - As of November 2025 we would usually combine GPT-5.1-Codex and Claude Sonnet 4.5 for coding and GPT-5.1 or Gemini 2.5 Pro for document writing and brainstorming
-  - 0.33x models are faster and save few requests, but quality is lower (we would usually use 1x model for everything except for simple tasks with GPT-5-mini)  
+  - As of January 2026 we would usually combine **GPT-5.1-Codex and Claude Sonnet 4.5 for coding** and **GPT-5.2 or Gemini 3 Pro for document writing, specs, architecture and brainstorming** - all are 1x models
+  - 0.33x models are faster and save few requests, but quality is lower and I would typically use rather base model (0x) or 1x model most of the time
+  - More expensive models such as 3x Claude Opus 4.5 might make sense for very complex tasks, but are usually just slightly better and often not worth increased price and latency
 
 ### Codebase Search
 Ask Copilot to search and understand your code:
@@ -155,7 +156,7 @@ You can see your Git history and add previous versions of files into Copilot cha
 
 ---
 
-# 2. Agent Mode
+# 2. Agentic approach to development
 
 Agent Mode enables Copilot to work autonomously across multiple files, run tests, deploy infrastructure, and iteratively solve complex problems. This section demonstrates progressive complexity and best practices for agentic workflows.
 
@@ -571,4 +572,7 @@ Azure SRE Agent helps teams:
 - [ ] Plan mode
 - [ ] Azure SRE Agent full demo
 - [ ] Copilot App Modernization
+- [ ] Agent handoff and multiagent
+- [ ] Custom agents
+- [ ] Skills
 
