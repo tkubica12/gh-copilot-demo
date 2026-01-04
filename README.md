@@ -405,33 +405,92 @@ Here is example prompt:
 
 ---
 
-# 5. Copilot Coding Agent
+# 5. Using parallel coding agents
 
-Delegate long-running tasks to Copilot Coding Agent that works asynchronously in the background, committing changes to a branch and opening PRs.
+Delegation of long-running tasks to agents that work asynchronously in the background can speed up your development and shift your focus to providing guidance, strategic decisions and architecture rather than waiting for agent to finish coding task.
 
-## 5.1 Example Delegated Tasks
-Use "delegate to copilot agent" button with these prompts:
+There are multiple ways to do this:
+- Use **local CLI agents** (Copilot, Codex, OpenCode, ...) so agent uses your computer in background, typically working in locally-isolated environment with git **worktrees and local merging**. This is great for **single human** to govern work on single project using **multiple agents**.
+- Use **specialized agents** with support for **hand-off** (multi-agent scenario)
+- Use **cloud agents** hosted in GitHub working on separate branches, resulting in **Pull Requests**, more auditability, suitable for **multiple humans and agents** working on tasks.
+
+
+Here are examples of possible standalone tasks in our repository:
 
 - `I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
 - `Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
+- `Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
 
-## 5.2 From GitHub Issues
+## 5.1 Manual use of CLI coding agent
+You can use **GitHub Copilot CLI** agent to work on some of our tasks without dependency on IDE. But running multiple agents on single set of files can create conflicts so we want to isolate our agents. One way would be to create specific patch branches and use Pull Requests to created robust auditable solution, but that might be overkill when single human wants to locally do tasks in parallel. We will use **git worktrees**.
 
-1. Go to **Issues** in your repository
-2. Create or select an issue
-3. Assign it to **Copilot Coding Agent**
-4. Agent will create a branch, implement changes, and open a PR
+In our example we will combine GitHub Copilot CLI agent with OpenCode agent.
 
-See [Copilot Agents page](https://github.com/copilot/agents) to manage multiple agent tasks across repositories.
+```bash
+# Create 2 worktrees for agent 1 and agent 2
+git worktree add ../gh-copilot-demo-agent1 -b agent1-task
+git worktree add ../gh-copilot-demo-agent2 -b agent2-task
 
-## 5.3 When to Use Coding Agent vs Agent Mode
+# Run agents in separate terminals/sessions
+cd ../gh-copilot-demo-agent1
+copilot --allow-all-tools --model claude-sonnet-4.5 --prompt "I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results."
+git add -A
+git commit -m "Agent 1 commit"
 
-| Use Coding Agent When | Use Agent Mode When |
-|----------------------|---------------------|
-| Task can be completed independently | You need interactive feedback |
-| You want PR-based review workflow | Making rapid iterations |
-| Working on multiple tasks in parallel | Learning or exploring code |
-| Task is well-defined with clear acceptance criteria | Requirements need clarification |
+# In another terminal
+cd ../gh-copilot-demo-agent2
+copilot --allow-all-tools --model claude-sonnet-4.5 --prompt "Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors."
+git add -A
+git commit -m "Agent 2 commit"
+
+# After agents complete their work, review and merge results
+git worktree list
+cd ../gh-copilot-demo  # Back to main worktree
+git merge agent1-task
+git merge agent2-task
+
+# Clean up worktrees
+git worktree remove ../gh-copilot-demo-agent1
+git worktree remove ../gh-copilot-demo-agent2
+git branch -D agent1-task agent2-task
+```
+
+## 5.2 Managing agents from IDE
+Create new session with **New Local Session** which will work in IDE on your current branch.
+
+`I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
+
+Create new session with **New Backgroung Session** which will automatically create new git worktree and branch.
+
+`Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
+
+You can see worktree being created.
+
+```bash
+git worktree list
+C:/git/gh-copilot-demo                                         df3bf8e [main]
+C:/git/gh-copilot-demo.worktrees/worktree-2026-01-04T17-30-55  df3bf8e [worktree-2026-01-04T17-30-55]
+```
+
+Create new session with **New Cloud Session** which will automatically create new branch and cloud-based environment that Coding Agent will use and create Pull Request when finished.
+
+`Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
+
+## 5.3 Managing agents from cloud
+Go to [GitHub Agents](https://github.com/copilot/agents), select repository and create coding task from there - no IDE or local computer required.
+
+You can also start coding agent from **Issues** in your repository - go to issue and assign it to **Copilot Coding Agent**.
+
+You can monitor progress of all your cloud agents.
+
+## 5.4 When to use which
+
+| Local Coding Agent (agent mode) | Background Coding Agent | Cloud Coding Agent |
+|----------------------|---------------------|---------------------|
+| You need interactive feedback | Task can be completed independently | Task can be completed independently |
+| Making rapid iterations | Quick local merging | You want robust PR-based review workflow with multiple humans |
+| Coding, learning, planning, exploring | Working on multiple coding tasks in parallel | Working on multiple coding tasks in parallel |
+| Requirements need clarification | Standalone well-defined task | Specs-based coding with very clear definition and acceptance criteria |
 
 ---
 
@@ -509,9 +568,7 @@ Azure SRE Agent helps teams:
 # TODO
 
 - [ ] More GitHub Spark examples
-- [ ] AgentHQ
 - [ ] Plan mode
 - [ ] Azure SRE Agent full demo
-- [ ] Copilot CLI
 - [ ] Copilot App Modernization
 
