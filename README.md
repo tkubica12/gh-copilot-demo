@@ -5,8 +5,15 @@ This repository contains example code to demonstrate GitHub Copilot features acr
 ## Table of Contents
 - [1. Copilot basics and coding assistance](#1-copilot-basics-and-coding-assistance)
   - [1.1 Inline Code Suggestions](#11-inline-code-suggestions)
+    - [1.1.1 Autocomplete](#111-autocomplete)
+    - [1.1.2 Next Edit Suggestion](#112-next-edit-suggestion)
   - [1.2 Chat](#12-chat)
+    - [1.2.1 Model selection](#121-model-selection)
+    - [1.2.2 Codebase Search](#122-codebase-search)
+    - [1.2.3 Documentation Generation](#123-documentation-generation)
   - [1.3 Query Languages (KQL and SQL)](#13-query-languages-kql-and-sql)
+    - [1.3.1 KQL (Kusto Query Language)](#131-kql-kusto-query-language)
+    - [1.3.2 SQL](#132-sql)
   - [1.4 Vision (Image to Code)](#14-vision-image-to-code)
   - [1.5 Browser elements](#15-browser-elements)
   - [1.6 Web Search and Fetch](#16-web-search-and-fetch)
@@ -15,19 +22,25 @@ This repository contains example code to demonstrate GitHub Copilot features acr
 - [2. Agentic approach to development](#2-agentic-approach-to-development)
   - [2.1 Complex Task with Testing](#21-complex-task-with-testing)
   - [2.2 Spec-Driven Development](#22-spec-driven-development)
+    - [2.2.1 Spec-kit](#221-spec-kit)
+    - [2.2.2 Constitution and spec template](#222-constitution-and-spec-template)
   - [2.3 Multi-Repository Planning with Copilot Spaces](#23-multi-repository-planning-with-copilot-spaces)
 - [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
   - [3.1 Custom instructions](#31-custom-instructions)
   - [3.2 Prompt Files](#32-prompt-files)
   - [3.3 Custom Chat Modes](#33-custom-chat-modes)
   - [3.4 Bring Your Own Model (BYOM)](#34-bring-your-own-model-byom)
-- [4. Model Context Protocol (MCP) Tools](#4-model-context-protocol-mcp-tools)
-  - [4.1 Simple MCP: Random String Generator](#41-simple-mcp-random-string-generator)
-  - [4.2 Kubernetes MCP](#42-kubernetes-mcp)
-  - [4.3 GitHub MCP](#43-github-mcp)
-  - [4.4 Azure MCP](#44-azure-mcp)
-  - [4.5 Database MCP](#45-database-mcp)
-  - [4.6 Playwright MCP for Testing](#46-playwright-mcp-for-testing)
+- [4. Providing tools with Skills and Model Context Protocol (MCP)](#4-providing-tools-with-skills-and-model-context-protocol-mcp)
+  - [4.1 Skills](#41-skills)
+    - [4.1.1 Understanding skills for dynamic content management](#411-understanding-skills-for-dynamic-content-management)
+    - [4.1.2 Scripted skill example](#412-scripted-skill-example)
+  - [4.2 Model Context Protocol (MCP)](#42-model-context-protocol-mcp)
+    - [4.2.1 Simple MCP: Random String Generator](#421-simple-mcp-random-string-generator)
+    - [4.2.2 Kubernetes MCP](#422-kubernetes-mcp)
+    - [4.2.3 GitHub MCP](#423-github-mcp)
+    - [4.2.4 Azure MCP](#424-azure-mcp)
+    - [4.2.5 Database MCP](#425-database-mcp)
+    - [4.2.6 Playwright MCP for Testing](#426-playwright-mcp-for-testing)
 - [5. Using parallel coding agents](#5-using-parallel-coding-agents)
   - [5.1 Manual use of CLI coding agent](#51-manual-use-of-cli-coding-agent)
   - [5.2 Managing agents from IDE](#52-managing-agents-from-ide)
@@ -51,15 +64,15 @@ Learn the fundamentals of GitHub Copilot - inline suggestions, chat interactions
 
 ## 1.1 Inline Code Suggestions
 
-### Autocomplete
+### 1.1.1 Autocomplete
 Open `main.py` in `src/services/toy` and type `# Configure Prometheus` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
 
-### Next Edit Suggestion
+### 1.1.2 Next Edit Suggestion
 Open `main.py` in `src/services/toy` and around line 25 change `logger` to `logging` and wait for suggestions. Copilot will predict your next likely edit.
 
 ## 1.2 Chat
 
-### Model selection
+### 1.2.1 Model selection
 - **Auto** - let Copilot decide what model to use and get 10% discount if it selects premium request (eg. 0.9x rather than 1x)
 - **Base models** do not consume premium requests (0x)
   - Use it for simple text tasks and searches. 
@@ -70,7 +83,7 @@ Open `main.py` in `src/services/toy` and around line 25 change `logger` to `logg
   - 0.33x models are faster and save few requests, but quality is lower and I would typically use rather base model (0x) or 1x model most of the time
   - More expensive models such as 3x Claude Opus 4.5 might make sense for very complex tasks, but are usually just slightly better and often not worth increased price and latency
 
-### Codebase Search
+### 1.2.2 Codebase Search
 Ask Copilot to search and understand your code:
 ```
 Where in my code am I processing messages from Service Bus queues and what is the code doing?
@@ -80,7 +93,7 @@ Experiment with different models selection.
 
 **Note**: GitHub Copilot automatically indexes repositories for semantic search to improve context accuracy. For more information, see [Repository indexing](https://docs.github.com/en/copilot/concepts/context/repository-indexing). You can also configure content exclusion to prevent Copilot from accessing sensitive files - see [Excluding content from GitHub Copilot](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot).
 
-### Documentation Generation
+### 1.2.3 Documentation Generation
 Create `README.md` in `examples/terraform` and add all Terraform files to context. Then ask:
 
 - `Create basic Markdown documentation into README.md for my Terraform project. Start by describing this project as demo Terraform infrastructure, explain how to deploy it using Terraform CLI and list tree structure of tf files in the project with short description of each file into my README.md.`
@@ -92,13 +105,13 @@ Create `README.md` in `examples/terraform` and add all Terraform files to contex
 
 ## 1.3 Query Languages (KQL and SQL)
 
-### KQL (Kusto Query Language)
+### 1.3.1 KQL (Kusto Query Language)
 Attach [query_data.csv](./examples/kql/query_data.csv) and ask:
 ```
 Give me microsoft Kusto Query (KQL) to display percentage of processor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.
 ```
 
-### SQL
+### 1.3.2 SQL
 Attach [users_denormalized.json](./examples/sql/users_denormalized.json) and ask:
 - `Generate CREATE commands for normalized users, addresses and orders using Microsoft SQL.`
 - `Based on data structure, create 10 lines of sample data and make sure it makes sense and foreign keys are respected.`
@@ -190,7 +203,7 @@ Create new service called api-user-profile that provides API for CRUD over user 
 ## 2.2 Spec-Driven Development
 In fact we need way more details than in previous prompt for agent to code in a way that is sustainable for long-lived projects with our specifications for service, coding guidelines, integrations and contracts, security, testability, observability and so on. We should therefore spend more time working on this.
 
-### Spec-kit
+### 2.2.1 Spec-kit
 Spec-kit is open source project developed by GitHub with newrly 50k stars and with support for many agents including GitHub Copilot, Cursor, Claude Code, WIndsurf, Codex and others. It is opionated way how to do spec-driven development. It provides guided experience and you can go feature by feature - this is not just for initial setup!
 
 ```
@@ -207,7 +220,7 @@ code my_new_project
 
 See `my_new_project/specs` folder for results. Note spec-kit is in very clever way using prompt.md files as dicsussed later.
 
-### Constitution and spec template
+### 2.2.2 Constitution and spec template
 In my case I am using separate repository to define:
 - **Consistution**: key principles for all our projects
 - **specs-template**: Template for structure and files for specifications for platform level (project-wide) and service level that includes decissions (ADRs), contracts, architecture, data models, runbooks, security, deployment, testing, observability and so on
@@ -327,11 +340,80 @@ In Copilot click on **Manage Models** and add Ollama models. Try examples from S
 
 ---
 
-# 4. Model Context Protocol (MCP) Tools
+# 4. Providing tools with Skills and Model Context Protocol (MCP)
 
-MCP enables Copilot to interact with external tools and services, dramatically extending its capabilities beyond code generation. For more advanced scenarios, you can also develop [custom VS Code extensions](https://docs.github.com/en/copilot/concepts/extensions) with specialized UI.
+**Skills** are simple way to provide dynamically loaded context as well as scripted tools and can be seen as local-only lightweight alternative to full MCP tools.
 
-## 4.1 Simple MCP: Random String Generator
+**MCP** enables Copilot to interact with external tools and services, dramatically extending its capabilities beyond code generation. For more advanced scenarios, you can also develop [custom VS Code extensions](https://docs.github.com/en/copilot/concepts/extensions) with specialized UI.
+
+## 4.1 Skills
+
+### 4.1.1 Understanding skills for dynamic content management
+We will use Chat Debug feature to understand how Copilot works with skills. Disable all tools except for built-in ones so we make things easy to debug.
+
+See file [.github/skills/simplecontext/SKILL.md](.github/skills/simplecontext/SKILL.md) with our skills instructions. Open Copilot Chat and just type `ping` and observe LOG.
+
+You will find System prompt that Copilot is using and in it skills section:
+
+```xml
+<skills>
+Here is a list of skills that contain domain specific knowledge on a variety of topics.
+Each skill comes with a description of the topic and a file path that contains the detailed instructions.
+When a user asks you to perform a task that falls within the domain of a skill, use the 'read_file' tool to acquire the full instructions from the file URI.
+<skill>
+<name>simplecontext</name>
+<description>This contains information about company project code-named BigDog</description>
+<file>c:\git\gh-copilot-demo\.github\skills\simplecontext\SKILL.md</file>
+</skill>
+</skills>
+```
+
+Note our context now contains **only** skill name and description, no details.
+
+In chat ask the following question: `What is inventory number for BigDog`. Loog at LOG - Copilot decided to use his skill, open it, load details into context and therefore knows answer.
+
+**Thinking - call tool**
+
+```
+I'll open the `simplecontext` skill file to find BigDog's inventory number. 
+🛠️ read_file (call_rWhhRSoYp6gs8DpFjkicZFU7) {
+  "filePath": "c:\\git\\gh-copilot-demo\\.github\\skills\\simplecontext\\SKILL.md",
+  "startLine": 1,
+  "endLine": 400
+}
+```
+
+**Calling read tool**
+
+🛠️ call_rWhhRSoYp6gs8DpFjkicZFU7
+
+```markdown
+---
+name: simplecontext
+description: This contains information about company project code-named BigDog
+---
+
+Here are information about this project:
+- Owner: Michael Coder
+- Inventary number: 54321
+
+```
+
+**Response to user**
+
+```markdown
+- **Inventory Number:** 54321  
+- **Source:** File: [.github/skills/simplecontext/SKILL.md](.github/skills/simplecontext/SKILL.md) — note the file spells it as "Inventary number".
+```
+
+### 4.1.2 Scripted skill example
+See [.github/skills/json-to-xml-converter/SKILL.md](./.github/skills/json-to-xml-converter/SKILL.md) - this is simple skill that comes with script to convert JSON to XML. Programatically, so it should work for files of virtually any size quickly and without risk of introducing errors (compared to using LLM for that directly). 
+
+Open new chat and add file `examples/json/myjson.json` into context a type `convert this to xml`. Copilot should find the right skill, load its instructions and execute script sucessfully.
+
+## 4.2 Model Context Protocol (MCP)
+
+### 4.2.1 Simple MCP: Random String Generator
 
 Run MCP server in folder `mcp/random_string_mcp/src/`. This runs locally and is configured in `mcp.json` file on workspace.
 
@@ -340,7 +422,7 @@ Use this prompt in Agent mode:
 Generate names for 10 containers in format app1-xxxxxx where xxxxxx is random suffix consisting of lowercase letters and numbers
 ```
 
-## 4.2 Kubernetes MCP
+### 4.2.2 Kubernetes MCP
 
 Install AKS and Kubernetes apps using [this guide](./mcp/README.md). Then try this conversation flow:
 
@@ -354,9 +436,9 @@ How would I do that, show me
 If I would like to do the steps you did in this chat using Kubernetes CLI next time, how it would look like?
 ```
 
-🎥 See [recording](./docs/video/MCP-Kubernetes.mp4) of this demo.
+See [recording](./docs/video/MCP-Kubernetes.mp4) of this demo.
 
-## 4.3 GitHub MCP
+### 4.2.3 GitHub MCP
 See all available calls under GitHub MCP.
 
 Few things to try:
@@ -365,7 +447,7 @@ Few things to try:
 - `Our api-processing do have performance issues. Gather information about this service and create GitHub issue and assign tkubica12 to look into it` which uses create_isse
 
 
-## 4.4 Azure MCP
+### 4.2.4 Azure MCP
 
 - Query Azure resources (storage accounts, VMs, App Services)
 - Analyze costs and resource utilization
@@ -378,7 +460,7 @@ Example prompts to start with:
 - `See my storage accounts, can I improve resiliency and data protection?`
 
 
-## 4.5 Database MCP
+### 4.2.5 Database MCP
 In our example we will use PostgreSQL extension and MCP server. Deploy Azure Database for PostgreSQL and connect to it. Thank you can try this prompt:
 
 ```
@@ -393,7 +475,7 @@ Generate about 100 rows of some test date and insert it.
 
 Then you can use UI of extension to see data in that table.
 
-## 4.6 Playwright MCP for Testing
+### 4.2.6 Playwright MCP for Testing
 
 - Generate E2E tests
 - Run Playwright tests from Copilot
@@ -578,5 +660,4 @@ Azure SRE Agent helps teams:
 - [ ] Copilot App Modernization
 - [ ] Agent handoff and multiagent
 - [ ] Custom agents
-- [ ] Skills
 

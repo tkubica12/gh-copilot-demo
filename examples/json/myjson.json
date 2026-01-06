@@ -1,0 +1,565 @@
+{
+    "company": {
+        "name": "TechCorp Solutions",
+        "founded": 2015,
+        "active": true,
+        "revenue": 45000000.75,
+        "headquarters": {
+            "address": {
+                "street": "123 Innovation Drive",
+                "city": "San Francisco",
+                "state": "CA",
+                "zipCode": "94105",
+                "country": "USA"
+            },
+            "coordinates": {
+                "latitude": 37.7749,
+                "longitude": -122.4194
+            },
+            "facilities": [
+                {
+                    "name": "Main Office",
+                    "type": "headquarters",
+                    "floors": 15,
+                    "squareFeet": 250000,
+                    "amenities": [
+                        "gym",
+                        "cafeteria",
+                        "parking",
+                        "rooftop terrace"
+                    ]
+                },
+                {
+                    "name": "Research Lab",
+                    "type": "laboratory",
+                    "floors": 3,
+                    "squareFeet": 50000,
+                    "amenities": [
+                        "clean rooms",
+                        "testing facilities"
+                    ]
+                }
+            ]
+        },
+        "departments": [
+            {
+                "id": 1,
+                "name": "Engineering",
+                "budget": 15000000,
+                "headCount": 250,
+                "manager": {
+                    "employeeId": "EMP-001",
+                    "name": "Sarah Chen",
+                    "title": "VP of Engineering",
+                    "email": "sarah.chen@techcorp.example",
+                    "phone": "+1-555-0101",
+                    "hireDate": "2016-03-15",
+                    "skills": [
+                        "leadership",
+                        "architecture",
+                        "cloud computing",
+                        "AI/ML"
+                    ]
+                },
+                "teams": [
+                    {
+                        "name": "Backend Services",
+                        "size": 45,
+                        "technologies": [
+                            "Python",
+                            "Go",
+                            "Kubernetes",
+                            "PostgreSQL"
+                        ],
+                        "projects": [
+                            {
+                                "id": "PROJ-101",
+                                "name": "Microservices Migration",
+                                "status": "in-progress",
+                                "priority": "high",
+                                "completionPercentage": 67.5,
+                                "startDate": "2025-06-01",
+                                "expectedEndDate": "2026-03-31",
+                                "budget": 2500000
+                            },
+                            {
+                                "id": "PROJ-102",
+                                "name": "API Gateway Redesign",
+                                "status": "planning",
+                                "priority": "medium",
+                                "completionPercentage": 15.0,
+                                "startDate": "2026-01-15",
+                                "expectedEndDate": "2026-06-30",
+                                "budget": 800000
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Frontend Development",
+                        "size": 38,
+                        "technologies": [
+                            "React",
+                            "TypeScript",
+                            "Next.js",
+                            "Tailwind CSS"
+                        ],
+                        "projects": [
+                            {
+                                "id": "PROJ-201",
+                                "name": "Dashboard Redesign",
+                                "status": "completed",
+                                "priority": "high",
+                                "completionPercentage": 100.0,
+                                "startDate": "2025-04-01",
+                                "expectedEndDate": "2025-12-31",
+                                "budget": 1200000
+                            }
+                        ]
+                    },
+                    {
+                        "name": "DevOps",
+                        "size": 22,
+                        "technologies": [
+                            "Terraform",
+                            "Azure",
+                            "GitHub Actions",
+                            "Prometheus"
+                        ],
+                        "projects": [
+                            {
+                                "id": "PROJ-301",
+                                "name": "Multi-Region Deployment",
+                                "status": "in-progress",
+                                "priority": "critical",
+                                "completionPercentage": 82.3,
+                                "startDate": "2025-09-01",
+                                "expectedEndDate": "2026-02-28",
+                                "budget": 3500000
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Product Management",
+                "budget": 5000000,
+                "headCount": 45,
+                "manager": {
+                    "employeeId": "EMP-002",
+                    "name": "Marcus Johnson",
+                    "title": "Chief Product Officer",
+                    "email": "marcus.j@techcorp.example",
+                    "phone": "+1-555-0202",
+                    "hireDate": "2017-01-10",
+                    "skills": [
+                        "strategy",
+                        "market analysis",
+                        "roadmapping",
+                        "stakeholder management"
+                    ]
+                },
+                "teams": [
+                    {
+                        "name": "Platform Products",
+                        "size": 18,
+                        "technologies": [
+                            "Figma",
+                            "Jira",
+                            "Miro",
+                            "Analytics"
+                        ],
+                        "projects": []
+                    },
+                    {
+                        "name": "Enterprise Solutions",
+                        "size": 15,
+                        "technologies": [
+                            "Salesforce",
+                            "Product Board",
+                            "Tableau"
+                        ],
+                        "projects": []
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Sales",
+                "budget": 8000000,
+                "headCount": 120,
+                "manager": {
+                    "employeeId": "EMP-003",
+                    "name": "Jennifer Martinez",
+                    "title": "VP of Sales",
+                    "email": "j.martinez@techcorp.example",
+                    "phone": "+1-555-0303",
+                    "hireDate": "2018-05-20",
+                    "skills": [
+                        "enterprise sales",
+                        "negotiation",
+                        "CRM",
+                        "team building"
+                    ]
+                },
+                "teams": []
+            },
+            {
+                "id": 4,
+                "name": "Marketing",
+                "budget": 6000000,
+                "headCount": 55,
+                "manager": {
+                    "employeeId": "EMP-004",
+                    "name": "David Kim",
+                    "title": "CMO",
+                    "email": "david.kim@techcorp.example",
+                    "phone": "+1-555-0404",
+                    "hireDate": "2019-02-01",
+                    "skills": [
+                        "digital marketing",
+                        "branding",
+                        "content strategy",
+                        "analytics"
+                    ]
+                },
+                "teams": []
+            }
+        ],
+        "products": [
+            {
+                "id": "PROD-001",
+                "name": "CloudSync Pro",
+                "category": "SaaS",
+                "description": "Enterprise cloud synchronization platform",
+                "pricing": {
+                    "model": "subscription",
+                    "tiers": [
+                        {
+                            "name": "Starter",
+                            "monthlyPrice": 29.99,
+                            "annualPrice": 299.99,
+                            "features": [
+                                "5 users",
+                                "10GB storage",
+                                "basic support"
+                            ],
+                            "maxUsers": 5,
+                            "storageGB": 10
+                        },
+                        {
+                            "name": "Professional",
+                            "monthlyPrice": 99.99,
+                            "annualPrice": 999.99,
+                            "features": [
+                                "25 users",
+                                "100GB storage",
+                                "priority support",
+                                "API access"
+                            ],
+                            "maxUsers": 25,
+                            "storageGB": 100
+                        },
+                        {
+                            "name": "Enterprise",
+                            "monthlyPrice": 499.99,
+                            "annualPrice": 4999.99,
+                            "features": [
+                                "unlimited users",
+                                "1TB storage",
+                                "24/7 support",
+                                "API access",
+                                "custom integrations",
+                                "SLA guarantee"
+                            ],
+                            "maxUsers": null,
+                            "storageGB": 1000
+                        }
+                    ]
+                },
+                "metrics": {
+                    "activeUsers": 15420,
+                    "monthlyRecurringRevenue": 1250000.50,
+                    "churnRate": 2.3,
+                    "netPromoterScore": 68,
+                    "uptime": 99.97
+                },
+                "releases": [
+                    {
+                        "version": "3.2.1",
+                        "releaseDate": "2025-12-15",
+                        "type": "patch",
+                        "changes": [
+                            "bug fixes",
+                            "performance improvements"
+                        ]
+                    },
+                    {
+                        "version": "3.2.0",
+                        "releaseDate": "2025-11-01",
+                        "type": "minor",
+                        "changes": [
+                            "new API endpoints",
+                            "improved UI",
+                            "enhanced security"
+                        ]
+                    },
+                    {
+                        "version": "3.0.0",
+                        "releaseDate": "2025-06-01",
+                        "type": "major",
+                        "changes": [
+                            "complete architecture redesign",
+                            "new pricing model",
+                            "mobile apps"
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "PROD-002",
+                "name": "DataFlow Analytics",
+                "category": "Analytics",
+                "description": "Real-time data analytics and visualization platform",
+                "pricing": {
+                    "model": "usage-based",
+                    "tiers": [
+                        {
+                            "name": "Pay-as-you-go",
+                            "monthlyPrice": 0,
+                            "annualPrice": 0,
+                            "features": [
+                                "$0.10 per 1000 events",
+                                "basic dashboards"
+                            ],
+                            "maxUsers": null,
+                            "storageGB": null
+                        },
+                        {
+                            "name": "Business",
+                            "monthlyPrice": 299.99,
+                            "annualPrice": 2999.99,
+                            "features": [
+                                "5M events included",
+                                "advanced dashboards",
+                                "custom reports",
+                                "API access"
+                            ],
+                            "maxUsers": 50,
+                            "storageGB": 500
+                        }
+                    ]
+                },
+                "metrics": {
+                    "activeUsers": 8340,
+                    "monthlyRecurringRevenue": 875000.25,
+                    "churnRate": 3.1,
+                    "netPromoterScore": 72,
+                    "uptime": 99.95
+                },
+                "releases": []
+            }
+        ],
+        "customers": [
+            {
+                "id": "CUST-10001",
+                "name": "Global Manufacturing Inc",
+                "industry": "Manufacturing",
+                "size": "enterprise",
+                "employeeCount": 25000,
+                "contractValue": 2500000,
+                "contractStartDate": "2024-01-01",
+                "contractEndDate": "2027-12-31",
+                "isPremium": true,
+                "products": [
+                    "PROD-001",
+                    "PROD-002"
+                ],
+                "contacts": [
+                    {
+                        "name": "Robert Williams",
+                        "title": "CTO",
+                        "email": "r.williams@globalmanuf.example",
+                        "phone": "+1-555-1001",
+                        "isPrimary": true
+                    },
+                    {
+                        "name": "Lisa Anderson",
+                        "title": "VP IT",
+                        "email": "l.anderson@globalmanuf.example",
+                        "phone": "+1-555-1002",
+                        "isPrimary": false
+                    }
+                ],
+                "supportTickets": [
+                    {
+                        "id": "TICKET-5001",
+                        "subject": "API rate limit increase request",
+                        "status": "resolved",
+                        "priority": "medium",
+                        "createdDate": "2025-12-10",
+                        "resolvedDate": "2025-12-12",
+                        "responseTimeHours": 4.5
+                    }
+                ]
+            },
+            {
+                "id": "CUST-10002",
+                "name": "Healthcare Systems Ltd",
+                "industry": "Healthcare",
+                "size": "large",
+                "employeeCount": 8500,
+                "contractValue": 850000,
+                "contractStartDate": "2025-03-01",
+                "contractEndDate": "2026-02-28",
+                "isPremium": false,
+                "products": [
+                    "PROD-001"
+                ],
+                "contacts": [
+                    {
+                        "name": "Dr. Emily Thompson",
+                        "title": "Director of IT",
+                        "email": "e.thompson@healthsys.example",
+                        "phone": "+1-555-2001",
+                        "isPrimary": true
+                    }
+                ],
+                "supportTickets": []
+            },
+            {
+                "id": "CUST-10003",
+                "name": "RetailChain Corp",
+                "industry": "Retail",
+                "size": "medium",
+                "employeeCount": 3200,
+                "contractValue": 125000,
+                "contractStartDate": "2025-09-01",
+                "contractEndDate": "2026-08-31",
+                "isPremium": false,
+                "products": [
+                    "PROD-002"
+                ],
+                "contacts": [
+                    {
+                        "name": "Michael Brown",
+                        "title": "IT Manager",
+                        "email": "m.brown@retailchain.example",
+                        "phone": "+1-555-3001",
+                        "isPrimary": true
+                    }
+                ],
+                "supportTickets": [
+                    {
+                        "id": "TICKET-5002",
+                        "subject": "Dashboard customization help",
+                        "status": "in-progress",
+                        "priority": "low",
+                        "createdDate": "2026-01-03",
+                        "resolvedDate": null,
+                        "responseTimeHours": 12.0
+                    },
+                    {
+                        "id": "TICKET-5003",
+                        "subject": "Integration question",
+                        "status": "open",
+                        "priority": "medium",
+                        "createdDate": "2026-01-05",
+                        "resolvedDate": null,
+                        "responseTimeHours": null
+                    }
+                ]
+            }
+        ],
+        "financials": {
+            "fiscalYear": 2025,
+            "quarters": [
+                {
+                    "quarter": "Q1",
+                    "revenue": 10250000.00,
+                    "expenses": 7800000.00,
+                    "profit": 2450000.00,
+                    "growthRate": 15.5
+                },
+                {
+                    "quarter": "Q2",
+                    "revenue": 11100000.00,
+                    "expenses": 8200000.00,
+                    "profit": 2900000.00,
+                    "growthRate": 18.2
+                },
+                {
+                    "quarter": "Q3",
+                    "revenue": 11850000.00,
+                    "expenses": 8500000.00,
+                    "profit": 3350000.00,
+                    "growthRate": 20.1
+                },
+                {
+                    "quarter": "Q4",
+                    "revenue": 12800000.00,
+                    "expenses": 9100000.00,
+                    "profit": 3700000.00,
+                    "growthRate": 22.3
+                }
+            ],
+            "totalRevenue": 45000000.00,
+            "totalExpenses": 33600000.00,
+            "totalProfit": 11400000.00,
+            "yearOverYearGrowth": 19.0
+        },
+        "certifications": [
+            {
+                "name": "ISO 27001",
+                "issuer": "International Organization for Standardization",
+                "issueDate": "2023-06-15",
+                "expiryDate": "2026-06-14",
+                "isValid": true
+            },
+            {
+                "name": "SOC 2 Type II",
+                "issuer": "AICPA",
+                "issueDate": "2024-03-01",
+                "expiryDate": "2025-02-28",
+                "isValid": true
+            },
+            {
+                "name": "GDPR Compliance",
+                "issuer": "European Commission",
+                "issueDate": "2023-01-10",
+                "expiryDate": null,
+                "isValid": true
+            }
+        ],
+        "partnerships": [
+            {
+                "partner": "Azure",
+                "type": "cloud provider",
+                "since": "2016-05-01",
+                "tier": "gold"
+            },
+            {
+                "partner": "GitHub",
+                "type": "technology",
+                "since": "2018-03-15",
+                "tier": "verified"
+            },
+            {
+                "partner": "Stripe",
+                "type": "payment processor",
+                "since": "2019-07-01",
+                "tier": "standard"
+            }
+        ],
+        "metadata": {
+            "lastUpdated": "2026-01-06T10:30:00Z",
+            "version": "2.5.0",
+            "schemaVersion": "1.0",
+            "generatedBy": "data-export-service",
+            "exportReason": "demonstration",
+            "includesSensitiveData": false,
+            "dataClassification": "public",
+            "retentionPolicy": "5 years"
+        }
+    }
+}

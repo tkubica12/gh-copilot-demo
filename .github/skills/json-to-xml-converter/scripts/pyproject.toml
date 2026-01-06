@@ -1,0 +1,39 @@
+[project]
+name = "json-to-xml-converter"
+version = "1.0.0"
+description = "Convert JSON data to XML format"
+authors = [
+    {name = "GitHub Copilot Demo", email = "demo@example.com"}
+]
+readme = "SKILL.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.scripts]
+json2xml = "scripts.json2xml:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["*/tests/*"]
