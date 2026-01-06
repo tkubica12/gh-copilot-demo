@@ -473,6 +473,10 @@ C:/git/gh-copilot-demo                                         df3bf8e [main]
 C:/git/gh-copilot-demo.worktrees/worktree-2026-01-04T17-30-55  df3bf8e [worktree-2026-01-04T17-30-55]
 ```
 
+You have **Keep/Undo** buttons available to track changes in each agent session as well as **Apply** button which will project those changes to your main VS Code workspace (branch).
+
+You can also work in interactive mode to discuss options and than **handoff to background agent** to finish the job.
+
 Create new session with **New Cloud Session** which will automatically create new branch and cloud-based environment that Coding Agent will use and create Pull Request when finished.
 
 `Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
