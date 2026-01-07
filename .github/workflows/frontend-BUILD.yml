@@ -37,10 +37,23 @@ jobs:
 
     - name: Save Docker tags
       run: |
+        mkdir -p ./terraform/staging
         echo "FRONTEND_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-frontend:${{ github.sha }}\"" > ./terraform/staging/frontend.tfvars
+        
+    - name: Commit and push on main branch
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git pull --rebase || true
         git add ./terraform/staging/frontend.tfvars
-        git commit -m "Update frontend image with latest SHA"
+        git diff --staged --quiet || git commit -m "Update frontend image with latest SHA"
         git push
+        
+    - name: Check for uncommitted changes on PR
+      if: github.event_name == 'pull_request'
+      run: |
+        if ! git diff --quiet ./terraform/staging/frontend.tfvars; then
+          echo "::notice::Generated frontend.tfvars would be updated with new image tag on merge to main"
+          git diff ./terraform/staging/frontend.tfvars
+        fi

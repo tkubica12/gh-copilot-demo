@@ -36,10 +36,23 @@ jobs:
 
     - name: Save Docker tags
       run: |
+        mkdir -p ./terraform/staging
         echo "WORKER_IMAGE=\"ghcr.io/${{ github.repository }}/gh-copilot-demo-worker:${{ github.sha }}\"" > ./terraform/staging/worker.tfvars
+        
+    - name: Commit and push on main branch
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git pull --rebase || true
         git add ./terraform/staging/worker.tfvars
-        git commit -m "Update worker image with latest SHA"
+        git diff --staged --quiet || git commit -m "Update worker image with latest SHA"
         git push
+        
+    - name: Check for uncommitted changes on PR
+      if: github.event_name == 'pull_request'
+      run: |
+        if ! git diff --quiet ./terraform/staging/worker.tfvars; then
+          echo "::notice::Generated worker.tfvars would be updated with new image tag on merge to main"
+          git diff ./terraform/staging/worker.tfvars
+        fi

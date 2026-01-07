@@ -1,5 +1,34 @@
 # Implementation Log
 
+## 2025-11-20 – Fixed BUILD workflows to handle uncommitted changes properly
+
+Modified all BUILD workflows (frontend, api-processing, api-status, worker, perftest) to properly handle generated tfvars files in different contexts.
+
+### Problem
+BUILD workflows were attempting to commit and push Docker image tags to `terraform/staging/*.tfvars` files on every run, including pull requests. This caused issues because:
+- The `terraform/staging/` directory didn't exist
+- Committing to PR branches from workflows creates noise and potential conflicts
+- The original design didn't distinguish between main branch builds and PR builds
+
+### Solution
+Split the workflow into conditional steps:
+1. **Generate tfvars** (always): Creates the `terraform/staging/` directory and generates the tfvars file with the new Docker image tag
+2. **Commit and push** (only on main branch): When the workflow runs on a `push` event to `main`, it commits and pushes the tfvars file back to the repository
+3. **Check uncommitted changes** (only on PRs): When running on a pull request, it checks if there would be uncommitted changes and reports them as a notice without committing
+
+### Changes
+- Created `terraform/staging/` directory with explanatory README
+- Updated all 5 BUILD workflows to use conditional commit/push logic
+- Added `git diff --staged --quiet ||` before commit to avoid errors when nothing changed
+- Used GitHub Actions `::notice::` syntax to inform users about pending changes on PRs
+
+### Rationale
+This approach ensures that:
+- Main branch maintains up-to-date tfvars files for deployment
+- PR builds can validate the build without modifying the branch
+- Users are informed when their changes would update Docker image tags
+- No unnecessary commits clutter the PR history
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
