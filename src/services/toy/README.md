@@ -55,12 +55,29 @@ uv run pytest -v
 - `GET /toy/{id}/avatar` - Download (global, cached)
 - `DELETE /toy/{id}/avatar` - Remove (owner only)
 
-All endpoints require `Authorization: Bearer <token>` except `/health`.
+**Monitoring:**
+- `GET /health` - Health check
+- `GET /metrics` - Prometheus metrics endpoint
+
+All endpoints require `Authorization: Bearer <token>` except `/health` and `/metrics`.
 
 ## Architecture
 
 - **Storage**: Cosmos DB (partition key: toy_id) + Blob Storage (private endpoints)
 - **Auth**: Entra ID with owner-based access control
 - **Image Handling**: Proxy pattern (no SAS tokens, managed identity only)
+- **Monitoring**: Prometheus metrics for HTTP requests, toy operations, and avatar uploads
 
-See full documentation in repository root `docs/` folder.
+## Metrics
+
+The service exposes Prometheus metrics at `/metrics`:
+
+- `toy_service_http_requests_total` - Total HTTP requests (labels: method, endpoint, status)
+- `toy_service_http_request_duration_seconds` - Request latency histogram (labels: method, endpoint)
+- `toy_service_toys_registered_total` - Total toys registered
+- `toy_service_toys_updated_total` - Total toys updated
+- `toy_service_toys_deleted_total` - Total toys deleted
+- `toy_service_avatar_uploads_total` - Total avatar uploads
+- `toy_service_active_toys` - Current number of active toys
+
+See full documentation in repository root `docs/` folder and `deploy/MONITORING.md` for Grafana dashboards.

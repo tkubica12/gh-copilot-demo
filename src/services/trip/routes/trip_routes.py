@@ -11,6 +11,7 @@ import httpx
 from models import Trip, TripCreate, TripUpdate, GalleryImage
 from repositories import TripRepository
 from services import GalleryService
+from metrics import trips_created_total, trips_updated_total, trips_deleted_total, photos_uploaded_total
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +67,7 @@ async def create_trip(
     trip = Trip(**trip_kwargs)
 
     created_trip = await repo.create(trip)
+    trips_created_total.inc()
     logger.info(f"Created trip {created_trip.id} for toy {trip_data.toy_id}")
 
     return created_trip
@@ -140,6 +142,7 @@ async def update_trip(
     if not updated_trip:
         raise HTTPException(status_code=404, detail="Trip not found")
 
+    trips_updated_total.inc()
     logger.info(f"Updated trip {trip_id}")
     return updated_trip
 
@@ -167,6 +170,7 @@ async def delete_trip(
     if not deleted:
         raise HTTPException(status_code=404, detail="Trip not found")
 
+    trips_deleted_total.inc()
     logger.info(f"Deleted trip {trip_id}")
 
 
@@ -209,6 +213,7 @@ async def upload_gallery_image(
         if not updated_trip:
             raise HTTPException(status_code=404, detail="Trip not found")
 
+        photos_uploaded_total.inc()
         logger.info(f"Uploaded gallery image for trip {trip_id}, landmark {landmark}")
         return updated_trip
 
