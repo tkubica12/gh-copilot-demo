@@ -1,5 +1,18 @@
 # Implementation Log
 
+## 2026-03-09 – Workshop agenda refocused on agentic delivery
+
+Refreshed the customer workshop agenda to reflect the current GitHub Copilot platform direction.
+
+### Decisions
+- Moved the workshop center of gravity from basic editor assistance to agentic end-to-end workflows across VS Code, CLI, and GitHub.
+- Elevated GitHub Copilot CLI, `/fleet`, subagents, custom agents, skills, MCP, and spec-driven development from supporting topics to primary agenda items.
+- Added explicit coverage for GitHub Agent HQ, cloud and background agents, third-party agents, shared memory, code review, and agentic GitHub Actions workflows.
+- Reframed the material around practical customer operating models: context, orchestration, testing, PR-based review, and governance.
+- Condensed the final customer-facing agenda into an email-friendly format built around workshop name, short description, and chapter bullets.
+- Grounded the refresh in current GitHub and Microsoft guidance around agent mode, Copilot CLI, Agent HQ, Copilot Memory, third-party agents, and GitHub Agentic Workflows.
+- Split the final agenda into localized English and Czech variants using `_EN` and `_CZ` suffixes.
+
 ## 2025-08-29 – Testing Infrastructure Added
 
 Added unit and integration test scaffolding for `api-processing` and `api-status` services using `pytest`.
