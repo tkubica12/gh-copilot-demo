@@ -1,58 +1,88 @@
-# Enterprise demo flow
->> SLIDE: GitHub Enterprise overview
->> SLIDE: GitHub Copilot Enterprise overview
+# Enterprise scenarios and exploration path
 
-## GitHub Copilot
-- Next-suggestion TAB experience in code editor (get_env_var in Python APIs), mention new gpt-4o-copilot finetuned model
-- Discuss future of SLMs for autocomplete and fine-tuning preview in Enterprise
+This document maps practical enterprise scenarios that connect the repository assets to the broader GitHub Copilot platform story.
 
-## Copilot Chat Enterprise
-- Chat - model selection, o3-mini Elo on Codeforces (2032) vs. future with GPT-5 (Elo 2727), Google and Anthropic (especially 3.7 thinking) models
-- Chat - Attach screenshot (insiders) - company homepage: Explain what is this web page about and provide assessment of its UX
-- Chat - Knowledgebase on web copilot (Enteprise)
-I am creating new project to implement SDK for our public APIs and publish it for general public. What license should I pick, Apache, GPL or MIT?
-What does worker in this repository do?
+## 1. Foundation: fast wins and platform framing
 
-- Chat - Azure extension
-@azure /resources Do I have any Azure Container Apps deployed?
-@azure /help I have created NSG to filter traffic, but it is still passing.
-@azure /costs What can you tell me about storage costs im my subscription 673af34d-6b28-41dc-bc7b-f507418045e6
+The opening story is simple:
 
-- Chat - custom extensions
-@tomaskubica-gh-extension test
+- GitHub Copilot is now best understood as an agentic engineering platform, not just autocomplete.
+- Fast assistive features still matter because they are the easiest entry point into the broader workflow story.
+- Model openness and model choice matter more as work moves from quick help to deeper reasoning.
 
->> SLIDE: GitHub openness with selection of different AI models, support for Azure, AWS, GCP and onprem workloads
+Representative examples:
 
-## Edits and Codespaces
-- Edits option 1 - codespaces -> main, test.http, script.js, README.md
-I need to change path for my processing api to be on /api/v1/process in my code, docs and tests.
+- a quick TAB or next-edit win in the code editor
+- a short repository question that produces a concrete answer
+- a small prompt that reveals how context changes output quality
 
-- Edits option 2 - insiders Agent mode, frontend/src, frontend/public, package.json - start app first with npm start to see current version
-Add dark mode to this app.
+## 2. Copilot Chat Enterprise scenarios
 
-Nice, now also add contrast and colorful mode
+This section focuses on discovery, reasoning, and connected context.
 
->> SLIDE: Benefits and pricing for Codespaces
+Example prompts and scenarios:
 
-## Development cycle and DevSecOps
-- Do change in api-processing, Commit, PR with generate message and summary
-- Ask Copilot Agent to become reviewer + use Code Review in VS Code
+- "I am creating a new project to implement an SDK for our public APIs and publish it for the general public. What license should I pick: Apache, GPL, or MIT?"
+- "What does the worker in this repository do?"
+- attach a screenshot of a company homepage and ask for a short UX assessment
 
-- DevSecOps - see dependabot
-- DevSecOps - see issues from CodeQL, OSS, Sonar and apply Copilot AutoFix
-- Approve and deploy to ACA -> CI stage (build container), CD stage (ACA deploy) - to mention: Azure VNET integrated managed agents, workload identity federation
-- Check failed actions and click "Explain error" via Copilot
+Connected extension scenarios:
 
->> SLIDE: Benefits of full GitHub Enterprise suite with all addons
->> SLIDE: Migration to GitHub Enterprise
->> SLIDE: Trust - source code in cloud, security and compliance, case studies
->> SLIDE: Customer studies and measured benefits of GitHub Advanced Security
+- `@azure /resources Do I have any Azure Container Apps deployed?`
+- `@azure /help I created an NSG to filter traffic, but it is still passing.`
+- `@azure /costs What can you tell me about storage costs in my subscription?`
+- custom extension examples such as `@tomaskubica-gh-extension test`
 
-## Future of application development with GitHub Copilot Enterprise and AI Agents
-- Workspaces - go to Issues and open in workspace to get analysis of current situation, suggestions and plan for changes
-- Workspaces - run Brainstorming
-- Workspaces - run Code in Codespaces
-- Workspaces - implement proposed changes to codebase
-- GitHub Spark - text-to-code platform
+## 3. Agentic delivery in VS Code and Copilot CLI
 
->> SLIDE: Agentic future of software development with project Padawan
+This section connects interactive editing to more autonomous execution.
+
+Repository-backed scenarios:
+
+- update the processing API path to `/api/v1/process` across code, docs, and tests
+- add dark mode, then extend it into contrast and colorful modes in the frontend
+- use Copilot CLI for bounded work with model choice, automation flags, and worktree-based isolation
+
+What this section illustrates:
+
+- editor workflows and terminal workflows are complementary
+- specialized agents and stronger context management make longer tasks practical
+- local, background, and cloud handoff patterns are part of one delivery system
+
+## 4. Development cycle, review, and DevSecOps
+
+This section connects implementation work to review, scanning, and deployment.
+
+Repository-backed scenarios:
+
+- make a change in `api-processing`, then generate a commit message and pull request summary
+- use Copilot-assisted code review in VS Code
+- examine findings from Dependabot, CodeQL, OSS supply-chain alerts, or Sonar, then apply Copilot Autofix where appropriate
+- inspect failed Actions runs and use Copilot to explain the error
+
+Governance and deployment themes:
+
+- CI and CD remain explicit, including build and Azure Container Apps deployment stages
+- Azure VNET-integrated managed agents and workload identity federation fit naturally into the enterprise deployment story
+- workflow-agent examples such as `demo-agentic-pr-review.yml` and `demo-agentic-release-readiness.yml` demonstrate markdown-authored briefs, evidence-based automation, and visible guardrails
+
+## 5. Agent HQ, workspaces, and orchestration
+
+This section focuses on coordinated agent work across surfaces.
+
+Key areas:
+
+- Agent HQ or mission control as the orchestration layer across GitHub, VS Code, mobile, and CLI
+- GitHub Agentic Workflows in Actions as governed automation with inspectable briefs and guardrails
+- workspace-style flows for issue analysis, brainstorming, code generation, and implementation planning
+- GitHub Spark as a text-to-code entry point connected to broader engineering workflows
+
+## 6. Modern agent operations
+
+The final section connects the platform capabilities into one operating model.
+
+- VS Code agent mode supports the tightest local edit-run-fix loop.
+- Copilot CLI supports terminal-native work with `/model`, built-in agents, `/context`, `/tasks`, MCP, and automation flags.
+- Background and cloud agents support asynchronous work that ends in a branch or pull request.
+- Agent HQ helps assign, steer, and review multiple agent tasks across surfaces.
+- Copilot Memory and Copilot Spaces strengthen recurring work, handoff, and shared context.

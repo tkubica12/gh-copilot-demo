@@ -5,39 +5,40 @@ description: Convert JSON data to XML format with customizable root element and 
 
 # JSON to XML Converter Skill
 
-## Purpose
+Use this skill when the repository itself should provide the conversion behavior and examples.
 
-Convert JSON data structures into well-formed XML documents. Handles nested objects, arrays, and primitive types.
+## When to use it
 
-## Usage
+- transforming a local JSON sample into XML during a workshop,
+- demonstrating that skills can bundle guidance plus runnable scripts,
+- giving an agent a concrete, repo-scoped utility without calling an external system.
 
-### Command Line
+If the JSON comes from a live SaaS API or another remote system, use MCP to fetch the data first and then use this skill for the local conversion step.
+
+## Quick usage
 
 ```bash
-# Basic conversion
 python .github/skills/json-to-xml-converter/scripts/json2xml.py input.json output.xml
-
-# Custom root element
-python .github/skills/json-to-xml-converter/scripts/json2xml.py input.json output.xml --root "data"
-
-# Pipe data
+python .github/skills/json-to-xml-converter/scripts/json2xml.py input.json output.xml --root data
 echo '{"name": "test"}' | python .github/skills/json-to-xml-converter/scripts/json2xml.py - -
 ```
 
-### Parameters
+## Inputs
 
-- `input_file`: Path to JSON file or `-` for stdin
-- `output_file`: Path to XML output file or `-` for stdout
-- `--root`: Root element name (default: "root")
+- `input_file`: path to a JSON file or `-` for stdin
+- `output_file`: path to an XML file or `-` for stdout
+- `--root`: optional root element name, default `root`
 
 ## Example
 
-**Input JSON:**
+Input:
+
 ```json
 {"user": {"name": "Alice", "age": 30}, "items": [1, 2, 3]}
 ```
 
-**Output XML:**
+Output:
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <root>
@@ -53,16 +54,8 @@ echo '{"name": "test"}' | python .github/skills/json-to-xml-converter/scripts/js
 </root>
 ```
 
-## Agent Integration
+## Notes for agents
 
-Use `run_in_terminal` to invoke the script:
-
-```bash
-python .github/skills/json-to-xml-converter/scripts/json2xml.py input.json output.xml --root "mydata"
-```
-
-**Important Notes:**
-- No external dependencies (Python stdlib only)
-- JSON keys with spaces are converted to underscores
-- Arrays become `<item>` elements
-- Handles invalid JSON with clear error messages
+- Prefer this skill over ad hoc conversion code when the task is local and repeatable.
+- Mention that the script is standard-library only.
+- Keep the boundary clear: this skill transforms data; it does not fetch live data on its own.

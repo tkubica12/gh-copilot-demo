@@ -1,663 +1,82 @@
 <!-- omit from toc -->
-# GitHub Copilot Demo
-This repository contains example code to demonstrate GitHub Copilot features across the development lifecycle - from basic coding assistance to advanced agentic workflows. It is designed for demonstrations and learning, not for production use.
+# GitHub Copilot Workshop Repository
 
-## Table of Contents
-- [1. Copilot basics and coding assistance](#1-copilot-basics-and-coding-assistance)
-  - [1.1 Inline Code Suggestions](#11-inline-code-suggestions)
-    - [1.1.1 Autocomplete](#111-autocomplete)
-    - [1.1.2 Next Edit Suggestion](#112-next-edit-suggestion)
-  - [1.2 Chat](#12-chat)
-    - [1.2.1 Model selection](#121-model-selection)
-    - [1.2.2 Codebase Search](#122-codebase-search)
-    - [1.2.3 Documentation Generation](#123-documentation-generation)
-  - [1.3 Query Languages (KQL and SQL)](#13-query-languages-kql-and-sql)
-    - [1.3.1 KQL (Kusto Query Language)](#131-kql-kusto-query-language)
-    - [1.3.2 SQL](#132-sql)
-  - [1.4 Vision (Image to Code)](#14-vision-image-to-code)
-  - [1.5 Browser elements](#15-browser-elements)
-  - [1.6 Web Search and Fetch](#16-web-search-and-fetch)
-  - [1.7 Simple Multi-File Editing](#17-simple-multi-file-editing)
-  - [1.8 Context from Git](#18-context-from-git)
-- [2. Agentic approach to development](#2-agentic-approach-to-development)
-  - [2.1 Complex Task with Testing](#21-complex-task-with-testing)
-  - [2.2 Spec-Driven Development](#22-spec-driven-development)
-    - [2.2.1 Spec-kit](#221-spec-kit)
-    - [2.2.2 Constitution and spec template](#222-constitution-and-spec-template)
-  - [2.3 Multi-Repository Planning with Copilot Spaces](#23-multi-repository-planning-with-copilot-spaces)
-- [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
-  - [3.1 Custom instructions](#31-custom-instructions)
-  - [3.2 Prompt Files](#32-prompt-files)
-  - [3.3 Custom Chat Modes](#33-custom-chat-modes)
-  - [3.4 Bring Your Own Model (BYOM)](#34-bring-your-own-model-byom)
-- [4. Providing tools with Skills and Model Context Protocol (MCP)](#4-providing-tools-with-skills-and-model-context-protocol-mcp)
-  - [4.1 Skills](#41-skills)
-    - [4.1.1 Understanding skills for dynamic content management](#411-understanding-skills-for-dynamic-content-management)
-    - [4.1.2 Scripted skill example](#412-scripted-skill-example)
-  - [4.2 Model Context Protocol (MCP)](#42-model-context-protocol-mcp)
-    - [4.2.1 Simple MCP: Random String Generator](#421-simple-mcp-random-string-generator)
-    - [4.2.2 Kubernetes MCP](#422-kubernetes-mcp)
-    - [4.2.3 GitHub MCP](#423-github-mcp)
-    - [4.2.4 Azure MCP](#424-azure-mcp)
-    - [4.2.5 Database MCP](#425-database-mcp)
-    - [4.2.6 Playwright MCP for Testing](#426-playwright-mcp-for-testing)
-- [5. Using parallel coding agents](#5-using-parallel-coding-agents)
-  - [5.1 Manual use of CLI coding agent](#51-manual-use-of-cli-coding-agent)
-  - [5.2 Managing agents from IDE](#52-managing-agents-from-ide)
-  - [5.3 Managing agents from cloud](#53-managing-agents-from-cloud)
-  - [5.4 When to use which](#54-when-to-use-which)
-- [6. Code Review, Security, and Autofix](#6-code-review-security-and-autofix)
-  - [6.1 Code Review with Copilot](#61-code-review-with-copilot)
-  - [6.2 Security Vulnerability Detection](#62-security-vulnerability-detection)
-  - [6.3 Automated Security Fixes](#63-automated-security-fixes)
-- [7. GitHub Spark](#7-github-spark)
-- [8. Azure SRE Agent](#8-azure-sre-agent)
-  - [8.1 What is Azure SRE Agent?](#81-what-is-azure-sre-agent)
-  - [8.2 Key Capabilities](#82-key-capabilities)
-- [TODO](#todo)
+This repository is organized as a customer-facing workshop for modern GitHub Copilot. It follows a practical story from quick wins, to agentic delivery, to context and guidance, to skills and MCP, to Agent HQ and multi-agent orchestration, and finally to governed delivery with code review, security review, workflow agents, and Azure SRE Agent.
 
----
+> [!IMPORTANT]
+> This repository is optimized for workshops, customer conversations, and hands-on exploration. It favors clear patterns, realistic examples, and broad platform coverage over production hardening.
 
-# 1. Copilot basics and coding assistance
+## Workshop flow
 
-Learn the fundamentals of GitHub Copilot - inline suggestions, chat interactions, and quick code generation tasks.
+The summary table below maps the main journey through the repository. The numbered chapters that follow add a short description of each stop in that journey.
 
-## 1.1 Inline Code Suggestions
+| Chapter | Focus | Why it matters | Deep dive |
+| --- | --- | --- | --- |
+| 1 | Basics | Establishes quick wins, model choice, search, edits, and Spark as the on-ramp | [`docs/basics.md`](docs/basics.md) |
+| 2 | Agentic delivery | Shows practical delivery across VS Code, Copilot CLI, custom agents, subagents, and `/fleet` | [`docs/agentic-delivery.md`](docs/agentic-delivery.md) |
+| 3 | Context and specs | Explains how `AGENTS.md`, specs, and spec-kit style flows make agents reliable | [`docs/context-and-specs.md`](docs/context-and-specs.md) |
+| 4 | Skills and MCP | Clarifies how local reusable capabilities and live external tools work together | [`docs/skills-and-mcp.md`](docs/skills-and-mcp.md) |
+| 5 | Agent HQ and orchestration | Covers multi-agent orchestration, background agents, and cloud agents | [`docs/agent-hq-and-orchestration.md`](docs/agent-hq-and-orchestration.md) |
+| 6 | Governed delivery | Connects code review, security review, workflow agents, and Azure SRE Agent into one operating model | [`docs/governed-delivery.md`](docs/governed-delivery.md) |
 
-### 1.1.1 Autocomplete
-Open `main.py` in `src/services/toy` and type `# Configure Prometheus` and wait for suggestions. Use TAB to accept, ESC to reject or CTRL+arrow to accept partially.
+### 1. Basics
 
-### 1.1.2 Next Edit Suggestion
-Open `main.py` in `src/services/toy` and around line 25 change `logger` to `logging` and wait for suggestions. Copilot will predict your next likely edit.
+This chapter introduces the quick wins that make GitHub Copilot approachable: model choice, chat, search, targeted edits, and a short Spark moment for natural-language app creation. It matters because it establishes the platform entry points without letting the story stall in a basic feature tour.
+**Deep dive:** [`docs/basics.md`](docs/basics.md)
 
-## 1.2 Chat
+### 2. Agentic delivery
 
-### 1.2.1 Model selection
-- **Auto** - let Copilot decide what model to use and get 10% discount if it selects premium request (eg. 0.9x rather than 1x)
-- **Base models** do not consume premium requests (0x)
-  - Use it for simple text tasks and searches. 
-  - As of January** 2026 I prefer **GPT-5-mini**
-- **Premium models** consume premium requests, most often one per request (1x)
-  - Switch model when Copilot is not able to move beyond some issue or after previous one finished so you get second opinion
-  - As of January 2026 we would usually combine **GPT-5.1-Codex and Claude Sonnet 4.5 for coding** and **GPT-5.2 or Gemini 3 Pro for document writing, specs, architecture and brainstorming** - all are 1x models
-  - 0.33x models are faster and save few requests, but quality is lower and I would typically use rather base model (0x) or 1x model most of the time
-  - More expensive models such as 3x Claude Opus 4.5 might make sense for very complex tasks, but are usually just slightly better and often not worth increased price and latency
+This chapter moves into the heart of the workshop: agents that can plan, edit, test, recover, and produce something reviewable. It matters because it shows the shift from isolated assistance to practical delivery across VS Code, Copilot CLI, custom agents, subagents, and `/fleet`-style delegation.
+**Deep dive:** [`docs/agentic-delivery.md`](docs/agentic-delivery.md)
 
-### 1.2.2 Codebase Search
-Ask Copilot to search and understand your code:
-```
-Where in my code am I processing messages from Service Bus queues and what is the code doing?
-```
+### 3. Context and specs
 
-Experiment with different models selection.
+This chapter explains why good outcomes do not come from prompting alone. It matters because `AGENTS.md`, repository conventions, specs, and spec-kit style flows turn capable models into reliable delivery systems.
+**Deep dive:** [`docs/context-and-specs.md`](docs/context-and-specs.md)
 
-**Note**: GitHub Copilot automatically indexes repositories for semantic search to improve context accuracy. For more information, see [Repository indexing](https://docs.github.com/en/copilot/concepts/context/repository-indexing). You can also configure content exclusion to prevent Copilot from accessing sensitive files - see [Excluding content from GitHub Copilot](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot).
+### 4. Skills and MCP
 
-### 1.2.3 Documentation Generation
-Create `README.md` in `examples/terraform` and add all Terraform files to context. Then ask:
+This chapter explains how agents become useful on real work by combining reusable local capabilities with live external tools. It matters because it gives customers a clean mental model for when to use skills, when to use MCP, and how the two work together.
+**Deep dive:** [`docs/skills-and-mcp.md`](docs/skills-and-mcp.md)
 
-- `Create basic Markdown documentation into README.md for my Terraform project. Start by describing this project as demo Terraform infrastructure, explain how to deploy it using Terraform CLI and list tree structure of tf files in the project with short description of each file into my README.md.`
-- `Create list of cloud resources used in this project.`
-- `Research what container apps are and add short description of this service into existing section with list of cloud resources used in this project. #websearch`
-- `Research what Service Bus is and add short description of this service into existing section with list of cloud resources used in this project. #websearch`
-- `Create chapter listing environment variables used with each container app and put it into nice table.`
-- `Add chapter TODO to end of document and describe next steps for this Terraform project. Make sure to include CI/CD using GitHub Actions, Infrastructure as Code security using DevSecOps tools, adding FinOps and other topics that are important for enterprise usage of this project as you see fit.`
+### 5. Agent HQ and orchestration
 
-## 1.3 Query Languages (KQL and SQL)
+This chapter shows how work moves from one useful agent to coordinated multi-agent execution across local, background, and cloud surfaces. It matters because it introduces Agent HQ, orchestration choices, long-running tasks, and the management layer needed for modern agent operations.
+**Deep dive:** [`docs/agent-hq-and-orchestration.md`](docs/agent-hq-and-orchestration.md)
 
-### 1.3.1 KQL (Kusto Query Language)
-Attach [query_data.csv](./examples/kql/query_data.csv) and ask:
-```
-Give me microsoft Kusto Query (KQL) to display percentage of processor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.
-```
+### 6. Governed delivery
 
-### 1.3.2 SQL
-Attach [users_denormalized.json](./examples/sql/users_denormalized.json) and ask:
-- `Generate CREATE commands for normalized users, addresses and orders using Microsoft SQL.`
-- `Based on data structure, create 10 lines of sample data and make sure it makes sense and foreign keys are respected.`
-- `Give me SQL statement to list userId, name, number of orders and number of addresses for each user.`
+This chapter closes with the controls that make agentic engineering enterprise-ready: code review, security review, workflow agents, approvals, auditability, and Azure SRE Agent. It matters because it shows how agents fit inside an operating model with visible governance rather than bypassing it.
+**Deep dive:** [`docs/governed-delivery.md`](docs/governed-delivery.md)
 
-## 1.4 Vision (Image to Code)
+## What this repository emphasizes
 
-Attach [classes.png](./examples/vision/classes.png), create `classes.py` and ask:
-```
-Generate code for classes in Python according to attached schema.
-```
+- **Agents as practical collaborators** for coding, testing, review, research, and automation
+- **Custom agents and subagents** for specialization, delegation, and bounded parallel work
+- **Copilot CLI** as a first-class execution surface for terminal-native agent workflows
+- **`AGENTS.md`, specs, and spec-driven development** as the reliability layer for agent outcomes
+- **Skills and MCP** as complementary capability layers: local reusable capabilities plus live external tools
+- **Agent HQ / mission control** for orchestration across local, background, and cloud execution
+- **Governed delivery** through pull requests, checks, security controls, auditability, and workflow agents
 
-Create README.md file and in Edit mode follow with:
-```
-Create markdown documentation for classes.py and include mermaid diagram.
-```
+### Workshop agenda
 
-## 1.5 Browser elements
-Open Simple Browser (command pallet CTRL+ALT+P and search for it), enter some URL. Click on Add element to chat and ask `What is this element doing?`
+- [`docs/copilot_workshop_agenda_EN.md`](docs/copilot_workshop_agenda_EN.md)
+- [`docs/copilot_workshop_agenda_CZ.md`](docs/copilot_workshop_agenda_CZ.md)
 
-## 1.6 Web Search and Fetch
+## Repository map
 
-Ask questions about current information:
-
-Try without tools using just model knowledge.
-```
-When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version? Do NOT use any tools.
-```
-
-I have Tavily MCP Server (see in later section) so try with tools.
-```
-When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version? #Tavily
-```
-
-But if you have specific documentation in mind, you can just reference it here (eg. llms.txt)
-```
-When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version?
-#fetch 
-https://github.com/microsoft/agent-framework/releases
-https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview
-
-#githubRepo microsoft/agent-framework
-```
-
-## 1.7 Simple Multi-File Editing
-Let's do change that requires modification of various files. When you want to help Copilot to pin specific files, you can add them to explicit context. Add `src/api-processing/main.py`, `src/worker/main.py` and terraform files such as `examples/terraform/service_bus.tf` and `examples/terraform/rbac.tf` to context.
-
-Ask:
-```
-In this code I am using Service Bus Queues, but I need to move to Service Bus Topics. Make sure to update my Terraform and Python code accordingly and add topic subscriptions and RBAC.
-```
-
-## 1.8 Context from Git
-You can see your Git history and add previous versions of files into Copilot chat for reference. Useful when asking for what changed or helping Copilot undo something.
-
----
-
-# 2. Agentic approach to development
-
-Agent Mode enables Copilot to work autonomously across multiple files, run tests, deploy infrastructure, and iteratively solve complex problems. This section demonstrates progressive complexity and best practices for agentic workflows.
-
-## 2.1 Complex Task with Testing
-Let's see agent in action to understand difference from basic code suggestion. Agent will iterate, make mistakes and correct them, research, do testing. In order to steer agent we need to be pretty specific in our prompt.
-
-```markdown
-Create new service called api-user-profile that provides API for CRUD over user profiles.
-
-# Solution Architecture
-- Python with uv as package manager
-- PostgreSQL database deployed in Azure Database for PostgreSQL Flexible Server in cheap burstable tier
-- Implemented in FastAPI
-- No authentication required at this point
-- Unit tests for APIs
-- Integration tests against real database - testing Create, then update, then read, then delete
-- User profile contain following fields: userId, userFullName, department
-
-# Implementation steps
-- Create base folder in src/api-user-profile and uv init
-- Create mocked CRUD APIs and write and run unit tests for it
-- Use Azure CLI to create resource group and Azure Database for PostgreSQL Flexible Server
-- Get access details and credentials for database and store it in .env
-- Add code to connect to database and write and run integration tests to make sure DB is accessible
-- Write code that will check whether schema exists and if not create it with simple table for user profiles
-- Change CRUD implementation from mocks to real database
-- Write and run integration test script against real database
-- Write comprehensive README.md with architecture and how to use
-```
-
-## 2.2 Spec-Driven Development
-In fact we need way more details than in previous prompt for agent to code in a way that is sustainable for long-lived projects with our specifications for service, coding guidelines, integrations and contracts, security, testability, observability and so on. We should therefore spend more time working on this.
-
-### 2.2.1 Spec-kit
-Spec-kit is open source project developed by GitHub with newrly 50k stars and with support for many agents including GitHub Copilot, Cursor, Claude Code, WIndsurf, Codex and others. It is opionated way how to do spec-driven development. It provides guided experience and you can go feature by feature - this is not just for initial setup!
-
-```
-uvx --from git+https://github.com/github/spec-kit.git specify init my_new_project
-code my_new_project
-/speckit.constitution Create principles focused on clarity, simplicity, speed of development
-/speckit.specify Build application that allows for people to easily share ideas in visual way where each user can write sticky note, place it somewhere and facilitator users can organize them spatially. There will be multiple templates to organize this eg. to kanban board, mindmap, but facilitator can also organize freely.
-/speckit.clarify I think we need to enhance specification on how results can be stored, loaded or exported to various formats such as PDF
-/speckit.plan Frontend is Vite with minimal number of libraries. There will be backend service written in Python used to store sticky note content, author and also current spatial layout so everything is persistent.
-/speckit.tasks
-/speckit.analyze Is our plan for Python testable so we can avoid regressions?
-/speckit.implement
-```
-
-See `my_new_project/specs` folder for results. Note spec-kit is in very clever way using prompt.md files as dicsussed later.
-
-### 2.2.2 Constitution and spec template
-In my case I am using separate repository to define:
-- **Consistution**: key principles for all our projects
-- **specs-template**: Template for structure and files for specifications for platform level (project-wide) and service level that includes decissions (ADRs), contracts, architecture, data models, runbooks, security, deployment, testing, observability and so on
-- **templates**: Other templates such as for Product Requiremens Document (PRD) and AGENTS.ms (AI agent instructions template - see later)
-- **standards**: Guidelines for specific programming languages (Python, C#, Javascript) or IaC (Terraform, Bicep) or methodologies (testing, security)
-
-See my [gh-copilot-constitution](https://github.com/tkubica12/gh-copilot-constitution)
-
-General steps I use for new project consisting of multiple microservices in monorepo style:
-1. Use Copilot to prepare AGENTS.md using its shared template, inputs from selected standards and custom inputs for project (eg. this project is very sensitive are requires extra focus on security)
-2. Use Copilot Spaces to work on broad multi-repo context and branstorm project ideas and help prepare PRD (based on template) and Issues/Projects in GitHub
-3. Use Copilot to craft project-wide specs based on templates and your inputs including high-level architecture (planned services and so on)
-4. Use Copilot to craft specs and contracts based on templates for individual service
-5. Prepare implementation plan, perhaps in phases (no need to have all steps at once ready) - eg. using plan mode in Copilot
-6. Only at this point start using Copilot for coding
-
-## 2.3 Multi-Repository Planning with Copilot Spaces
-
-[Copilot Spaces](https://www.github.com/copilot/spaces) enables strategic planning across multiple repositories:
-
-- Architecture discussions spanning microservices
-- Cross-repo refactoring planning
-- Enterprise-wide technical decisions
-- Design reviews involving multiple teams
-
-You can also use that knowledge base in your GitHub Copilot agent query via MCP:
-
-```
-What are common errors when automating email processing? #list_copilot_spaces #get_copilot_space 
-```
-
-
----
-
-# 3. Customize and Provide Rich Context
-
-Tailor Copilot's behavior to your team's standards, coding conventions, and operational practices.
-
-## 3.1 Custom instructions
-Today VS Code with GitHub Copilot fully support [AGENTS.md](https://agents.md/) standard. See exaple in repository and selected subfolders (good for monorepo situations).
-
-**Note**: Apart from repository custom instructions, you can also configure [personal custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions) for your own preferences and [organization custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions) for team-wide standards.
-
-Tips what to include:
-- Coding style (Terraform structure, code structure, use Pydantic, ...)
-- Frameworks and tools (eg. use FastAPI, uv as package manager, use azurerm provider in Terraform, use Helm charts rather than Kustomize, ...)
-- Procedures and recommendations (always check solution design, keep implementation log, common errors)
-- Tests and ad-hoc stuff (prefer regular testing, when using something adhoc prefix it and delete afterwards, ...)
-- Common envs and configuration styles (use ini file, use .env, check envs directly vs. use config class, ...)
-- Documentation strategy (use docstrings, do not comment inline what is obvious, ...)
-- Tools (prefer tool use over CLI and scripts, write adhoc test scripts when something becomes too complex, ...)
-
-I am often building `AGENTS.md` from template, standards and specifics of my project. For example:
-
-```markdown
-I want you to generate file `AGENTS.md` in root folder or completely replace existing one.
-- Use this template: #fetch https://raw.githubusercontent.com/tkubica12/gh-copilot-constitution/refs/heads/main/templates/AGENTS.md
-- In this project we will use Terraform, extract key insights from https://raw.githubusercontent.com/tkubica12/gh-copilot-constitution/refs/heads/main/standards/TERRAFORM.md
-- In this project we will use Python, extract key insights from https://raw.githubusercontent.com/tkubica12/gh-copilot-constitution/refs/heads/main/standards/PYTHON.md
-- This project is specificly designed for learning therefore we strive for simplicity. 
-  - Make sure you do not do complicated and premature abstractions
-  - It is OK to start with basic security so users learn fast, but make sure to document next steps for production use cases
-  - It is OK to run with simple deployment setup without HA
-```
-
-## 3.2 Prompt Files
-Agent is best and using tools, but it is keen to start modifying things. I like to use it more than Aks mode, but must say to not modify anything until we agree on it, and prompt it to research using web and other tools. You can store this in prompt file in `.github/prompts/something.prompt.md` and than simply reference it with `/`.
-
-```
-/discuss I am currently using pip as package manager for Python. What are alternatives?
-```
-
-Another example might be with specific styling prompt (overall style belongs to `AGENTS.md` - root or subfolder). For example to override default naming convention in Python (snakecase).
-
-```
-/camelcase Write skeleton of CRUD operation on orders in Python
-```
-
-Yet another example is in `headerComments` and you try this:
-
-```
-/headerComments DoubleDashBlock in toy service
-```
-
-## 3.3 Custom Chat Modes
-
-Switch to **MyTeacher** chat mode and ask:
-
-```
-Should I migrate to https://gateway-api.sigs.k8s.io/ ?
-```
-
-Or put some file into context and ask:
-
-```
-What is this file about?
-```
-
-Custom chat modes provide specialized personas for teaching, reviewing, or domain-specific guidance.
-
-## 3.4 Bring Your Own Model (BYOM)
-
-Install `Ollama` and download models:
-
-```powershell
-ollama pull deepseek-coder:1.3b
-ollama pull deepseek-coder:6.7b
-ollama pull qwen2.5-coder
-```
-
-In Copilot click on **Manage Models** and add Ollama models. Try examples from Section 1 with different models.
-
-**Use cases:**
-- Privacy-sensitive code on local models
-- Cost optimization with smaller models
-- Experimentation with specialized models
-
----
-
-# 4. Providing tools with Skills and Model Context Protocol (MCP)
-
-**Skills** are simple way to provide dynamically loaded context as well as scripted tools and can be seen as local-only lightweight alternative to full MCP tools.
-
-**MCP** enables Copilot to interact with external tools and services, dramatically extending its capabilities beyond code generation. For more advanced scenarios, you can also develop [custom VS Code extensions](https://docs.github.com/en/copilot/concepts/extensions) with specialized UI.
-
-## 4.1 Skills
-
-### 4.1.1 Understanding skills for dynamic content management
-We will use Chat Debug feature to understand how Copilot works with skills. Disable all tools except for built-in ones so we make things easy to debug.
-
-See file [.github/skills/simplecontext/SKILL.md](.github/skills/simplecontext/SKILL.md) with our skills instructions. Open Copilot Chat and just type `ping` and observe LOG.
-
-You will find System prompt that Copilot is using and in it skills section:
-
-```xml
-<skills>
-Here is a list of skills that contain domain specific knowledge on a variety of topics.
-Each skill comes with a description of the topic and a file path that contains the detailed instructions.
-When a user asks you to perform a task that falls within the domain of a skill, use the 'read_file' tool to acquire the full instructions from the file URI.
-<skill>
-<name>simplecontext</name>
-<description>This contains information about company project code-named BigDog</description>
-<file>c:\git\gh-copilot-demo\.github\skills\simplecontext\SKILL.md</file>
-</skill>
-</skills>
-```
-
-Note our context now contains **only** skill name and description, no details.
-
-In chat ask the following question: `What is inventory number for BigDog`. Loog at LOG - Copilot decided to use his skill, open it, load details into context and therefore knows answer.
-
-**Thinking - call tool**
-
-```
-I'll open the `simplecontext` skill file to find BigDog's inventory number. 
-🛠️ read_file (call_rWhhRSoYp6gs8DpFjkicZFU7) {
-  "filePath": "c:\\git\\gh-copilot-demo\\.github\\skills\\simplecontext\\SKILL.md",
-  "startLine": 1,
-  "endLine": 400
-}
-```
-
-**Calling read tool**
-
-🛠️ call_rWhhRSoYp6gs8DpFjkicZFU7
-
-```markdown
----
-name: simplecontext
-description: This contains information about company project code-named BigDog
----
-
-Here are information about this project:
-- Owner: Michael Coder
-- Inventary number: 54321
-
-```
-
-**Response to user**
-
-```markdown
-- **Inventory Number:** 54321  
-- **Source:** File: [.github/skills/simplecontext/SKILL.md](.github/skills/simplecontext/SKILL.md) — note the file spells it as "Inventary number".
-```
-
-### 4.1.2 Scripted skill example
-See [.github/skills/json-to-xml-converter/SKILL.md](./.github/skills/json-to-xml-converter/SKILL.md) - this is simple skill that comes with script to convert JSON to XML. Programatically, so it should work for files of virtually any size quickly and without risk of introducing errors (compared to using LLM for that directly). 
-
-Open new chat and add file `examples/json/myjson.json` into context a type `convert this to xml`. Copilot should find the right skill, load its instructions and execute script sucessfully.
-
-## 4.2 Model Context Protocol (MCP)
-
-### 4.2.1 Simple MCP: Random String Generator
-
-Run MCP server in folder `mcp/random_string_mcp/src/`. This runs locally and is configured in `mcp.json` file on workspace.
-
-Use this prompt in Agent mode:
-```
-Generate names for 10 containers in format app1-xxxxxx where xxxxxx is random suffix consisting of lowercase letters and numbers
-```
-
-### 4.2.2 Kubernetes MCP
-
-Install AKS and Kubernetes apps using [this guide](./mcp/README.md). Then try this conversation flow:
-
-```
-What namespaces I have in my Kubernetes cluster?
-Show me pods in blue namespace
-I have some error with app1, can you kill one of the pods?
-Check logs from new pod that was created afterwards, does it start normally?
-Hmm, do we have enough resources in app1 allocated?
-How would I do that, show me
-If I would like to do the steps you did in this chat using Kubernetes CLI next time, how it would look like?
-```
-
-See [recording](./docs/video/MCP-Kubernetes.mp4) of this demo.
-
-### 4.2.3 GitHub MCP
-See all available calls under GitHub MCP.
-
-Few things to try:
-- `What plans we have for implementing PDF in our app? Check GitHub Issues.` which uses list_issues and get_issue
-- `In what repository am I using Event Sourcing pattern with CosmosDB?` which uses search_code
-- `Our api-processing do have performance issues. Gather information about this service and create GitHub issue and assign tkubica12 to look into it` which uses create_isse
-
-
-### 4.2.4 Azure MCP
-
-- Query Azure resources (storage accounts, VMs, App Services)
-- Analyze costs and resource utilization
-- Diagnose issues with Azure Monitor
-- Manage Azure resources directly from Copilot
-
-Example prompts to start with:
-
-- `What versions my AKS clusters run?`
-- `See my storage accounts, can I improve resiliency and data protection?`
-
-
-### 4.2.5 Database MCP
-In our example we will use PostgreSQL extension and MCP server. Deploy Azure Database for PostgreSQL and connect to it. Thank you can try this prompt:
-
-```
-Connect to PSQL psql-mcp and create table users with following fields:
-- user id
-- user full name
-- address
-- phone
-
-Generate about 100 rows of some test date and insert it.
-```
-
-Then you can use UI of extension to see data in that table.
-
-### 4.2.6 Playwright MCP for Testing
-
-- Generate E2E tests
-- Run Playwright tests from Copilot
-- Debug test failures with screenshots
-
-Here is example prompt:
-
-`Our frontend runs at http://localhost:3000. Open it, click on first toy in catalog, click on trip if any and then click on every photo and back.`
-
-
----
-
-# 5. Using parallel coding agents
-
-Delegation of long-running tasks to agents that work asynchronously in the background can speed up your development and shift your focus to providing guidance, strategic decisions and architecture rather than waiting for agent to finish coding task.
-
-There are multiple ways to do this:
-- Use **local CLI agents** (Copilot, Codex, OpenCode, ...) so agent uses your computer in background, typically working in locally-isolated environment with git **worktrees and local merging**. This is great for **single human** to govern work on single project using **multiple agents**.
-- Use **specialized agents** with support for **hand-off** (multi-agent scenario)
-- Use **cloud agents** hosted in GitHub working on separate branches, resulting in **Pull Requests**, more auditability, suitable for **multiple humans and agents** working on tasks.
-
-
-Here are examples of possible standalone tasks in our repository:
-
-- `I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
-- `Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
-- `Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
-
-## 5.1 Manual use of CLI coding agent
-You can use **GitHub Copilot CLI** agent to work on some of our tasks without dependency on IDE. But running multiple agents on single set of files can create conflicts so we want to isolate our agents. One way would be to create specific patch branches and use Pull Requests to created robust auditable solution, but that might be overkill when single human wants to locally do tasks in parallel. We will use **git worktrees**.
-
-In our example we will combine GitHub Copilot CLI agent with OpenCode agent.
-
-```bash
-# Create 2 worktrees for agent 1 and agent 2
-git worktree add ../gh-copilot-demo-agent1 -b agent1-task
-git worktree add ../gh-copilot-demo-agent2 -b agent2-task
-
-# Run agents in separate terminals/sessions
-cd ../gh-copilot-demo-agent1
-copilot --allow-all-tools --model claude-sonnet-4.5 --prompt "I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results."
-git add -A
-git commit -m "Agent 1 commit"
-
-# In another terminal
-cd ../gh-copilot-demo-agent2
-copilot --allow-all-tools --model claude-sonnet-4.5 --prompt "Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors."
-git add -A
-git commit -m "Agent 2 commit"
-
-# After agents complete their work, review and merge results
-git worktree list
-cd ../gh-copilot-demo  # Back to main worktree
-git merge agent1-task
-git merge agent2-task
-
-# Clean up worktrees
-git worktree remove ../gh-copilot-demo-agent1
-git worktree remove ../gh-copilot-demo-agent2
-git branch -D agent1-task agent2-task
-```
-
-## 5.2 Managing agents from IDE
-Create new session with **New Local Session** which will work in IDE on your current branch.
-
-`I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
-
-Create new session with **New Backgroung Session** which will automatically create new git worktree and branch.
-
-`Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
-
-You can see worktree being created.
-
-```bash
-git worktree list
-C:/git/gh-copilot-demo                                         df3bf8e [main]
-C:/git/gh-copilot-demo.worktrees/worktree-2026-01-04T17-30-55  df3bf8e [worktree-2026-01-04T17-30-55]
-```
-
-You have **Keep/Undo** buttons available to track changes in each agent session as well as **Apply** button which will project those changes to your main VS Code workspace (branch).
-
-You can also work in interactive mode to discuss options and than **handoff to background agent** to finish the job.
-
-Create new session with **New Cloud Session** which will automatically create new branch and cloud-based environment that Coding Agent will use and create Pull Request when finished.
-
-`Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
-
-## 5.3 Managing agents from cloud
-Go to [GitHub Agents](https://github.com/copilot/agents), select repository and create coding task from there - no IDE or local computer required.
-
-You can also start coding agent from **Issues** in your repository - go to issue and assign it to **Copilot Coding Agent**.
-
-You can monitor progress of all your cloud agents.
-
-## 5.4 When to use which
-
-| Local Coding Agent (agent mode) | Background Coding Agent | Cloud Coding Agent |
-|----------------------|---------------------|---------------------|
-| You need interactive feedback | Task can be completed independently | Task can be completed independently |
-| Making rapid iterations | Quick local merging | You want robust PR-based review workflow with multiple humans |
-| Coding, learning, planning, exploring | Working on multiple coding tasks in parallel | Working on multiple coding tasks in parallel |
-| Requirements need clarification | Standalone well-defined task | Specs-based coding with very clear definition and acceptance criteria |
-
----
-
-# 6. Code Review, Security, and Autofix
-
-## 6.1 Code Review with Copilot
-
-After making changes:
-1. Create a new branch
-2. Copilot can suggest **commit messages** based on your changes
-3. Open a **Pull Request**
-4. Use Copilot to review the PR:
-   - Suggest improvements
-   - Identify potential bugs
-   - Check for best practices
-   - Assess security implications
-
-## 6.2 Security Vulnerability Detection
-
-In GitHub:
-1. Navigate to **Security** tab
-2. View **Dependabot alerts** and **Code scanning alerts**
-3. Review detected vulnerabilities
-
-## 6.3 Automated Security Fixes
-
-Demonstrate **Autofix** capability:
-1. Copilot analyzes the vulnerability
-2. Suggests a fix with explanation
-3. Creates a PR with the remediation
-4. Includes testing recommendations
-
----
-
-# 7. GitHub Spark
-
-No-code/low-code prototyping with natural language. Build functional applications without writing code manually.
-
-[GitHub Spark](https://github.com/spark)
-
-```
-Create text editor that specializes on creating Kubernetes YAML manifests. Here is how I want it:
-- Keyboard shortcuts similar to Visual Studio Code
-- Syntax highlighting for YAML and for Kubernetes objects, for example known values should have distinctive colors. kind: Pod should look differently from kind: SomethingElse because SomethingElse is not known Kubernetes kind.
-- Editor should suggest completions for Kubernetes objects and fields directly as you type inside text editor together with little bubbles explaining each field - its purpose, possible values
-- Navigation that lets user quickly build skeleton of most common Kubernetes objects and some drag and drop features for values inside those objects (for example health check, resource limits etc.)
-- AI chatbot that allows to talk about currently open file
-- Suggestions based on common practice, for example recommend to set resource requests and limits for Pods and Deployments. This should be icon showing number of new suggestions and when user clicks on it they can acknowledge those. Generate suggestions using AI in background as user is adding objects to the solution.
-- IMPORTANT: Retro style and graphical design must simulate ASCII-based user interfaces for DOS similar to how FoxPro applications looked like.
-```
-
----
-
-# 8. Azure SRE Agent
-
-[Azure SRE Agent](https://learn.microsoft.com/en-us/azure/sre-agent/overview) is an AI-powered reliability assistant that demonstrates how AI agents extend into production operations and incident management.
-
-## 8.1 What is Azure SRE Agent?
-
-Azure SRE Agent helps teams:
-- **Diagnose and resolve** production issues autonomously or with human approval
-- **Reduce MTTR** (Mean Time To Resolution) through intelligent automation
-- **Proactive monitoring** with daily health summaries and anomaly detection
-- **Explainable RCA** (Root Cause Analysis) correlating metrics, logs, traces, and deployments
-
-## 8.2 Key Capabilities
-
-- **Incident Automation**: Diagnose and orchestrate workflows across Azure Monitor, PagerDuty, ServiceNow
-- **Natural Language Insights**: Ask questions like "What changed in production in the last 24 hours?"
-- **Customizable Workflows**: Follow your team's SRE best practices and runbooks
-- **Dev Integration**: Automatically create work items in GitHub/Azure DevOps with repro steps
-
----
-
-# TODO
-
-- [ ] More GitHub Spark examples
-- [ ] Plan mode
-- [ ] Azure SRE Agent full demo
-- [ ] Copilot App Modernization
-- [ ] Agent handoff and multiagent
-- [ ] Custom agents
+| Path | Purpose |
+| --- | --- |
+| [`docs/`](docs) | Main workshop chapters, agenda files, and supporting material |
+| [`AGENTS.md`](AGENTS.md) | Repository-wide operating instructions for agents |
+| [`specs/`](specs) | Platform and service specifications for spec-driven delivery |
+| [`.github/agents/`](.github/agents) | Custom agent examples for orchestration, implementation, handoff, and review |
+| [`.github/skills/`](.github/skills) | Skills guidance and concrete skill examples |
+| [`.github/prompts/`](.github/prompts) | Prompt assets for planning, delegation, handoff, and skill/MCP choices |
+| [`.github/chatmodes/`](.github/chatmodes) | Chat mode assets for guided exploration sessions |
+| [`examples/`](examples) | Self-contained scenarios including new agent orchestration examples |
+| [`mcp/`](mcp) | MCP server examples and related tooling |
+| [`src/`](src) | Application and service code used in implementation, testing, and review demos |
+| [`.github/workflows/`](.github/workflows) | Existing CI/CD plus illustrative workflow-agent patterns |
 

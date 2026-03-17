@@ -1,0 +1,107 @@
+# Illustrative demo workflow for GitHub Agentic Workflows.
+# This pattern builds a markdown audit packet for governed release planning
+# and shows how agentic automation complements, rather than replaces, CI/CD.
+
+name: DEMO Agentic Release Readiness Packet
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_name:
+        description: Short name for the change window or release candidate
+        required: true
+        default: staging-readiness
+        type: string
+      target_environment:
+        description: Environment that still requires human approval before deployment
+        required: true
+        default: staging
+        type: string
+      estimated_agent_minutes:
+        description: Planned workflow-agent runtime budget for cost discussions
+        required: true
+        default: "15"
+        type: string
+      release_goal:
+        description: What the workflow agent should help verify
+        required: true
+        default: Summarize deployment readiness, rollout risks, and recommended approvals.
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: demo-agentic-release-${{ github.event.inputs.release_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-release-packet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build markdown-authored release packet
+        shell: bash
+        env:
+          RELEASE_NAME: ${{ github.event.inputs.release_name }}
+          TARGET_ENVIRONMENT: ${{ github.event.inputs.target_environment }}
+          ESTIMATED_AGENT_MINUTES: ${{ github.event.inputs.estimated_agent_minutes }}
+          RELEASE_GOAL: ${{ github.event.inputs.release_goal }}
+        run: |
+          cat <<EOF > demo-agentic-release-readiness.md
+          # DEMO workflow-agent release readiness packet
+
+          > Illustrative only. Use this packet to brief a workflow agent after normal build, scan, and deployment evidence exists. Traditional CI/CD keeps authority for build, test, deploy, and environment approvals.
+
+          ## Objective
+          ${RELEASE_GOAL}
+
+          ## Release context
+          - Release name: ${RELEASE_NAME}
+          - Target environment: ${TARGET_ENVIRONMENT}
+          - Commit: ${GITHUB_SHA}
+          - Triggered by: ${GITHUB_ACTOR}
+          - Planned workflow-agent budget: ${ESTIMATED_AGENT_MINUTES} minutes
+
+          ## Evidence the workflow agent must read first
+          - Service container build workflows in \`.github/workflows/*-BUILD.yml\`
+          - Security scanning workflows: \`devskim.yml\`, \`ossar.yml\`, and \`tfsec.yml\`
+          - Code quality workflow: \`sonarcloud.yml\`
+          - Terraform deployment workflow: \`deploy.yml\`
+
+          ## Governance checklist
+          - Approval flow: keep environment approvals and branch protections in place.
+          - Auditability: retain workflow summaries and uploaded artifacts for the release record.
+          - Cost control: stop the run if the investigation exceeds the planned minute budget or starts looping.
+          - Security: never grant deployment credentials beyond read-only evidence gathering unless a human explicitly approves.
+          - Code quality: require test, scan, and quality signals to be reviewed before any deployment decision.
+
+          ## Required human decisions
+          1. Confirm which findings are advisory versus merge- or deploy-blocking.
+          2. Confirm the rollout and rollback plan for ${TARGET_ENVIRONMENT}.
+          3. Approve the final deploy step outside this demo workflow.
+
+          ## Presenter notes
+          - Position the workflow agent as an orchestrated investigator and summarizer.
+          - Emphasize that the existing CI/CD workflows remain the system of record for build and deployment safety.
+          - Use the minute budget above to discuss enterprise controls, quotas, and budget ownership.
+
+          ## Audit links
+          - Current workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+          - Repository: ${GITHUB_REPOSITORY}
+          EOF
+
+      - name: Publish release packet to workflow summary
+        shell: bash
+        run: cat demo-agentic-release-readiness.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload release packet artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-agentic-release-readiness-${{ github.run_id }}
+          path: demo-agentic-release-readiness.md
+          retention-days: 14

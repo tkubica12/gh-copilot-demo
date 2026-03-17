@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <company>
+    <name>TechCorp Solutions</name>
+    <founded>2015</founded>
+    <active>True</active>
+    <revenue>45000000.75</revenue>
+    <headquarters>
+      <address>
+        <street>123 Innovation Drive</street>
+        <city>San Francisco</city>
+        <state>CA</state>
+        <zipCode>94105</zipCode>
+        <country>USA</country>
+      </address>
+      <coordinates>
+        <latitude>37.7749</latitude>
+        <longitude>-122.4194</longitude>
+      </coordinates>
+      <facilities>
+        <item>
+          <name>Main Office</name>
+          <type>headquarters</type>
+          <floors>15</floors>
+          <squareFeet>250000</squareFeet>
+          <amenities>
+            <item>gym</item>
+            <item>cafeteria</item>
+            <item>parking</item>
+            <item>rooftop terrace</item>
+          </amenities>
+        </item>
+        <item>
+          <name>Research Lab</name>
+          <type>laboratory</type>
+          <floors>3</floors>
+          <squareFeet>50000</squareFeet>
+          <amenities>
+            <item>clean rooms</item>
+            <item>testing facilities</item>
+          </amenities>
+        </item>
+      </facilities>
+    </headquarters>
+    <departments>
+      <item>
+        <id>1</id>
+        <name>Engineering</name>
+        <budget>15000000</budget>
+        <headCount>250</headCount>
+        <manager>
+          <employeeId>EMP-001</employeeId>
+          <name>Sarah Chen</name>
+          <title>VP of Engineering</title>
+          <email>sarah.chen@techcorp.example</email>
+          <phone>+1-555-0101</phone>
+          <hireDate>2016-03-15</hireDate>
+          <skills>
+            <item>leadership</item>
+            <item>architecture</item>
+            <item>cloud computing</item>
+            <item>AI/ML</item>
+          </skills>
+        </manager>
+        <teams>
+          <item>
+            <name>Backend Services</name>
+            <size>45</size>
+            <technologies>
+              <item>Python</item>
+              <item>Go</item>
+              <item>Kubernetes</item>
+              <item>PostgreSQL</item>
+            </technologies>
+            <projects>
+              <item>
+                <id>PROJ-101</id>
+                <name>Microservices Migration</name>
+                <status>in-progress</status>
+                <priority>high</priority>
+                <completionPercentage>67.5</completionPercentage>
+                <startDate>2025-06-01</startDate>
+                <expectedEndDate>2026-03-31</expectedEndDate>
+                <budget>2500000</budget>
+              </item>
+              <item>
+                <id>PROJ-102</id>
+                <name>API Gateway Redesign</name>
+                <status>planning</status>
+                <priority>medium</priority>
+                <completionPercentage>15.0</completionPercentage>
+                <startDate>2026-01-15</startDate>
+                <expectedEndDate>2026-06-30</expectedEndDate>
+                <budget>800000</budget>
+              </item>
+            </projects>
+          </item>
+          <item>
+            <name>Frontend Development</name>
+            <size>38</size>
+            <technologies>
+              <item>React</item>
+              <item>TypeScript</item>
+              <item>Next.js</item>
+              <item>Tailwind CSS</item>
+            </technologies>
+            <projects>
+              <item>
+                <id>PROJ-201</id>
+                <name>Dashboard Redesign</name>
+                <status>completed</status>
+                <priority>high</priority>
+                <completionPercentage>100.0</completionPercentage>
+                <startDate>2025-04-01</startDate>
+                <expectedEndDate>2025-12-31</expectedEndDate>
+                <budget>1200000</budget>
+              </item>
+            </projects>
+          </item>
+          <item>
+            <name>DevOps</name>
+            <size>22</size>
+            <technologies>
+              <item>Terraform</item>
+              <item>Azure</item>
+              <item>GitHub Actions</item>
+              <item>Prometheus</item>
+            </technologies>
+            <projects>
+              <item>
+                <id>PROJ-301</id>
+                <name>Multi-Region Deployment</name>
+                <status>in-progress</status>
+                <priority>critical</priority>
+                <completionPercentage>82.3</completionPercentage>
+                <startDate>2025-09-01</startDate>
+                <expectedEndDate>2026-02-28</expectedEndDate>
+                <budget>3500000</budget>
+              </item>
+            </projects>
+          </item>
+        </teams>
+      </item>
+      <item>
+        <id>2</id>
+        <name>Product Management</name>
+        <budget>5000000</budget>
+        <headCount>45</headCount>
+        <manager>
+          <employeeId>EMP-002</employeeId>
+          <name>Marcus Johnson</name>
+          <title>Chief Product Officer</title>
+          <email>marcus.j@techcorp.example</email>
+          <phone>+1-555-0202</phone>
+          <hireDate>2017-01-10</hireDate>
+          <skills>
+            <item>strategy</item>
+            <item>market analysis</item>
+            <item>roadmapping</item>
+            <item>stakeholder management</item>
+          </skills>
+        </manager>
+        <teams>
+          <item>
+            <name>Platform Products</name>
+            <size>18</size>
+            <technologies>
+              <item>Figma</item>
+              <item>Jira</item>
+              <item>Miro</item>
+              <item>Analytics</item>
+            </technologies>
+            <projects />
+          </item>
+          <item>
+            <name>Enterprise Solutions</name>
+            <size>15</size>
+            <technologies>
+              <item>Salesforce</item>
+              <item>Product Board</item>
+              <item>Tableau</item>
+            </technologies>
+            <projects />
+          </item>
+        </teams>
+      </item>
+      <item>
+        <id>3</id>
+        <name>Sales</name>
+        <budget>8000000</budget>
+        <headCount>120</headCount>
+        <manager>
+          <employeeId>EMP-003</employeeId>
+          <name>Jennifer Martinez</name>
+          <title>VP of Sales</title>
+          <email>j.martinez@techcorp.example</email>
+          <phone>+1-555-0303</phone>
+          <hireDate>2018-05-20</hireDate>
+          <skills>
+            <item>enterprise sales</item>
+            <item>negotiation</item>
+            <item>CRM</item>
+            <item>team building</item>
+          </skills>
+        </manager>
+        <teams />
+      </item>
+      <item>
+        <id>4</id>
+        <name>Marketing</name>
+        <budget>6000000</budget>
+        <headCount>55</headCount>
+        <manager>
+          <employeeId>EMP-004</employeeId>
+          <name>David Kim</name>
+          <title>CMO</title>
+          <email>david.kim@techcorp.example</email>
+          <phone>+1-555-0404</phone>
+          <hireDate>2019-02-01</hireDate>
+          <skills>
+            <item>digital marketing</item>
+            <item>branding</item>
+            <item>content strategy</item>
+            <item>analytics</item>
+          </skills>
+        </manager>
+        <teams />
+      </item>
+    </departments>
+    <products>
+      <item>
+        <id>PROD-001</id>
+        <name>CloudSync Pro</name>
+        <category>SaaS</category>
+        <description>Enterprise cloud synchronization platform</description>
+        <pricing>
+          <model>subscription</model>
+          <tiers>
+            <item>
+              <name>Starter</name>
+              <monthlyPrice>29.99</monthlyPrice>
+              <annualPrice>299.99</annualPrice>
+              <features>
+                <item>5 users</item>
+                <item>10GB storage</item>
+                <item>basic support</item>
+              </features>
+              <maxUsers>5</maxUsers>
+              <storageGB>10</storageGB>
+            </item>
+            <item>
+              <name>Professional</name>
+              <monthlyPrice>99.99</monthlyPrice>
+              <annualPrice>999.99</annualPrice>
+              <features>
+                <item>25 users</item>
+                <item>100GB storage</item>
+                <item>priority support</item>
+                <item>API access</item>
+              </features>
+              <maxUsers>25</maxUsers>
+              <storageGB>100</storageGB>
+            </item>
+            <item>
+              <name>Enterprise</name>
+              <monthlyPrice>499.99</monthlyPrice>
+              <annualPrice>4999.99</annualPrice>
+              <features>
+                <item>unlimited users</item>
+                <item>1TB storage</item>
+                <item>24/7 support</item>
+                <item>API access</item>
+                <item>custom integrations</item>
+                <item>SLA guarantee</item>
+              </features>
+              <maxUsers />
+              <storageGB>1000</storageGB>
+            </item>
+          </tiers>
+        </pricing>
+        <metrics>
+          <activeUsers>15420</activeUsers>
+          <monthlyRecurringRevenue>1250000.5</monthlyRecurringRevenue>
+          <churnRate>2.3</churnRate>
+          <netPromoterScore>68</netPromoterScore>
+          <uptime>99.97</uptime>
+        </metrics>
+        <releases>
+          <item>
+            <version>3.2.1</version>
+            <releaseDate>2025-12-15</releaseDate>
+            <type>patch</type>
+            <changes>
+              <item>bug fixes</item>
+              <item>performance improvements</item>
+            </changes>
+          </item>
+          <item>
+            <version>3.2.0</version>
+            <releaseDate>2025-11-01</releaseDate>
+            <type>minor</type>
+            <changes>
+              <item>new API endpoints</item>
+              <item>improved UI</item>
+              <item>enhanced security</item>
+            </changes>
+          </item>
+          <item>
+            <version>3.0.0</version>
+            <releaseDate>2025-06-01</releaseDate>
+            <type>major</type>
+            <changes>
+              <item>complete architecture redesign</item>
+              <item>new pricing model</item>
+              <item>mobile apps</item>
+            </changes>
+          </item>
+        </releases>
+      </item>
+      <item>
+        <id>PROD-002</id>
+        <name>DataFlow Analytics</name>
+        <category>Analytics</category>
+        <description>Real-time data analytics and visualization platform</description>
+        <pricing>
+          <model>usage-based</model>
+          <tiers>
+            <item>
+              <name>Pay-as-you-go</name>
+              <monthlyPrice>0</monthlyPrice>
+              <annualPrice>0</annualPrice>
+              <features>
+                <item>$0.10 per 1000 events</item>
+                <item>basic dashboards</item>
+              </features>
+              <maxUsers />
+              <storageGB />
+            </item>
+            <item>
+              <name>Business</name>
+              <monthlyPrice>299.99</monthlyPrice>
+              <annualPrice>2999.99</annualPrice>
+              <features>
+                <item>5M events included</item>
+                <item>advanced dashboards</item>
+                <item>custom reports</item>
+                <item>API access</item>
+              </features>
+              <maxUsers>50</maxUsers>
+              <storageGB>500</storageGB>
+            </item>
+          </tiers>
+        </pricing>
+        <metrics>
+          <activeUsers>8340</activeUsers>
+          <monthlyRecurringRevenue>875000.25</monthlyRecurringRevenue>
+          <churnRate>3.1</churnRate>
+          <netPromoterScore>72</netPromoterScore>
+          <uptime>99.95</uptime>
+        </metrics>
+        <releases />
+      </item>
+    </products>
+    <customers>
+      <item>
+        <id>CUST-10001</id>
+        <name>Global Manufacturing Inc</name>
+        <industry>Manufacturing</industry>
+        <size>enterprise</size>
+        <employeeCount>25000</employeeCount>
+        <contractValue>2500000</contractValue>
+        <contractStartDate>2024-01-01</contractStartDate>
+        <contractEndDate>2027-12-31</contractEndDate>
+        <isPremium>True</isPremium>
+        <products>
+          <item>PROD-001</item>
+          <item>PROD-002</item>
+        </products>
+        <contacts>
+          <item>
+            <name>Robert Williams</name>
+            <title>CTO</title>
+            <email>r.williams@globalmanuf.example</email>
+            <phone>+1-555-1001</phone>
+            <isPrimary>True</isPrimary>
+          </item>
+          <item>
+            <name>Lisa Anderson</name>
+            <title>VP IT</title>
+            <email>l.anderson@globalmanuf.example</email>
+            <phone>+1-555-1002</phone>
+            <isPrimary>False</isPrimary>
+          </item>
+        </contacts>
+        <supportTickets>
+          <item>
+            <id>TICKET-5001</id>
+            <subject>API rate limit increase request</subject>
+            <status>resolved</status>
+            <priority>medium</priority>
+            <createdDate>2025-12-10</createdDate>
+            <resolvedDate>2025-12-12</resolvedDate>
+            <responseTimeHours>4.5</responseTimeHours>
+          </item>
+        </supportTickets>
+      </item>
+      <item>
+        <id>CUST-10002</id>
+        <name>Healthcare Systems Ltd</name>
+        <industry>Healthcare</industry>
+        <size>large</size>
+        <employeeCount>8500</employeeCount>
+        <contractValue>850000</contractValue>
+        <contractStartDate>2025-03-01</contractStartDate>
+        <contractEndDate>2026-02-28</contractEndDate>
+        <isPremium>False</isPremium>
+        <products>
+          <item>PROD-001</item>
+        </products>
+        <contacts>
+          <item>
+            <name>Dr. Emily Thompson</name>
+            <title>Director of IT</title>
+            <email>e.thompson@healthsys.example</email>
+            <phone>+1-555-2001</phone>
+            <isPrimary>True</isPrimary>
+          </item>
+        </contacts>
+        <supportTickets />
+      </item>
+      <item>
+        <id>CUST-10003</id>
+        <name>RetailChain Corp</name>
+        <industry>Retail</industry>
+        <size>medium</size>
+        <employeeCount>3200</employeeCount>
+        <contractValue>125000</contractValue>
+        <contractStartDate>2025-09-01</contractStartDate>
+        <contractEndDate>2026-08-31</contractEndDate>
+        <isPremium>False</isPremium>
+        <products>
+          <item>PROD-002</item>
+        </products>
+        <contacts>
+          <item>
+            <name>Michael Brown</name>
+            <title>IT Manager</title>
+            <email>m.brown@retailchain.example</email>
+            <phone>+1-555-3001</phone>
+            <isPrimary>True</isPrimary>
+          </item>
+        </contacts>
+        <supportTickets>
+          <item>
+            <id>TICKET-5002</id>
+            <subject>Dashboard customization help</subject>
+            <status>in-progress</status>
+            <priority>low</priority>
+            <createdDate>2026-01-03</createdDate>
+            <resolvedDate />
+            <responseTimeHours>12.0</responseTimeHours>
+          </item>
+          <item>
+            <id>TICKET-5003</id>
+            <subject>Integration question</subject>
+            <status>open</status>
+            <priority>medium</priority>
+            <createdDate>2026-01-05</createdDate>
+            <resolvedDate />
+            <responseTimeHours />
+          </item>
+        </supportTickets>
+      </item>
+    </customers>
+    <financials>
+      <fiscalYear>2025</fiscalYear>
+      <quarters>
+        <item>
+          <quarter>Q1</quarter>
+          <revenue>10250000.0</revenue>
+          <expenses>7800000.0</expenses>
+          <profit>2450000.0</profit>
+          <growthRate>15.5</growthRate>
+        </item>
+        <item>
+          <quarter>Q2</quarter>
+          <revenue>11100000.0</revenue>
+          <expenses>8200000.0</expenses>
+          <profit>2900000.0</profit>
+          <growthRate>18.2</growthRate>
+        </item>
+        <item>
+          <quarter>Q3</quarter>
+          <revenue>11850000.0</revenue>
+          <expenses>8500000.0</expenses>
+          <profit>3350000.0</profit>
+          <growthRate>20.1</growthRate>
+        </item>
+        <item>
+          <quarter>Q4</quarter>
+          <revenue>12800000.0</revenue>
+          <expenses>9100000.0</expenses>
+          <profit>3700000.0</profit>
+          <growthRate>22.3</growthRate>
+        </item>
+      </quarters>
+      <totalRevenue>45000000.0</totalRevenue>
+      <totalExpenses>33600000.0</totalExpenses>
+      <totalProfit>11400000.0</totalProfit>
+      <yearOverYearGrowth>19.0</yearOverYearGrowth>
+    </financials>
+    <certifications>
+      <item>
+        <name>ISO 27001</name>
+        <issuer>International Organization for Standardization</issuer>
+        <issueDate>2023-06-15</issueDate>
+        <expiryDate>2026-06-14</expiryDate>
+        <isValid>True</isValid>
+      </item>
+      <item>
+        <name>SOC 2 Type II</name>
+        <issuer>AICPA</issuer>
+        <issueDate>2024-03-01</issueDate>
+        <expiryDate>2025-02-28</expiryDate>
+        <isValid>True</isValid>
+      </item>
+      <item>
+        <name>GDPR Compliance</name>
+        <issuer>European Commission</issuer>
+        <issueDate>2023-01-10</issueDate>
+        <expiryDate />
+        <isValid>True</isValid>
+      </item>
+    </certifications>
+    <partnerships>
+      <item>
+        <partner>Azure</partner>
+        <type>cloud provider</type>
+        <since>2016-05-01</since>
+        <tier>gold</tier>
+      </item>
+      <item>
+        <partner>GitHub</partner>
+        <type>technology</type>
+        <since>2018-03-15</since>
+        <tier>verified</tier>
+      </item>
+      <item>
+        <partner>Stripe</partner>
+        <type>payment processor</type>
+        <since>2019-07-01</since>
+        <tier>standard</tier>
+      </item>
+    </partnerships>
+    <metadata>
+      <lastUpdated>2026-01-06T10:30:00Z</lastUpdated>
+      <version>2.5.0</version>
+      <schemaVersion>1.0</schemaVersion>
+      <generatedBy>data-export-service</generatedBy>
+      <exportReason>demonstration</exportReason>
+      <includesSensitiveData>False</includesSensitiveData>
+      <dataClassification>public</dataClassification>
+      <retentionPolicy>5 years</retentionPolicy>
+    </metadata>
+  </company>
+</root>
