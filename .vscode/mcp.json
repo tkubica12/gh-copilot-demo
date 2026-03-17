@@ -12,9 +12,7 @@
         },
         "microsoft-docs": {
             "type": "http",
-            "url": "https://learn.microsoft.com/api/mcp",
-            "gallery": "https://1es-mcp.data.eastus.azure-apicenter.ms/workspaces/default",
-            "version": "original"
+            "url": "https://learn.microsoft.com/api/mcp"
         },
         "github": {
             "type": "http",
