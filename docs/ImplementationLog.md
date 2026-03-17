@@ -1,5 +1,14 @@
 # Implementation Log
 
+## 2026-03-17 – Removed custom chat mode demo
+
+Removed the deprecated custom chat mode example from the workshop repository so the documentation reflects currently maintained customization paths.
+
+### Decisions
+- Deleted the `MyTeacher` custom chat mode artifact from `.github/chatmodes`.
+- Removed the `Custom Chat Modes` subsection from the root `README.md`.
+- Renumbered the remaining section so `Bring Your Own Model (BYOM)` is now section `3.3`.
+
 ## 2026-03-09 – Workshop agenda refocused on agentic delivery
 
 Refreshed the customer workshop agenda to reflect the current GitHub Copilot platform direction.

@@ -9,6 +9,29 @@
             "args": [
                 "mcp-server-kubernetes"
             ]
+        },
+        "microsoft-docs": {
+            "type": "http",
+            "url": "https://learn.microsoft.com/api/mcp",
+            "gallery": "https://1es-mcp.data.eastus.azure-apicenter.ms/workspaces/default",
+            "version": "original"
+        },
+        "github": {
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/",
+            "headers": {
+                "X-MCP-Toolsets": "default,copilot_spaces,actions,labels,projects,repos,copilot,github_support_docs_search,git",
+                "X-MCP-Insiders": "true"
+            }
+        },
+        "Azure MCP Server": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@azure/mcp@latest",
+                "server",
+                "start"
+            ]
         }
     },
     "inputs": [

@@ -28,8 +28,7 @@ This repository contains example code to demonstrate GitHub Copilot features acr
 - [3. Customize and Provide Rich Context](#3-customize-and-provide-rich-context)
   - [3.1 Custom instructions](#31-custom-instructions)
   - [3.2 Prompt Files](#32-prompt-files)
-  - [3.3 Custom Chat Modes](#33-custom-chat-modes)
-  - [3.4 Bring Your Own Model (BYOM)](#34-bring-your-own-model-byom)
+  - [3.3 Bring Your Own Model (BYOM)](#33-bring-your-own-model-byom)
 - [4. Providing tools with Skills and Model Context Protocol (MCP)](#4-providing-tools-with-skills-and-model-context-protocol-mcp)
   - [4.1 Skills](#41-skills)
     - [4.1.1 Understanding skills for dynamic content management](#411-understanding-skills-for-dynamic-content-management)
@@ -76,12 +75,12 @@ Open `main.py` in `src/services/toy` and around line 25 change `logger` to `logg
 - **Auto** - let Copilot decide what model to use and get 10% discount if it selects premium request (eg. 0.9x rather than 1x)
 - **Base models** do not consume premium requests (0x)
   - Use it for simple text tasks and searches. 
-  - As of January** 2026 I prefer **GPT-5-mini**
+  - As of March** 2026 I prefer **GPT-5-mini**
 - **Premium models** consume premium requests, most often one per request (1x)
   - Switch model when Copilot is not able to move beyond some issue or after previous one finished so you get second opinion
-  - As of January 2026 we would usually combine **GPT-5.1-Codex and Claude Sonnet 4.5 for coding** and **GPT-5.2 or Gemini 3 Pro for document writing, specs, architecture and brainstorming** - all are 1x models
+  - As of March 2026 almost always prefer **GPT-5.4** as **Opus 4.6** is very similar quality but more expensive (3x premium requests)
   - 0.33x models are faster and save few requests, but quality is lower and I would typically use rather base model (0x) or 1x model most of the time
-  - More expensive models such as 3x Claude Opus 4.5 might make sense for very complex tasks, but are usually just slightly better and often not worth increased price and latency
+  - More expensive models such as 6x **Opus 4.6 1M Context** are good for very large codebase or when you need continue very long session and prevent context compression
 
 ### 1.2.2 Codebase Search
 Ask Copilot to search and understand your code:
@@ -139,6 +138,11 @@ Ask questions about current information:
 Try without tools using just model knowledge.
 ```
 When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version? Do NOT use any tools.
+```
+
+You your administrator enabled builti-in Bing search on server side, COpilot will repond with recommend URLs to fetch and agent will do so.
+```
+When did Microsoft released Microsoft Agent Framework SDK for Python and what is current version?
 ```
 
 I have Tavily MCP Server (see in later section) so try with tools.
@@ -246,12 +250,11 @@ General steps I use for new project consisting of multiple microservices in mono
 - Enterprise-wide technical decisions
 - Design reviews involving multiple teams
 
-You can also use that knowledge base in your GitHub Copilot agent query via MCP:
+You can also use that knowledge base in your GitHub Copilot agent query via MCP (make sure it is enabled via header flag as described in [https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces/use-copilot-spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces/use-copilot-spaces))
 
 ```
 What are common errors when automating email processing? #list_copilot_spaces #get_copilot_space 
 ```
-
 
 ---
 
@@ -305,30 +308,13 @@ Yet another example is in `headerComments` and you try this:
 /headerComments DoubleDashBlock in toy service
 ```
 
-## 3.3 Custom Chat Modes
-
-Switch to **MyTeacher** chat mode and ask:
-
-```
-Should I migrate to https://gateway-api.sigs.k8s.io/ ?
-```
-
-Or put some file into context and ask:
-
-```
-What is this file about?
-```
-
-Custom chat modes provide specialized personas for teaching, reviewing, or domain-specific guidance.
-
-## 3.4 Bring Your Own Model (BYOM)
+## 3.3 Bring Your Own Model (BYOM)
 
 Install `Ollama` and download models:
 
 ```powershell
-ollama pull deepseek-coder:1.3b
-ollama pull deepseek-coder:6.7b
-ollama pull qwen2.5-coder
+ollama pull devstral-small-2:24b
+ollama pull qwen3-coder:30b
 ```
 
 In Copilot click on **Manage Models** and add Ollama models. Try examples from Section 1 with different models.
@@ -446,6 +432,7 @@ Few things to try:
 - `In what repository am I using Event Sourcing pattern with CosmosDB?` which uses search_code
 - `Our api-processing do have performance issues. Gather information about this service and create GitHub issue and assign tkubica12 to look into it` which uses create_isse
 
+Note there are more toolsets available than default, eg. you can work with Copilot Spaces, Projects, Labels, Repos or Actions - see list at [https://github.com/github/github-mcp-server/blob/main/README.md#available-toolsets](https://github.com/github/github-mcp-server/blob/main/README.md#available-toolsets) and enable those via headers as described at 
 
 ### 4.2.4 Azure MCP
 
@@ -539,11 +526,11 @@ git branch -D agent1-task agent2-task
 ```
 
 ## 5.2 Managing agents from IDE
-Create new session with **New Local Session** which will work in IDE on your current branch.
+Create new session with setting **Local** which will work in IDE on your current branch.
 
 `I have k6 perftest, but no README for it. Create README.md file explaining how to run the perftest, what scenarios it covers, and how to interpret results.`
 
-Create new session with **New Backgroung Session** which will automatically create new git worktree and branch.
+Create new session with setting **Copilot CLI** which will automatically create new git worktree and branch and spin CLI agent.
 
 `Some of Python services are using pip and requirements.txt. I want to migrate everything to uv as package manager. Make sure to migrate to toml files, remove requirements.txt and change Dockerfile and READMEs accordingly. Test your able to sync uv and that Dockerfile builds without errors.`
 
@@ -559,7 +546,7 @@ You have **Keep/Undo** buttons available to track changes in each agent session 
 
 You can also work in interactive mode to discuss options and than **handoff to background agent** to finish the job.
 
-Create new session with **New Cloud Session** which will automatically create new branch and cloud-based environment that Coding Agent will use and create Pull Request when finished.
+Create new session with setting **Cloud** which will automatically create new branch and cloud-based environment that Coding Agent will use and create Pull Request when finished.
 
 `Create separate Helm charts into /charts folder for services toy, trip and demo-data-init with configurable resource requests and limits, container registry and tag, HPA and create service and Gateway API to expose those services.`
 
@@ -654,7 +641,6 @@ Azure SRE Agent helps teams:
 
 # TODO
 
-- [ ] More GitHub Spark examples
 - [ ] Plan mode
 - [ ] Azure SRE Agent full demo
 - [ ] Copilot App Modernization
