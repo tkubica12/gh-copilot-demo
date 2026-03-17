@@ -1,1 +1,0 @@
-Naming convention is to use camelCase for variable names, function names, and method names. This is mandatory for all languages including Python.

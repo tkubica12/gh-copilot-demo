@@ -1,0 +1,160 @@
+# Illustrative demo workflow for GitHub Agentic Workflows.
+# This pattern packages a markdown-authored review brief for a workflow agent
+# while keeping existing CI/CD checks and human approvals in charge.
+
+name: DEMO Agentic PR Review Brief
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number to prepare for governed workflow-agent review
+        required: true
+        type: string
+      change_goal:
+        description: Reviewer objective for the workflow agent
+        required: true
+        default: Summarize risk, propose a review plan, and highlight blockers.
+        type: string
+      max_files_in_scope:
+        description: Soft control for demo scope; larger PRs should stay with humans first
+        required: true
+        default: "20"
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: demo-agentic-pr-review-${{ github.event.inputs.pr_number }}
+  cancel-in-progress: true
+
+jobs:
+  prepare-review-brief:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Collect pull request metadata
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = Number("${{ github.event.inputs.pr_number }}");
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const { data: pr } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: prNumber,
+            });
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number: prNumber,
+              per_page: 100,
+            });
+
+            const fileNames = files.slice(0, 15).map((file) => file.filename);
+            const protectedFiles = files
+              .map((file) => file.filename)
+              .filter((name) =>
+                name.startsWith(".github/workflows/") ||
+                name.startsWith("terraform/") ||
+                name.startsWith("src/")
+              );
+
+            core.setOutput("title", pr.title);
+            core.setOutput("url", pr.html_url);
+            core.setOutput("author", pr.user.login);
+            core.setOutput("base_ref", pr.base.ref);
+            core.setOutput("head_ref", pr.head.ref);
+            core.setOutput("changed_files", String(pr.changed_files));
+            core.setOutput("file_list", fileNames.join("\n"));
+            core.setOutput("protected_files", protectedFiles.join("\n"));
+
+      - name: Enforce demo scope control
+        shell: bash
+        env:
+          CHANGED_FILES: ${{ steps.pr.outputs.changed_files }}
+          MAX_FILES: ${{ github.event.inputs.max_files_in_scope }}
+        run: |
+          if (( CHANGED_FILES > MAX_FILES )); then
+            {
+              echo "### Scope control triggered"
+              echo "- Changed files: ${CHANGED_FILES}"
+              echo "- Allowed by demo policy: ${MAX_FILES}"
+              echo "- Outcome: keep the workflow-agent assist in advisory mode and require human-led review first."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+      - name: Build markdown-authored review brief
+        shell: bash
+        env:
+          CHANGE_GOAL: ${{ github.event.inputs.change_goal }}
+          PR_NUMBER: ${{ github.event.inputs.pr_number }}
+          PR_TITLE: ${{ steps.pr.outputs.title }}
+          PR_URL: ${{ steps.pr.outputs.url }}
+          PR_AUTHOR: ${{ steps.pr.outputs.author }}
+          BASE_REF: ${{ steps.pr.outputs.base_ref }}
+          HEAD_REF: ${{ steps.pr.outputs.head_ref }}
+          CHANGED_FILES: ${{ steps.pr.outputs.changed_files }}
+          FILE_LIST: ${{ steps.pr.outputs.file_list }}
+          PROTECTED_FILES: ${{ steps.pr.outputs.protected_files }}
+        run: |
+          cat <<EOF > demo-agentic-pr-review-brief.md
+          # DEMO workflow-agent review brief
+
+          > Illustrative only. This workflow prepares a markdown handoff for a workflow agent after the normal CI/CD checks. It does **not** auto-approve, auto-merge, or replace human code review.
+
+          ## Objective
+          ${CHANGE_GOAL}
+
+          ## Pull request context
+          - PR: #${PR_NUMBER} — ${PR_TITLE}
+          - URL: ${PR_URL}
+          - Author: ${PR_AUTHOR}
+          - Branch flow: ${HEAD_REF} → ${BASE_REF}
+          - Files changed: ${CHANGED_FILES}
+
+          ## Guardrails for the workflow agent
+          1. Treat existing service build workflows, DevSkim, OSSAR, tfsec, and SonarCloud as required evidence sources.
+          2. Keep the agent in review mode only; no direct commits, approval clicks, merges, or deployments.
+          3. Escalate to human reviewers if protected files, identity/security settings, or deployment paths are involved.
+          4. Flag missing tests, missing rollout notes, and missing rollback plan as blockers.
+
+          ## Files in scope
+          ${FILE_LIST:-"- No files returned by the API."}
+
+          ## Protected-path review hints
+          ${PROTECTED_FILES:-"- No protected paths detected in this PR."}
+
+          ## Required human checkpoints
+          - Human reviewer confirms the agent summary matches the actual diff.
+          - Security reviewer checks any workflow, infrastructure, or secret-handling changes.
+          - Merge remains blocked until required status checks and branch protection rules pass.
+
+          ## Audit notes
+          - Repository: ${GITHUB_REPOSITORY}
+          - Workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+          - Commit under review: ${GITHUB_SHA}
+          - Triggered by: ${GITHUB_ACTOR}
+          EOF
+
+      - name: Publish review brief to workflow summary
+        shell: bash
+        run: cat demo-agentic-pr-review-brief.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload review brief artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-agentic-pr-review-brief-${{ github.run_id }}
+          path: demo-agentic-pr-review-brief.md
+          retention-days: 14

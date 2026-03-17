@@ -1,0 +1,67 @@
+{
+  "demo": "agent-orchestration-workshop",
+  "owner": "lead-orchestrator",
+  "parallel_safe": [
+    "repo-scan",
+    "mcp-capability-check"
+  ],
+  "approval_gates": [
+    {
+      "id": "edit-demo-assets",
+      "trigger": "before changing infrastructure or deployment assets",
+      "required_summary": [
+        "planned action",
+        "affected paths",
+        "rollback idea"
+      ]
+    }
+  ],
+  "work_items": [
+    {
+      "id": "repo-scan",
+      "title": "Inventory demo-ready assets",
+      "goal": "Review existing assets under examples and identify what is already strong enough for a workshop demo.",
+      "paths": [
+        "examples\\perftest",
+        "examples\\kubernetes",
+        "examples\\terraform",
+        "test.http"
+      ],
+      "handoff_to": "story-agent"
+    },
+    {
+      "id": "mcp-capability-check",
+      "title": "Inspect local MCP capability",
+      "goal": "Review the random string MCP server and identify one realistic workflow use for it.",
+      "paths": [
+        "mcp\\random_string_mcp\\README.md",
+        "mcp\\random_string_mcp\\src\\main.py"
+      ],
+      "handoff_to": "workflow-agent"
+    },
+    {
+      "id": "handoff-demo",
+      "title": "Prepare handoff packet example",
+      "goal": "Convert findings into a clean packet that another agent can use without repeating discovery work.",
+      "depends_on": [
+        "repo-scan"
+      ],
+      "paths": [
+        "examples\\agents\\01-cli-orchestration-and-handoff.md"
+      ],
+      "handoff_to": "review-agent"
+    },
+    {
+      "id": "approval-plan",
+      "title": "Draft approval-aware execution plan",
+      "goal": "Split discovery steps from mutating steps and define the checkpoint where a human must approve.",
+      "depends_on": [
+        "mcp-capability-check"
+      ],
+      "paths": [
+        "examples\\agents\\02-mcp-and-approval-aware-workflow.md"
+      ],
+      "handoff_to": "review-agent"
+    }
+  ]
+}
