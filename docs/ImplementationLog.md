@@ -1,5 +1,39 @@
 # Implementation Log
 
+## 2026-03-17 – Rebalanced context, MCP, and governance workshop chapters
+
+Adjusted the workshop walkthrough so the early narrative teaches durable context first, the MCP chapter showcases the in-repo server directly, and governance explicitly includes the GitHub portal review flow.
+
+### Decisions
+- Reworked the context chapter around `AGENTS.md`, `PRD.md`, `specs\`, spec-driven design, constitutions, and Copilot Spaces.
+- Removed early hooks and custom-agent emphasis from the first chapter so specialization starts later where it is easier to explain.
+- Expanded the MCP chapter with the repository-local `random_string_mcp` server, including implementation details, startup steps, and concrete demo prompts.
+- Added explicit pull-request review and security-review guidance in GitHub, tied to repository workflows such as `devskim`, `ossar`, `tfsec`, and `sonarcloud`.
+- Corrected MCP docs to describe the local server as a FastMCP SSE server rather than a generic FastAPI demo.
+
+## 2026-03-17 – Rewrote README into a guided workshop script
+
+Adjusted the refreshed README so it reads like a workshop walkthrough for students instead of a meta description of how to present the repo.
+
+### Decisions
+- Replaced presenter-oriented wording with chapter-by-chapter instructions aimed at readers following the demo flow.
+- Added concrete prompts, files to open, and observations to make each topic easier to demonstrate and understand.
+- Kept the main story linear: context -> skills -> MCP -> VS Code agents -> Copilot CLI -> governance -> workflow agents -> SRE.
+- Inlined optional demos into the root `README.md` so the workshop can be followed in one place without switching between documents.
+
+## 2026-03-17 – Refreshed workshop assets around custom agents, CLI, hooks, and workflow agents
+
+Updated the workshop repo so the main story is now a presenter-led flow from planning to governed delivery instead of a long feature catalog.
+
+### Decisions
+- Rewrote the root `README.md` around a single live-demo journey: context, planning, specialization, Copilot CLI execution, governance, and operations.
+- Kept additional demos available without letting them dominate the main walkthrough.
+- Added workspace custom agents in `.github/agents/` for planner, integration, deployment, review, and subagent patterns.
+- Added reusable prompt files for workshop planning, CLI handoff, governed review, and agentic workflow design.
+- Added a simple repository-scoped hooks example in `.github/hooks/` to demonstrate deterministic policy and audit concepts.
+- Added `examples/gh-aw/` with source markdown examples for GitHub Agentic Workflows so the story continues beyond coding agents into GitHub Actions governance.
+- Updated the English and Czech workshop agendas plus `docs/enterprise_demo_flow.md` so they all reinforce the same presenter-led narrative.
+
 ## 2026-03-17 – Removed custom chat mode demo
 
 Removed the deprecated custom chat mode example from the workshop repository so the documentation reflects currently maintained customization paths.

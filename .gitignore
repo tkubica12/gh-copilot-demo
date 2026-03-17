@@ -2,3 +2,4 @@ __pycache__
 .env
 .playwright-mcp
 node_modules/
+.github/hooks/logs/

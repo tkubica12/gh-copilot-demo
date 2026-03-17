@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "./scripts/session-banner.sh",
+        "powershell": "./scripts/session-banner.ps1",
+        "cwd": ".github/hooks",
+        "timeoutSec": 10
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "./scripts/log-prompt.sh",
+        "powershell": "./scripts/log-prompt.ps1",
+        "cwd": ".github/hooks",
+        "timeoutSec": 10
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "./scripts/pre-tool-policy.sh",
+        "powershell": "./scripts/pre-tool-policy.ps1",
+        "cwd": ".github/hooks",
+        "timeoutSec": 15
+      }
+    ]
+  }
+}

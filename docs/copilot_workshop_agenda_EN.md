@@ -1,10 +1,11 @@
-# GitHub Copilot Workshop: From Prompt to Governed Multi-Agent Delivery
+# GitHub Copilot Workshop: Presenter-led story from plan to governed delivery
 
-This workshop shows how GitHub Copilot fits into the new generation of AI-native engineering workflows across VS Code, CLI, and GitHub. Over the past year, both the tooling and the underlying models have crossed an important threshold: agents are no longer just helpful assistants, but practical collaborators for real engineering work across coding, testing, review, and automation.
+This workshop is optimized for a presenter-led technical flow with live demos. The central message is that GitHub Copilot is no longer only about autocomplete or chat: it is about **governed multi-agent engineering** across VS Code, Copilot CLI, GitHub, Actions, and operations.
 
-- Foundations and fast wins: model choice, chat, codebase context, research, and multi-file edits
-- Agentic delivery in VS Code and Copilot CLI: agent mode, `/fleet`, subagents, custom agents, and iterative test-and-fix loops
-- Spec-driven development in practice: AGENTS.md, prompts, PRD and specs, and spec-kit style workflows for reliable end-to-end work
-- Skills and MCP together: skills for strong local guidance and repeatable capabilities, MCP for connecting agents to remote tools and live systems
-- Agent HQ and cloud orchestration: mission control, background and cloud agents, third-party agents such as Claude and Codex, shared memory, and workspace isolation choices
-- Beyond coding: Copilot code review, security and autofix, agentic workflows in GitHub Actions, and Azure SRE Agent
+- Fast wins and repo context: model choice, codebase understanding, and a quick grounding in what is actually in this repository
+- Customization stack: `AGENTS.md`, prompt files, custom agents, hooks, skills, and MCP, with guidance on when to use each
+- VS Code custom agents in practice: planner, specialist agents, handoffs, and the subagent concept
+- Copilot CLI as a first-class surface: plan mode, autopilot, `/yolo`, `/fleet`, sessions, `/tasks`, `/resume`, and background worktree isolation
+- Governed delivery after coding agents: PR flow, Copilot code review, security findings, autofix discussion, and workflow agents in GitHub Actions
+- Agentic workflows and operations: `gh-aw` as additive automation, then close on Azure SRE Agent and post-deployment thinking
+- Optional side quests for interested audiences: documentation generation, vision, KQL/SQL, web research, MCP deep dives, Spark, and other legacy demos

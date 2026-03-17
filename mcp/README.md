@@ -2,16 +2,31 @@
 
 ## How to start random_string_mcp
 
-1. Open a terminal and navigate to the `random_string_mcp/src` directory:
+This repository contains a small local MCP server in `mcp\random_string_mcp` that is wired into `.vscode\mcp.json` as `my-mcp-string-generator`.
+
+It is implemented with `FastMCP` and exposes two tools:
+
+- `random_string`: generate a random string from selected character classes
+- `unique_string`: generate a deterministic string from a seed value
+
+1. Open a terminal and navigate to the `random_string_mcp\src` directory:
    ```pwsh
-   cd ../random_string_mcp/src
+   cd .\random_string_mcp\src
    ```
-2. Start the FastAPI server using uv:
+2. Start the MCP server using `uv`:
    ```pwsh
    uv run main.py
    ```
 
-The API will be available at http://127.0.0.1:8000. You can access the interactive docs at http://127.0.0.1:8000/docs
+The server runs over SSE and is exposed at `http://127.0.0.1:8000/sse`.
+
+Once it is running, Copilot can use it through the workspace MCP configuration.
+
+Example prompt:
+
+```text
+Generate names for 10 containers in format app1-xxxxxx where xxxxxx is random suffix consisting of lowercase letters and numbers.
+```
 
 ## How to deploy infrastructure (AKS, etc.)
 

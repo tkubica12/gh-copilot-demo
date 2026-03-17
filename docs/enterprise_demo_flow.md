@@ -1,58 +1,88 @@
 # Enterprise demo flow
->> SLIDE: GitHub Enterprise overview
->> SLIDE: GitHub Copilot Enterprise overview
 
-## GitHub Copilot
-- Next-suggestion TAB experience in code editor (get_env_var in Python APIs), mention new gpt-4o-copilot finetuned model
-- Discuss future of SLMs for autocomplete and fine-tuning preview in Enterprise
+>> SLIDE: GitHub Enterprise and GitHub Copilot platform overview
 
-## Copilot Chat Enterprise
-- Chat - model selection, o3-mini Elo on Codeforces (2032) vs. future with GPT-5 (Elo 2727), Google and Anthropic (especially 3.7 thinking) models
-- Chat - Attach screenshot (insiders) - company homepage: Explain what is this web page about and provide assessment of its UX
-- Chat - Knowledgebase on web copilot (Enteprise)
-I am creating new project to implement SDK for our public APIs and publish it for general public. What license should I pick, Apache, GPL or MIT?
-What does worker in this repository do?
+## 1. Open with fast wins, but keep them brief
 
-- Chat - Azure extension
-@azure /resources Do I have any Azure Container Apps deployed?
-@azure /help I have created NSG to filter traffic, but it is still passing.
-@azure /costs What can you tell me about storage costs im my subscription 673af34d-6b28-41dc-bc7b-f507418045e6
+- Next-edit suggestion and autocomplete in VS Code
+- A quick codebase understanding prompt grounded in this repository
+- Optional short model-selection discussion, but do not let it dominate the session
 
-- Chat - custom extensions
-@tomaskubica-gh-extension test
+Goal: establish familiarity, then move quickly to the real story.
 
->> SLIDE: GitHub openness with selection of different AI models, support for Azure, AWS, GCP and onprem workloads
+## 2. Explain the customization layers before the agent story
 
-## Edits and Codespaces
-- Edits option 1 - codespaces -> main, test.http, script.js, README.md
-I need to change path for my processing api to be on /api/v1/process in my code, docs and tests.
+- `AGENTS.md` as the always-on repository contract
+- Prompt files as reusable one-off workflows
+- Custom agents as persistent specialist personas
+- Hooks as deterministic policy and audit guardrails
+- Skills as packaged local capabilities
+- MCP as the bridge to external systems and live tools
 
-- Edits option 2 - insiders Agent mode, frontend/src, frontend/public, package.json - start app first with npm start to see current version
-Add dark mode to this app.
+This section gives the audience the vocabulary needed for the rest of the demo.
 
-Nice, now also add contrast and colorful mode
+## 3. Move into VS Code custom agents
 
->> SLIDE: Benefits and pricing for Codespaces
+- Show the `planner` agent and create a plan for the signature scenario
+- Use handoff to move into `integration-specialist`
+- Use handoff again for `deployment-specialist`
+- Explain that `researcher` and `implementer` exist as focused helper subagents
 
-## Development cycle and DevSecOps
-- Do change in api-processing, Commit, PR with generate message and summary
-- Ask Copilot Agent to become reviewer + use Code Review in VS Code
+Key message:
 
-- DevSecOps - see dependabot
-- DevSecOps - see issues from CodeQL, OSS, Sonar and apply Copilot AutoFix
-- Approve and deploy to ACA -> CI stage (build container), CD stage (ACA deploy) - to mention: Azure VNET integrated managed agents, workload identity federation
-- Check failed actions and click "Explain error" via Copilot
+- prompt files start work consistently
+- custom agents keep a persona active
+- subagents narrow scope and reduce context clutter
 
->> SLIDE: Benefits of full GitHub Enterprise suite with all addons
->> SLIDE: Migration to GitHub Enterprise
->> SLIDE: Trust - source code in cloud, security and compliance, case studies
->> SLIDE: Customer studies and measured benefits of GitHub Advanced Security
+## 4. Continue in Copilot CLI
 
-## Future of application development with GitHub Copilot Enterprise and AI Agents
-- Workspaces - go to Issues and open in workspace to get analysis of current situation, suggestions and plan for changes
-- Workspaces - run Brainstorming
-- Workspaces - run Code in Codespaces
-- Workspaces - implement proposed changes to codebase
-- GitHub Spark - text-to-code platform
+- Hand off from VS Code into Copilot CLI
+- Show workspace vs worktree isolation
+- Use plan mode first, then autopilot only when the task is well-scoped
+- Explain `/yolo` accurately as allow-all permissions, not as a separate execution mode
+- Show `/tasks`, `/resume`, and `/session`
+- If useful, show `/fleet` for independent parallel tasks
 
->> SLIDE: Agentic future of software development with project Padawan
+This is one of the strongest moments in the live demo because it connects IDE planning to autonomous background execution.
+
+## 5. Go from coding agents to governed delivery
+
+- Create or discuss the PR path
+- Use Copilot code review
+- Show how security findings, code scanning, or autofix fit after implementation
+- Reinforce that humans remain the decision makers
+
+## 6. Add GitHub Agentic Workflows (`gh-aw`)
+
+- Introduce `gh-aw` as additive automation inside GitHub Actions
+- Explain markdown workflow source plus compiled `.lock.yml`
+- Explain safe outputs, sandboxing, and security-first design
+- Use example workflows from `examples\gh-aw`
+- Position workflow agents as the next layer after interactive coding agents:
+  - summarize repo health
+  - triage PR follow-up
+  - create governance issues for maintainers
+
+Key message:
+
+- deterministic CI/CD is still the backbone
+- workflow agents augment it with Continuous AI
+
+## 7. End on SRE and operations
+
+- Once code is merged and deployed, the story is not over
+- Show the value of Azure SRE Agent or similar operational agents
+- Connect deployment changes, telemetry, incidents, and remediation
+
+This is the best closing frame because it shows a full software lifecycle, not just code generation.
+
+## 8. Optional extensions if time allows
+
+- documentation generation
+- KQL and SQL prompting
+- vision and image-to-code
+- web search and targeted fetch
+- MCP deep dives
+- Spark
+
+Use these only when the audience explicitly wants them or when you need a fallback branch.
