@@ -50,6 +50,7 @@ This is one of the strongest moments in the live demo because it connects IDE pl
 - Create or discuss the PR path
 - Use Copilot code review
 - Show how security findings, code scanning, or autofix fit after implementation
+- Enable the repository hook toggle only when you are about to demonstrate deterministic policy, then disable it again afterward
 - Reinforce that humans remain the decision makers
 
 ## 6. Add GitHub Agentic Workflows (`gh-aw`)

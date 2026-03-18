@@ -1,7 +1,7 @@
 ---
 name: planner
 description: Plan changes, gather context, and prepare safe handoffs without editing files.
-tools: ['search', 'fetch']
+tools: [vscode, execute, read/readFile, agent, browser, edit, search, web, todo]
 handoffs:
   - label: Start Integration Work
     agent: integration-specialist

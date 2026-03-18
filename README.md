@@ -601,6 +601,8 @@ Hooks are a way to add **deterministic, scripted policy** around Copilot agent b
 
 Hooks are configured per repository in `.github\hooks\copilot-policy.json`. Each hook fires at a defined event and runs a script that can inspect context, log information, or block an action entirely.
 
+For workshop safety, the hooks in this repository are now **installed but dormant by default**. They only activate when you explicitly enable the demo toggle, so they do not interfere with earlier CLI sections or unrelated repository work.
+
 This repository defines three hooks:
 
 | Hook event | What it does in our example |
@@ -616,6 +618,20 @@ Open:
 - `.github\hooks\scripts\log-prompt.ps1`
 - `.github\hooks\scripts\pre-tool-policy.ps1`
 
+Before this section, enable the demo hooks in a separate terminal:
+
+```powershell
+.\tools\Enable-CopilotDemoHooks.ps1
+```
+
+When you are done with the hooks section, disable them again:
+
+```powershell
+.\tools\Disable-CopilotDemoHooks.ps1
+```
+
+The toggle creates or removes the local file `.github\hooks\demo-enabled.flag`, so it works even if Copilot CLI is already running. Audit entries are written to `.github\hooks\logs\audit.jsonl` only while the demo toggle is enabled.
+
 ### Try this
 
 Ask:
@@ -626,7 +642,8 @@ Explain what this repository hook configuration does, when each hook runs, and w
 
 ### What to observe
 
-- hooks are not AI — they are deterministic scripts that always execute
+- hooks are not AI — they are deterministic scripts that always execute once you enable the demo toggle
+- in this repo, they only execute their demo behavior after you deliberately enable the hook toggle
 - `preToolUse` can block dangerous operations regardless of what the model wants to do
 - this is a natural complement to review and security: probabilistic guidance from instructions and agents, hard enforcement from hooks
 

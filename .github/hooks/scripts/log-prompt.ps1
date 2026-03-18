@@ -1,9 +1,20 @@
 $ErrorActionPreference = "Stop"
 
+. "$PSScriptRoot\common.ps1"
+
+if (-not (Test-DemoHooksEnabled -ScriptRoot $PSScriptRoot)) {
+    exit 0
+}
+
 $inputText = [Console]::In.ReadToEnd()
+$inputText = $inputText.Trim()
+if ([string]::IsNullOrWhiteSpace($inputText)) {
+    exit 0
+}
+
 $inputObj = $inputText | ConvertFrom-Json
 
-$logDir = ".github/hooks/logs"
+$logDir = Get-HookLogsDirectory -ScriptRoot $PSScriptRoot
 if (-not (Test-Path $logDir)) {
     New-Item -ItemType Directory -Path $logDir -Force | Out-Null
 }

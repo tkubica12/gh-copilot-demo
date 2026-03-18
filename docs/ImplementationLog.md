@@ -1,5 +1,15 @@
 # Implementation Log
 
+## 2026-03-18 – Made workshop hooks opt-in and safer for live demos
+
+Adjusted the repository hook demo so it no longer interferes with normal Copilot CLI usage outside the hooks chapter.
+
+### Decisions
+- Changed the hook scripts to stay dormant unless the local demo toggle is explicitly enabled.
+- Fixed hook script path handling so prompt audit entries write to `.github\hooks\logs\audit.jsonl` reliably from the configured hook working directory.
+- Tightened the dangerous command matching to focus on destructive patterns and added force-push coverage to align the scripts with the workshop explanation.
+- Added simple PowerShell helper scripts in `tools\` to turn the demo hook toggle on and off during live sessions.
+
 ## 2026-03-17 – Rebalanced context, MCP, and governance workshop chapters
 
 Adjusted the workshop walkthrough so the early narrative teaches durable context first, the MCP chapter showcases the in-repo server directly, and governance explicitly includes the GitHub portal review flow.

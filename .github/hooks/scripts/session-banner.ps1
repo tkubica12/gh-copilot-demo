@@ -1,7 +1,13 @@
 $ErrorActionPreference = "Stop"
 
+. "$PSScriptRoot\common.ps1"
+
+if (-not (Test-DemoHooksEnabled -ScriptRoot $PSScriptRoot)) {
+    exit 0
+}
+
 Write-Host @"
-COPILOT HOOK POLICY ACTIVE
+COPILOT DEMO HOOKS ACTIVE
 -----------------------------------------------
 - prompts may be logged locally for demo audit
 - dangerous tool patterns may be blocked

@@ -1,8 +1,18 @@
 #!/bin/bash
 set -euo pipefail
 
+. "$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+if ! demo_hooks_enabled; then
+  exit 0
+fi
+
 INPUT="$(cat)"
-LOG_DIR=".github/hooks/logs"
+if [ -z "${INPUT//[[:space:]]/}" ]; then
+  exit 0
+fi
+
+LOG_DIR="$(hook_logs_dir)"
 mkdir -p "$LOG_DIR"
 
 TIMESTAMP="$(echo "$INPUT" | jq -r '.timestamp // empty')"
