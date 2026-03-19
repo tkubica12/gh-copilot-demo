@@ -1,6 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
+# Consume stdin — Copilot pipes JSON context to every hook.
+# Without this, the pipe blocks and the session hangs.
+cat > /dev/null
+
 cat << 'EOF'
 COPILOT DEMO HOOKS ACTIVE
 -----------------------------------------------
@@ -9,3 +13,4 @@ COPILOT DEMO HOOKS ACTIVE
 - deterministic guardrails complement agent prompts
 -----------------------------------------------
 EOF
+exit 0

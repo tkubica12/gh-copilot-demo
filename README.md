@@ -599,7 +599,7 @@ If you have a real alert available, show the alert details page and discuss whet
 
 Hooks are a way to add **deterministic, scripted policy** around Copilot agent behavior. While prompts and custom agents influence behavior probabilistically (the model can choose to follow or not), hooks run real scripts at specific lifecycle events and can enforce hard rules.
 
-Copilot reads hook configuration from `.github\hooks\copilot-policy.json`. In this repository, that runtime file is created from `.github\hooks\copilot-policy.template.json` only when you explicitly prepare the demo for this chapter, so hooks stay fully inactive by default.
+Copilot reads hook configuration from `.github\hooks\copilot-policy.json`. In this repository, the file is shipped as `.github\hooks\copilot-policy.json.disabled` so hooks stay fully inactive by default — rename it to activate.
 
 For workshop safety, the hooks in this repository are now **opt-in by default**. They are not registered with Copilot until you explicitly install the demo policy file, so they do not interfere with earlier CLI sections, unrelated repository work, or VS Code preview sessions.
 
@@ -613,7 +613,7 @@ This repository defines three hooks:
 
 Open:
 
-- `.github\hooks\copilot-policy.template.json`
+- `.github\hooks\copilot-policy.json.disabled`
 - `.github\hooks\scripts\session-banner.ps1`
 - `.github\hooks\scripts\log-prompt.ps1`
 - `.github\hooks\scripts\pre-tool-policy.ps1`
@@ -621,16 +621,16 @@ Open:
 Before this section, create the runtime policy file in a separate terminal and then start a fresh Copilot session if one is already open:
 
 ```powershell
-Copy-Item .\.github\hooks\copilot-policy.template.json .\.github\hooks\copilot-policy.json
+Rename-Item .\.github\hooks\copilot-policy.json.disabled copilot-policy.json
 ```
 
-When you are done with the hooks section, remove the runtime policy file again and start a fresh Copilot session before continuing other demos:
+When you are done with the hooks section, disable the policy file again and start a fresh Copilot session before continuing other demos:
 
 ```powershell
-Remove-Item .\.github\hooks\copilot-policy.json
+Rename-Item .\.github\hooks\copilot-policy.json copilot-policy.json.disabled
 ```
 
-If `.github\hooks\copilot-policy.json` exists, Copilot invokes the repository hooks. If it does not exist, there are no repo hooks to run. Audit entries are written to `.github\hooks\logs\audit.jsonl` while the runtime policy file is present.
+If `.github\hooks\copilot-policy.json` exists, Copilot invokes the repository hooks. When it is renamed to `.disabled`, there are no repo hooks to run. Audit entries are written to `.github\hooks\logs\audit.jsonl` while the policy file is active.
 
 ### Try this
 

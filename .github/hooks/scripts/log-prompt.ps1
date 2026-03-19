@@ -2,7 +2,9 @@ $ErrorActionPreference = "Stop"
 
 . "$PSScriptRoot\common.ps1"
 
-$inputText = [Console]::In.ReadToEnd()
+# Use ReadLine() not ReadToEnd() — VS Code Copilot Chat does not close stdin,
+# so ReadToEnd() blocks forever. The JSON input is always a single line.
+$inputText = [Console]::In.ReadLine()
 $inputText = $inputText.Trim()
 if ([string]::IsNullOrWhiteSpace($inputText)) {
     exit 0
