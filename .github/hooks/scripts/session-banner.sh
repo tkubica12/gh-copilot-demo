@@ -1,12 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-. "$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
-
-if ! demo_hooks_enabled; then
-  exit 0
-fi
-
 cat << 'EOF'
 COPILOT DEMO HOOKS ACTIVE
 -----------------------------------------------

@@ -2,10 +2,6 @@ $ErrorActionPreference = "Stop"
 
 . "$PSScriptRoot\common.ps1"
 
-if (-not (Test-DemoHooksEnabled -ScriptRoot $PSScriptRoot)) {
-    exit 0
-}
-
 $inputText = [Console]::In.ReadToEnd()
 $inputText = $inputText.Trim()
 if ([string]::IsNullOrWhiteSpace($inputText)) {

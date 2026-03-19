@@ -3,4 +3,4 @@ __pycache__
 .playwright-mcp
 node_modules/
 .github/hooks/logs/
-.github/hooks/demo-enabled.flag
+.github/hooks/copilot-policy.json

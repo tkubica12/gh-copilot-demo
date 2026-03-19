@@ -1,5 +1,24 @@
 # Implementation Log
 
+## 2026-03-19 – Removed dormant-mode hook gating and simplified activation
+
+Simplified the hook demo so the generated repository policy file is the only activation mechanism. There is no longer a separate flag file or environment-variable override inside the hook scripts.
+
+### Decisions
+- Removed the `demo-enabled.flag` and `COPILOT_DEMO_HOOKS` checks from the PowerShell and bash hook helpers so installed hooks always execute.
+- Removed the temporary install/remove helper scripts as unnecessary ceremony and documented the manual `Copy-Item` / `Remove-Item` workflow instead.
+- Ignored generated `.github\hooks\copilot-policy.json` in `.gitignore` so workshop activation does not dirty the repository.
+- Updated the workshop docs to describe install/remove semantics instead of dormant-mode toggling.
+
+## 2026-03-19 – Made workshop hooks truly opt-in for VS Code and CLI sessions
+
+Adjusted the hook demo so disabling it removes the active repository hook policy instead of only short-circuiting inside the scripts. This prevents Copilot clients from invoking hook processes at all when the workshop demo is not enabled.
+
+### Decisions
+- Replaced the checked-in runtime hook policy with a template file and now materialize `.github\hooks\copilot-policy.json` only when the hook demo is installed for the workshop chapter.
+- Removed the active runtime policy file when the hook demo is no longer installed so "disabled" means no hooks are registered.
+- Updated the workshop documentation to explain the generated policy file and to advise starting a fresh Copilot session after toggling hooks, which is safer for VS Code preview behavior.
+
 ## 2026-03-18 – Made workshop hooks opt-in and safer for live demos
 
 Adjusted the repository hook demo so it no longer interferes with normal Copilot CLI usage outside the hooks chapter.

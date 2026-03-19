@@ -599,9 +599,9 @@ If you have a real alert available, show the alert details page and discuss whet
 
 Hooks are a way to add **deterministic, scripted policy** around Copilot agent behavior. While prompts and custom agents influence behavior probabilistically (the model can choose to follow or not), hooks run real scripts at specific lifecycle events and can enforce hard rules.
 
-Hooks are configured per repository in `.github\hooks\copilot-policy.json`. Each hook fires at a defined event and runs a script that can inspect context, log information, or block an action entirely.
+Copilot reads hook configuration from `.github\hooks\copilot-policy.json`. In this repository, that runtime file is created from `.github\hooks\copilot-policy.template.json` only when you explicitly prepare the demo for this chapter, so hooks stay fully inactive by default.
 
-For workshop safety, the hooks in this repository are now **installed but dormant by default**. They only activate when you explicitly enable the demo toggle, so they do not interfere with earlier CLI sections or unrelated repository work.
+For workshop safety, the hooks in this repository are now **opt-in by default**. They are not registered with Copilot until you explicitly install the demo policy file, so they do not interfere with earlier CLI sections, unrelated repository work, or VS Code preview sessions.
 
 This repository defines three hooks:
 
@@ -613,24 +613,24 @@ This repository defines three hooks:
 
 Open:
 
-- `.github\hooks\copilot-policy.json`
+- `.github\hooks\copilot-policy.template.json`
 - `.github\hooks\scripts\session-banner.ps1`
 - `.github\hooks\scripts\log-prompt.ps1`
 - `.github\hooks\scripts\pre-tool-policy.ps1`
 
-Before this section, enable the demo hooks in a separate terminal:
+Before this section, create the runtime policy file in a separate terminal and then start a fresh Copilot session if one is already open:
 
 ```powershell
-.\tools\Enable-CopilotDemoHooks.ps1
+Copy-Item .\.github\hooks\copilot-policy.template.json .\.github\hooks\copilot-policy.json
 ```
 
-When you are done with the hooks section, disable them again:
+When you are done with the hooks section, remove the runtime policy file again and start a fresh Copilot session before continuing other demos:
 
 ```powershell
-.\tools\Disable-CopilotDemoHooks.ps1
+Remove-Item .\.github\hooks\copilot-policy.json
 ```
 
-The toggle creates or removes the local file `.github\hooks\demo-enabled.flag`, so it works even if Copilot CLI is already running. Audit entries are written to `.github\hooks\logs\audit.jsonl` only while the demo toggle is enabled.
+If `.github\hooks\copilot-policy.json` exists, Copilot invokes the repository hooks. If it does not exist, there are no repo hooks to run. Audit entries are written to `.github\hooks\logs\audit.jsonl` while the runtime policy file is present.
 
 ### Try this
 
@@ -642,12 +642,12 @@ Explain what this repository hook configuration does, when each hook runs, and w
 
 ### What to observe
 
-- hooks are not AI — they are deterministic scripts that always execute once you enable the demo toggle
-- in this repo, they only execute their demo behavior after you deliberately enable the hook toggle
+- hooks are not AI — they are deterministic scripts that always execute once the runtime policy file is present
+- in this repo, they are only registered after you deliberately create the hook policy file
 - `preToolUse` can block dangerous operations regardless of what the model wants to do
 - this is a natural complement to review and security: probabilistic guidance from instructions and agents, hard enforcement from hooks
 
-Hooks work in Copilot CLI today and VS Code also supports them in preview. For the live demo, treat hooks as **CLI-first** and mention the VS Code support as an additional surface.
+Hooks work in Copilot CLI today and VS Code also supports them in preview. For the live demo, treat hooks as **CLI-first** and mention the VS Code support as an additional surface. If you create or remove the hook policy file while VS Code already has an active Copilot chat session, restart that session so it reloads the repository hook policy cleanly.
 
 ## 6.4 Why this chapter matters
 

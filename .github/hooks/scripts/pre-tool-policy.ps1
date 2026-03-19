@@ -2,10 +2,6 @@ $ErrorActionPreference = "Stop"
 
 . "$PSScriptRoot\common.ps1"
 
-if (-not (Test-DemoHooksEnabled -ScriptRoot $PSScriptRoot)) {
-    exit 0
-}
-
 $inputText = [Console]::In.ReadToEnd()
 $inputText = $inputText.Trim()
 if ([string]::IsNullOrWhiteSpace($inputText)) {
@@ -24,7 +20,7 @@ if ($toolName -notin @("bash", "powershell")) {
 
 $dangerous = @(
     '(?<!\S)rm\s+-rf(?:\s+|$)',
-    'Remove-Item\b.*\b-Recurse\b.*\b-Force\b',
+    'Remove-Item\b(?=.*(?:^|\s)-Recurse(?:\s|$))(?=.*(?:^|\s)-Force(?:\s|$))',
     '(?<!\S)mkfs(?:\s+|$)',
     '(?<!\S)format(?:\.com)?(?:\s+|$)',
     'Format-Volume\b',

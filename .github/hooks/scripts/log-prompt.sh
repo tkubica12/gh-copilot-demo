@@ -3,10 +3,6 @@ set -euo pipefail
 
 . "$(cd -- "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
 
-if ! demo_hooks_enabled; then
-  exit 0
-fi
-
 INPUT="$(cat)"
 if [ -z "${INPUT//[[:space:]]/}" ]; then
   exit 0
