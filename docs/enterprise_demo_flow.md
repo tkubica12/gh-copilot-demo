@@ -26,12 +26,14 @@ This section gives the audience the vocabulary needed for the rest of the demo.
 - Show the `planner` agent and create a plan for the signature scenario
 - Use handoff to move into `integration-specialist`
 - Use handoff again for `deployment-specialist`
+- Use `/create-agent` to scaffold a business-analytics agent that interviews stakeholders and produces PRDs
 - Explain that `researcher` and `implementer` exist as focused helper subagents
 
 Key message:
 
 - prompt files start work consistently
 - custom agents keep a persona active
+- custom agents can also be created live from natural language and refined iteratively
 - subagents narrow scope and reduce context clutter
 
 ## 4. Continue in Copilot CLI

@@ -1,5 +1,14 @@
 # Implementation Log
 
+## 2026-03-24 – Added live custom-agent creation to the workshop flow
+
+Expanded the custom-agents chapter so the workshop now demonstrates creating a new specialist with `/create-agent`, not only using the prebuilt agents already stored in the repository.
+
+### Decisions
+- Added a concrete `/create-agent` exercise to the main `README.md` custom-agents chapter using a business-analytics-to-PRD example.
+- Positioned the exercise after handoffs so the audience first understands prebuilt agents and then sees live agent creation from natural language.
+- Updated `docs/enterprise_demo_flow.md` so the condensed presenter notes reinforce the same custom-agent creation step.
+
 ## 2026-03-19 – Removed dormant-mode hook gating and simplified activation
 
 Simplified the hook demo so the generated repository policy file is the only activation mechanism. There is no longer a separate flag file or environment-variable override inside the hook scripts.

@@ -403,7 +403,30 @@ Use the deployment-specialist agent to review Terraform, GitHub Actions, hooks, 
 - Each agent has a different role and different emphasis.
 - Handoffs help keep the workflow structured rather than mixing all concerns into one conversation.
 
-## 4.5 Explain subagents
+## 4.5 Create a custom agent live
+
+After showing the prebuilt agents in the repository, create one from natural language so the audience sees that custom agents are not only hand-authored files.
+
+Use:
+
+```text
+/create-agent This agent is specialized for business analytics, interactively gathers requirements, asks clarifying questions and outputs PRDs
+```
+
+If Copilot asks follow-up questions, answer in a way that broadens the scope slightly beyond pure dashboards. A good workshop answer is:
+
+```text
+Analytics plus broader product PRDs. Keep it lightweight and business-facing, but proactive about KPIs and reporting requirements.
+```
+
+### What to observe
+
+- `/create-agent` turns a plain-language specialization request into a reusable `.agent.md`.
+- Copilot does not need a perfect specification upfront; it can draft, identify ambiguity, and iterate.
+- This is a strong example of taking a repeated working style from chat and turning it into a durable specialist.
+- The final artifact is still just a file, so teams can review, version, and refine it like any other repository asset.
+
+## 4.6 Explain subagents
 
 Now show:
 
@@ -418,7 +441,7 @@ Explain:
 
 You do not need to force visible subagent execution every time. It is enough to explain the pattern and show how it is defined in the repo.
 
-## 4.6 Why this chapter matters
+## 4.7 Why this chapter matters
 
 This is the chapter where students usually see the real difference between:
 
