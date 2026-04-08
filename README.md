@@ -20,10 +20,10 @@ The workshop follows one connected engineering story:
 - [**Shape Copilot behavior with repository context**](#2-shape-copilot-behavior-with-repository-context) — how Copilot is guided by repository instructions, product intent, specifications, and shared planning context.
 - [**Skills and MCP**](#3-skills-and-mcp-local-capabilities-and-connected-tools) — how Copilot gains capabilities through packaged local skills and connected tools.
 - [**Plan and specialize work in VS Code**](#4-plan-and-specialize-work-in-vs-code) — prompt files, custom agents, handoffs, and subagents working together.
-- [**Continue execution in Copilot CLI**](#5-continue-execution-in-copilot-cli) — plan mode, background execution, and task management.
-- [**Govern delivery with review, security, and hooks**](#6-govern-delivery-with-review-security-and-hooks) — code generation is not the end.
+- [**Continue execution in Copilot CLI**](#5-continue-execution-in-copilot-cli) — plan mode, execution, review, research, session history, and a broad ecosystem of execution surfaces and shared memory.
+- [**Govern delivery with review, security, and hooks**](#6-govern-delivery-with-review-security-and-hooks) — code generation is not the end; add cross-model review with the Critic agent.
 - [**Add workflow agents in GitHub Actions**](#7-add-workflow-agents-in-github-actions) — repository automation after merge.
-- [**Operate with SRE agents**](#8-operate-with-sre-agents) — closing the loop with operational thinking.
+- [**Operate with SRE agents**](#8-operate-with-sre-agents) — closing the loop with operational thinking and OpenTelemetry observability.
 
 
 ---
@@ -503,16 +503,136 @@ If the task is well-scoped and you want to discuss autonomy, explain when autopi
 
 ## 5.5 Explain session and task management
 
+Copilot CLI sessions persist locally in `~/.copilot/session-state/`. You can pick up any previous session, rename it for clarity, and manage background tasks.
+
 Use and discuss:
 
 ```text
 /tasks
 /session
 /resume
+/rename
 /compact
 ```
 
-## 5.6 Explain parallelism
+### Try this
+
+Resume a previous session with the session picker:
+
+```text
+/resume
+```
+
+The picker groups sessions by branch and repository. Select a session and continue where you left off. Then rename it:
+
+```text
+/rename Modernize event-driven slice
+```
+
+### What to observe
+
+- `/resume` works for both local CLI sessions and cloud coding agent sessions — you can resume a cloud session locally
+- `/rename` makes it easy to find sessions later when you have many
+- `/compact` compresses conversation history so long-running sessions never hit context limits (auto-compaction also runs at 95% of the context window)
+
+## 5.6 Review, diff, and share work
+
+Before opening a pull request, the CLI has built-in tools to inspect what changed and share it with others.
+
+| Command | What it does |
+| --- | --- |
+| `/diff` | Review all changes made during the session with syntax-highlighted inline diffs. Toggle between session changes and branch diffs. Add line-specific comments. |
+| `/review` | Run the code-review agent on staged or unstaged changes for a quick sanity check before committing. |
+| `/share file [PATH]` | Export the session conversation as a Markdown file. |
+| `/share gist` | Export the session as a private gist on GitHub. |
+| `/share html [PATH]` | Export the session as a self-contained interactive HTML file. |
+
+### Try this
+
+After the earlier execution step, run:
+
+```text
+/diff
+```
+
+Browse the changes, then run a quick review:
+
+```text
+/review
+```
+
+Finally, share the session so a colleague can see what you did:
+
+```text
+/share gist
+```
+
+### What to observe
+
+- `/diff` and `/review` close the gap between generating code and opening a PR — the CLI has governance tooling built in, not just generation
+- `/share` makes sessions a first-class artifact that can be handed off, archived, or used for async collaboration
+- these commands connect naturally to Chapter 6 (PR review and governance)
+
+## 5.7 Research with the CLI
+
+The `/research` command activates a specialized research agent that gathers information from your codebase, GitHub repositories, and the web. It produces a comprehensive Markdown report with citations — not a quick chat answer.
+
+### Try this
+
+```text
+/research How is event-driven messaging implemented in this repository?
+```
+
+When the research completes, Copilot shows a summary and a link to the full report. Press `Ctrl+Y` to open the report in your terminal editor. Then share it:
+
+```text
+/share file research
+```
+
+### What to observe
+
+- research reports are saved to disk as permanent artifacts, not transient chat messages
+- the agent searches across your local codebase, organization repositories (if logged in), and the web
+- the report format adapts to your query type: process questions get step-by-step guidance, conceptual questions get narrative explanations, technical deep-dives get architecture diagrams and code examples
+- the research agent uses a fixed model (not configurable via `/model`)
+
+## 5.8 Chronicle: session insights and self-improvement
+
+The `/chronicle` command turns your CLI session history into actionable insights. It reads the local session store to generate standup reports, personalized tips, and suggestions for improving your custom instructions.
+
+**Note:** `/chronicle` is an experimental feature. Enable it first:
+
+```text
+/experimental on
+```
+
+| Subcommand | What it does |
+| --- | --- |
+| `/chronicle standup` | Summarize recent work including branch names, PR links, and status checks |
+| `/chronicle tips` | Personalized tips for using the CLI more effectively based on your actual usage patterns |
+| `/chronicle improve` | Analyze session history for friction patterns and generate custom instructions to reduce them |
+| `/chronicle reindex` | Rebuild the session store from session files on disk |
+
+### Try this
+
+```text
+/chronicle standup last 3 days
+```
+
+Then:
+
+```text
+/chronicle tips
+```
+
+### What to observe
+
+- this is a feedback loop: Copilot uses your real session history to help you work better
+- `/chronicle improve` is particularly powerful — it finds patterns where Copilot misunderstood your intent and generates custom instructions to fix them
+- all session data stays local in `~/.copilot/session-state/` — nothing is uploaded beyond normal model interactions
+- you can also ask free-form questions about past work, like "Have I worked on anything related to the payments API?"
+
+## 5.9 Explain parallelism
 
 If you want to show fan-out work, use `/fleet` for clearly separable tasks.
 
@@ -522,32 +642,81 @@ Example:
 Research this repository in parallel: one agent should inspect Terraform and deployment workflows, another should inspect hooks and workflow-agent examples, and another should summarize how the workshop story should flow for students.
 ```
 
-## 5.7 Show Agent HQ and execution surfaces
+## 5.10 Execution surfaces, Copilot Memory, and third-party agents
 
-This is an important teaching moment. Copilot offers multiple ways to run coding agents, and Agent HQ is the central place that connects them.
+This is an important teaching moment. Copilot offers multiple ways to run coding agents, and understanding the full landscape helps teams choose the right surface for each task.
 
-| Execution surface | How to start | Best for |
+### Execution surfaces
+
+| Surface | How to start | Best for |
 | --- | --- | --- |
 | **Copilot CLI (local)** | `copilot` in terminal | Interactive work, plan mode, local iteration |
 | **Copilot CLI task (background)** | Start from VS Code or CLI | Long-running work in a local worktree |
-| **Cloud coding agent (PR-based)** | Assign a GitHub issue to Copilot or open a PR and assign Copilot | Autonomous work that runs in GitHub's cloud |
+| **Cloud coding agent (PR-based)** | Assign a GitHub issue to Copilot or use the agents panel | Autonomous work that runs in GitHub's cloud |
+| **Third-party agents (Claude, Codex)** | Agents tab, issues, PR comments (`@AGENT_NAME`) | Alternative coding agents with different model strengths |
+| **GitHub.com web** | Agents panel on any page, agents tab in repository | Quick tasks, monitoring, session review |
+| **GitHub Mobile** | Home view → agent sessions | On-the-go monitoring and task creation |
 
 What to explain:
 
 - from VS Code you can start a Copilot CLI task that runs in the background in a local worktree
 - you can also assign a GitHub issue or PR to Copilot and it will work as a cloud coding agent
 - **Agent HQ** in VS Code provides a single view of all running and completed agent sessions across local CLI tasks, cloud tasks, and PR-based agents
-- GitHub Copilot maintains **common memory** across these execution surfaces so context, decisions, and prior work carry forward
+- the **agents panel** on GitHub.com lets you start and monitor agent tasks from any page without navigating away
+- the **agents tab** in a repository shows all agent sessions for that repo, with session logs and one-click PR links
+- **GitHub Mobile** shows agent sessions on the Home view, so you can monitor progress on the go
+
+### Copilot Memory
+
+Copilot can develop a persistent understanding of a repository by storing **memories** — tightly scoped pieces of information it deduces while working. This is different from custom instructions: memories are learned automatically, not written manually.
+
+Key concepts:
+
+- memories are **repository-scoped**, not user-scoped — what one developer's session learns is available to all users with memory enabled in that repo
+- memories are created with **citations** to specific code locations and are **validated** against the current codebase before use — stale memories are ignored
+- memories **auto-delete after 28 days** to prevent outdated information from affecting decisions
+- memories work across execution surfaces: what the **cloud coding agent** learns, **code review** and **CLI** can use later
+- repo owners can view and delete memories in **Settings → Copilot → Memory**
+
+Enterprise considerations:
+
+- enabled by default for Copilot Pro/Pro+ users
+- off by default for org/enterprise-managed subscriptions — admins must enable it
+- if a user belongs to multiple organizations, the most restrictive policy wins
 
 ### Try this
 
 Show Agent HQ in VS Code (look for it in the Copilot sidebar). If you have a running CLI session or a cloud agent, it should appear there.
 
-Then explain that regardless of whether the agent ran locally or in the cloud, the shared context and session history are available through Agent HQ.
+If the repository has been worked on by Copilot with memory enabled, show the memories page: open the repository on GitHub → Settings → Copilot → Memory.
 
-## 5.8 Why this chapter matters
+Then explain that regardless of whether the agent ran locally or in the cloud, the shared context, session history, and repository memories are available across all surfaces.
 
-This is where the workflow starts to look like real engineering rather than a single conversation.
+### Third-party coding agents
+
+In addition to GitHub's own cloud coding agent, **Anthropic Claude** and **OpenAI Codex** are available as third-party coding agents (public preview). They work the same way:
+
+- assign an issue or give a prompt from the agents tab, an issue, or a PR comment (`@AGENT_NAME`)
+- the agent works on the changes and creates a pull request
+- review the PR and leave comments to iterate
+
+They consume **GitHub Actions minutes** and **Copilot premium requests**. They must be enabled in account/org policies.
+
+**Note:** Third-party agents are different from the deprecated Copilot Extensions. MCP is now the extensibility model for bringing tools into Copilot.
+
+### Self-hosted runners for cloud agents
+
+Cloud coding agents and Copilot code review run on GitHub Actions runners. By default these are GitHub-hosted, but organizations can use **self-hosted runners** for:
+
+- access to internal resources behind a firewall
+- faster performance with larger runners
+- networking control and compliance requirements
+
+Self-hosted runners require **ARC** (Actions Runner Controller) and **Ubuntu x64 Linux**. Organization admins can set the default runner and **lock the setting** across all repos so individual repositories cannot override it. Configuration is done through `copilot-setup-steps.yml` or organization-level settings.
+
+## 5.11 Why this chapter matters
+
+This is where the workflow starts to look like real engineering rather than a single conversation. The CLI is not just an execution tool — it reviews changes, researches topics, learns from session history, and connects to a broader ecosystem of execution surfaces, shared memory, and third-party agents.
 
 ---
 
@@ -586,6 +755,7 @@ What are the highest-risk parts of this change if it were opened as a pull reque
 - GitHub is the natural place to show review as part of collaboration, not only generation
 - pull request review is where Copilot, human feedback, CI results, and branch policy come together
 - this is an ideal bridge from coding agents into governance
+- **connect the dots**: if you demonstrated `/review` in the CLI chapter (section 5.6), explain that CLI review and PR-based review are complementary — CLI review catches issues before commit, PR review catches issues before merge
 
 ## 6.2 Show security review in the GitHub portal
 
@@ -672,7 +842,30 @@ Explain what this repository hook configuration does, when each hook runs, and w
 
 Hooks work in Copilot CLI today and VS Code also supports them in preview. For the live demo, treat hooks as **CLI-first** and mention the VS Code support as an additional surface. If you create or remove the hook policy file while VS Code already has an active Copilot chat session, restart that session so it reloads the repository hook policy cleanly.
 
-## 6.4 Why this chapter matters
+## 6.4 The Critic agent (Rubber Duck)
+
+The Critic agent — also called **Rubber Duck** — is an experimental feature where a second LLM from a **different model family** reviews the primary agent's plans and implementations before they are presented to you.
+
+When Claude is the orchestrator, Rubber Duck runs on GPT-5.4 (and vice versa). Different model families carry different training biases, so a review from a complementary family surfaces errors that the primary model consistently misses.
+
+**Note:** This feature requires `/experimental on` in the CLI and is currently available for Claude models.
+
+What it catches:
+
+- details the primary agent may have missed
+- assumptions worth questioning
+- edge cases to consider
+- incorrect logic or wrong API usage
+
+GitHub's benchmark on SWE-Bench Pro showed that Claude Sonnet 4.6 paired with Rubber Duck closed **74.7%** of the performance gap between Sonnet and Opus. The benefit is strongest on difficult, multi-file problems.
+
+### What to explain
+
+- this is a governance mechanism built into the agent itself — the agent checks its own work before presenting it to you
+- it complements hooks (hard enforcement) and review (human judgment) with automated cross-model validation
+- the cost is additional model calls, but for complex tasks the quality improvement is substantial
+
+## 6.5 Why this chapter matters
 
 Students should now see that AI engineering is not only about generation. It is also about:
 
@@ -763,6 +956,53 @@ What namespaces I have in my Kubernetes cluster?
 - they are a strong closing chapter because they complete the lifecycle story
 
 If a dedicated Azure SRE Agent environment is available, this is the ideal final demo. If not, Azure or Kubernetes MCP prompts are still a strong close.
+
+## 8.3 Observe Copilot with OpenTelemetry
+
+Copilot Chat in VS Code and Copilot CLI can export **OpenTelemetry** traces, metrics, and events, giving you visibility into agent interactions, LLM calls, tool executions, and token usage. All signals follow the [OTel GenAI Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/).
+
+### What gets collected
+
+| Signal | Examples |
+| --- | --- |
+| **Traces** | Full span tree: agent orchestration → LLM calls → tool executions. Subagent invocations appear as child spans. |
+| **Metrics** | LLM call duration, token usage (input/output), tool invocation count and latency, agent end-to-end duration, time to first token |
+| **Events** | Session starts, per-tool invocations, per-turn LLM round-trips |
+
+### How to enable
+
+In VS Code, set `github.copilot.chat.otel.enabled` to `true` and configure the OTLP endpoint. In the CLI, set `COPILOT_OTEL_ENABLED=true` or `OTEL_EXPORTER_OTLP_ENDPOINT`.
+
+Content capture (full prompts and responses) is **off by default** — enable with `captureContent` only in trusted environments.
+
+### Try this
+
+If you have a local observability stack, the fastest option is the **Aspire Dashboard**:
+
+```text
+docker run --rm -d -p 18888:18888 -p 4317:18889 --name aspire-dashboard mcr.microsoft.com/dotnet/aspire-dashboard:latest
+```
+
+Then configure VS Code:
+
+```json
+{
+  "github.copilot.chat.otel.enabled": true,
+  "github.copilot.chat.otel.exporterType": "otlp-grpc",
+  "github.copilot.chat.otel.otlpEndpoint": "http://localhost:4317"
+}
+```
+
+Open `http://localhost:18888` → Traces to see agent interaction spans.
+
+Other supported backends: Jaeger, Azure Application Insights, Langfuse, Grafana Tempo, Honeycomb, Datadog — any OTLP-compatible backend works.
+
+### Why this matters for enterprise
+
+- **compliance**: audit trail of what the agent did, which tools it called, and what context it used
+- **cost management**: token usage metrics help teams understand and optimize AI spend
+- **debugging**: trace trees show exactly where an agent interaction went wrong
+- **performance**: latency metrics identify slow tool calls or model responses
 
 ---
 
@@ -888,7 +1128,90 @@ The main flow already covers the in-repo `random_string_mcp` server and GitHub M
 - Database MCP
 - Playwright MCP
 
-## 9.5 Future-looking closing topics
+## 9.5 Model selection and BYOM/BYOK
+
+### Model selection basics
+
+Copilot CLI supports model switching during a session with `/model`. Show the model picker and explain the trade-offs:
+
+- **Larger models** (Claude Opus, GPT-5.3-Codex): better for complex, multi-file tasks
+- **Faster models** (Claude Haiku, GPT-5 mini, GPT-4.1): better for quick tasks, included at no premium request cost
+- **Reasoning models**: toggle reasoning visibility with `Ctrl+T`, configure reasoning effort
+
+### Bring your own model provider
+
+Copilot CLI supports connecting your own model provider or running fully local models. Configure via environment variables before launching the CLI:
+
+- **Remote providers**: Azure OpenAI, Anthropic, OpenAI, or any OpenAI-compatible endpoint
+- **Local models**: Ollama, vLLM, Foundry Local
+- **Offline mode**: set `COPILOT_OFFLINE=true` to prevent all communication with GitHub servers — fully air-gapped development
+- **GitHub auth becomes optional**: when using your own provider, you can start the CLI without GitHub authentication. Sign in to GitHub to also get `/delegate`, GitHub Code Search, and the GitHub MCP server.
+
+Sub-agents (explore, task, code-review) automatically inherit your provider configuration.
+
+### Try this
+
+If you have Ollama running locally:
+
+```text
+COPILOT_PROVIDER_BASE_URL=http://localhost:11434 copilot
+```
+
+Or show the help for provider setup:
+
+```text
+copilot help providers
+```
+
+### Enterprise BYOK
+
+For organization-managed Copilot, enterprise BYOK allows admins to connect API keys from supported providers (Anthropic, Microsoft Foundry, OpenAI, xAI). Once connected, all models tied to that key are available in Copilot Chat across GitHub.com and supported IDEs. Usage through BYOK is billed directly by the provider and does not count against Copilot request quotas.
+
+## 9.6 LSP in the CLI
+
+LSP (Language Server Protocol) gives Copilot CLI IDE-like intelligence: go-to-definition, hover information, and diagnostics. This helps the agent navigate your codebase with the same precision as a full IDE.
+
+### Configuration
+
+Configure LSP servers via:
+
+- **Global**: `~/.copilot/lsp-config.json`
+- **Repository**: `.github/lsp.json`
+
+Plugins can also contribute LSP servers automatically.
+
+### Managing LSP
+
+```text
+/lsp show     # see configured servers
+/lsp test     # verify a server works
+/lsp reload   # reload configuration
+/lsp help     # full documentation
+```
+
+### What to explain
+
+- without LSP, the CLI relies on grep and pattern matching for code navigation
+- with LSP, it understands types, references, and definitions — making refactoring and cross-module work significantly more accurate
+- this is particularly valuable for statically typed languages with complex type hierarchies
+
+## 9.7 Self-hosted runners deep-dive
+
+For enterprise audiences who want more detail on running cloud agents on their own infrastructure:
+
+- cloud coding agents and Copilot code review can run on **self-hosted runners** using ARC (Actions Runner Controller)
+- only **Ubuntu x64 Linux** runners are supported
+- organization admins can **set a default runner type** and **lock the setting** to prevent individual repos from overriding it
+- firewall rules must allow connections to `api.githubcopilot.com`, `uploads.github.com`, and `user-images.githubusercontent.com`
+- configuration is done via `copilot-setup-steps.yml` in the repository or organization-level settings
+
+Use cases:
+
+- **internal network access**: agent can reach internal package registries, databases, or APIs
+- **performance**: use larger runners for faster builds and tests
+- **compliance**: keep agent execution within your own infrastructure
+- **cost control**: use reserved compute instead of pay-per-minute GitHub-hosted runners
+
+## 9.8 Future-looking closing topics
 
 - GitHub Spark
-- BYOM / local models
