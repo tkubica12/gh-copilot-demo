@@ -4,3 +4,6 @@ __pycache__
 node_modules/
 .github/hooks/logs/
 .github/hooks/copilot-policy.json
+tools/copilot-token-lab/runs*/
+tools/copilot-token-lab/suite-runs*/
+tools/copilot-token-lab/tests/sample-analysis.md

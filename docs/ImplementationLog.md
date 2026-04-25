@@ -1,5 +1,26 @@
 # Implementation Log
 
+## 2026-04-25 – Split workshop guide into chapter files
+
+Moved the long workshop lecture out of the root `README.md` and into focused chapter files under `docs\workshop`.
+
+### Decisions
+- Kept the existing course flow but promoted token efficiency into its own chapter after Copilot CLI execution.
+- Converted the root `README.md` into a concise landing page with links to the detailed chapters.
+- Added the measured token-efficiency benchmark table to `docs\workshop\05-token-efficiency.md` with links to the reusable lab details.
+
+## 2026-04-25 – Added token-efficiency workshop chapter and measurement lab
+
+Added a late Chapter 5 section that teaches Copilot token efficiency as context hygiene, workflow design, model choice, and measurement rather than just shorter prompts.
+
+### Decisions
+- Inserted the token-efficiency material after execution surfaces so the workshop first introduces CLI sessions, agents, skills, MCP, and model selection before discussing how to use them economically.
+- Added `tools\copilot-token-lab` as a repeatable Copilot CLI plus OpenTelemetry harness with prompt catalog, PowerShell runner, analyzer, sample telemetry, and unit tests.
+- Expanded the lab with generated benchmark fixtures for large versus small instructions, wide versus progressive MCP discovery, single-agent versus decomposed workflow shape, compression, and verbose versus scoped prompting.
+- Revised the benchmark matrix to remove model-comparison claims, make AGENTS-versus-skills compare unrelated always-on context against one relevant skill, and add compression simulation for compacted handoffs.
+- Kept the measurement path on documented surfaces: Copilot CLI `-p` and `COPILOT_OTEL_FILE_EXPORTER_PATH`; avoided private APIs and undocumented session-store parsing.
+- Documented screenshots/logs/model-choice guidance as measurement hypotheses where official billing or model-efficiency data is not directly available.
+
 ## 2026-03-24 – Added live custom-agent creation to the workshop flow
 
 Expanded the custom-agents chapter so the workshop now demonstrates creating a new specialist with `/create-agent`, not only using the prebuilt agents already stored in the repository.

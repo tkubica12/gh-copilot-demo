@@ -1,0 +1,11 @@
+{
+  "runId": "scoped-file-discovery-auto-001",
+  "promptId": "scoped-file-discovery",
+  "promptName": "Scoped file discovery",
+  "expectedTechnique": "scoped-context-first",
+  "model": "auto",
+  "mode": "plan",
+  "iteration": 1,
+  "execute": true,
+  "otelPath": "copilot-otel.jsonl"
+}

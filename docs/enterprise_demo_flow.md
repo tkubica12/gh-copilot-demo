@@ -44,6 +44,7 @@ Key message:
 - Explain `/yolo` accurately as allow-all permissions, not as a separate execution mode
 - Show `/tasks`, `/resume`, and `/session`
 - If useful, show `/fleet` for independent parallel tasks
+- Add the token-efficiency chapter here (`docs\workshop\05-token-efficiency.md`): scoped context, `/context`, `/compact`, Auto model selection, subagent restraint, and OpenTelemetry-backed measurement
 
 This is one of the strongest moments in the live demo because it connects IDE planning to autonomous background execution.
 

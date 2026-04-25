@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "description": "Repeatable prompts for comparing GitHub Copilot context, model, and agent workflow token usage.",
+  "prompts": [
+    {
+      "id": "broad-repo-summary",
+      "name": "Broad repository summary",
+      "mode": "plan",
+      "expectedTechnique": "baseline-broad-context",
+      "prompt": "Summarize how this repository works and suggest how to modernize the event-driven platform slice. Do not modify files."
+    },
+    {
+      "id": "scoped-file-discovery",
+      "name": "Scoped file discovery",
+      "mode": "plan",
+      "expectedTechnique": "scoped-context-first",
+      "prompt": "Find the smallest set of files I should give Copilot to understand the event-driven add-on flow. Do not summarize the whole repo; return only file paths and why each matters. Do not modify files."
+    },
+    {
+      "id": "scoped-plan",
+      "name": "Concise scoped plan",
+      "mode": "plan",
+      "expectedTechnique": "bounded-output",
+      "prompt": "Using only AGENTS.md, PRD.md, README.md, specs\\platform\\ARCHITECTURE.md, and specs\\trip\\ARCHITECTURE.md, create a concise implementation plan for the event-driven add-on flow. Keep the output under 20 lines and include validation steps. Do not modify files."
+    },
+    {
+      "id": "handoff-summary",
+      "name": "Compact handoff summary",
+      "mode": "plan",
+      "expectedTechnique": "summary-reuse",
+      "prompt": "Create a handoff summary for implementing an event-driven add-on flow. Keep only decisions, relevant files, constraints, and validation steps. Do not modify files."
+    }
+  ]
+}

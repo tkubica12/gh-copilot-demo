@@ -1,0 +1,11 @@
+{
+  "runId": "broad-repo-summary-auto-001",
+  "promptId": "broad-repo-summary",
+  "promptName": "Broad repository summary",
+  "expectedTechnique": "baseline-broad-context",
+  "model": "auto",
+  "mode": "plan",
+  "iteration": 1,
+  "execute": true,
+  "otelPath": "copilot-otel.jsonl"
+}
