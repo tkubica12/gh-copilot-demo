@@ -9,23 +9,23 @@ dependencies = [
     "uvicorn[standard]>=0.32.0",
     "pydantic>=2.9.0",
     "pydantic-settings>=2.5.0",
-    "python-multipart>=0.0.12",
+    "python-multipart>=0.0.26",
     "azure-cosmos>=4.9.0",
     "azure-storage-blob>=12.23.0",
     "azure-identity>=1.19.0",
     "python-jose[cryptography]>=3.3.0",
-    "azure-core>=1.36.0",
-    "aiohttp>=3.13.2",
+    "azure-core>=1.38.0",
+    "aiohttp>=3.13.4",
     "httpx>=0.27.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.3.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.24.0",
     "httpx>=0.27.0",
     "pytest-env>=1.1.0",
-    "python-dotenv>=1.0.0",
+    "python-dotenv>=1.2.2",
 ]
 
 [build-system]
@@ -42,9 +42,9 @@ pythonpath = ["."]
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=8.3.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.24.0",
     "httpx>=0.27.0",
     "pytest-env>=1.1.0",
-    "python-dotenv>=1.0.0",
+    "python-dotenv>=1.2.2",
 ]
