@@ -8,19 +8,19 @@ This chapter turns token efficiency into a measurable engineering practice. It s
 
 ## Measured benchmark summary
 
-These results come from a real local run of the reusable suite in `..\..\tools\copilot-token-lab`. Treat them as lab evidence and rerun the suite for current client, model, and repository state.
+These results come from a real local run of the reusable suite in `..\..\tools\copilot-token-lab`. Treat them as lab evidence and rerun the suite for current client, model, and repository state. Use **weighted units** as the headline metric when pricing weights are available because input, cached input, and output tokens can have different prices.
 
-| Test | Baseline | Token-efficient variant | Total-token result | Output-token result | Cost-unit result |
+| Test | Baseline | Token-efficient variant | Raw-token result | Output-token result | Weighted-unit result |
 | --- | --- | --- | ---: | ---: | ---: |
-| AGENTS.md vs skills | Large scaled multi-domain `AGENTS.md` | Small `AGENTS.md` plus one relevant skill | 54.3% saved | 96.4% more | 69.4% saved |
-| Progressive MCP discovery | 100 verbose direct MCP tools | Search-then-fetch MCP tools | 33.6% saved | 144.8% more | 32.2% saved |
-| Prompt efficiency | Verbose open-ended prompt | Scoped files plus output contract | 70.3% saved | 88.6% saved | 72.9% saved |
-| Compression simulation | Three-turn accumulated session | Three fresh handoff sessions | 14.3% saved | 101.7% more | 11.1% saved |
-| Caveman-style response | Detailed incident guide | Terse output contract | 66.1% more | 89.4% saved | 31.5% saved |
-| Multi-agent overhead case | One small main-agent prompt | Three mini-model shard calls | 231.9% more | 0.0% saved | 26.2% saved |
-| Large-context sharding attempt | One large accumulated-context prompt | Three focused mini-model shards | 211.0% more | 3.9% more | 21.5% saved |
+| AGENTS.md vs skills | Large scaled multi-domain `AGENTS.md` | Small `AGENTS.md` plus one relevant skill | 54.3% saved | 96.4% more | 68.8% saved |
+| Progressive MCP discovery | 100 verbose direct MCP tools | Search-then-fetch MCP tools | 33.6% saved | 144.8% more | 31.7% saved |
+| Prompt efficiency | Verbose open-ended prompt | Scoped files plus output contract | 70.3% saved | 88.6% saved | 73.3% saved |
+| Compression simulation | Three-turn accumulated session | Three fresh handoff sessions | 14.3% saved | 101.7% more | 10.5% saved |
+| Caveman-style response | Detailed incident guide | Terse output contract | 66.1% more | 89.4% saved | 41.4% saved |
+| Multi-agent overhead case | One small main-agent prompt | Three mini-model shard calls | 231.9% more | 0.0% saved | 56.3% saved |
+| Large-context sharding attempt | One large accumulated-context prompt | Three focused mini-model shards | 211.0% more | 3.9% more | 53.8% saved |
 
-Details: [suite example analysis](../../tools/copilot-token-lab/suite-example-analysis.md), [full Python run report](../../tools/copilot-token-lab/reports/python-suite-2026-04-26.md), [rerun instructions](../../tools/copilot-token-lab/README.md), and [generated scenario fixtures](../../tools/copilot-token-lab/scenario_builder.py). Cost units are relative demo estimates from `model-pricing.toml`, not official prices. Output-token savings are shown separately because terse response styles optimize answer length, not always-on context.
+Details: [suite example analysis](../../tools/copilot-token-lab/suite-example-analysis.md), [full Python run report](../../tools/copilot-token-lab/reports/python-suite-2026-04-26.md), [rerun instructions](../../tools/copilot-token-lab/README.md), and [generated scenario fixtures](../../tools/copilot-token-lab/scenario_builder.py). Weighted units follow the same idea as the public [GitHub Models token-unit calculation](https://docs.github.com/en/billing/managing-billing-for-your-products/about-billing-for-github-models#token-units). `model-pricing.toml` uses the supplied Copilot price cards for GPT-5.5 and GPT-5.4 mini. Output-token savings are shown separately because terse response styles optimize answer length, not always-on context.
 
 Token efficiency is not about starving Copilot of context. It is about giving Copilot the smallest high-signal working set that lets it solve the task correctly.
 
@@ -158,7 +158,7 @@ uv run python run_token_lab.py suite --execute --allow-all-tools --iterations 3 
 uv run python run_token_lab.py analyze --runs suite-runs/runs --output suite-runs/analysis.md
 ```
 
-The harness uses Copilot CLI non-interactive mode and `COPILOT_OTEL_FILE_EXPORTER_PATH` to write one telemetry file per run. Compare input tokens, output tokens, cached input tokens, turn count, tool count, duration, errors, relative cost units, and task quality across broad prompts, scoped prompts, summaries, response styles, and model choices. The runner has a backend boundary for a future SDK implementation, but the SDK path should only be enabled when it exposes equivalent telemetry.
+The harness uses Copilot CLI non-interactive mode and `COPILOT_OTEL_FILE_EXPORTER_PATH` to write one telemetry file per run. Compare input tokens, output tokens, cached input tokens, turn count, tool count, duration, errors, estimated cost, and task quality across broad prompts, scoped prompts, summaries, response styles, and model choices. The runner has a backend boundary for a future SDK implementation, but the SDK path should only be enabled when it exposes equivalent telemetry.
 
 ### Try this
 

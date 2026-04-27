@@ -1,21 +1,22 @@
-# Relative cost units for demonstration only.
-# These are not official GitHub billing prices. Replace with your organization's
-# current pricing before using estimated cost for decisions.
+# Pricing rates in USD per 1M tokens.
+# GitHub Models documents the token-unit pattern: input, cached input, and output
+# tokens receive separate multipliers before billing. The GPT-5.5 row uses the
+# supplied Copilot pricing cards.
 
 [models."gpt-5.5"]
-input = 1.0
-output = 4.0
-cache_read = 0.10
-cache_creation = 1.0
+input = 5.0
+output = 30.0
+cache_read = 0.50
+cache_creation = 5.0
 
 [models."gpt-5.4-mini"]
-input = 0.25
-output = 1.0
-cache_read = 0.025
-cache_creation = 0.25
+input = 0.75
+output = 4.50
+cache_read = 0.075
+cache_creation = 0.75
 
 [models.auto]
-input = 1.0
-output = 4.0
-cache_read = 0.10
-cache_creation = 1.0
+input = 5.0
+output = 30.0
+cache_read = 0.50
+cache_creation = 5.0

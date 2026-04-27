@@ -28,7 +28,7 @@ The included sample telemetry fixture demonstrates the expected pattern: the sco
 - Python 3.11+
 - Optional but recommended: `uv`
 - A trusted working directory
-- Optional: edit `token-lab.toml` to change backend, output folders, iteration count, default model/effort lists, and the relative pricing file
+- Optional: edit `token-lab.toml` to change backend, output folders, iteration count, default model/effort lists, and the pricing file
 
 ## Why the backend is still Copilot CLI
 
@@ -84,7 +84,11 @@ cd tools/copilot-token-lab
 uv run python run_token_lab.py analyze --runs suite-runs/runs --output suite-runs/analysis.md --pricing model-pricing.toml
 ```
 
-The report includes input, output, cache-read, cache-creation, total observed tokens, relative cost units, turn count, tool count, duration, and errors. When prompts include `comparisonGroup` and `variant`, it also writes grouped total-token, output-token, and cost savings versus the baseline variant. `model-pricing.toml` contains replaceable demo rates, not official GitHub pricing.
+The report includes input, output, cache-read, cache-creation, raw observed tokens, pricing-weighted token units, estimated cost, turn count, tool count, duration, and errors. When prompts include `comparisonGroup` and `variant`, it also writes grouped weighted-unit, raw-token, output-token, and cost savings versus the baseline variant.
+
+Use weighted units as the headline metric when pricing weights are available. Raw totals can be misleading because a variant may reduce input and cache tokens while increasing output tokens, and output tokens are often more expensive. `model-pricing.toml` uses the supplied GPT-5.5 and GPT-5.4 mini Copilot price cards.
+
+The calculation mirrors the public GitHub Models token-unit pattern: multiply input, cached-input, and output tokens by their respective model multipliers, then compare the summed units. Copilot billing can use different plan/model rates, so keep the TOML file as the single place to update assumptions.
 
 For checked-in examples, see `example-analysis.md` for the original broad-versus-scoped run, `suite-example-analysis.md` for the expanded benchmark matrix, and `reports/python-suite-2026-04-26.md` for a run-level Python suite report.
 
@@ -107,8 +111,9 @@ The tests are split by concern:
 2. Disable demo hooks unless measuring hook overhead.
 3. Run 3-5 warmups and 10-30 measured runs for serious comparisons.
 4. Compare medians and p90/p95, not single runs.
-5. Treat token reduction as a win only when task quality remains acceptable.
-6. Keep full content capture disabled unless the environment is trusted.
+5. Compare weighted units before raw totals when the model has different input/output/cache prices.
+6. Treat token reduction as a win only when task quality remains acceptable.
+7. Keep full content capture disabled unless the environment is trusted.
 
 ## Important limitations
 

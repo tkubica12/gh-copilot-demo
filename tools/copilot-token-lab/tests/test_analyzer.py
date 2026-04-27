@@ -41,8 +41,8 @@ class AnalyzeOtelTests(unittest.TestCase):
         self.assertIn("baseline-broad-context", text)
         self.assertIn("scoped-context-first", text)
 
-    def test_markdown_report_can_include_relative_cost_units(self) -> None:
-        """Pricing TOML adds cost columns without changing token parsing."""
+    def test_markdown_report_can_include_weighted_cost_units(self) -> None:
+        """Pricing TOML adds weighted columns without changing token parsing."""
 
         runs = analyze_otel.summarize_runs(ROOT / "tests" / "sample-runs")
         pricing = analyze_otel.load_pricing(ROOT / "model-pricing.toml")
@@ -51,8 +51,10 @@ class AnalyzeOtelTests(unittest.TestCase):
         analyze_otel.write_markdown(runs, output, pricing)
 
         text = output.read_text(encoding="utf-8")
-        self.assertIn("Cost units", text)
-        self.assertIn("0.016050", text)
+        self.assertIn("Weighted units", text)
+        self.assertIn("Estimated cost", text)
+        self.assertIn("99250", text)
+        self.assertIn("0.099250", text)
 
     def test_grouped_report_includes_output_savings(self) -> None:
         """Grouped comparisons show output savings separately from total savings."""
@@ -84,4 +86,5 @@ class AnalyzeOtelTests(unittest.TestCase):
 
         text = output.read_text(encoding="utf-8")
         self.assertIn("Output savings vs baseline", text)
-        self.assertIn("| response-style | caveman-terse | 1250 | 37.5% | 250 | 75.0% |", text)
+        self.assertIn("| response-style | caveman-terse |  |  | 1250 | 37.5% |", text)
+        self.assertIn("| 1000 | 250 | 75.0% |", text)

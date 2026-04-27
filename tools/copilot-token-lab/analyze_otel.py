@@ -76,7 +76,15 @@ class RunSummary:
         return self.requested_model or "unknown"
 
     def estimated_cost_units(self, pricing: dict[str, dict[str, float]] | None) -> float | None:
-        """Estimate relative cost units from token counters and model pricing."""
+        """Estimate cost from token counters and model pricing."""
+
+        weighted_units = self.weighted_token_units(pricing)
+        if weighted_units is None:
+            return None
+        return weighted_units / 1_000_000
+
+    def weighted_token_units(self, pricing: dict[str, dict[str, float]] | None) -> float | None:
+        """Return pricing-weighted token units from input, output, and cache counters."""
 
         if not pricing:
             return None
@@ -88,7 +96,7 @@ class RunSummary:
             + self.output_tokens * model_pricing.get("output", 0.0)
             + self.cache_read_input_tokens * model_pricing.get("cache_read", 0.0)
             + self.cache_creation_input_tokens * model_pricing.get("cache_creation", 0.0)
-        ) / 1_000_000
+        )
 
 
 def decode_otel_value(value: Any) -> Any:
@@ -338,20 +346,23 @@ def write_markdown(
         "# Copilot token lab analysis",
         "",
         "| Run | Group | Variant | Prompt | Technique | Model | Effort | Input | "
-        "Output | Cache read | Cache create | Total | Cost units | Turns | Tools | "
-        "Duration ms | Errors |",
+        "Output | Cache read | Cache create | Raw total | Weighted units | Estimated cost | "
+        "Turns | Tools | Duration ms | Errors |",
         "| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | "
-        "---: | ---: | ---: | ---: | ---: | ---: |",
+        "---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for item in summaries:
         model = ", ".join(sorted(item.resolved_models)) or item.requested_model or "unknown"
+        weighted_units = item.weighted_token_units(pricing)
         cost = item.estimated_cost_units(pricing)
+        weighted_text = "" if weighted_units is None else f"{weighted_units:.0f}"
         cost_text = "" if cost is None else f"{cost:.6f}"
         lines.append(
             (
                 "| {run} | {group} | {variant} | {prompt} | {technique} | {model} | "
                 "{effort} | {input} | {output} | {cache_read} | {cache_create} | "
-                "{total} | {cost} | {turns} | {tools} | {duration:.1f} | {errors} |"
+                "{total} | {weighted} | {cost} | {turns} | {tools} | {duration:.1f} | "
+                "{errors} |"
             ).format(
                 run=item.run_id,
                 group=item.comparison_group,
@@ -365,6 +376,7 @@ def write_markdown(
                 cache_read=item.cache_read_input_tokens,
                 cache_create=item.cache_creation_input_tokens,
                 total=item.total_tokens,
+                weighted=weighted_text,
                 cost=cost_text,
                 turns=item.turn_count,
                 tools=item.tool_call_count,
@@ -407,30 +419,40 @@ def write_markdown(
                 "",
                 "## Comparison groups",
                 "",
-                "| Group | Variant | Total observed tokens | Savings vs baseline | "
-                "Output tokens | Output savings vs baseline | Cost units | "
+                "| Group | Variant | Weighted units | Weighted savings vs baseline | "
+                "Raw tokens | Raw savings vs baseline | Input | Output | "
+                "Output savings vs baseline | Cache read | Estimated cost | "
                 "Cost savings vs baseline | Turns | Tools | Duration ms | Errors |",
-                "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+                "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | "
+                "---: | ---: | ---: | ---: | ---: | ---: |",
             ]
         )
         baseline_by_group: dict[str, int] = {}
         baseline_output_by_group: dict[str, int] = {}
+        baseline_weighted_by_group: dict[str, float | None] = {}
         baseline_cost_by_group: dict[str, float | None] = {}
         for (group, variant), item in grouped.items():
             is_hint = any(hint in variant.lower() for hint in BASELINE_HINTS)
             if item.baseline or (group not in baseline_by_group and is_hint):
                 baseline_by_group[group] = item.total_tokens
                 baseline_output_by_group[group] = item.output_tokens
+                baseline_weighted_by_group[group] = item.weighted_token_units(pricing)
                 baseline_cost_by_group[group] = item.estimated_cost_units(pricing)
         for (group, _variant), item in grouped.items():
             baseline_by_group.setdefault(group, item.total_tokens)
             baseline_output_by_group.setdefault(group, item.output_tokens)
+            baseline_weighted_by_group.setdefault(group, item.weighted_token_units(pricing))
             baseline_cost_by_group.setdefault(group, item.estimated_cost_units(pricing))
         for (group, variant), item in grouped.items():
             baseline = baseline_by_group[group]
             savings = 0.0
             if baseline > 0:
                 savings = (baseline - item.total_tokens) / baseline * 100
+            weighted_units = item.weighted_token_units(pricing)
+            baseline_weighted = baseline_weighted_by_group[group]
+            weighted_savings = None
+            if baseline_weighted and weighted_units is not None:
+                weighted_savings = (baseline_weighted - weighted_units) / baseline_weighted * 100
             baseline_output = baseline_output_by_group[group]
             output_savings = 0.0
             if baseline_output > 0:
@@ -441,15 +463,22 @@ def write_markdown(
             if baseline_cost and cost is not None:
                 cost_savings = (baseline_cost - cost) / baseline_cost * 100
             lines.append(
-                "| {group} | {variant} | {total} | {savings:.1f}% | {output} | "
-                "{output_savings:.1f}% | {cost} | {cost_savings} | {turns} | "
-                "{tools} | {duration:.1f} | {errors} |".format(
+                "| {group} | {variant} | {weighted} | {weighted_savings} | {total} | "
+                "{savings:.1f}% | {input} | {output} | {output_savings:.1f}% | "
+                "{cache_read} | {cost} | {cost_savings} | {turns} | {tools} | "
+                "{duration:.1f} | {errors} |".format(
                     group=group,
                     variant=variant,
+                    weighted="" if weighted_units is None else f"{weighted_units:.0f}",
+                    weighted_savings=(
+                        "" if weighted_savings is None else f"{weighted_savings:.1f}%"
+                    ),
                     total=item.total_tokens,
                     savings=savings,
+                    input=item.input_tokens,
                     output=item.output_tokens,
                     output_savings=output_savings,
+                    cache_read=item.cache_read_input_tokens,
                     cost="" if cost is None else f"{cost:.6f}",
                     cost_savings="" if cost_savings is None else f"{cost_savings:.1f}%",
                     turns=item.turn_count,
@@ -464,11 +493,12 @@ def write_markdown(
             "",
             "## Interpretation checklist",
             "",
-            "1. Compare total tokens only between runs with the same Copilot client "
-            "version and repository state.",
+            "1. Use weighted units or estimated cost as the headline comparison when pricing "
+            "weights are available.",
             "2. Treat lower tokens as a win only when task quality remains acceptable.",
             "3. Inspect tool counts and errors before concluding a prompt is efficient.",
-            "4. Cost units are relative estimates when model-pricing.toml is supplied.",
+            "4. Compare raw totals only between runs with the same Copilot client version "
+            "and repository state.",
             "5. Keep content capture disabled unless the environment is trusted.",
         ]
     )
