@@ -8,15 +8,15 @@ dependencies = [
     "uvicorn[standard]>=0.34.0",
     "pydantic>=2.10.5",
     "pydantic-settings>=2.7.1",
-    "python-multipart>=0.0.12",
+    "python-multipart>=0.0.26",
     "azure-cosmos>=4.9.0",
     "azure-storage-blob>=12.24.0",
     "azure-identity>=1.21.0",
-    "aiohttp>=3.13.2",
+    "aiohttp>=3.13.4",
     "httpx>=0.27.0",
-    "python-dotenv>=1.0.0",
+    "python-dotenv>=1.2.2",
     "python-jose[cryptography]>=3.3.0",
-    "cryptography>=44.0.0",
+    "cryptography>=46.0.7",
 ]
 
 [tool.uv]
