@@ -1,0 +1,162 @@
+{
+  "dashboard": {
+    "title": "Trip Service Metrics",
+    "uid": "trip-service",
+    "tags": ["microservices", "trip-service"],
+    "timezone": "browser",
+    "schemaVersion": 16,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "id": 1,
+        "title": "HTTP Request Rate",
+        "type": "graph",
+        "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
+        "targets": [
+          {
+            "expr": "rate(trip_service_http_requests_total[5m])",
+            "legendFormat": "{{method}} {{endpoint}} - {{status}}",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "reqps", "label": "Requests/sec"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "id": 2,
+        "title": "HTTP Request Duration (p95)",
+        "type": "graph",
+        "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8},
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(trip_service_http_request_duration_seconds_bucket[5m]))",
+            "legendFormat": "{{method}} {{endpoint}}",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "s", "label": "Duration"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Trips Created",
+        "type": "graph",
+        "gridPos": {"x": 0, "y": 8, "w": 8, "h": 8},
+        "targets": [
+          {
+            "expr": "rate(trip_service_trips_created_total[5m])",
+            "legendFormat": "Trips Created/sec",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "ops", "label": "Operations/sec"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Trips Updated",
+        "type": "graph",
+        "gridPos": {"x": 8, "y": 8, "w": 8, "h": 8},
+        "targets": [
+          {
+            "expr": "rate(trip_service_trips_updated_total[5m])",
+            "legendFormat": "Trips Updated/sec",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "ops", "label": "Operations/sec"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Photos Uploaded",
+        "type": "graph",
+        "gridPos": {"x": 16, "y": 8, "w": 8, "h": 8},
+        "targets": [
+          {
+            "expr": "rate(trip_service_photos_uploaded_total[5m])",
+            "legendFormat": "Photos Uploaded/sec",
+            "refId": "A"
+          }
+        ],
+        "yaxes": [
+          {"format": "ops", "label": "Operations/sec"},
+          {"format": "short"}
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Total Trips Created (Counter)",
+        "type": "stat",
+        "gridPos": {"x": 0, "y": 16, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "trip_service_trips_created_total",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "graphMode": "none",
+          "colorMode": "value"
+        }
+      },
+      {
+        "id": 7,
+        "title": "Total Trips Updated (Counter)",
+        "type": "stat",
+        "gridPos": {"x": 6, "y": 16, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "trip_service_trips_updated_total",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "graphMode": "none",
+          "colorMode": "value"
+        }
+      },
+      {
+        "id": 8,
+        "title": "Total Trips Deleted (Counter)",
+        "type": "stat",
+        "gridPos": {"x": 12, "y": 16, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "trip_service_trips_deleted_total",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "graphMode": "none",
+          "colorMode": "value"
+        }
+      },
+      {
+        "id": 9,
+        "title": "Total Photos Uploaded (Counter)",
+        "type": "stat",
+        "gridPos": {"x": 18, "y": 16, "w": 6, "h": 4},
+        "targets": [
+          {
+            "expr": "trip_service_photos_uploaded_total",
+            "refId": "A"
+          }
+        ],
+        "options": {
+          "graphMode": "none",
+          "colorMode": "value"
+        }
+      }
+    ]
+  }
+}

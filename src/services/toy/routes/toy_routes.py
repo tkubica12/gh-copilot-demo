@@ -9,6 +9,7 @@ from fastapi.responses import StreamingResponse
 from models import Toy, ToyCreate, ToyUpdate
 from repositories import ToyRepository
 from services import BlobService
+from metrics import toys_registered_total, toys_updated_total, toys_deleted_total, avatar_uploads_total
 
 logger = logging.getLogger(__name__)
 
@@ -56,6 +57,7 @@ async def create_toy(
     toy = Toy(**toy_kwargs)
 
     created_toy = await repo.create(toy)
+    toys_registered_total.inc()
     logger.info(f"Created toy {created_toy.id}")
 
     return created_toy
@@ -112,6 +114,7 @@ async def update_toy(
     if not updated_toy:
         raise HTTPException(status_code=404, detail="Toy not found")
 
+    toys_updated_total.inc()
     logger.info(f"Updated toy {toy_id}")
     return updated_toy
 
@@ -139,6 +142,7 @@ async def delete_toy(
     if not deleted:
         raise HTTPException(status_code=404, detail="Toy not found")
 
+    toys_deleted_total.inc()
     logger.info(f"Deleted toy {toy_id}")
 
 
@@ -174,6 +178,7 @@ async def upload_avatar(
         if not updated_toy:
             raise HTTPException(status_code=404, detail="Toy not found")
 
+        avatar_uploads_total.inc()
         logger.info(f"Uploaded avatar for toy {toy_id}")
         return updated_toy
 

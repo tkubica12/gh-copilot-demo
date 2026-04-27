@@ -80,6 +80,25 @@ Service will be available at `http://localhost:8002`.
 
 - `PATCH /trip/{trip_id}/legs/{leg_number}/status` - Update leg status (owner only)
 
+### Monitoring
+
+- `GET /health` - Health check
+- `GET /metrics` - Prometheus metrics endpoint
+
+## Metrics
+
+The service exposes Prometheus metrics at `/metrics`:
+
+- `trip_service_http_requests_total` - Total HTTP requests (labels: method, endpoint, status)
+- `trip_service_http_request_duration_seconds` - Request latency histogram (labels: method, endpoint)
+- `trip_service_trips_created_total` - Total trips created
+- `trip_service_trips_updated_total` - Total trips updated
+- `trip_service_trips_deleted_total` - Total trips deleted
+- `trip_service_photos_uploaded_total` - Total photos uploaded
+- `trip_service_active_trips` - Current number of active trips
+
+See `deploy/MONITORING.md` for Grafana dashboard setup.
+
 ## Testing
 
 Integration tests are in `src/integration-tests/test_trip_integration.py`.
