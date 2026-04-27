@@ -1,4 +1,4 @@
-[Workshop index](README.md) | [Repository README](..\..\README.md)
+[Workshop index](README.md) | [Repository README](../../README.md)
 
 ---
 
@@ -46,7 +46,7 @@ Create chapter listing environment variables used with each container app and pu
 
 ### KQL
 
-Attach [query_data.csv](..\..\examples\kql\query_data.csv) and ask:
+Attach [query_data.csv](../../examples/kql/query_data.csv) and ask:
 
 ```text
 Give me microsoft Kusto Query (KQL) to display percentage of processor time grouped by instance and process id which is part of properties. Name of table is AppPerformanceCounters. Attached are example data.
@@ -54,7 +54,7 @@ Give me microsoft Kusto Query (KQL) to display percentage of processor time grou
 
 ### SQL
 
-Attach [users_denormalized.json](..\..\examples\sql\users_denormalized.json) and ask:
+Attach [users_denormalized.json](../../examples/sql/users_denormalized.json) and ask:
 
 ```text
 Generate CREATE commands for normalized users, addresses and orders using Microsoft SQL.
@@ -72,7 +72,7 @@ Give me SQL statement to list userId, name, number of orders and number of addre
 
 ### Vision
 
-Attach [classes.png](..\..\examples\vision\classes.png), create `classes.py` and ask:
+Attach [classes.png](../../examples/vision/classes.png), create `classes.py` and ask:
 
 ```text
 Generate code for classes in Python according to attached schema.

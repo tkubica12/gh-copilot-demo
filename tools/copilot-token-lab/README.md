@@ -1,6 +1,6 @@
 # Copilot token lab
 
-This side project measures GitHub Copilot token and latency behavior with a repeatable harness. It uses the documented GitHub Copilot CLI non-interactive mode plus OpenTelemetry file export, so it does not depend on private APIs or local session-store internals.
+This side project measures GitHub Copilot token and latency behavior with a repeatable, cross-platform Python harness. The default backend uses documented GitHub Copilot CLI non-interactive mode plus OpenTelemetry file export, so it does not depend on private APIs or local session-store internals.
 
 ## What it proves
 
@@ -18,6 +18,7 @@ The lab compares the same repository task across different workflow techniques:
 | `compressed-subtask-context` | Testing whether focused mini-model shards beat one large accumulated context |
 | `compressed-context` | Simulating `/compact` or handoff summaries after a context-heavy conversation |
 | `scoped-output-contract` | Comparing verbose prompts with a tight input and output contract |
+| `terse-output-contract` | Testing Caveman-inspired terse responses that reduce output tokens |
 
 The included sample telemetry fixture demonstrates the expected pattern: the scoped prompt uses fewer observed tokens and fewer tools than the broad baseline. A real validation run with Copilot CLI 1.0.36 and `gpt-5.5` is captured in `example-analysis.md`; in that run, the scoped file-discovery prompt used about 72% fewer observed total tokens than the broad baseline. Real results depend on the selected model, Copilot client version, repository state, and network conditions.
 
@@ -25,41 +26,41 @@ The included sample telemetry fixture demonstrates the expected pattern: the sco
 
 - GitHub Copilot CLI on `PATH`
 - Python 3.11+
+- Optional but recommended: `uv`
 - A trusted working directory
-- Optional: a specific model selected with `-Model`; omit or use `auto` to let Copilot choose
+- Optional: edit `token-lab.toml` to change backend, output folders, iteration count, default model/effort lists, and the relative pricing file
+
+## Why the backend is still Copilot CLI
+
+The harness is now Python and TOML based, but it still invokes Copilot CLI by default because the lab needs token telemetry, tool counts, model metadata, and run artifacts. Copilot CLI with `COPILOT_OTEL_FILE_EXPORTER_PATH` is the validated interface that provides those signals today. `run_token_lab.py` has a backend boundary and an explicit `sdk` placeholder; add an SDK backend there when a stable GitHub Copilot SDK exposes equivalent telemetry.
 
 ## Run a dry run
 
 Dry run creates the run folder structure without calling a model:
 
-```powershell
-.\tools\copilot-token-lab\Invoke-CopilotTokenLab.ps1 -Iterations 1
+```shell
+cd tools/copilot-token-lab
+uv run python run_token_lab.py suite --dry-run --output-dir suite-runs-dry
 ```
 
 ## Run real measurements
 
 This executes prompts with Copilot CLI and writes one OTel JSONL file per run:
 
-```powershell
-.\tools\copilot-token-lab\Invoke-CopilotTokenLab.ps1 `
-  -Execute `
-  -Iterations 3 `
-  -Model auto `
-  -OutputDir .\tools\copilot-token-lab\runs
+```shell
+cd tools/copilot-token-lab
+uv run python run_token_lab.py suite --execute --allow-all-tools --iterations 3 --output-dir suite-runs
 ```
 
-For prompts that may need shell/file tools, add `-AllowAllTools` only in a trusted repo and preferably with read-only prompts first.
+For prompts that may need shell/file tools, add `--allow-all-tools` only in a trusted repo and preferably with read-only prompts first.
 
 ## Run the full efficiency suite
 
 The suite creates isolated fixture workspaces and a generated prompt catalog, then runs the same harness:
 
-```powershell
-.\tools\copilot-token-lab\Invoke-TokenEfficiencySuite.ps1 `
-  -Execute `
-  -AllowAllTools `
-  -Iterations 1 `
-  -OutputDir .\tools\copilot-token-lab\suite-runs
+```shell
+cd tools/copilot-token-lab
+uv run python run_token_lab.py suite --execute --allow-all-tools --iterations 1 --output-dir suite-runs
 ```
 
 It covers these comparison groups:
@@ -72,28 +73,33 @@ It covers these comparison groups:
 | `workflow-large-shards` | one large accumulated-context prompt versus focused mini-model shards |
 | `compression-simulation` | uncompressed simulated turn history versus compressed handoff summary |
 | `prompt-efficiency` | verbose prompt versus concise prompt with explicit file and output bounds |
+| `response-style` | normal explanatory response versus a Caveman-inspired terse output contract |
 
-Use a dry run first by omitting `-Execute`. The generated MCP servers are local stdio servers in `mcp_servers\token_lab_mcp.py`.
+Use a dry run first by omitting `--execute`. The generated MCP servers are local stdio servers in `mcp_servers\token_lab_mcp.py`.
 
 ## Analyze runs
 
-```powershell
-python .\tools\copilot-token-lab\analyze_otel.py `
-  --runs .\tools\copilot-token-lab\runs `
-  --output .\tools\copilot-token-lab\runs\analysis.md
+```shell
+cd tools/copilot-token-lab
+uv run python run_token_lab.py analyze --runs suite-runs/runs --output suite-runs/analysis.md --pricing model-pricing.toml
 ```
 
-The report includes input, output, cache-read, cache-creation, total observed tokens, turn count, tool count, duration, and errors. When prompts include `comparisonGroup` and `variant`, it also writes grouped savings versus the first variant in each group.
+The report includes input, output, cache-read, cache-creation, total observed tokens, relative cost units, turn count, tool count, duration, and errors. When prompts include `comparisonGroup` and `variant`, it also writes grouped total-token, output-token, and cost savings versus the baseline variant. `model-pricing.toml` contains replaceable demo rates, not official GitHub pricing.
 
-For checked-in examples, see `example-analysis.md` for the original broad-versus-scoped run and `suite-example-analysis.md` for the expanded benchmark matrix.
+For checked-in examples, see `example-analysis.md` for the original broad-versus-scoped run, `suite-example-analysis.md` for the expanded benchmark matrix, and `reports/python-suite-2026-04-26.md` for a run-level Python suite report.
 
 ## Test the analyzer
 
-```powershell
-python -m unittest discover -s .\tools\copilot-token-lab\tests
+```shell
+cd tools/copilot-token-lab
+uv run python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-The tests use checked-in sample OTel JSONL fixtures. They validate that the analyzer can detect token differences between broad and scoped prompt styles before you spend real Copilot usage.
+The tests are split by concern:
+
+- `tests/test_analyzer.py` validates OTel parsing and report generation.
+- `tests/test_scenario_builder.py` validates generated benchmark families.
+- `tests/test_runner.py` validates TOML configuration and dry-run output.
 
 ## Measurement protocol
 

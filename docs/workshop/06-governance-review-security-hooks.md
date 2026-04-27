@@ -1,4 +1,4 @@
-[Workshop index](README.md) | [Repository README](..\..\README.md)
+[Workshop index](README.md) | [Repository README](../../README.md)
 
 ---
 

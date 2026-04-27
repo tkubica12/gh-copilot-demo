@@ -1,10 +1,11 @@
-"""Create reusable token-efficiency benchmark fixtures for Copilot CLI."""
+"""Create reusable token-efficiency benchmark fixtures."""
 
 from __future__ import annotations
 
 import argparse
 import json
 import shutil
+import sys
 from pathlib import Path
 from textwrap import dedent
 
@@ -63,7 +64,7 @@ def build_common_workspace(path: Path) -> None:
     )
 
 
-def addon_policy_text(lines: int = 24) -> str:
+def addon_policy_text(lines: int = 48) -> str:
     """Return the relevant add-on policy that can live in AGENTS.md or a skill."""
 
     base = [
@@ -90,7 +91,7 @@ def big_agents_text() -> str:
         "",
         "Always answer as a concise senior engineer.",
         "",
-        addon_policy_text(24),
+        addon_policy_text(),
     ]
     domains = [
         "billing",
@@ -101,10 +102,18 @@ def big_agents_text() -> str:
         "mobile",
         "compliance",
         "incident-response",
+        "partner-api",
+        "data-science",
+        "localization",
+        "procurement",
+        "accessibility",
+        "support",
+        "legal",
+        "finance",
     ]
     for domain in domains:
         base.extend(["", f"## {domain} policy"])
-        for index in range(1, 61):
+        for index in range(1, 121):
             base.append(
                 f"- {domain} detail {index:03d}: preserve ownership, validation, "
                 "observability, rollback, release notes, escalation, and audit "
@@ -135,8 +144,20 @@ def build_agents_variants(output: Path) -> tuple[Path, Path]:
     )
     write(
         small / ".github" / "skills" / "addon-routing" / "SKILL.md",
-        addon_policy_text(24),
+        addon_policy_text(),
     )
+    unrelated_skills = {
+        "billing-policy": "Billing adjustments",
+        "identity-policy": "Identity lifecycle",
+        "telemetry-policy": "Telemetry conventions",
+        "support-policy": "Support escalation",
+        "legal-policy": "Legal review",
+    }
+    for skill_name, subject in unrelated_skills.items():
+        write(
+            small / ".github" / "skills" / skill_name / "SKILL.md",
+            large_doc(f"{subject} skill", subject, sections=80),
+        )
     return big, small
 
 
@@ -185,6 +206,33 @@ def large_doc(title: str, subject: str, sections: int = 120) -> str:
     return "\n".join(lines)
 
 
+def compressed_handoff_text() -> str:
+    """Return the compact handoff used for compression comparisons."""
+
+    return """
+    # Compressed add-on routing handoff
+
+    Frontend: show one compact add-on card and prevent duplicate notifications.
+    Backend: calculate eligible add-ons, audit the decision, then emit one event.
+    Operations: run the smoke test, check the dashboard, and roll back with the
+    add-on routing feature flag.
+    """
+
+
+def full_transcript_text() -> str:
+    """Return verbose synthetic turn history for compression comparisons."""
+
+    return "\n\n".join(
+        [
+            large_doc("Turn history frontend", "Frontend decision history", 27),
+            large_doc("Turn history backend", "Backend decision history", 27),
+            large_doc("Turn history operations", "Operations decision history", 27),
+            large_doc("Turn history unrelated billing", "Billing discussion", 27),
+            large_doc("Turn history unrelated identity", "Identity discussion", 27),
+        ]
+    )
+
+
 def build_large_context_workspace(output: Path) -> Path:
     """Create a workspace where decomposed shards can avoid large irrelevant context."""
 
@@ -205,29 +253,8 @@ def build_large_context_workspace(output: Path) -> Path:
     }
     for filename, subject in subjects.items():
         write(workspace / "context" / filename, large_doc(subject, subject))
-    write(
-        workspace / "compressed-handoff.md",
-        """
-        # Compressed add-on routing handoff
-
-        Frontend: show one compact add-on card and prevent duplicate notifications.
-        Backend: calculate eligible add-ons, audit the decision, then emit one event.
-        Operations: run the smoke test, check the dashboard, and roll back with the
-        add-on routing feature flag.
-        """,
-    )
-    write(
-        workspace / "full-transcript.md",
-        "\n\n".join(
-            [
-                large_doc("Turn history frontend", "Frontend decision history", 80),
-                large_doc("Turn history backend", "Backend decision history", 80),
-                large_doc("Turn history operations", "Operations decision history", 80),
-                large_doc("Turn history unrelated billing", "Billing discussion", 80),
-                large_doc("Turn history unrelated identity", "Identity discussion", 80),
-            ]
-        ),
-    )
+    write(workspace / "compressed-handoff.md", compressed_handoff_text())
+    write(workspace / "full-transcript.md", full_transcript_text())
     return workspace
 
 
@@ -241,7 +268,7 @@ def build_mcp_configs(output: Path) -> tuple[Path, Path, Path]:
     server = ROOT / "mcp_servers" / "token_lab_mcp.py"
     wide_config = output / "mcp-wide.json"
     discovery_config = output / "mcp-discovery.json"
-    python = "python"
+    python = sys.executable
 
     wide_config.write_text(
         json.dumps(
@@ -302,6 +329,7 @@ def prompt(
         "workingDirectory": str(workspace),
         "models": models,
         "efforts": efforts,
+        "disableBuiltinMcps": True,
     }
     result.update(extra)
     return result
@@ -393,9 +421,14 @@ def build_catalog(output: Path) -> Path:
             baseline=True,
             technique="single-broad-context",
             text=(
-                "Read frontend.md, backend.md, and operations.md. Produce one combined "
-                "implementation handoff with UI, API, operations, and validation notes. "
-                "Do not edit files."
+                "Do not use tools. Use these excerpts only. frontend.md: The UI should "
+                "show a compact add-on card with title, price, and one dismiss action. "
+                "It must not show duplicate notifications. backend.md: The API should "
+                "expose eligible add-ons by trip type and record the audit decision "
+                "before sending the notification event. operations.md: Operations "
+                "require one smoke test, one dashboard check, and rollback by disabling "
+                "the add-on routing feature flag. Produce one combined implementation "
+                "handoff with UI, API, operations, and validation notes."
             ),
             workspace=workflow,
             models=common_models,
@@ -407,7 +440,11 @@ def build_catalog(output: Path) -> Path:
             group="workflow-overhead",
             variant="orchestrated-mini-shards",
             technique="external-low-context-subtask",
-            text="Read only frontend.md and summarize UI requirements in three bullets.",
+            text=(
+                "Do not use tools. Excerpt: The UI should show a compact add-on card "
+                "with title, price, and one dismiss action. It must not show duplicate "
+                "notifications. Summarize UI requirements in three bullets."
+            ),
             workspace=workflow,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -418,7 +455,11 @@ def build_catalog(output: Path) -> Path:
             group="workflow-overhead",
             variant="orchestrated-mini-shards",
             technique="external-low-context-subtask",
-            text="Read only backend.md and summarize API requirements in three bullets.",
+            text=(
+                "Do not use tools. Excerpt: The API should expose eligible add-ons by "
+                "trip type and record the audit decision before sending the notification "
+                "event. Summarize API requirements in three bullets."
+            ),
             workspace=workflow,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -429,7 +470,11 @@ def build_catalog(output: Path) -> Path:
             group="workflow-overhead",
             variant="orchestrated-mini-shards",
             technique="external-low-context-subtask",
-            text="Read only operations.md and summarize operational requirements in three bullets.",
+            text=(
+                "Do not use tools. Excerpt: Operations require one smoke test, one "
+                "dashboard check, and rollback by disabling the add-on routing feature "
+                "flag. Summarize operational requirements in three bullets."
+            ),
             workspace=workflow,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -442,9 +487,9 @@ def build_catalog(output: Path) -> Path:
             baseline=True,
             technique="large-accumulated-context",
             text=(
-                "Read every file in the context directory. Produce a combined handoff "
-                "for only frontend, backend, and operations add-on routing concerns. "
-                "Do not edit files."
+                f"Read every file in {large_context / 'context'}. Produce a combined "
+                "handoff for only frontend, backend, and operations add-on routing "
+                "concerns. Do not edit files."
             ),
             workspace=large_context,
             models=common_models,
@@ -456,7 +501,10 @@ def build_catalog(output: Path) -> Path:
             group="workflow-large-shards",
             variant="focused-mini-shards",
             technique="compressed-subtask-context",
-            text="Read only context/frontend-deep.md and return three frontend handoff bullets.",
+            text=(
+                f"Read only {large_context / 'context' / 'frontend-deep.md'} and "
+                "return three frontend handoff bullets."
+            ),
             workspace=large_context,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -467,7 +515,10 @@ def build_catalog(output: Path) -> Path:
             group="workflow-large-shards",
             variant="focused-mini-shards",
             technique="compressed-subtask-context",
-            text="Read only context/backend-deep.md and return three backend handoff bullets.",
+            text=(
+                f"Read only {large_context / 'context' / 'backend-deep.md'} and "
+                "return three backend handoff bullets."
+            ),
             workspace=large_context,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -478,7 +529,10 @@ def build_catalog(output: Path) -> Path:
             group="workflow-large-shards",
             variant="focused-mini-shards",
             technique="compressed-subtask-context",
-            text="Read only context/operations-deep.md and return three operations handoff bullets.",
+            text=(
+                f"Read only {large_context / 'context' / 'operations-deep.md'} and return three operations "
+                "handoff bullets."
+            ),
             workspace=large_context,
             models=["gpt-5.4-mini"],
             efforts=["low"],
@@ -491,9 +545,9 @@ def build_catalog(output: Path) -> Path:
             baseline=True,
             technique="uncompressed-history",
             text=(
-                "Read full-transcript.md and return the final frontend, backend, "
-                "operations, validation, and rollback decisions in five bullets. "
-                "Do not edit files."
+                "Do not use tools. Use this full simulated transcript and return the "
+                "final frontend, backend, operations, validation, and rollback "
+                f"decisions in five bullets.\n\n{full_transcript_text()}"
             ),
             workspace=large_context,
             models=common_models,
@@ -506,9 +560,9 @@ def build_catalog(output: Path) -> Path:
             variant="compressed-handoff",
             technique="compressed-context",
             text=(
-                "Read compressed-handoff.md and return the final frontend, backend, "
-                "operations, validation, and rollback decisions in five bullets. "
-                "Do not edit files."
+                "Do not use tools. Use this compressed handoff and return the final "
+                "frontend, backend, operations, validation, and rollback decisions "
+                f"in five bullets.\n\n{compressed_handoff_text()}"
             ),
             workspace=large_context,
             models=common_models,
@@ -533,14 +587,51 @@ def build_catalog(output: Path) -> Path:
             efforts=common_effort,
         ),
         prompt(
+            prompt_id="response-normal",
+            name="Normal explanatory response",
+            group="response-style",
+            variant="normal",
+            baseline=True,
+            technique="normal-response-style",
+            text=(
+                "Do not use tools. Write a detailed add-on router incident guide for "
+                "engineers and operators. Include these sections with rich explanations: "
+                "overview, symptoms, immediate triage, likely root causes, diagnostics, "
+                "mitigation, rollback, validation, customer communication, follow-up "
+                "actions, and prevention. Use paragraphs plus examples and a final "
+                "checklist. Do not edit files."
+            ),
+            workspace=workflow,
+            models=common_models,
+            efforts=common_effort,
+        ),
+        prompt(
+            prompt_id="response-caveman",
+            name="Caveman-inspired terse response",
+            group="response-style",
+            variant="caveman-terse",
+            technique="terse-output-contract",
+            text=(
+                "Do not use tools. Terse like caveman. Technical substance exact. No "
+                "pleasantries, hedging, or background unless required. Fragments OK. "
+                "Create the same add-on router incident guide in max eight bullets: "
+                "symptoms, triage, causes, diagnostics, mitigation, rollback, "
+                "validation, follow-up. Do not edit files."
+            ),
+            workspace=workflow,
+            models=common_models,
+            efforts=common_effort,
+        ),
+        prompt(
             prompt_id="prompt-efficient",
             name="Efficient prompt",
             group="prompt-efficiency",
             variant="concise",
             technique="scoped-output-contract",
             text=(
-                "Using README.md and ops/runbook.md only, return five bullets: flow, "
-                "audit, notification rule, validation, rollback. Do not edit files."
+                f"Using {workflow / 'README.md'} and {workflow / 'ops' / 'runbook.md'} "
+                "only, return five bullets: flow, audit, notification rule, "
+                "validation, rollback. Do not edit files."
             ),
             workspace=workflow,
             models=common_models,

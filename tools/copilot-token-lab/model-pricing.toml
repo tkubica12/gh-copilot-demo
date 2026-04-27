@@ -1,0 +1,21 @@
+# Relative cost units for demonstration only.
+# These are not official GitHub billing prices. Replace with your organization's
+# current pricing before using estimated cost for decisions.
+
+[models."gpt-5.5"]
+input = 1.0
+output = 4.0
+cache_read = 0.10
+cache_creation = 1.0
+
+[models."gpt-5.4-mini"]
+input = 0.25
+output = 1.0
+cache_read = 0.025
+cache_creation = 0.25
+
+[models.auto]
+input = 1.0
+output = 4.0
+cache_read = 0.10
+cache_creation = 1.0

@@ -1,0 +1,17 @@
+[backend]
+name = "copilot-cli"
+copilot_command = "copilot"
+
+[run]
+iterations = 1
+execute = false
+allow_all_tools = false
+output_dir = "suite-runs"
+workspace_dir = "suite-runs/scenario-workspaces"
+analysis_file = "analysis.md"
+models = ["auto"]
+efforts = ["medium"]
+
+[report]
+example_summary = "suite-example-analysis.md"
+pricing_file = "model-pricing.toml"

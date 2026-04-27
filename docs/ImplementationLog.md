@@ -1,5 +1,16 @@
 # Implementation Log
 
+## 2026-04-26 – Expanded token lab with scaled context and cost units
+
+Extended the token-efficiency lab so the measured suite covers scaled `AGENTS.md` versus dynamic skills, Caveman-inspired response terseness, and relative model cost units.
+
+### Decisions
+- Scaled the always-on `AGENTS.md` fixture with many unrelated domains and kept the skill variant focused on only the relevant add-on-routing procedure.
+- Added `model-pricing.toml` with replaceable relative rates so reports can compare estimated cost units without claiming official billing prices.
+- Added a response-style benchmark that isolates terse output contracts from tool use and reports output-token behavior alongside total tokens.
+- Extended grouped analysis tables with output-token savings because Caveman-style prompts primarily reduce generated answer length rather than fixed input/cache context.
+- Made small workflow shard prompts self-contained and large fixture paths explicit to avoid measuring accidental permission failures.
+
 ## 2026-04-25 – Split workshop guide into chapter files
 
 Moved the long workshop lecture out of the root `README.md` and into focused chapter files under `docs\workshop`.
@@ -9,13 +20,22 @@ Moved the long workshop lecture out of the root `README.md` and into focused cha
 - Converted the root `README.md` into a concise landing page with links to the detailed chapters.
 - Added the measured token-efficiency benchmark table to `docs\workshop\05-token-efficiency.md` with links to the reusable lab details.
 
+## 2026-04-26 – Converted token lab to Python runner
+
+Replaced the PowerShell-specific token lab runner with a cross-platform Python harness driven by `token-lab.toml` and `pyproject.toml`.
+
+### Decisions
+- Kept Copilot CLI as the default measurement backend because OpenTelemetry file export is the validated token telemetry surface.
+- Added an explicit SDK backend placeholder in `run_token_lab.py` instead of pretending a Copilot SDK telemetry path is available.
+- Split tests by concern so analyzer, scenario generation, and runner dry-run behavior are easier to understand and reproduce.
+
 ## 2026-04-25 – Added token-efficiency workshop chapter and measurement lab
 
 Added a late Chapter 5 section that teaches Copilot token efficiency as context hygiene, workflow design, model choice, and measurement rather than just shorter prompts.
 
 ### Decisions
 - Inserted the token-efficiency material after execution surfaces so the workshop first introduces CLI sessions, agents, skills, MCP, and model selection before discussing how to use them economically.
-- Added `tools\copilot-token-lab` as a repeatable Copilot CLI plus OpenTelemetry harness with prompt catalog, PowerShell runner, analyzer, sample telemetry, and unit tests.
+- Added `tools\copilot-token-lab` as a repeatable Copilot CLI plus OpenTelemetry harness with prompt catalog, runner, analyzer, sample telemetry, and unit tests.
 - Expanded the lab with generated benchmark fixtures for large versus small instructions, wide versus progressive MCP discovery, single-agent versus decomposed workflow shape, compression, and verbose versus scoped prompting.
 - Revised the benchmark matrix to remove model-comparison claims, make AGENTS-versus-skills compare unrelated always-on context against one relevant skill, and add compression simulation for compacted handoffs.
 - Kept the measurement path on documented surfaces: Copilot CLI `-p` and `COPILOT_OTEL_FILE_EXPORTER_PATH`; avoided private APIs and undocumented session-store parsing.

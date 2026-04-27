@@ -1,12 +1,11 @@
 # Workshop guide
 
-This folder contains the detailed lecture flow for the GitHub Copilot Demo workshop. The root `README.md` is now a concise landing page; these files hold the chapter-level script, prompts, and observations.
+This folder contains the detailed lecture flow for the GitHub Copilot Demo workshop. The root `README.md` contains the story overview and chapter links; these files hold the chapter-level script, prompts, and observations.
 
 ## Core flow
 
 | Chapter | Topic |
 | --- | --- |
-| [00](00-course-map.md) | Course map and whole story |
 | [01](01-repository-context.md) | Repository context, AGENTS.md, PRD, specs, and Spaces |
 | [02](02-skills-and-mcp.md) | Skills and MCP |
 | [03](03-vscode-agents.md) | VS Code prompt files, custom agents, handoffs, and subagents |
@@ -19,6 +18,6 @@ This folder contains the detailed lecture flow for the GitHub Copilot Demo works
 
 ## Related material
 
-- [Enterprise demo flow](..\enterprise_demo_flow.md) for presenter notes.
-- [Token lab](..\..\tools\copilot-token-lab\README.md) for repeatable token-efficiency measurements.
-- [Implementation log](..\ImplementationLog.md) for documentation and architecture decisions.
+- [Enterprise demo flow](../enterprise_demo_flow.md) for presenter notes.
+- [Token lab](../../tools/copilot-token-lab/README.md) for repeatable token-efficiency measurements.
+- [Implementation log](../ImplementationLog.md) for documentation and architecture decisions.

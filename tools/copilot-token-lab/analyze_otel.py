@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable
@@ -66,6 +67,28 @@ class RunSummary:
         if self.variant and self.variant != "selected-model":
             return self.variant
         return self.requested_model or "default"
+
+    def model_label(self) -> str:
+        """Return the model label for display and pricing lookup."""
+
+        if len(self.resolved_models) == 1:
+            return next(iter(self.resolved_models))
+        return self.requested_model or "unknown"
+
+    def estimated_cost_units(self, pricing: dict[str, dict[str, float]] | None) -> float | None:
+        """Estimate relative cost units from token counters and model pricing."""
+
+        if not pricing:
+            return None
+        model_pricing = pricing.get(self.model_label()) or pricing.get(self.requested_model)
+        if not model_pricing:
+            return None
+        return (
+            self.input_tokens * model_pricing.get("input", 0.0)
+            + self.output_tokens * model_pricing.get("output", 0.0)
+            + self.cache_read_input_tokens * model_pricing.get("cache_read", 0.0)
+            + self.cache_creation_input_tokens * model_pricing.get("cache_creation", 0.0)
+        ) / 1_000_000
 
 
 def decode_otel_value(value: Any) -> Any:
@@ -165,7 +188,7 @@ def duration_from_object(obj: dict[str, Any]) -> float:
 
 
 def load_metadata(run_dir: Path) -> dict[str, Any]:
-    """Load optional run metadata written by Invoke-CopilotTokenLab.ps1."""
+    """Load optional run metadata written by the token lab runner."""
 
     metadata_path = run_dir / "metadata.json"
     if not metadata_path.exists():
@@ -282,24 +305,44 @@ def summarize_runs(runs_dir: Path) -> list[RunSummary]:
     ]
 
 
-def write_markdown(summaries: list[RunSummary], output: Path) -> None:
+def load_pricing(path: Path | None) -> dict[str, dict[str, float]] | None:
+    """Load optional relative model pricing from TOML."""
+
+    if path is None:
+        return None
+    data = tomllib.loads(path.read_text(encoding="utf-8"))
+    models = data.get("models", {})
+    return {
+        str(model): {str(key): float(value) for key, value in values.items()}
+        for model, values in models.items()
+    }
+
+
+def write_markdown(
+    summaries: list[RunSummary],
+    output: Path,
+    pricing: dict[str, dict[str, float]] | None = None,
+) -> None:
     """Write a Markdown comparison report."""
 
     lines = [
         "# Copilot token lab analysis",
         "",
         "| Run | Group | Variant | Prompt | Technique | Model | Effort | Input | "
-        "Output | Cache read | Cache create | Total | Turns | Tools | Duration ms | Errors |",
+        "Output | Cache read | Cache create | Total | Cost units | Turns | Tools | "
+        "Duration ms | Errors |",
         "| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | "
-        "---: | ---: | ---: | ---: | ---: |",
+        "---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for item in summaries:
         model = ", ".join(sorted(item.resolved_models)) or item.requested_model or "unknown"
+        cost = item.estimated_cost_units(pricing)
+        cost_text = "" if cost is None else f"{cost:.6f}"
         lines.append(
             (
                 "| {run} | {group} | {variant} | {prompt} | {technique} | {model} | "
                 "{effort} | {input} | {output} | {cache_read} | {cache_create} | "
-                "{total} | {turns} | {tools} | {duration:.1f} | {errors} |"
+                "{total} | {cost} | {turns} | {tools} | {duration:.1f} | {errors} |"
             ).format(
                 run=item.run_id,
                 group=item.comparison_group,
@@ -313,6 +356,7 @@ def write_markdown(summaries: list[RunSummary], output: Path) -> None:
                 cache_read=item.cache_read_input_tokens,
                 cache_create=item.cache_creation_input_tokens,
                 total=item.total_tokens,
+                cost=cost_text,
                 turns=item.turn_count,
                 tools=item.tool_call_count,
                 duration=item.duration_ms,
@@ -338,6 +382,7 @@ def write_markdown(summaries: list[RunSummary], output: Path) -> None:
                 effort=item.effort,
             )
         aggregate = grouped[key]
+        aggregate.resolved_models.update(item.resolved_models)
         aggregate.input_tokens += item.input_tokens
         aggregate.output_tokens += item.output_tokens
         aggregate.cache_read_input_tokens += item.cache_read_input_tokens
@@ -354,29 +399,50 @@ def write_markdown(summaries: list[RunSummary], output: Path) -> None:
                 "## Comparison groups",
                 "",
                 "| Group | Variant | Total observed tokens | Savings vs baseline | "
-                "Turns | Tools | Duration ms | Errors |",
-                "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+                "Output tokens | Output savings vs baseline | Cost units | "
+                "Cost savings vs baseline | Turns | Tools | Duration ms | Errors |",
+                "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
             ]
         )
         baseline_by_group: dict[str, int] = {}
+        baseline_output_by_group: dict[str, int] = {}
+        baseline_cost_by_group: dict[str, float | None] = {}
         for (group, variant), item in grouped.items():
             is_hint = any(hint in variant.lower() for hint in BASELINE_HINTS)
             if item.baseline or (group not in baseline_by_group and is_hint):
                 baseline_by_group[group] = item.total_tokens
+                baseline_output_by_group[group] = item.output_tokens
+                baseline_cost_by_group[group] = item.estimated_cost_units(pricing)
         for (group, _variant), item in grouped.items():
             baseline_by_group.setdefault(group, item.total_tokens)
+            baseline_output_by_group.setdefault(group, item.output_tokens)
+            baseline_cost_by_group.setdefault(group, item.estimated_cost_units(pricing))
         for (group, variant), item in grouped.items():
             baseline = baseline_by_group[group]
             savings = 0.0
             if baseline > 0:
                 savings = (baseline - item.total_tokens) / baseline * 100
+            baseline_output = baseline_output_by_group[group]
+            output_savings = 0.0
+            if baseline_output > 0:
+                output_savings = (baseline_output - item.output_tokens) / baseline_output * 100
+            cost = item.estimated_cost_units(pricing)
+            baseline_cost = baseline_cost_by_group[group]
+            cost_savings = None
+            if baseline_cost and cost is not None:
+                cost_savings = (baseline_cost - cost) / baseline_cost * 100
             lines.append(
-                "| {group} | {variant} | {total} | {savings:.1f}% | {turns} | "
+                "| {group} | {variant} | {total} | {savings:.1f}% | {output} | "
+                "{output_savings:.1f}% | {cost} | {cost_savings} | {turns} | "
                 "{tools} | {duration:.1f} | {errors} |".format(
                     group=group,
                     variant=variant,
                     total=item.total_tokens,
                     savings=savings,
+                    output=item.output_tokens,
+                    output_savings=output_savings,
+                    cost="" if cost is None else f"{cost:.6f}",
+                    cost_savings="" if cost_savings is None else f"{cost_savings:.1f}%",
                     turns=item.turn_count,
                     tools=item.tool_call_count,
                     duration=item.duration_ms,
@@ -393,7 +459,8 @@ def write_markdown(summaries: list[RunSummary], output: Path) -> None:
             "version and repository state.",
             "2. Treat lower tokens as a win only when task quality remains acceptable.",
             "3. Inspect tool counts and errors before concluding a prompt is efficient.",
-            "4. Keep content capture disabled unless the environment is trusted.",
+            "4. Cost units are relative estimates when model-pricing.toml is supplied.",
+            "5. Keep content capture disabled unless the environment is trusted.",
         ]
     )
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -410,10 +477,11 @@ def main() -> int:
         help="Directory containing run folders.",
     )
     parser.add_argument("--output", type=Path, required=True, help="Markdown report path.")
+    parser.add_argument("--pricing", type=Path, help="Optional relative model pricing TOML.")
     args = parser.parse_args()
 
     summaries = summarize_runs(args.runs)
-    write_markdown(summaries, args.output)
+    write_markdown(summaries, args.output, load_pricing(args.pricing))
     print(f"Analyzed {len(summaries)} run(s). Wrote {args.output}")
     return 0
 

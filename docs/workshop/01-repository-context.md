@@ -1,4 +1,4 @@
-[Workshop index](README.md) | [Repository README](..\..\README.md)
+[Workshop index](README.md) | [Repository README](../../README.md)
 
 ---
 
@@ -152,4 +152,4 @@ The audience should leave this chapter with one clear mental model:
 
 ---
 
-Previous: [Course map](00-course-map.md) | Next: [Skills and MCP](02-skills-and-mcp.md)
+Previous: [Repository README](../../README.md) | Next: [Skills and MCP](02-skills-and-mcp.md)

@@ -1,4 +1,4 @@
-[Workshop index](README.md) | [Repository README](..\..\README.md)
+[Workshop index](README.md) | [Repository README](../../README.md)
 
 ---
 
@@ -10,16 +10,17 @@ This chapter turns token efficiency into a measurable engineering practice. It s
 
 These results come from a real local run of the reusable suite in `..\..\tools\copilot-token-lab`. Treat them as lab evidence and rerun the suite for current client, model, and repository state.
 
-| Test | Baseline | Token-efficient variant | Result |
-| --- | --- | --- | ---: |
-| AGENTS.md vs skills | Large multi-domain `AGENTS.md` | Small `AGENTS.md` plus one relevant skill | 41.6% saved |
-| Progressive MCP discovery | 100 verbose direct MCP tools | Search-then-fetch MCP tools | 41.0% saved |
-| Prompt efficiency | Verbose open-ended prompt | Scoped files plus output contract | 31.9% saved |
-| Compression simulation | Full simulated turn history | Compressed handoff summary | 58.7% saved |
-| Multi-agent overhead case | One small main-agent prompt | Three mini-model shard calls | 243.8% more |
-| Large-context sharding attempt | One large accumulated-context prompt | Three focused mini-model shards | 239.9% more |
+| Test | Baseline | Token-efficient variant | Total-token result | Output-token result | Cost-unit result |
+| --- | --- | --- | ---: | ---: | ---: |
+| AGENTS.md vs skills | Large scaled multi-domain `AGENTS.md` | Small `AGENTS.md` plus one relevant skill | 54.3% saved | 96.4% more | 69.4% saved |
+| Progressive MCP discovery | 100 verbose direct MCP tools | Search-then-fetch MCP tools | 33.6% saved | 144.8% more | 32.2% saved |
+| Prompt efficiency | Verbose open-ended prompt | Scoped files plus output contract | 70.3% saved | 88.6% saved | 72.9% saved |
+| Compression simulation | Inline simulated turn history | Inline compressed handoff | 10.8% saved | 23.1% saved | 17.9% saved |
+| Caveman-style response | Detailed incident guide | Terse output contract | 66.1% more | 89.4% saved | 31.5% saved |
+| Multi-agent overhead case | One small main-agent prompt | Three mini-model shard calls | 231.9% more | 0.0% saved | 26.2% saved |
+| Large-context sharding attempt | One large accumulated-context prompt | Three focused mini-model shards | 211.0% more | 3.9% more | 21.5% saved |
 
-Details: [suite example analysis](..\..\tools\copilot-token-lab\suite-example-analysis.md), [rerun instructions](..\..\tools\copilot-token-lab\README.md), and [generated scenario fixtures](..\..\tools\copilot-token-lab\scenario_builder.py).
+Details: [suite example analysis](../../tools/copilot-token-lab/suite-example-analysis.md), [full Python run report](../../tools/copilot-token-lab/reports/python-suite-2026-04-26.md), [rerun instructions](../../tools/copilot-token-lab/README.md), and [generated scenario fixtures](../../tools/copilot-token-lab/scenario_builder.py). Cost units are relative demo estimates from `model-pricing.toml`, not official prices. Output-token savings are shown separately because terse response styles optimize answer length, not always-on context.
 
 Token efficiency is not about starving Copilot of context. It is about giving Copilot the smallest high-signal working set that lets it solve the task correctly.
 
@@ -45,6 +46,7 @@ The practical goal is **scoped sufficiency**: enough context to be precise, no m
 | Use `/fleet` for every problem | Use subagents only when work is genuinely parallel |
 | Send terminal screenshots | Paste exact text excerpts unless visual layout matters |
 | Stay in a stale long session forever | Use `/context`, `/compact`, `/research`, or start fresh |
+| Request a polished essay when terse output is enough | Use a Caveman-style response contract: short, direct, no pleasantries |
 
 ### Use durable context instead of repeated explanations
 
@@ -114,14 +116,15 @@ This gives Copilot the failure signal without burying it in thousands of irrelev
 
 ### Measure instead of guessing
 
-OpenTelemetry turns token hygiene from advice into evidence. The side project in `tools\copilot-token-lab` provides a repeatable harness around Copilot CLI:
+OpenTelemetry turns token hygiene from advice into evidence. The side project in `tools\copilot-token-lab` provides a repeatable Python harness with TOML configuration. Its default backend invokes Copilot CLI because that is the validated interface for exporting token telemetry today:
 
-```powershell
-.\tools\copilot-token-lab\Invoke-CopilotTokenLab.ps1 -Execute -Iterations 3 -Model auto
-python .\tools\copilot-token-lab\analyze_otel.py --runs .\tools\copilot-token-lab\runs --output .\tools\copilot-token-lab\runs\analysis.md
+```shell
+cd tools/copilot-token-lab
+uv run python run_token_lab.py suite --execute --allow-all-tools --iterations 3 --output-dir suite-runs
+uv run python run_token_lab.py analyze --runs suite-runs/runs --output suite-runs/analysis.md
 ```
 
-The harness uses Copilot CLI non-interactive mode and `COPILOT_OTEL_FILE_EXPORTER_PATH` to write one telemetry file per run. Compare input tokens, output tokens, cached input tokens, turn count, tool count, duration, errors, and task quality across broad prompts, scoped prompts, summaries, and model choices.
+The harness uses Copilot CLI non-interactive mode and `COPILOT_OTEL_FILE_EXPORTER_PATH` to write one telemetry file per run. Compare input tokens, output tokens, cached input tokens, turn count, tool count, duration, errors, relative cost units, and task quality across broad prompts, scoped prompts, summaries, response styles, and model choices. The runner has a backend boundary for a future SDK implementation, but the SDK path should only be enabled when it exposes equivalent telemetry.
 
 ### Try this
 
