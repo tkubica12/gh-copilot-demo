@@ -211,9 +211,16 @@ def summarize_run(run_dir: Path) -> RunSummary:
         effort=metadata.get("effort", ""),
     )
 
-    otel_value = metadata.get("otelPath")
-    if otel_value:
-        otel_path = Path(otel_value)
+    otel_values = metadata.get("otelPaths")
+    if not isinstance(otel_values, list):
+        otel_value = metadata.get("otelPath")
+        otel_values = [otel_value] if otel_value else []
+    if not otel_values:
+        otel_values = [str(run_dir / "copilot-otel.jsonl")]
+
+    seen_token_objects: set[int] = set()
+    for otel_value in otel_values:
+        otel_path = Path(str(otel_value))
         if not otel_path.is_absolute():
             cwd_relative = Path.cwd() / otel_path
             run_relative = run_dir / otel_path
@@ -223,75 +230,77 @@ def summarize_run(run_dir: Path) -> RunSummary:
                 otel_path = run_relative
             else:
                 otel_path = run_dir / otel_path.name
-    else:
-        otel_path = run_dir / "copilot-otel.jsonl"
 
-    seen_token_objects: set[int] = set()
-    for record in read_jsonl(otel_path):
-        for obj in walk_objects(record):
-            attributes = attributes_to_dict(obj.get("attributes", {}))
-            if attributes:
-                is_span = (
-                    obj.get("type") == "span"
-                    or "spanId" in obj
-                    or "span_id" in obj
-                    or (
-                        isinstance(obj.get("name"), str)
-                        and (
-                            obj["name"].startswith("chat")
-                            or obj["name"].startswith("execute_tool")
-                            or obj["name"] == "invoke_agent"
+        for record in read_jsonl(otel_path):
+            for obj in walk_objects(record):
+                attributes = attributes_to_dict(obj.get("attributes", {}))
+                if attributes:
+                    is_span = (
+                        obj.get("type") == "span"
+                        or "spanId" in obj
+                        or "span_id" in obj
+                        or (
+                            isinstance(obj.get("name"), str)
+                            and (
+                                obj["name"].startswith("chat")
+                                or obj["name"].startswith("execute_tool")
+                                or obj["name"] == "invoke_agent"
+                            )
                         )
                     )
-                )
-                if is_span:
-                    summary.span_count += 1
-                    summary.duration_ms = max(summary.duration_ms, duration_from_object(obj))
-                for source_key, target_field in TOKEN_KEYS.items():
-                    value = attributes.get(source_key)
-                    if isinstance(value, (int, float)):
-                        object_key = id(obj) ^ hash(source_key)
-                        if object_key not in seen_token_objects:
-                            setattr(
-                                summary,
-                                target_field,
-                                getattr(summary, target_field) + int(value),
-                            )
-                            seen_token_objects.add(object_key)
-                for model_key in MODEL_KEYS:
-                    value = attributes.get(model_key)
-                    if value:
-                        summary.resolved_models.add(str(value))
-                if isinstance(attributes.get("github.copilot.turn_count"), (int, float)):
-                    summary.turn_count = max(
-                        summary.turn_count, int(attributes["github.copilot.turn_count"])
+                    if is_span:
+                        summary.span_count += 1
+                        summary.duration_ms = max(summary.duration_ms, duration_from_object(obj))
+                    for source_key, target_field in TOKEN_KEYS.items():
+                        value = attributes.get(source_key)
+                        if isinstance(value, (int, float)):
+                            object_key = id(obj) ^ hash(source_key)
+                            if object_key not in seen_token_objects:
+                                setattr(
+                                    summary,
+                                    target_field,
+                                    getattr(summary, target_field) + int(value),
+                                )
+                                seen_token_objects.add(object_key)
+                    for model_key in MODEL_KEYS:
+                        value = attributes.get(model_key)
+                        if value:
+                            summary.resolved_models.add(str(value))
+                    if isinstance(attributes.get("github.copilot.turn_count"), (int, float)):
+                        summary.turn_count = max(
+                            summary.turn_count, int(attributes["github.copilot.turn_count"])
+                        )
+                    tool_name = attributes.get("gen_ai.tool.name") or attributes.get(
+                        "github.copilot.tool.name"
                     )
-                tool_name = attributes.get("gen_ai.tool.name") or attributes.get(
-                    "github.copilot.tool.name"
-                )
-                operation_name = attributes.get("gen_ai.operation.name", "")
-                span_name = str(obj.get("name", ""))
-                if tool_name and is_span and (
-                    operation_name == "execute_tool" or span_name.startswith("execute_tool")
-                ):
-                    summary.tool_call_count += 1
-                if attributes.get("error.type") or attributes.get("error.message"):
-                    summary.errors += 1
+                    operation_name = attributes.get("gen_ai.operation.name", "")
+                    span_name = str(obj.get("name", ""))
+                    if tool_name and is_span and (
+                        operation_name == "execute_tool" or span_name.startswith("execute_tool")
+                    ):
+                        summary.tool_call_count += 1
+                    if attributes.get("error.type") or attributes.get("error.message"):
+                        summary.errors += 1
 
-            metric_name = obj.get("name")
-            if metric_name == "gen_ai.client.token.usage":
-                data_points = obj.get("dataPoints") or obj.get("data_points") or []
-                for point in data_points:
-                    point_attrs = attributes_to_dict(point.get("attributes", {}))
-                    token_type = point_attrs.get("gen_ai.token.type") or point_attrs.get("type")
-                    value = point.get("sum") or point.get("value") or point.get("asInt")
-                    if not isinstance(value, (int, float)):
-                        continue
-                    if token_type == "input":
-                        summary.input_tokens += int(value)
-                    elif token_type == "output":
-                        summary.output_tokens += int(value)
+                metric_name = obj.get("name")
+                if metric_name == "gen_ai.client.token.usage":
+                    data_points = obj.get("dataPoints") or obj.get("data_points") or []
+                    for point in data_points:
+                        point_attrs = attributes_to_dict(point.get("attributes", {}))
+                        token_type = point_attrs.get("gen_ai.token.type") or point_attrs.get(
+                            "type"
+                        )
+                        value = point.get("sum") or point.get("value") or point.get("asInt")
+                        if not isinstance(value, (int, float)):
+                            continue
+                        if token_type == "input":
+                            summary.input_tokens += int(value)
+                        elif token_type == "output":
+                            summary.output_tokens += int(value)
 
+    metadata_turns = metadata.get("turns")
+    if isinstance(metadata_turns, list):
+        summary.turn_count = max(summary.turn_count, len(metadata_turns))
     return summary
 
 

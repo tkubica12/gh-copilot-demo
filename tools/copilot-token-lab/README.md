@@ -71,7 +71,7 @@ It covers these comparison groups:
 | `mcp-discovery` | MCP server with 100 direct action tools versus search-then-fetch discovery tools |
 | `workflow-overhead` | one small main-agent prompt versus externally orchestrated mini-model shards |
 | `workflow-large-shards` | one large accumulated-context prompt versus focused mini-model shards |
-| `compression-simulation` | uncompressed simulated turn history versus compressed handoff summary |
+| `compression-simulation` | three resumed turns with accumulated history versus fresh turns carrying compact handoffs |
 | `prompt-efficiency` | verbose prompt versus concise prompt with explicit file and output bounds |
 | `response-style` | normal explanatory response versus a Caveman-inspired terse output contract |
 

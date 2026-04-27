@@ -4,8 +4,8 @@
 | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | agents-big-gpt-5.5-medium-001-20260426214259 | agents-context | large-agents | agents-big | large-always-on-instructions | gpt-5.5 | medium | 154908 | 280 | 0 | 0 | 155188 | 0.156028 | 1 | 0 | 9798.2 | 0 |
 | agents-small-skill-gpt-5.5-medium-001-20260426214351 | agents-context | small-agents-skill | agents-small-skill | small-instructions-dynamic-skill | gpt-5.5 | medium | 42749 | 550 | 27648 | 0 | 70947 | 0.047714 | 3 | 4 | 17056.1 | 0 |
-| compression-full-history-gpt-5.5-medium-001-20260426220726 | compression-simulation | full-history | compression-full-history | uncompressed-history | gpt-5.5 | medium | 47348 | 432 | 36864 | 0 | 84644 | 0.052762 | 1 | 0 | 5457.3 | 0 |
-| compression-summary-gpt-5.5-medium-001-20260426220743 | compression-simulation | compressed-handoff | compression-summary | compressed-context | gpt-5.5 | medium | 38320 | 332 | 36864 | 0 | 75516 | 0.043334 | 1 | 0 | 5250.8 | 0 |
+| compression-full-history-gpt-5.5-medium-001-20260427080548 | compression-simulation | full-history | compression-full-history | uncompressed-history | gpt-5.5 | medium | 150950 | 474 | 130048 | 0 | 281472 | 0.165851 | 3 | 0 | 5121.0 | 0 |
+| compression-summary-gpt-5.5-medium-001-20260427080704 | compression-simulation | compressed-handoff | compression-summary | compressed-context | gpt-5.5 | medium | 132856 | 956 | 107520 | 0 | 241332 | 0.147432 | 3 | 0 | 6339.2 | 0 |
 | mcp-progressive-discovery-gpt-5.5-medium-001-20260426214556 | mcp-discovery | search-then-fetch | mcp-progressive-discovery | progressive-mcp-discovery | gpt-5.5 | medium | 39224 | 235 | 38400 | 0 | 77859 | 0.044004 | 3 | 3 | 13659.3 | 0 |
 | mcp-wide-tools-gpt-5.5-medium-001-20260426214502 | mcp-discovery | wide-100-tools | mcp-wide-tools | wide-tool-surface | gpt-5.5 | medium | 58707 | 96 | 58368 | 0 | 117171 | 0.064928 | 2 | 1 | 10973.5 | 0 |
 | prompt-efficient-gpt-5.5-medium-001-20260426220501 | prompt-efficiency | concise | prompt-efficient | scoped-output-contract | gpt-5.5 | medium | 38563 | 235 | 37376 | 0 | 76174 | 0.043241 | 2 | 3 | 7037.3 | 0 |
@@ -27,8 +27,8 @@
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | agents-context | large-agents | 155188 | 0.0% | 280 | 0.0% | 0.156028 | 0.0% | 1 | 0 | 9798.2 | 0 |
 | agents-context | small-agents-skill | 70947 | 54.3% | 550 | -96.4% | 0.047714 | 69.4% | 3 | 4 | 17056.1 | 0 |
-| compression-simulation | full-history | 84644 | 0.0% | 432 | 0.0% | 0.052762 | 0.0% | 1 | 0 | 5457.3 | 0 |
-| compression-simulation | compressed-handoff | 75516 | 10.8% | 332 | 23.1% | 0.043334 | 17.9% | 1 | 0 | 5250.8 | 0 |
+| compression-simulation | full-history | 281472 | 0.0% | 474 | 0.0% | 0.165851 | 0.0% | 3 | 0 | 5121.0 | 0 |
+| compression-simulation | compressed-handoff | 241332 | 14.3% | 956 | -101.7% | 0.147432 | 11.1% | 3 | 0 | 6339.2 | 0 |
 | mcp-discovery | search-then-fetch | 77859 | 33.6% | 235 | -144.8% | 0.044004 | 32.2% | 3 | 3 | 13659.3 | 0 |
 | mcp-discovery | wide-100-tools | 117171 | 0.0% | 96 | 0.0% | 0.064928 | 0.0% | 2 | 1 | 10973.5 | 0 |
 | prompt-efficiency | concise | 76174 | 70.3% | 235 | 88.6% | 0.043241 | 72.9% | 2 | 3 | 7037.3 | 0 |

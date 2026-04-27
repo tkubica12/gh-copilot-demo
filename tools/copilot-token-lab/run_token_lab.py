@@ -129,13 +129,15 @@ def build_arguments(
     effort: str,
     config: RunnerConfig,
     catalog_dir: Path,
+    prompt_text: str | None = None,
+    session_args: list[str] | None = None,
 ) -> list[str]:
     """Build a Copilot CLI command for one prompt run."""
 
     args = [
         config.copilot_command,
         "-p",
-        str(prompt["prompt"]),
+        str(prompt_text if prompt_text is not None else prompt["prompt"]),
         "--output-format",
         "json",
         "--stream",
@@ -161,6 +163,8 @@ def build_arguments(
     if "additionalMcpConfig" in prompt:
         mcp_config = resolve_path(str(prompt["additionalMcpConfig"]), catalog_dir)
         args.extend(["--additional-mcp-config", f"@{mcp_config}"])
+    if session_args:
+        args.extend(session_args)
     args.extend(str(item) for item in prompt.get("extraArgs", []))
     return args
 
@@ -202,6 +206,109 @@ def run_copilot_cli(
                 text=True,
             )
     return int(completed.returncode)
+
+
+def extract_final_message(stdout_path: Path) -> str:
+    """Return the last assistant message content from a JSONL CLI run."""
+
+    if not stdout_path.exists():
+        return ""
+    final = ""
+    with stdout_path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if record.get("type") != "assistant.message":
+                continue
+            data = record.get("data", {})
+            content = data.get("content")
+            if isinstance(content, str) and content:
+                final = content
+    return final
+
+
+def run_turns(
+    prompt: dict[str, Any],
+    model: str,
+    effort: str,
+    config: RunnerConfig,
+    catalog_dir: Path,
+    run_dir: Path,
+    run_id: str,
+) -> tuple[list[dict[str, Any]], list[str], int]:
+    """Run a multi-turn scenario and return turn metadata, OTel paths, and exit code."""
+
+    turns = list(prompt.get("turns", []))
+    if not turns:
+        raise ValueError("Multi-turn prompt requires at least one turn.")
+
+    working_dir = resolve_path(str(prompt["workingDirectory"]), catalog_dir)
+    turn_results: list[dict[str, Any]] = []
+    otel_paths: list[str] = []
+    previous_handoff = ""
+    session_strategy = str(prompt.get("sessionStrategy", "resume"))
+    aggregate_exit_code = 0
+    for turn_index, turn in enumerate(turns, start=1):
+        turn_data = turn if isinstance(turn, dict) else {"prompt": str(turn)}
+        turn_prompt = str(turn_data.get("prompt", "")).format(
+            previous_handoff=previous_handoff
+        )
+        otel_path = run_dir / f"copilot-otel-turn-{turn_index:02d}.jsonl"
+        stdout_path = run_dir / f"stdout-turn-{turn_index:02d}.jsonl"
+        stderr_path = run_dir / f"stderr-turn-{turn_index:02d}.txt"
+        otel_paths.append(str(otel_path))
+
+        if session_strategy == "resume":
+            session_args = ["--name", run_id] if turn_index == 1 else ["--resume", run_id]
+        elif session_strategy == "fresh-handoff":
+            session_args = ["--name", f"{run_id}-turn-{turn_index:02d}"]
+        else:
+            raise ValueError(f"Unsupported session strategy: {session_strategy}")
+
+        command = build_arguments(
+            prompt,
+            model,
+            effort,
+            config,
+            catalog_dir,
+            prompt_text=turn_prompt,
+            session_args=session_args,
+        )
+        started = time.perf_counter()
+        if config.execute:
+            exit_code = run_copilot_cli(
+                command,
+                run_dir,
+                stdout_path,
+                stderr_path,
+                otel_path,
+                working_dir,
+            )
+        else:
+            exit_code = dry_run(run_dir, stdout_path, stderr_path, otel_path)
+        elapsed = round(time.perf_counter() - started, 3)
+        if exit_code != 0:
+            aggregate_exit_code = exit_code
+        if bool(turn_data.get("captureHandoff", False)):
+            previous_handoff = (
+                extract_final_message(stdout_path)
+                if config.execute
+                else str(turn_data.get("dryRunHandoff", "dry-run handoff"))
+            )
+        turn_results.append(
+            {
+                "turn": turn_index,
+                "exitCode": exit_code,
+                "elapsedSeconds": elapsed,
+                "stdoutPath": str(stdout_path),
+                "stderrPath": str(stderr_path),
+                "otelPath": str(otel_path),
+                "command": command,
+            }
+        )
+    return turn_results, otel_paths, aggregate_exit_code
 
 
 def run_sdk_backend() -> None:
@@ -256,7 +363,11 @@ def run_catalog(
                         if working_dir_value
                         else None
                     )
-                    command = build_arguments(prompt, model, effort, config, catalog_dir)
+                    command = (
+                        []
+                        if "turns" in prompt
+                        else build_arguments(prompt, model, effort, config, catalog_dir)
+                    )
                     metadata = {
                         "runId": run_id,
                         "promptId": prompt["id"],
@@ -278,9 +389,25 @@ def run_catalog(
                         "workingDirectory": str(working_dir) if working_dir else "",
                         "command": command,
                     }
-                    write_json(run_dir / "metadata.json", metadata)
                     started = time.perf_counter()
-                    if config.execute:
+                    if "turns" in prompt:
+                        turn_results, otel_paths, exit_code = run_turns(
+                            prompt,
+                            model,
+                            effort,
+                            config,
+                            catalog_dir,
+                            run_dir,
+                            run_id,
+                        )
+                        elapsed = round(sum(item["elapsedSeconds"] for item in turn_results), 3)
+                        metadata["turns"] = turn_results
+                        metadata["otelPaths"] = otel_paths
+                        metadata.pop("otelPath", None)
+                        metadata.pop("stdoutPath", None)
+                        metadata.pop("stderrPath", None)
+                    elif config.execute:
+                        write_json(run_dir / "metadata.json", metadata)
                         exit_code = run_copilot_cli(
                             command,
                             run_dir,
@@ -289,9 +416,12 @@ def run_catalog(
                             otel_path,
                             working_dir,
                         )
+                        elapsed = round(time.perf_counter() - started, 3)
                     else:
+                        write_json(run_dir / "metadata.json", metadata)
                         exit_code = dry_run(run_dir, stdout_path, stderr_path, otel_path)
-                    elapsed = round(time.perf_counter() - started, 3)
+                        elapsed = round(time.perf_counter() - started, 3)
+                    write_json(run_dir / "metadata.json", metadata)
                     results.append(
                         {
                             "runId": run_id,

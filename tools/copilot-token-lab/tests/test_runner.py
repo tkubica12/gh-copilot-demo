@@ -91,3 +91,53 @@ class RunnerTests(unittest.TestCase):
             self.assertEqual(metadata["backend"], "copilot-cli")
             self.assertFalse(metadata["execute"])
             self.assertTrue(analysis_path.exists())
+
+    def test_dry_run_multiturn_catalog_writes_turn_metadata(self) -> None:
+        """Multi-turn dry runs record one OTel path per simulated turn."""
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            catalog_path = root / "catalog.json"
+            workspace = root / "workspace"
+            workspace.mkdir()
+            catalog_path.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "prompts": [
+                            {
+                                "id": "multi-turn-example",
+                                "name": "Multi-turn example",
+                                "mode": "plan",
+                                "expectedTechnique": "multi-turn",
+                                "comparisonGroup": "compression-simulation",
+                                "variant": "compressed-handoff",
+                                "prompt": "Multi-turn dry run.",
+                                "workingDirectory": str(workspace),
+                                "models": ["gpt-5.5"],
+                                "efforts": ["medium"],
+                                "sessionStrategy": "fresh-handoff",
+                                "turns": [
+                                    {
+                                        "prompt": "Turn one",
+                                        "captureHandoff": True,
+                                        "dryRunHandoff": "handoff",
+                                    },
+                                    {"prompt": "Turn two uses {previous_handoff}"},
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            config = run_token_lab.load_config(ROOT / "token-lab.toml")
+            config.output_dir = root / "out"
+            config.execute = False
+
+            runs_dir = run_token_lab.run_catalog(catalog_path, config)
+
+            metadata = json.loads(next(runs_dir.glob("*/metadata.json")).read_text())
+            self.assertEqual(len(metadata["turns"]), 2)
+            self.assertEqual(len(metadata["otelPaths"]), 2)
+            self.assertIn("handoff", " ".join(metadata["turns"][1]["command"]))

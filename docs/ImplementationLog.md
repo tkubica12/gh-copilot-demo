@@ -9,6 +9,7 @@ Extended the token-efficiency lab so the measured suite covers scaled `AGENTS.md
 - Added `model-pricing.toml` with replaceable relative rates so reports can compare estimated cost units without claiming official billing prices.
 - Added a response-style benchmark that isolates terse output contracts from tool use and reports output-token behavior alongside total tokens.
 - Extended grouped analysis tables with output-token savings because Caveman-style prompts primarily reduce generated answer length rather than fixed input/cache context.
+- Reworked compression simulation into a three-turn accumulated session versus fresh compact-handoff sessions, which better matches the intended `/compact` economics.
 - Made small workflow shard prompts self-contained and large fixture paths explicit to avoid measuring accidental permission failures.
 
 ## 2026-04-25 – Split workshop guide into chapter files

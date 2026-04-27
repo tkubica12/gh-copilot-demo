@@ -233,6 +233,12 @@ def full_transcript_text() -> str:
     )
 
 
+def compression_turn_context(subject: str) -> str:
+    """Return one large context block for multi-turn compression scenarios."""
+
+    return large_doc(f"{subject} turn context", subject, 80)
+
+
 def build_large_context_workspace(output: Path) -> Path:
     """Create a workspace where decomposed shards can avoid large irrelevant context."""
 
@@ -539,34 +545,87 @@ def build_catalog(output: Path) -> Path:
         ),
         prompt(
             prompt_id="compression-full-history",
-            name="No compression simulated long history",
+            name="Three resumed turns without compaction",
             group="compression-simulation",
             variant="full-history",
             baseline=True,
             technique="uncompressed-history",
-            text=(
-                "Do not use tools. Use this full simulated transcript and return the "
-                "final frontend, backend, operations, validation, and rollback "
-                f"decisions in five bullets.\n\n{full_transcript_text()}"
-            ),
+            text="Multi-turn accumulated context scenario.",
             workspace=large_context,
             models=common_models,
             efforts=common_effort,
+            sessionStrategy="resume",
+            turns=[
+                {
+                    "prompt": (
+                        "Turn 1 of 3. Do not use tools. Load this frontend context "
+                        "into the working conversation and reply with three retained "
+                        "frontend decisions.\n\n"
+                        f"{compression_turn_context('Frontend add-on routing decisions')}"
+                    )
+                },
+                {
+                    "prompt": (
+                        "Turn 2 of 3. Do not use tools. Keep prior frontend decisions, "
+                        "load this backend context, and reply with three retained "
+                        "backend decisions.\n\n"
+                        f"{compression_turn_context('Backend add-on routing decisions')}"
+                    )
+                },
+                {
+                    "prompt": (
+                        "Turn 3 of 3. Do not use tools. Keep prior frontend and backend "
+                        "decisions, load this operations context, and return final "
+                        "frontend, backend, operations, validation, and rollback "
+                        "decisions in five bullets.\n\n"
+                        f"{compression_turn_context('Operations add-on routing decisions')}"
+                    )
+                },
+            ],
         ),
         prompt(
             prompt_id="compression-summary",
-            name="Compressed handoff summary",
+            name="Fresh turns with compact handoff",
             group="compression-simulation",
             variant="compressed-handoff",
             technique="compressed-context",
-            text=(
-                "Do not use tools. Use this compressed handoff and return the final "
-                "frontend, backend, operations, validation, and rollback decisions "
-                f"in five bullets.\n\n{compressed_handoff_text()}"
-            ),
+            text="Multi-turn compact handoff scenario.",
             workspace=large_context,
             models=common_models,
             efforts=common_effort,
+            sessionStrategy="fresh-handoff",
+            turns=[
+                {
+                    "prompt": (
+                        "Turn 1 of 3. Do not use tools. Load this frontend context and "
+                        "return only a compact handoff with durable decisions, open "
+                        "risks, and validation notes.\n\n"
+                        f"{compression_turn_context('Frontend add-on routing decisions')}"
+                    ),
+                    "captureHandoff": True,
+                    "dryRunHandoff": "Frontend compact handoff.",
+                },
+                {
+                    "prompt": (
+                        "Turn 2 of 3. Do not use tools. Previous compact handoff:\n"
+                        "{previous_handoff}\n\nLoad this backend context and return "
+                        "only an updated compact handoff with durable decisions, open "
+                        "risks, and validation notes.\n\n"
+                        f"{compression_turn_context('Backend add-on routing decisions')}"
+                    ),
+                    "captureHandoff": True,
+                    "dryRunHandoff": "Frontend and backend compact handoff.",
+                },
+                {
+                    "prompt": (
+                        "Turn 3 of 3. Do not use tools. Previous compact handoff:\n"
+                        "{previous_handoff}\n\nLoad this operations context and return "
+                        "final frontend, backend, operations, validation, and rollback "
+                        "decisions in five bullets.\n\n"
+                        f"{compression_turn_context('Operations add-on routing decisions')}"
+                    )
+                },
+            ],
         ),
         prompt(
             prompt_id="prompt-verbose",
