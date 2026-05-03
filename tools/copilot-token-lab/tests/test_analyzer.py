@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 from module_loader import ROOT, load_module
 
@@ -55,6 +58,67 @@ class AnalyzeOtelTests(unittest.TestCase):
         self.assertIn("Estimated cost", text)
         self.assertIn("99250", text)
         self.assertIn("0.099250", text)
+
+    def test_multiturn_otel_paths_sum_all_turn_tokens(self) -> None:
+        """Multi-turn runs sum each OTel file without dropping later turns."""
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir = Path(temp_dir) / "multi-turn"
+            run_dir.mkdir()
+            metadata = {
+                "runId": "multi-turn",
+                "promptId": "multi-turn",
+                "model": "gpt-5.5",
+                "otelPaths": [
+                    str(run_dir / "copilot-otel-turn-01.jsonl"),
+                    str(run_dir / "copilot-otel-turn-02.jsonl"),
+                ],
+            }
+            (run_dir / "metadata.json").write_text(json.dumps(metadata), encoding="utf-8")
+            for index, input_tokens in enumerate((100, 200), start=1):
+                record = {
+                    "resourceSpans": [
+                        {
+                            "scopeSpans": [
+                                {
+                                    "spans": [
+                                        {
+                                            "name": "chat",
+                                            "attributes": [
+                                                {
+                                                    "key": "gen_ai.response.model",
+                                                    "value": {"stringValue": "gpt-5.5"},
+                                                },
+                                                {
+                                                    "key": "gen_ai.usage.input_tokens",
+                                                    "value": {"intValue": str(input_tokens)},
+                                                },
+                                                {
+                                                    "key": "gen_ai.usage.output_tokens",
+                                                    "value": {"intValue": str(index)},
+                                                },
+                                                {
+                                                    "key": "gen_ai.usage.cache_read.input_tokens",
+                                                    "value": {"intValue": str(index * 10)},
+                                                },
+                                            ],
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+                (run_dir / f"copilot-otel-turn-{index:02d}.jsonl").write_text(
+                    json.dumps(record) + "\n",
+                    encoding="utf-8",
+                )
+
+            summary = analyze_otel.summarize_run(run_dir)
+
+            self.assertEqual(summary.input_tokens, 300)
+            self.assertEqual(summary.output_tokens, 3)
+            self.assertEqual(summary.cache_read_input_tokens, 30)
 
     def test_grouped_report_includes_output_savings(self) -> None:
         """Grouped comparisons show output savings separately from total savings."""

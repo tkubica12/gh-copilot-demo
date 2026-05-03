@@ -226,7 +226,6 @@ def summarize_run(run_dir: Path) -> RunSummary:
     if not otel_values:
         otel_values = [str(run_dir / "copilot-otel.jsonl")]
 
-    seen_token_objects: set[int] = set()
     for otel_value in otel_values:
         otel_path = Path(str(otel_value))
         if not otel_path.is_absolute():
@@ -262,14 +261,11 @@ def summarize_run(run_dir: Path) -> RunSummary:
                     for source_key, target_field in TOKEN_KEYS.items():
                         value = attributes.get(source_key)
                         if isinstance(value, (int, float)):
-                            object_key = id(obj) ^ hash(source_key)
-                            if object_key not in seen_token_objects:
-                                setattr(
-                                    summary,
-                                    target_field,
-                                    getattr(summary, target_field) + int(value),
-                                )
-                                seen_token_objects.add(object_key)
+                            setattr(
+                                summary,
+                                target_field,
+                                getattr(summary, target_field) + int(value),
+                            )
                     for model_key in MODEL_KEYS:
                         value = attributes.get(model_key)
                         if value:

@@ -20,7 +20,38 @@ These results come from a real local run of the reusable suite in `..\..\tools\c
 | Multi-agent overhead case | One small main-agent prompt | Three mini-model shard calls | 231.9% more | 0.0% saved | 56.3% saved |
 | Large-context sharding attempt | One large accumulated-context prompt | Three focused mini-model shards | 211.0% more | 3.9% more | 53.8% saved |
 
-Details: [suite example analysis](../../tools/copilot-token-lab/suite-example-analysis.md), [full Python run report](../../tools/copilot-token-lab/reports/python-suite-2026-04-26.md), [rerun instructions](../../tools/copilot-token-lab/README.md), and [generated scenario fixtures](../../tools/copilot-token-lab/scenario_builder.py). Weighted units follow the same idea as the public [GitHub Models token-unit calculation](https://docs.github.com/en/billing/managing-billing-for-your-products/about-billing-for-github-models#token-units). `model-pricing.toml` uses the supplied Copilot price cards for GPT-5.5 and GPT-5.4 mini. Output-token savings are shown separately because terse response styles optimize answer length, not always-on context.
+Details: [suite example analysis](../../tools/copilot-token-lab/suite-example-analysis.md), [full Python run report](../../tools/copilot-token-lab/reports/python-suite-2026-04-26.md), [language tokenizer micro-benchmark](../../tools/copilot-token-lab/reports/language-token-benchmark.md), [rerun instructions](../../tools/copilot-token-lab/README.md), and [generated scenario fixtures](../../tools/copilot-token-lab/scenario_builder.py). Weighted units follow the same idea as the public [GitHub Models token-unit calculation](https://docs.github.com/en/billing/managing-billing-for-your-products/about-billing-for-github-models#token-units). `model-pricing.toml` uses the supplied Copilot price cards for GPT-5.5 and GPT-5.4 mini. Output-token savings are shown separately because terse response styles optimize answer length, not always-on context. The compression row is a fork/restart-style handoff scenario; it should not be read as a blanket claim that every `/compact` turn is cheaper.
+
+With the supplied GPT-5.5 price card, one output token costs the same as six uncached input tokens or sixty cached input tokens. That is why output constraints often have the highest per-token ROI.
+
+Typical agentic coding sessions are often dominated by input and cached input, not final chat text. Use `/usage`, OpenTelemetry, or the lab reports to inspect your own mix before optimizing. A rough mental model:
+
+| Session shape | Common token mix | Cost implication |
+| --- | --- | --- |
+| One-shot automation or deployment | high fresh input, little cache, some output | scope files and logs before starting |
+| Long multi-turn coding session | mostly cached input, modest fresh input, low output | continuing can be cheaper than restarting similar work |
+| High-reasoning exploration | more output/reasoning tokens | raise reasoning only when the task justifies it |
+
+Because cached tokens can be an order of magnitude cheaper than fresh input, a weaker model is not automatically cheaper in a long warm session. If a small model rereads context that a stronger model already has cached, duplicates work, or creates a result you must repair, the token saving can disappear.
+
+### When `/compact` is worth it
+
+Do not use `/compact` as a routine cost-saving button during an active conversation. A compacted summary is generated as output, and future turns may pay full input rates for summary/context that would otherwise have remained cheap cache-read history. In a warm, coherent session, frequent compaction can cost more.
+
+Compaction makes sense when at least one of these is true:
+
+1. **The current context is very large and stale**: old logs, tool output, failed attempts, or irrelevant exploration dominate the window.
+2. **You will fork or reuse the context**: one compact handoff seeds several follow-up sessions, agents, or future prompts, amortizing the summary output cost.
+3. **You need durable state**: write a concise handoff or implementation note into the repo so future sessions can load high-signal context instead of replaying the chat.
+4. **Quality is degrading**: compaction can remove distractors even when the immediate token economics are neutral or worse.
+
+Rule of thumb: if you plan only one more turn in the same coherent session, keep the cached thread. If you plan multiple fresh starts from the same distilled context, or the existing thread is mostly noise, compact or write a reusable handoff.
+
+```text
+compact value ≈ reuse_count * removed stale context
+                - summary output tokens
+                - fresh input paid after losing cache-read history
+```
 
 Token efficiency is not about starving Copilot of context. It is about giving Copilot the smallest high-signal working set that lets it solve the task correctly.
 
@@ -41,12 +72,33 @@ The practical goal is **scoped sufficiency**: enough context to be precise, no m
 | Expensive pattern | Token-efficient version |
 | --- | --- |
 | Paste the whole README, specs, and logs | Ask which files or excerpts matter first |
+| Ask a broad task with no landmarks | Name the likely files, services, data samples, and "do not read" areas |
 | Keep every rule in always-on instructions | Put stable rules in `AGENTS.md`; put detailed workflows in prompt files or skills |
 | Ask MCP to fetch everything | Search or list first, then fetch one selected result |
 | Use `/fleet` for every problem | Use subagents only when work is genuinely parallel |
 | Send terminal screenshots | Paste exact text excerpts unless visual layout matters |
 | Stay in a stale long session forever | Use `/context`, `/compact`, `/research`, or start fresh |
 | Request a polished essay when terse output is enough | Use a Caveman-style response contract: short, direct, no pleasantries |
+| Describe technical work in long prose | Use bullets, key-value pairs, type signatures, or "like X but Y" |
+| Add every missed edge case to global instructions | Put rare edge cases in the current prompt or a scoped instruction file |
+| Keep every MCP server enabled globally | Enable only the task-relevant servers, preferably per workspace |
+
+### Shape prompts for tokenizers
+
+Shorter characters do not always mean fewer tokens. The lab includes a tokenizer-only English/Czech report at `tools\copilot-token-lab\reports\language-token-benchmark.md` to demonstrate this separately from Copilot OTel.
+
+Use these prompt shapes before trying exotic compression:
+
+| Expensive shape | Token-efficient shape |
+| --- | --- |
+| Paragraph explaining every requirement | Bullets or key-value fields |
+| "Please create a function that..." | Type signature plus short comment |
+| Long explanation of existing pattern | "Like `getUserById`, but by email" |
+| Repeated full terms | Common abbreviations such as DB, auth, config, req/res, impl |
+
+Do not over-compress safety, destructive-action, or compliance text. Ambiguous terse instructions can cause rework, which costs more than the tokens you saved.
+
+Automated prompt-compression tools such as LLMLingua can be useful for large natural-language prompts or application prompt pipelines, but do not apply them blindly to code, file paths, safety warnings, or repository rules. Treat them as an optional compression aid that still needs review and measurement.
 
 ### Use durable context instead of repeated explanations
 
@@ -59,6 +111,16 @@ This repository already has reusable context assets:
 - `.github\skills\` for detailed local capabilities that load only when relevant
 
 Use those assets as references instead of re-explaining the same background in every prompt. Keep `AGENTS.md` compact because it is part of the recurring context tax; move verbose, task-specific procedures into prompt files, skills, or docs that Copilot can retrieve only when needed.
+
+`AGENTS.md` and `.github\copilot-instructions.md` are distinct conventions, but both behave like always-on context for tools that read them. If the same rule appears in both, you may pay for it twice. Use this split:
+
+| Context type | Put here | Token rule |
+| --- | --- | --- |
+| Always-on | tiny repo-wide rules and landmines | only keep facts the agent cannot safely infer |
+| Path-specific | `.github\instructions\*.instructions.md` with `applyTo` | load only when matching files are relevant |
+| Workflow-specific | prompt files, skills, docs, or runbooks | keep out of normal context until invoked |
+
+Treat always-on instructions like a bug tracker, not a wiki. Start small, add one line when the agent repeatedly trips on something, and delete it when the root cause is fixed. Avoid generated instruction files that restate discoverable facts such as language, test folder, or framework when the repo already reveals them.
 
 ### Prefer skills and MCP as progressive reveal
 
@@ -75,6 +137,46 @@ Good MCP workflow:
 4. Summarize the result before continuing.
 
 Avoid MCP tools that return unlimited logs or entire workspaces by default. Prefer summary, paging, limits, and exact excerpts.
+
+MCP cost has three surfaces:
+
+1. tool definitions and JSON schemas loaded into the model context
+2. tool-call arguments emitted as output tokens
+3. tool results replayed as input tokens on the next step
+
+That is why unused MCP servers are expensive even before you call them. Prefer workspace-level MCP configuration, disable global servers you do not need, and avoid duplicate tool surfaces such as adding an MCP filesystem server when the client already has built-in file tools.
+
+### Keep Agent Mode bounded
+
+Agent Mode is powerful because it can plan, call tools, edit, and verify. The same loop is why it gets expensive: every step can replay instructions, tool schemas, prior messages, tool calls, and tool results.
+
+Use Agent Mode when the task genuinely needs multi-step work, then bound it:
+
+| Cost driver | Token-efficient control |
+| --- | --- |
+| Vague task causes exploration | name files, functions, expected behavior, and done criteria |
+| Missing environment setup | use deterministic setup such as `copilot-setup-steps.yml` for cloud coding agents |
+| Too many tool calls | tell the agent to minimize tool calls and batch related reads/edits |
+| Long internal loop | set practical max-turn expectations and stop/re-scope when it drifts |
+| Repeated misunderstanding | use `/chronicle improve` in Copilot CLI to turn recurring friction into concise instructions |
+
+Precise issue descriptions are token controls. "Fix login bug" invites broad exploration. "File `src\auth\login.ts`, `validateEmail()` rejects `+`; add test for `user+tag@example.com`; done when targeted test passes" gives the agent a short path.
+
+When you already know where the answer is, say so. Examples:
+
+```text
+Read `README.md` and `docs\ARCHITECTURE.md`; do not scan other Markdown files unless those two point you there.
+```
+
+```text
+Use `jq` to inspect only the first two objects in `examples\payloads\*.json`; the schema shape is enough.
+```
+
+```text
+This change touches service X and service Y. Ignore unrelated services unless a test failure proves they matter.
+```
+
+For CLI-heavy exploration, CodeAct-style plugins are an optional future experiment: the idea is to collapse many small tool hops into one generated program so the agent replays less tool/context state. This repository does not benchmark that path yet, so present it as a research candidate rather than a proven workshop result.
 
 ### Use agents and subagents economically
 
@@ -106,7 +208,11 @@ subagent value ≈ saved main-agent context + cheaper subagent model
                  - coordination/retry overhead
 ```
 
-Caching complicates the model. If the main agent already paid to load a large file set, the next turn may reuse cached input pricing, while a subagent reading the same files usually pays fresh input. That can make a long main-agent thread cheaper than delegation even when the subagent model is smaller. Conversely, if the main thread is bloated with stale logs and tool results, a fresh subagent plus a dense handoff can improve both cost and quality.
+Caching complicates the model. If the main agent already paid to load a large file set, the next turn may reuse cached input pricing, while a subagent reading the same files usually pays fresh input. That can make a long main-agent thread cheaper than delegation even when the subagent model is smaller. The same warning applies to `/compact`: replacing cached history with a summary can increase near-term cost unless the summary removes enough stale context, is reused across forks, or becomes durable repo context for future prompts. Conversely, if the main thread is bloated with stale logs and tool results, a fresh subagent plus a dense handoff can improve both cost and quality.
+
+There is a real handoff dilemma. A carefully written subagent brief improves quality, but it is expensive main-agent output. A shorter brief with exact file paths and acceptance criteria saves output tokens, but the worker must build more context itself. Prefer the short brief when the subtask is simple and the files are obvious; use a richer brief only when missing nuance would cause rework.
+
+Side quests and forks are often better reasons for subagents than pure token savings. If a question needs a lot of exploratory reading but the result should not pollute the main thread, use an isolated agent or `/ask`-style fork so the exploration does not become recurring cached context for the implementation conversation.
 
 Do not use subagents reflexively. Anthropic's production research system reports that multi-agent systems can substantially improve broad research quality, but also that multi-agent systems burn tokens quickly and fit best when the task is valuable, parallelizable, and larger than one context window. Coding work is often less parallel than research, so delegate with explicit effort budgets and evaluate both outcome quality and token/cost telemetry.
 
@@ -116,7 +222,7 @@ Practical patterns:
 2. **Shard by ownership**: one worker per service, file family, or question; avoid overlapping scans.
 3. **Use cheap models intentionally**: route extraction, summarization, and test-output triage to mini models; keep architecture and hard debugging on stronger models.
 4. **Write high-density state**: use `HANDOFF.md`, scratch notes, or implementation logs so new sessions can select compressed context instead of replaying the chat.
-5. **Compact before quality drops**: use `/compact` or a manual handoff when context is mostly stale tool output, but keep the long thread when nuanced decisions are still actively shaping work.
+5. **Compact for reuse or quality, not automatically for price**: use `/compact` or a manual handoff when context is mostly stale tool output, when you will fork several follow-up sessions, or when the long thread is degrading answer quality; keep the long thread when cached context and nuanced decisions are still actively useful.
 
 Further reading: [Anthropic on multi-agent research](https://www.anthropic.com/engineering/built-multi-agent-research-system), [Anthropic on context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [LangChain on write/select/compress/isolate](https://blog.langchain.com/context-engineering-for-agents/), and [Google ADK on scoped multi-agent context](https://developers.googleblog.com/architecting-efficient-context-aware-multi-agent-framework-for-production/).
 
@@ -132,7 +238,15 @@ Default to **Auto** when unsure, then override intentionally:
 | Architecture decisions and hard debugging | Stronger model or higher reasoning effort |
 | Multi-file implementation | Stronger model with scoped files and a plan |
 
-Price per token is not the whole story. A stronger or newer model can be more efficient if it solves the task in fewer turns with fewer retries. Treat model efficiency as something to measure on your workload, not as a universal rule.
+Auto is a good default lane because it avoids leaving an expensive model pinned for routine work and can receive documented paid-plan discounts where eligible. Do not assume Auto will escalate into every premium model; pin a stronger model deliberately when the task warrants it.
+
+Price per token is not the whole story. A stronger or newer model can be more efficient if it solves the task in fewer turns with fewer retries. Treat model efficiency as something to measure on your workload, not as a universal rule. Saving a small amount on tokens is a bad trade if a weaker model costs an engineer an hour of repair work.
+
+When changing the target model, retune prompts and instruction files against that model's current prompting guide. This is not prompt compression; it reduces total spend by cutting wrong turns, over-eager tool use, and repeated clarification.
+
+Reasoning effort is another cost dial on models that support it. Use the lowest effort that preserves quality: lower effort for high-volume simple work, medium for typical agentic coding when supported, and high/max only when architecture, security, or novel decomposition justifies the spend.
+
+Latency-priced "fast" modes are also a tradeoff. Use them when waiting time is genuinely the bottleneck; otherwise parallelize independent work instead of paying a large premium just to watch one session finish sooner.
 
 ### Text, screenshots, and logs
 
@@ -159,6 +273,15 @@ uv run python run_token_lab.py analyze --runs suite-runs/runs --output suite-run
 ```
 
 The harness uses Copilot CLI non-interactive mode and `COPILOT_OTEL_FILE_EXPORTER_PATH` to write one telemetry file per run. Compare input tokens, output tokens, cached input tokens, turn count, tool count, duration, errors, estimated cost, and task quality across broad prompts, scoped prompts, summaries, response styles, and model choices. The runner has a backend boundary for a future SDK implementation, but the SDK path should only be enabled when it exposes equivalent telemetry.
+
+The language/tokenizer report is intentionally separate:
+
+```shell
+cd tools/copilot-token-lab
+uv run python language_token_benchmark.py --output reports/language-token-benchmark.md
+```
+
+It does not claim Copilot billing telemetry. It only counts tokenizer behavior so you can test assumptions such as "my local-language prompt is shorter, therefore cheaper."
 
 ### Try this
 
@@ -187,6 +310,7 @@ Compact this session into a handoff summary for implementation. Keep only decisi
 - subagents can reduce main-thread clutter, but parallel agents multiply work
 - Auto model selection is a good default, but model choice should match task complexity
 - OpenTelemetry makes token usage, model choice, tool calls, and latency visible enough to compare techniques
+- admin budgets, model availability, and content exclusion are governance controls; they complement prompt hygiene but do not replace it
 
 
 ---

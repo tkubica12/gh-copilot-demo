@@ -13,7 +13,12 @@ Extended the token-efficiency lab so the measured suite covers scaled `AGENTS.md
 - Promoted pricing-weighted token units in the token lab reports so input, output, and cache counters remain visible but cost-shaped savings are the headline metric.
 - Updated GPT-5.5 token lab pricing to the supplied Copilot price card: $5 input, $0.50 cached input, and $30 output per 1M tokens.
 - Updated GPT-5.4 mini token lab pricing to the supplied Copilot price card: $0.75 input, $0.075 cached input, and $4.50 output per 1M tokens.
+- Integrated additional token-optimization guidance for Agent Mode economics, scoped instruction files, language/tokenizer effects, MCP overhead, reasoning effort, and governance boundaries.
+- Added a tokenizer-only English/Czech language benchmark so language efficiency is measured separately from Copilot OpenTelemetry runs and is relevant to the workshop audience.
 - Made small workflow shard prompts self-contained and large fixture paths explicit to avoid measuring accidental permission failures.
+- Clarified that compression economics are situational because summary output is expensive, fresh sessions can lose cache-read discounts, and compaction pays off mainly for large stale context, fork/reuse, durable handoffs, or quality recovery.
+- Fixed multi-turn OTel aggregation so each turn file contributes its token counters instead of de-duplicating by reusable Python object ids across files.
+- Incorporated article guidance on model/cache economics, explicit source prompts, Wenyan-style handoffs, side-quest forks, and avoiding token savings that create engineer rework.
 
 ## 2026-04-25 – Split workshop guide into chapter files
 

@@ -16,11 +16,13 @@ The lab compares the same repository task across different workflow techniques:
 | `progressive-mcp-discovery` | Replacing a 100-tool MCP surface with search-then-fetch tools |
 | `external-low-context-subtask` | Measuring cases where orchestration overhead can exceed the saved context |
 | `compressed-subtask-context` | Testing whether focused mini-model shards beat one large accumulated context |
-| `compressed-context` | Simulating `/compact` or handoff summaries after a context-heavy conversation |
+| `compressed-context` | Simulating fresh handoff sessions after a context-heavy conversation |
 | `scoped-output-contract` | Comparing verbose prompts with a tight input and output contract |
 | `terse-output-contract` | Testing Caveman-inspired terse responses that reduce output tokens |
 
 The included sample telemetry fixture demonstrates the expected pattern: the scoped prompt uses fewer observed tokens and fewer tools than the broad baseline. A real validation run with Copilot CLI 1.0.36 and `gpt-5.5` is captured in `example-analysis.md`; in that run, the scoped file-discovery prompt used about 72% fewer observed total tokens than the broad baseline. Real results depend on the selected model, Copilot client version, repository state, and network conditions.
+
+The companion article behind this lab emphasizes two guardrails that the suite is designed to keep visible: continuing a warm session can be cheaper than restarting when cached input dominates, and terse or Wenyan-style handoffs are best reserved for agent-to-agent or cloud-agent work where humans will review the pull request rather than the chat transcript.
 
 ## Prerequisites
 
@@ -71,11 +73,18 @@ It covers these comparison groups:
 | `mcp-discovery` | MCP server with 100 direct action tools versus search-then-fetch discovery tools |
 | `workflow-overhead` | one small main-agent prompt versus externally orchestrated mini-model shards |
 | `workflow-large-shards` | one large accumulated-context prompt versus focused mini-model shards |
-| `compression-simulation` | three resumed turns with accumulated history versus fresh turns carrying compact handoffs |
+| `compression-simulation` | three resumed turns with accumulated history versus fresh handoff sessions that carry compact summaries |
 | `prompt-efficiency` | verbose prompt versus concise prompt with explicit file and output bounds |
 | `response-style` | normal explanatory response versus a Caveman-inspired terse output contract |
 
 Use a dry run first by omitting `--execute`. The generated MCP servers are local stdio servers in `mcp_servers\token_lab_mcp.py`.
+
+The lab also includes a tokenizer-only language micro-benchmark. It is separate from Copilot OTel because it measures tokenizer behavior, not model execution:
+
+```shell
+cd tools/copilot-token-lab
+uv run python language_token_benchmark.py --output reports/language-token-benchmark.md
+```
 
 ## Analyze runs
 
@@ -90,7 +99,11 @@ Use weighted units as the headline metric when pricing weights are available. Ra
 
 The calculation mirrors the public GitHub Models token-unit pattern: multiply input, cached-input, and output tokens by their respective model multipliers, then compare the summed units. Copilot billing can use different plan/model rates, so keep the TOML file as the single place to update assumptions.
 
-For checked-in examples, see `example-analysis.md` for the original broad-versus-scoped run, `suite-example-analysis.md` for the expanded benchmark matrix, and `reports/python-suite-2026-04-26.md` for a run-level Python suite report.
+Interpret compression results conservatively. A compact summary is generated as output, and the next fresh session may pay full input rates for summary/context that would otherwise have stayed in cached history. Do not treat `/compact` as something to run frequently inside a coherent active conversation for cost savings. Compression usually needs a very large stale-context reduction, a quality benefit, a durable repo handoff, or reuse across multiple forked follow-up sessions to beat a warm long-running conversation on cost alone.
+
+Also interpret model choice with cache in mind. Smaller models can save output and fresh input cost, but duplicated context reads, lower quality, or repeated repair turns can erase the saving. Measure the full session shape, not only the per-token price.
+
+For checked-in examples, see `example-analysis.md` for the original broad-versus-scoped run, `suite-example-analysis.md` for the expanded benchmark matrix, `reports/python-suite-2026-04-26.md` for a run-level Python suite report, and `reports/language-token-benchmark.md` for tokenizer-only language results.
 
 ## Test the analyzer
 

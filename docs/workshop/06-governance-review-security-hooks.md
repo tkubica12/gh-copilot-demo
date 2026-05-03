@@ -6,6 +6,8 @@
 
 This chapter shows that engineering does not end when code is generated.
 
+Governance and token efficiency overlap, but they are not the same control plane. Budgets, user-level AI-credit limits, model availability, and content exclusion are administrative controls. Prompt compression, scoped instructions, and MCP hygiene reduce usage per task, but they do not replace budget and model policy.
+
 ## 6.1 Open a pull request and use Copilot review in GitHub
 
 The best way to demonstrate code review is directly in the GitHub portal.
@@ -48,6 +50,8 @@ Explain the repository surfaces that continue the flow:
 - dependency findings
 - autofix and remediation
 - workflow checks in `.github\workflows`
+
+Content exclusion is primarily a privacy and policy control for keeping selected content out of Copilot context. It can reduce accidental context size for excluded paths, but do not treat it as the main per-developer token-saving mechanism; scoped prompts and small instruction files are the day-to-day levers.
 
 Open these workflow files before or during the demo:
 

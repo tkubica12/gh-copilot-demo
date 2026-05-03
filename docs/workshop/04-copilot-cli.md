@@ -84,7 +84,7 @@ The picker groups sessions by branch and repository. Select a session and contin
 
 - `/resume` works for both local CLI sessions and cloud coding agent sessions — you can resume a cloud session locally
 - `/rename` makes it easy to find sessions later when you have many
-- `/compact` compresses conversation history so long-running sessions never hit context limits (auto-compaction also runs at 95% of the context window)
+- `/compact` compresses conversation history for context-window pressure, stale context, or fork/reuse handoffs; do not present it as a routine cost-saving button because it can replace cheap cached history with fresh input plus summary output
 
 ## 5.6 Review, diff, and share work
 
@@ -180,6 +180,7 @@ Then:
 
 - this is a feedback loop: Copilot uses your real session history to help you work better
 - `/chronicle improve` is particularly powerful — it finds patterns where Copilot misunderstood your intent and generates custom instructions to fix them
+- this is also a token-efficiency loop: removing repeated misunderstanding prevents extra correction turns in later sessions
 - all session data stays local in `~/.copilot/session-state/` — nothing is uploaded beyond normal model interactions
 - you can also ask free-form questions about past work, like "Have I worked on anything related to the payments API?"
 
