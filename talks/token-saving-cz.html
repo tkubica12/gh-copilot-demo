@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Šetříme tokeny v GitHub Copilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0b;
@@ -46,7 +49,8 @@
   html, body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss03";
     font-size: 19px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -113,7 +117,7 @@
   .toc-list a:hover { color: var(--accent); }
   .toc-list a .toc-num {
     color: var(--text-faint);
-    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
     font-size: 12px;
     min-width: 24px;
   }
@@ -152,7 +156,7 @@
   }
   .card-num {
     flex-shrink: 0;
-    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
     font-size: 12px;
     color: var(--text-faint);
     font-weight: 600;
@@ -192,7 +196,7 @@
   .card-body-inner li { margin-bottom: 6px; }
   .card-body-inner strong { color: var(--text); font-weight: 600; }
   .card-body-inner code {
-    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
     font-size: 15.5px;
     background: var(--surface-3);
     padding: 1px 6px;
@@ -206,7 +210,7 @@
     border-radius: 6px;
     padding: 16px 18px;
     overflow-x: auto;
-    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
     font-size: 15.5px;
     color: var(--text);
     margin: 14px 0;
@@ -349,7 +353,7 @@
     margin-bottom: 18px;
     border: 1px solid var(--paper-border);
   }
-  .ukazka-text.mono { font-family: "SF Mono", "JetBrains Mono", Consolas, monospace; font-size: 17px; }
+  .ukazka-text.mono { font-family: "JetBrains Mono", "SF Mono", Consolas, monospace; font-size: 17px; }
   .ukazka-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -369,7 +373,7 @@
   .stat .stat-value {
     color: var(--text);
     font-weight: 600;
-    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-family: "JetBrains Mono", "SF Mono", Consolas, monospace;
     font-size: 14px;
   }
   .stat .delta-good { color: var(--green); }
@@ -1124,7 +1128,7 @@ Navrhni konkrétní úpravu skill / AGENTS.md / prompt template.</pre>
   };
   const saved = (() => { try { return localStorage.getItem('token-talk-theme'); } catch(e) { return null; } })();
   const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-  applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+  applyTheme(saved || 'dark');
   themeBtn.addEventListener('click', () => {
     const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     applyTheme(next);
