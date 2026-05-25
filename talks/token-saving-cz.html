@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Šetříme tokeny v GitHub Copilot</title>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #131316;
+    --surface-2: #1a1a1f;
+    --surface-3: #22232a;
+    --border: #2a2b32;
+    --border-strong: #3a3b44;
+    --text: #ededef;
+    --text-dim: #9a9ba3;
+    --text-faint: #6a6b73;
+    --accent: #7c9eff;
+    --accent-soft: rgba(124, 158, 255, 0.12);
+    --green: #6ec48a;
+    --red: #e07a7a;
+    --amber: #d4a574;
+    --code-bg: #0a0a0b;
+    --paper-bg: #f6f3eb;
+    --paper-border: #d4c9a8;
+    --paper-text: #1a1a1a;
+  }
+  html[data-theme="light"] {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --surface-2: #f4f4f6;
+    --surface-3: #e9eaee;
+    --border: #e2e3e8;
+    --border-strong: #c8cad1;
+    --text: #18181b;
+    --text-dim: #52525b;
+    --text-faint: #8a8a93;
+    --accent: #3b6df2;
+    --accent-soft: rgba(59, 109, 242, 0.08);
+    --green: #2f8f4f;
+    --red: #c14545;
+    --amber: #a06820;
+    --code-bg: #f4f4f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background 0.2s, color 0.2s;
+  }
+  body {
+    min-height: 100vh;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 72px 36px 96px; }
+
+  /* Header */
+  header { margin-bottom: 56px; }
+  .eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  header p {
+    color: var(--text-dim);
+    font-size: 20px;
+    max-width: 780px;
+  }
+
+  /* TOC */
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 56px;
+  }
+  nav.toc h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .toc-list { display: flex; flex-direction: column; gap: 4px; }
+  .toc-list a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 0;
+    transition: color 0.15s;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .toc-list a:hover { color: var(--accent); }
+  .toc-list a .toc-num {
+    color: var(--text-faint);
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 12px;
+    min-width: 24px;
+  }
+
+  /* Section heading */
+  section.group { margin-bottom: 56px; }
+  .group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-faint);
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Cards — uses grid-template-rows trick for fast animation */
+  .card-list { display: flex; flex-direction: column; gap: 8px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .card:hover { border-color: var(--border-strong); }
+  .card.open { border-color: var(--accent); background: var(--surface-2); }
+
+  .card-head {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+  }
+  .card-num {
+    flex-shrink: 0;
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 12px;
+    color: var(--text-faint);
+    font-weight: 600;
+    width: 24px;
+  }
+  .card.open .card-num { color: var(--accent); }
+  .card-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--text);
+    letter-spacing: -0.005em;
+  }
+  .card-toggle {
+    color: var(--text-faint);
+    font-size: 12px;
+    transition: transform 0.2s, color 0.15s;
+  }
+  .card.open .card-toggle { transform: rotate(180deg); color: var(--accent); }
+
+  /* PERFORMANCE FIX: grid-template-rows animates instantly without computing huge max-height */
+  .card-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .card.open .card-body { grid-template-rows: 1fr; }
+  .card-body-outer { overflow: hidden; }
+  .card-body-inner {
+    padding: 0 32px 32px 72px;
+    color: var(--text-dim);
+    font-size: 17.5px;
+  }
+  .card-body-inner p { margin-bottom: 12px; color: var(--text); }
+  .card-body-inner p:last-child { margin-bottom: 0; }
+  .card-body-inner ul, .card-body-inner ol { padding-left: 22px; margin-bottom: 14px; color: var(--text-dim); }
+  .card-body-inner li { margin-bottom: 6px; }
+  .card-body-inner strong { color: var(--text); font-weight: 600; }
+  .card-body-inner code {
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 15.5px;
+    background: var(--surface-3);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  pre.code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 15.5px;
+    color: var(--text);
+    margin: 14px 0;
+    line-height: 1.55;
+  }
+  .code.bad { border-left: 2px solid var(--red); }
+  .code.good { border-left: 2px solid var(--green); }
+
+  .label {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-weight: 600;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .label-bad { background: rgba(224,122,122,0.12); color: var(--red); }
+  .label-good { background: rgba(110,196,138,0.12); color: var(--green); }
+  .label-warn { background: rgba(212,165,116,0.14); color: var(--amber); }
+
+  table.compact {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 16.5px;
+  }
+  table.compact th, table.compact td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.compact th {
+    color: var(--text-faint);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  table.compact td { color: var(--text-dim); }
+  table.compact td:first-child { color: var(--text); }
+
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 6px;
+    margin: 18px 0;
+    color: var(--text);
+    font-size: 17px;
+  }
+  .callout.warn {
+    background: rgba(212,165,116,0.08);
+    border-left-color: var(--amber);
+  }
+
+  /* Inline expandable example */
+  .example-toggle {
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px 0;
+    transition: border-color 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .example-toggle:hover { border-color: var(--accent); color: var(--text); }
+  .example-toggle .arrow { font-size: 10px; transition: transform 0.2s; color: var(--text-faint); }
+  .example-toggle.open .arrow { transform: rotate(90deg); color: var(--accent); }
+  .example-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .example-content.open { grid-template-rows: 1fr; }
+  .example-content-inner {
+    overflow: hidden;
+  }
+  .example-content-inner > div {
+    padding: 12px 4px 6px;
+  }
+
+  /* Ukázka — caveman */
+  .ukazka {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 8px 0;
+  }
+  .ukazka-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    padding: 4px;
+    background: var(--bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .ukazka-tab {
+    flex: 1;
+    padding: 10px 14px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 13px;
+    border-radius: 5px;
+    transition: 0.15s;
+    font-family: inherit;
+  }
+  .ukazka-tab:hover { color: var(--text); }
+  .ukazka-tab.active {
+    background: var(--surface-3);
+    color: var(--text);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .ukazka-content { display: none; }
+  .ukazka-content.active { display: block; }
+  .ukazka-text {
+    background: var(--paper-bg);
+    color: var(--paper-text);
+    padding: 24px 28px;
+    border-radius: 8px;
+    font-family: "Caveat", "Comic Sans MS", cursive;
+    font-size: 22px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    border: 1px solid var(--paper-border);
+  }
+  .ukazka-text.mono { font-family: "SF Mono", "JetBrains Mono", Consolas, monospace; font-size: 17px; }
+  .ukazka-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--bg);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .stat .stat-label {
+    color: var(--text-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+  }
+  .stat .stat-value {
+    color: var(--text);
+    font-weight: 600;
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 14px;
+  }
+  .stat .delta-good { color: var(--green); }
+  .stat .delta-bad { color: var(--red); }
+
+  /* Summary */
+  .summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  @media (max-width: 720px) {
+    .summary { grid-template-columns: 1fr; }
+    .card-body-inner { padding-left: 24px; }
+    .toc-list a { font-size: 13px; }
+  }
+  .summary-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px;
+  }
+  .summary-col h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .summary-col ul { list-style: none; padding: 0; }
+  .summary-col li {
+    padding: 9px 0 9px 26px;
+    position: relative;
+    font-size: 16.5px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-col li:last-child { border-bottom: none; }
+  .summary-col li::before {
+    content: "→";
+    position: absolute;
+    left: 0; top: 7px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .closing-quote {
+    margin-top: 40px;
+    padding: 32px 28px;
+    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .closing-quote .q {
+    font-size: 23px;
+    line-height: 1.5;
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .closing-quote .q strong { color: var(--accent); font-weight: 600; }
+
+  footer {
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 12px;
+    padding: 48px 20px 0;
+    margin-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+
+  .controls {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 6px;
+    z-index: 100;
+  }
+  .ctrl-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    backdrop-filter: blur(8px);
+    transition: 0.15s;
+  }
+  .ctrl-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .ctrl-btn.icon-btn { padding: 9px 12px; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">Jak snížit náklady v 15 minutách</div>
+  <h1>Šetříme tokeny v GitHub Copilot</h1>
+  <p>Od snadných výher po pokročilý context engineering. Cílem není utratit nejméně tokenů, ale získat z každého maximální hodnotu.</p>
+</header>
+
+<!-- =============== INTRO =============== -->
+<section class="group" id="intro">
+  <div class="group-title">Mentální model</div>
+  <div class="card-list">
+
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">00</div>
+        <div class="card-title">Co všechno žere tokeny</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Náklad neplyne jen z toho, co napíšete do chatu. Sčítá se z mnoha vrstev:</p>
+        <ul>
+          <li><strong>Vždy-zapnuté instrukce</strong> — <code>AGENTS.md</code>, custom instructions, hooky</li>
+          <li><strong>Vybrané a otevřené soubory</strong> v kontextu</li>
+          <li><strong>Historie chatu</strong> a shrnutí mezi tahy</li>
+          <li><strong>Definice MCP nástrojů</strong> a jejich JSON schémata — i ty, které nepoužijete</li>
+          <li><strong>Výsledky tool callů</strong> zopakované jako input v dalším kroku</li>
+          <li><strong>Výstup modelu</strong> (output tokeny jsou nejdražší)</li>
+          <li><strong>Retries, subagents, smyčky</strong> v agent módu</li>
+        </ul>
+        <div class="callout">Cíl je <strong>scoped sufficiency</strong> — dostatek kontextu, aby Copilot úkol vyřešil správně, ale ani slovo navíc.</div>
+
+        <p style="margin-top: 20px;"><strong>Tři typy tokenů — proč na nich záleží:</strong></p>
+        <ul>
+          <li><strong>Input</strong> — vše, co posíláte modelu poprvé (prompt, kontext, tool results)</li>
+          <li><strong>Cached input</strong> — opakovaný prefix, který model už viděl v předchozím tahu téže session. <strong>~10× levnější</strong> než fresh input. Proto dlouhá koherentní session může být levnější než restart.</li>
+          <li><strong>Output</strong> — to, co model vygeneruje. <strong>~8× dražší</strong> než fresh input, <strong>~80× dražší</strong> než cached input.</li>
+        </ul>
+
+        <p><strong>Příklad z reálného aktuálního ceníku (USD za 1M tokenů):</strong></p>
+        <table class="compact">
+          <tr>
+            <th rowspan="2" style="vertical-align:bottom;">Model</th>
+            <th colspan="3" style="text-align:center; border-bottom: 1px solid var(--border);">Krátký kontext</th>
+            <th colspan="3" style="text-align:center; border-bottom: 1px solid var(--border);">Dlouhý (1M)</th>
+          </tr>
+          <tr>
+            <th style="text-align:right;">Cache</th>
+            <th style="text-align:right;">Input</th>
+            <th style="text-align:right;">Output</th>
+            <th style="text-align:right;">Cache</th>
+            <th style="text-align:right;">Input</th>
+            <th style="text-align:right;">Output</th>
+          </tr>
+          <tr>
+            <td><strong>gpt-5.5</strong></td>
+            <td style="text-align:right;">$0,50</td>
+            <td style="text-align:right;">$5,00</td>
+            <td style="text-align:right;">$30,00</td>
+            <td style="text-align:right;">$1,00</td>
+            <td style="text-align:right;">$10,00</td>
+            <td style="text-align:right;">$45,00</td>
+          </tr>
+          <tr>
+            <td><strong>gpt-5.4</strong></td>
+            <td style="text-align:right;">$0,25</td>
+            <td style="text-align:right;">$2,50</td>
+            <td style="text-align:right;">$15,00</td>
+            <td style="text-align:right;">$0,50</td>
+            <td style="text-align:right;">$5,00</td>
+            <td style="text-align:right;">$22,50</td>
+          </tr>
+          <tr>
+            <td><strong>gpt-5.4-mini</strong></td>
+            <td style="text-align:right;">$0,075</td>
+            <td style="text-align:right;">$0,75</td>
+            <td style="text-align:right;">$4,50</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+          </tr>
+          <tr>
+            <td><strong>gpt-5.4-nano</strong></td>
+            <td style="text-align:right;">$0,02</td>
+            <td style="text-align:right;">$0,20</td>
+            <td style="text-align:right;">$1,25</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+            <td style="text-align:right; color: var(--text-faint);">—</td>
+          </tr>
+        </table>
+        <p style="font-size: 12.5px; color: var(--text-faint);">Mini a nano dlouhý kontext nemají.</p>
+
+        <p style="margin-top: 18px;"><strong>Ballpark pravidla (zapamatujte si tahle čísla):</strong></p>
+        <ul>
+          <li><strong>Cache : Input : Output ≈ 1 : 10 : 60</strong> — platí napříč celou rodinou. Output je ~6× dražší než fresh input a ~60× dražší než cached. Proto omezit délku výstupu má vždy nejvyšší ROI.</li>
+          <li><strong>Každý tier dolů je ~3–4× levnější:</strong> nano → mini → 5.4 → 5.5. Flagship vs nano = <strong>25× rozdíl</strong>. Pro extrakci, summarization a triage je nano často dost.</li>
+          <li><strong>Dlouhý kontext (1M) zdraží ~2×</strong> input/cache a ~1,5× output. Posílat zbytečně celé repo do 1M okna je nejdražší způsob, jak nic neušetřit.</li>
+          <li><strong>Cache je důvod, proč <code>/compact</code> není zadarmo</strong> — nahradíte-li cached history novým summary inputem, platíte 10× víc za stejnou informaci.</li>
+        </ul>
+      </div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== EASY =============== -->
+<section class="group" id="easy">
+  <div class="group-title">Snadné výhry pro každého</div>
+  <div class="card-list">
+
+    <!-- 1 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">01</div>
+        <div class="card-title">Použijte Auto model jako default</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Pokud si nejste jistí, proč potřebujete premium reasoning model, začněte s <strong>Auto</strong>.</p>
+        <ul>
+          <li>Routuje podle složitosti úkolu, dostupnosti a zdraví systému</li>
+          <li>Nezůstane vám pinnutý drahý model na rutinu</li>
+          <li><strong>10% sleva na multiplier</strong> u placených plánů (Chat, CLI, cloud agent)</li>
+          <li>Manuální override pro architekturu nebo těžký debug zůstává</li>
+        </ul>
+        <p>V praxi to znamená, že pro běžnou práci ušetříte 10 % oproti pinnutí jakéhokoliv konkrétního modelu — a navíc často dostanete levnější model, který úkol zvládne.</p>
+      </div></div></div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">02</div>
+        <div class="card-title">Explicitní kontext místo širokých promptů</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <pre class="code bad"><span class="label label-bad">Drahé</span>
+Pochop tento repozitář a oprav problém s loginem.</pre>
+        <pre class="code good"><span class="label label-good">Levné</span>
+Soustřeď se na src\auth\login.ts a tests\auth\login.test.ts.
+Bug: validateEmail odmítá user+tag@example.com.
+Přidej test a oprav jen tohle chování.</pre>
+        <p><strong>Pravidlo:</strong> konkrétní cesty k souborům jsou levnější než průzkum celého repozitáře. Široký prompt agenta donutí grepovat, číst, zahazovat — všechno se vám započítá.</p>
+
+        <p style="margin-top: 18px;"><strong>Bonus: batchujte související úkoly do jednoho promptu.</strong></p>
+        <p>Jakmile už zaplatíte za načtení kontextu (AGENTS.md, tool schémata, otevřené soubory), je škoda ho využít jen na jeden drobný úkol. Když agent v jednom tahu opraví bug, přidá test, aktualizuje changelog a doplní docstring, platíte kontext jednou místo čtyřikrát.</p>
+        <pre class="code good">V src\auth\login.ts:
+1. validateEmail — povol user+tag@example.com
+2. přidej test do tests\auth\login.test.ts
+3. doplň docstring k funkci
+4. zapiš změnu do CHANGELOG.md</pre>
+        <div class="callout warn"><strong>Kam až jít?</strong> Praktický limit je <strong>3–5 souvisejících úkolů</strong> ve stejné oblasti kódu. Nad to agent ztrácí fokus, dělá víc chyb, retries to celé sežerou. A nemíchejte úkoly z různých částí repa do jednoho promptu — to zase nafoukne kontext.</div>
+      </div></div></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">03</div>
+        <div class="card-title">Nalezení souborů jako první krok před implementací</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Místo „rozumíš tomu celému?" se zeptejte:</p>
+        <pre class="code good">Najdi nejmenší množinu souborů, kterou potřebuju pro pochopení event-driven flow.
+Vypiš jen cesty a jednu větu proč. Nedělej shrnutí celého repa.</pre>
+        <p>Pak teprve zadejte úkol — s vědomím, co je relevantní. Agent vám vrátí krátký seznam místo dlouhé eseje, a vy z něj vyberete jen to, co skutečně potřebujete v kontextu.</p>
+      </div></div></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">04</div>
+        <div class="card-title">Omezte délku výstupu (output tokeny jsou nejdražší)</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <pre class="code bad"><span class="label label-bad">Drahé</span>
+Vysvětli detailně všechno, co jsi změnil.</pre>
+        <pre class="code good"><span class="label label-good">Levné</span>
+Vypiš: změněné soubory, proč, testy. Max 5 odrážek.</pre>
+        <p>„Caveman" styl výstupu pro reporty:</p>
+        <pre class="code good">Hotovo. Vypiš: soubory, proč, validace, rizika. Bez úvodu. ≤5 odrážek.</pre>
+        <div class="callout warn"><strong>Pozor:</strong> nezkracujte bezpečnostní, destruktivní (mazání, force push, DROP) nebo compliance instrukce. Nejednoznačnost stojí víc než ušetřené tokeny.</div>
+      </div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== UKAZKA after #4 =============== -->
+<section class="group" id="ukazka">
+  <div class="card-list">
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">★</div>
+        <div class="card-title">Ukázka — vzkaz pro dítě ve třech verzích</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner" style="padding-left: 32px;">
+        <p style="color: var(--text-dim);">
+          Stejná informace ve třech verzích. Ukazuje, kde je „sweet spot" mezi srozumitelností a úsporností.
+        </p>
+
+        <div class="ukazka-tabs" style="margin-top: 16px;">
+          <button class="ukazka-tab active" data-tab="v1">1 · Pečlivá máma</button>
+          <button class="ukazka-tab" data-tab="v2">2 · Úsporně (caveman)</button>
+          <button class="ukazka-tab" data-tab="v3">3 · Extrémně (agent → agent)</button>
+        </div>
+
+        <div class="ukazka-content active" data-content="v1">
+          <div class="ukazka-text">
+            Ahoj zlatíčko, mamka přijde domů kolem šesté hodiny večerní. Prosím tě, udělej si nejdřív domácí úkoly z matematiky a češtiny, ano? Až je budeš mít hotové, můžeš si hodinu hrát na tabletu. V lednici je rajská polévka, kterou si ohřej v mikrovlnce na tři minuty na nejvyšší výkon. Nezapomeň prosím vyvenčit Bertíka kolem páté hodiny a dej mu pak granule do misky. Mám tě moc ráda, mamka 💕
+          </div>
+          <div class="ukazka-stats">
+            <div class="stat"><div class="stat-label">Znaky</div><div class="stat-value">486</div></div>
+            <div class="stat"><div class="stat-label">Tokeny (cz)</div><div class="stat-value">~180</div></div>
+            <div class="stat"><div class="stat-label">Čitelnost</div><div class="stat-value delta-good">vysoká</div></div>
+            <div class="stat"><div class="stat-label">Pro koho</div><div class="stat-value">lidi s časem</div></div>
+          </div>
+        </div>
+
+        <div class="ukazka-content" data-content="v2">
+          <div class="ukazka-text">
+            Doma v 18:00. Úkoly: M + Č → pak tablet 1h. Polévka v lednici → mikro 3 min. Pes ven 17:00 + granule. Mamka 💕
+          </div>
+          <div class="ukazka-stats">
+            <div class="stat"><div class="stat-label">Znaky</div><div class="stat-value">110 <span class="delta-good">−77 %</span></div></div>
+            <div class="stat"><div class="stat-label">Tokeny (cz)</div><div class="stat-value">~45 <span class="delta-good">−75 %</span></div></div>
+            <div class="stat"><div class="stat-label">Čitelnost</div><div class="stat-value delta-good">stále dobrá</div></div>
+            <div class="stat"><div class="stat-label">Pro koho</div><div class="stat-value">člověk co rozumí</div></div>
+          </div>
+        </div>
+
+        <div class="ukazka-content" data-content="v3">
+          <div class="ukazka-text mono">
+            18→mom. úkoly→tablet1h. polévka:mikro3m. pes:17→ven+jíst.
+          </div>
+          <div class="ukazka-stats">
+            <div class="stat"><div class="stat-label">Znaky</div><div class="stat-value">63 <span class="delta-good">−87 %</span></div></div>
+            <div class="stat"><div class="stat-label">Tokeny (cz)</div><div class="stat-value">~30 <span class="delta-good">−83 %</span></div></div>
+            <div class="stat"><div class="stat-label">Čitelnost</div><div class="stat-value delta-bad">špatná</div></div>
+            <div class="stat"><div class="stat-label">Pro koho</div><div class="stat-value">agent → agent</div></div>
+          </div>
+        </div>
+
+        <p style="margin-top: 18px; color: var(--text-dim);">
+          <strong style="color: var(--text);">Pointa:</strong> Caveman styl je sweet spot pro reporty, které ještě čte člověk.
+          Extrémní styl má smysl jen pro agent-to-agent handoff nebo durable context, kde se text replayuje mnoho tahů.
+          Nikdy nezkracujte instrukce, kde nejasnost způsobí rework.
+        </p>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== EASY continued 5,6 =============== -->
+<section class="group">
+  <div class="card-list">
+
+    <!-- 5 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">05</div>
+        <div class="card-title">Vkládejte výňatky, ne celé logy — a u UI raději Playwright</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>U <strong>terminálových výstupů</strong> screenshot je antipattern — text-as-image musí projít OCR/vision modelem, je dražší a méně přesný než text. Místo 5 000 řádků CI logu pošlete jen relevantní výňatek:</p>
+        <pre class="code good">Command: npm test
+Exit code: 1
+Relevantní chyba:
+  TypeError: Cannot read property 'id' of undefined
+  at UserService.findById (src/services/user.ts:42)
+
+Posledních 30 řádků:
+  ...</pre>
+        <p>U <strong>vizuálních otázek</strong> (rozložení UI, design feedback, kontrola jak komponenta vypadá v prohlížeči) je obrázek naopak na místě — ale i tady je efektivnější použít <strong>Playwright MCP nebo browser canvas</strong>:</p>
+        <ul>
+          <li>Agent si stránku otevře sám, vyhodnotí ji a vrátí jen zjištění</li>
+          <li>Můžete cílit konkrétní element (selector), ne celou stránku</li>
+          <li>Plyne z toho dynamický kontext — agent může klikat, scrollovat, měřit</li>
+          <li>Místo „tady máš PNG, řekni mi co je špatně" → „otevři localhost:3000, najdi tlačítko Submit, ověř kontrast a velikost"</li>
+        </ul>
+        <div class="callout">Pravidlo: text pro text, řízený browser pro vizuál. Statický screenshot až jako poslední možnost.</div>
+      </div></div></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">06</div>
+        <div class="card-title">Jazyk a struktura promptu — proč angličtina není dogma</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Tokenizer (např. <code>o200k_base</code>, kterým běží GPT modely) je trénovaný hlavně na anglickém textu. Anglická slova se proto často mapují na jeden token, zatímco česká slova s diakritikou se rozsekají na 2–4 tokeny. <strong>Stejný počet znaků tedy neznamená stejný počet tokenů.</strong></p>
+
+        <p>Ale není to dogma ze tří důvodů:</p>
+        <ol>
+          <li><strong>Strukturovaný formát smaže většinu rozdílu</strong> — když jdete z prózy na key/value, čeština je téměř srovnatelná s angličtinou.</li>
+          <li><strong>Kvalita má přednost před úsporou</strong> — pokud myslíte v češtině, anglický prompt může vést k nepřesnostem.</li>
+          <li><strong>Cena za chybu &gt; cena za tokeny</strong> — rework kvůli nejednoznačnému promptu stojí mnohem víc než „drahá" čeština.</li>
+        </ol>
+
+        <p style="margin-top: 14px;"><strong>Co znamená „normální", „strukturovaný" a „verbose" prompt?</strong> Klikněte na příklady níže — všechny tři verze říkají to samé.</p>
+
+        <button class="example-toggle" data-example="ex-normal">
+          <span class="arrow">▶</span>
+          <span><strong>Normální</strong> — přirozená věta, jak by ji člověk řekl kolegovi</span>
+        </button>
+        <div class="example-content" data-example-content="ex-normal"><div class="example-content-inner"><div>
+          <pre class="code">Vytvoř POST endpoint /api/users, který validuje povinné pole name a email,
+při chybě vrátí 400 a při úspěchu 201 s vytvořeným uživatelem.</pre>
+          <table class="compact">
+            <tr><th>Jazyk</th><th>Znaky</th><th>Tokeny</th><th>vs EN</th></tr>
+            <tr><td>Angličtina</td><td>148</td><td><strong>31</strong></td><td>1.00×</td></tr>
+            <tr><td>Čeština</td><td>148</td><td><strong>50</strong></td><td>1.61×</td></tr>
+          </table>
+          <p style="font-size: 13px; color: var(--text-dim);">Tady je rozdíl výrazný — čeština stojí o 61 % víc tokenů, protože diakritika a méně frekventovaná slova jdou přes více tokenů každé.</p>
+        </div></div></div>
+
+        <button class="example-toggle" data-example="ex-structured">
+          <span class="arrow">▶</span>
+          <span><strong>Strukturovaný</strong> — klíče, dvojtečky, žádná próza</span>
+        </button>
+        <div class="example-content" data-example-content="ex-structured"><div class="example-content-inner"><div>
+          <pre class="code">POST /api/users
+Validuj: name pov, email pov+platny
+400 chyby
+201 user</pre>
+          <table class="compact">
+            <tr><th>Jazyk</th><th>Znaky</th><th>Tokeny</th><th>vs EN</th></tr>
+            <tr><td>Angličtina</td><td>71</td><td><strong>20</strong></td><td>1.00×</td></tr>
+            <tr><td>Čeština</td><td>70</td><td><strong>23</strong></td><td>1.15×</td></tr>
+          </table>
+          <p style="font-size: 13px; color: var(--text-dim);">Rozdíl klesl ze 61 % na 15 %. Struktura sama o sobě ušetří víc než volba jazyka.</p>
+        </div></div></div>
+
+        <button class="example-toggle" data-example="ex-verbose">
+          <span class="arrow">▶</span>
+          <span><strong>Verbose</strong> — zdvořilý odstavec se vším drobným</span>
+        </button>
+        <div class="example-content" data-example-content="ex-verbose"><div class="example-content-inner"><div>
+          <pre class="code">Prosím tě, mohl bys mi vytvořit nový HTTP endpoint typu POST
+na cestě /api/users, který přijme JSON s polem name a email,
+validuje, že jsou obě hodnoty přítomné a email je ve správném formátu,
+a v případě úspěchu vrátí 201 Created s vytvořeným objektem uživatele,
+zatímco při validační chybě vrátí 400 Bad Request s detaily chyb?</pre>
+          <table class="compact">
+            <tr><th>Verze</th><th>Tokeny</th><th>vs strukturovaný</th></tr>
+            <tr><td>Verbose CZ</td><td><strong>~95</strong></td><td>+313 %</td></tr>
+            <tr><td>Normální CZ</td><td>50</td><td>+117 %</td></tr>
+            <tr><td>Strukturovaný CZ</td><td>23</td><td>baseline</td></tr>
+          </table>
+          <p style="font-size: 13px; color: var(--text-dim);">Verbose = 4× dražší než strukturovaný. A model z toho většinou stejně neumí vytěžit víc užitku.</p>
+        </div></div></div>
+
+
+        <p><strong>Závěr:</strong> Používejte rodný jazyk, když jde o kvalitu a vyjadřujete nuance. Pro opakované operační prompty (skill instrukce, agent handoffs, šablony) vítězí úsporná angličtina nebo strukturované klíče — bez ohledu na jazyk.</p>
+      </div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== ADVANCED =============== -->
+<section class="group" id="advanced">
+  <div class="group-title">Pokročilé techniky</div>
+  <div class="card-list">
+
+    <!-- 7 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">07</div>
+        <div class="card-title">Hierarchický kontext — skills místo obřího AGENTS.md</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Always-on instrukce jsou <strong>opakovaná daň</strong> — platíte je v každém tahu.</p>
+        <table class="compact">
+          <tr><th>Typ kontextu</th><th>Kam patří</th><th>Pravidlo</th></tr>
+          <tr><td>Always-on (drobné)</td><td><code>AGENTS.md</code></td><td>jen fakta, která agent nemůže odvodit</td></tr>
+          <tr><td>Path-specific</td><td><code>.github\instructions\*.instructions.md</code> s <code>applyTo</code></td><td>načítá se jen u relevantních souborů</td></tr>
+          <tr><td>Workflow-specific</td><td>prompt files</td><td>spouští se na vyžádání</td></tr>
+          <tr><td>Detailní capability</td><td><code>.github\skills\</code></td><td>progressive reveal — jen když je téma</td></tr>
+          <tr><td>Live data</td><td>MCP server</td><td>fetch on demand</td></tr>
+        </table>
+        <p><strong>Měřený výsledek z mého lab benchmarku:</strong></p>
+        <div class="callout">Velký AGENTS.md vs. malý AGENTS.md + jedna relevantní skill → <strong>68,8 % úspora ve weighted units</strong>.</div>
+        <p>Skill může mít sub-skills nebo odkazy na další kontext — funguje jako lazy-loaded knihovna. Místo monolitu se dokumentace načítá podle potřeby.</p>
+
+        <p style="margin-top: 18px;"><strong>Nechte agenta psát kontext pro budoucnost.</strong></p>
+        <p>Po každé netriviální session máte v paměti agenta destilát: jak je kód poskládaný, kde jsou pasti, jaká jsou rozhodnutí. Místo aby tahle znalost zmizela s koncem sessiony, požádejte agenta, ať ji uloží jako trvalý kontext, který si později načte on sám — nebo váš kolega.</p>
+        <pre class="code good">Napiš do .github\skills\auth-flow\SKILL.md
+stručný (≤60 řádků) popis auth flow tak, jak jsme ho právě
+pochopili. Zaměř se na: vstupní body, klíčové soubory, pasti,
+co dělat při změně. Žádná próza, jen seznamy a odkazy.</pre>
+        <p><strong>Co tím získáte:</strong></p>
+        <ul>
+          <li>Příští session načte 60 řádků skill místo 30 souborů (řádově menší input)</li>
+          <li>Kolegové dostanou ten samý destilát zadarmo — neplatí znovu za průzkum, který jste už udělali</li>
+          <li>Skill stárne s kódem v repu, ne v hlavách lidí</li>
+          <li>Agent píše vlastní instrukce, podle kterých pak sám pracuje — closing the loop</li>
+        </ul>
+        <div class="callout">Pravidlo: pokud jste se v sessioně něco složitě dozvěděli, je to <strong>kandidát na trvalý kontext</strong>. Repo je sdílená paměť týmu i agentů.</div>
+      </div></div></div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">08</div>
+        <div class="card-title">MCP progressivně — search → select → fetch</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p><strong>MCP má tři skryté nákladové vrstvy:</strong></p>
+        <ol>
+          <li>Tool definice a JSON schémata načtená do kontextu — i nepoužité</li>
+          <li>Argumenty tool callu jako output tokeny</li>
+          <li>Výsledky toolu replayované jako input v dalším kroku</li>
+        </ol>
+        <p><strong>Dobrý workflow:</strong></p>
+        <pre class="code good">1. search nebo list kandidáty
+2. vyberte jednoho
+3. fetch jen detail, co potřebujete pro rozhodnutí
+4. shrňte výsledek, než pokračujete</pre>
+        <div class="callout warn">Nepoužívané globální MCP servery stojí tokeny dřív, než je vůbec zavoláte. Držte MCP per-workspace.</div>
+        <p>A vyhněte se duplikaci — nepřidávejte MCP filesystem server, když klient má vlastní file tools.</p>
+      </div></div></div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">09</div>
+        <div class="card-title">Deterministické nástroje místo reasoningu přes mnoho tahů</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Pokud existuje algoritmus, který úkol vyřeší <strong>přesně</strong> — nenuťme model dělat to přes několik tahů s pravděpodobností chyby.</p>
+        <p><strong>Typičtí kandidáti zabalit do skill nebo CLI tool:</strong></p>
+        <ul>
+          <li>JSON → XML / CSV konverze</li>
+          <li>Token counting, log slicing, schema validace</li>
+          <li>Extrakce dependency grafu</li>
+          <li>Sort, filter, deduplikace velkých dat</li>
+          <li>Generátory ID, šablony s parametry</li>
+        </ul>
+        <p><strong>Co tím ušetříte:</strong> tool-call smyčky, retries, verbose intermediate reasoning, output tokeny, chyby z LLM aritmetiky.</p>
+        <div class="callout">
+          <strong>Bonus:</strong> tyto CLI nástroje a skills vám může <strong>vyvíjet a udržovat sám agent</strong>. Stačí říct „tento workflow děláme pořád stejně, zabal ho do skript-backed skill a přidej testy". A na konci session se zeptejte: <em>„Co bych mohl zautomatizovat, abys to příště nemusel řešit promptem?"</em> Agent vám sám navrhne (a často rovnou napíše) CLI tool, který odstraní opakované reasoning přes mnoho tahů.
+        </div>
+        <p>Skill se script-backed toolem dělá 1 tool call s deterministickým výstupem místo 5 tahů s pravděpodobností chyby.</p>
+      </div></div></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">10</div>
+        <div class="card-title">Session management — /ask, /fork, /resume, /share, /compact</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <table class="compact">
+          <tr><th>Situace</th><th>Lepší volba</th></tr>
+          <tr><td>Stejný koherentní úkol pokračuje</td><td><code>/resume</code> — využijte cached context</td></tr>
+          <tr><td>Vedlejší průzkum, nesmí znečistit main thread</td><td><code>/ask</code> nebo <code>/fork</code></td></tr>
+          <tr><td>Z užitečného stavu chcete více variant</td><td><code>/fork</code></td></tr>
+          <tr><td>Staré logy a tool výstupy dominují</td><td><code>/compact</code></td></tr>
+          <tr><td>Budoucí sessions potřebují kontext</td><td>napište handoff, <code>/share</code></td></tr>
+          <tr><td>Plánujete ještě jednu interakci</td><td>obvykle <strong>nepoužívejte</strong> compact</td></tr>
+        </table>
+        <div class="callout warn"><code>/compact</code> není rutinní úsporné tlačítko. Cached history je často levnější než ji nahradit fresh summary inputem. Compaktujte, jen když se kontext zreusuje (více forků) nebo je hodně stale.</div>
+        <pre class="code">compact value ≈ reuse_count × removed_stale_context
+                − summary_output_tokens
+                − fresh_input paid after losing cache</pre>
+      </div></div></div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">11</div>
+        <div class="card-title">Subagents — izolace, ne magická úspora</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <div class="callout">Paralelní agenti mohou ušetřit wall-clock, ale <strong>znásobit input tokeny</strong>, pokud čtou stejné soubory.</div>
+        <p><strong>Použijte subagenta když:</strong></p>
+        <ul>
+          <li>Práce je opravdu nezávislá</li>
+          <li>Kontext jde shardovat podle service / file area</li>
+          <li>Stačí levnější model (extrakce, summarization, test triage)</li>
+          <li>Výsledek lze vrátit jako krátké shrnutí</li>
+        </ul>
+        <p><strong>Nepoužívejte když:</strong></p>
+        <ul>
+          <li>Všichni agenti potřebují stejný kontext</li>
+          <li>Úkol je sekvenční</li>
+          <li>Coordination overhead dominuje</li>
+        </ul>
+        <p><strong>Handoff small:</strong> objective, known facts, exact files, constraints, acceptance criteria, output format. Žádné dlouhé narativní historie.</p>
+      </div></div></div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card" data-card>
+      <div class="card-head">
+        <div class="card-num">12</div>
+        <div class="card-title">Měření jako součást vývoje skills — CI/CD + self-improvement</div>
+        <div class="card-toggle">▾</div>
+      </div>
+      <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Token efficiency není jednorázový audit — je to <strong>engineering discipline s feedback loopem</strong>.</p>
+
+        <p><strong>Měřte při vývoji každé nové skill nebo promptu:</strong></p>
+        <ul>
+          <li>Spusťte scénář s baseline (bez skill) a s novou skill</li>
+          <li>Srovnejte: input, output, cached tokens, počet tahů, tool calls, latency, retry rate</li>
+          <li>Používejte weighted units (kombinují cenu input/output/cached) — ne jen raw count</li>
+          <li>Hodnoťte i kvalitu výsledku — úspora s reworkem je ztráta</li>
+        </ul>
+
+        <p><strong>CI/CD pipeline pro skill changes:</strong></p>
+        <pre class="code">on: pull_request
+  paths: ['.github/skills/**', 'AGENTS.md', '.github/prompts/**']
+
+steps:
+  - run: copilot-token-lab run --scenarios skills-regression --iterations 3
+  - run: copilot-token-lab compare --baseline main --head HEAD
+  - fail-if: weighted_units_delta > +10% AND quality_score < baseline
+  - comment-pr: report.md</pre>
+        <ul>
+          <li>PR check, který selže když nová skill zdraží scénář o víc než threshold bez zlepšení kvality</li>
+          <li>Komentář v PR s tabulkou: tokens before/after, $ odhad, kvalita, regression list</li>
+          <li>Trend graf v <code>main</code> branchi — kolik tokenů stojí typický workflow měsíc po měsíci</li>
+        </ul>
+
+        <p><strong>Self-improving agents (close the loop):</strong> po dokončení netriviální session se zeptejte agenta:</p>
+        <pre class="code good">Co jsi v této session dělal neefektivně?
+Co by ti příště ušetřilo tokeny nebo tahy?
+Které části kontextu byly nepoužité?
+Navrhni konkrétní úpravu skill / AGENTS.md / prompt template.</pre>
+        <p>V Copilot CLI je na to <code>/chronicle improve</code> — promění recurring friction v krátké instrukce.</p>
+
+        <p><strong>OpenTelemetry je ground truth.</strong> Copilot CLI exportuje token telemetry přes <code>COPILOT_OTEL_FILE_EXPORTER_PATH</code>. Spojené s automatizovaným harness (např. <code>tools/copilot-token-lab</code>) máte reprodukovatelný benchmark, ne dojem.</p>
+
+        <div class="callout">Jediná univerzální rada: <strong>změřte svůj workload</strong>. Cheaper model není automaticky cheaper outcome.</div>
+      </div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== SUMMARY =============== -->
+<section class="group" id="summary">
+  <div class="group-title">Shrnutí</div>
+  <div class="summary">
+    <div class="summary-col">
+      <h3>Snadné</h3>
+      <ul>
+        <li>Auto model jako default (10% sleva)</li>
+        <li>Pojmenujte přesné soubory a done criteria</li>
+        <li>Nalezení souborů jako první krok</li>
+        <li>Omezte výstup — „max 5 odrážek", „jen diff"</li>
+        <li>Výňatky z logů, ne dumpy; pro UI Playwright</li>
+        <li>Strukturovaný formát smaže rozdíl jazyka</li>
+      </ul>
+    </div>
+    <div class="summary-col">
+      <h3>Pokročilé</h3>
+      <ul>
+        <li>Drobný <code>AGENTS.md</code> + skills + path instructions</li>
+        <li>MCP jako search → select → fetch</li>
+        <li>Deterministické toolery (agent je sám napíše)</li>
+        <li><code>/ask</code>, <code>/fork</code>, <code>/resume</code> vědomě, <code>/compact</code> opatrně</li>
+        <li>Subagents jen na nezávislou práci</li>
+        <li>Měřte v CI a ptejte se agenta na sebezlepšení</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="closing-quote">
+    <p class="q">Tokeny nejsou náklad ke škrcení. Jsou <strong>investicí</strong>. Řešte návratnost, ne spotřebu.</p>
+  </div>
+</section>
+
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn icon-btn" id="themeToggle" title="Přepnout světlý/tmavý režim">🌙</button>
+  <button class="ctrl-btn" id="expandAll">Rozbalit vše</button>
+  <button class="ctrl-btn" id="collapseAll">Sbalit vše</button>
+</div>
+
+<footer>
+  Podklad: <code>docs/workshop/05-token-efficiency.md</code> &middot; GitHub Copilot docs
+</footer>
+
+<script>
+  // Card toggle
+  document.querySelectorAll('[data-card]').forEach(card => {
+    card.querySelector('.card-head').addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+  });
+
+  // Inline example toggle (in section 6)
+  document.querySelectorAll('.example-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.example;
+      const content = document.querySelector(`[data-example-content="${key}"]`);
+      btn.classList.toggle('open');
+      content.classList.toggle('open');
+    });
+  });
+
+  // Ukazka tabs
+  document.querySelectorAll('.ukazka-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.ukazka-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.ukazka-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`[data-content="${target}"]`).classList.add('active');
+    });
+  });
+
+  // Expand/Collapse all
+  document.getElementById('expandAll').addEventListener('click', () => {
+    document.querySelectorAll('[data-card]').forEach(c => c.classList.add('open'));
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    document.querySelectorAll('[data-card]').forEach(c => c.classList.remove('open'));
+  });
+
+  // Theme toggle (with localStorage persistence)
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('themeToggle');
+  const applyTheme = (theme) => {
+    root.setAttribute('data-theme', theme);
+    themeBtn.textContent = theme === 'light' ? '☀️' : '🌙';
+    try { localStorage.setItem('token-talk-theme', theme); } catch(e) {}
+  };
+  const saved = (() => { try { return localStorage.getItem('token-talk-theme'); } catch(e) { return null; } })();
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+  });
+</script>
+</body>
+</html>
