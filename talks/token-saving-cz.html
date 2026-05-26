@@ -941,23 +941,66 @@ co dělat při změně. Žádná próza, jen seznamy a odkazy.</pre>
     <div class="card" data-card>
       <div class="card-head">
         <div class="card-num">10</div>
-        <div class="card-title">Session management — /ask, /fork, /resume, /share, /compact</div>
+        <div class="card-title">Session management — /ask, /undo, /fork, /resume, /new, /clear, /compact, /share, /chronicle</div>
         <div class="card-toggle">▾</div>
       </div>
       <div class="card-body"><div class="card-body-outer"><div class="card-body-inner">
+        <p>Ekonomika je vždy stejná: stará cache je nejlevnější, fresh input ~10×, output ~60×. Vyberte příkaz, který přidá nejmíň tokenů — ne ten, co nejrychleji „uklidí".</p>
         <table class="compact">
-          <tr><th>Situace</th><th>Lepší volba</th></tr>
-          <tr><td>Stejný koherentní úkol pokračuje</td><td><code>/resume</code> — využijte cached context</td></tr>
-          <tr><td>Vedlejší průzkum, nesmí znečistit main thread</td><td><code>/ask</code> nebo <code>/fork</code></td></tr>
-          <tr><td>Z užitečného stavu chcete více variant</td><td><code>/fork</code></td></tr>
-          <tr><td>Staré logy a tool výstupy dominují</td><td><code>/compact</code></td></tr>
-          <tr><td>Budoucí sessions potřebují kontext</td><td>napište handoff, <code>/share</code></td></tr>
-          <tr><td>Plánujete ještě jednu interakci</td><td>obvykle <strong>nepoužívejte</strong> compact</td></tr>
+          <tr><th>Situace</th><th>Příkaz</th><th>Co se stane</th></tr>
+          <tr>
+            <td>Krátký dotaz mimo téma</td>
+            <td><code>/ask</code> (<code>/btw</code>)</td>
+            <td>Cache zůstává, odpověď se nedostává do historie (neroste input/cache pro příští tah)</td>
+          </tr>
+          <tr>
+            <td>Špatný poslední tah</td>
+            <td><code>/undo</code> (<code>/rewind</code>)</td>
+            <td>Odstraní jak změny v souborech, tak kontext posledního tahu</td>
+          </tr>
+          <tr>
+            <td>Sidequest na stejném základě</td>
+            <td><code>/fork</code></td>
+            <td>Větve sdílejí cached prefix</td>
+          </tr>
+          <tr>
+            <td>Návrat po pauze</td>
+            <td><code>/resume</code> (<code>/continue</code>)</td>
+            <td>Obvykle do 5–60 minut cache hit, později input — zvažte, zda kontext stojí za to, nebo začít znovu</td>
+          </tr>
+          <tr>
+            <td>Nové téma, možná se vrátím</td>
+            <td><code>/new</code></td>
+            <td>Stará session uložena, nová bez cache</td>
+          </tr>
+          <tr>
+            <td>Trvale ukončit</td>
+            <td><code>/clear</code> (<code>/reset</code>)</td>
+            <td>Session zahozena, změny v souborech ne</td>
+          </tr>
+          <tr>
+            <td>Context narostl, musím pokračovat</td>
+            <td><code>/compact</code></td>
+            <td><strong>Drahá operace</strong> — output bolus + invalidace cache</td>
+          </tr>
+          <tr>
+            <td>Export sezení k analýze</td>
+            <td><code>/share</code> (<code>/export</code>)</td>
+            <td>Markdown, HTML nebo GitHub gist — zdarma</td>
+          </tr>
         </table>
-        <div class="callout warn"><code>/compact</code> není rutinní úsporné tlačítko. Cached history je často levnější než ji nahradit fresh summary inputem. Compaktujte, jen když se kontext zreusuje (více forků) nebo je hodně stale.</div>
-        <pre class="code">compact value ≈ reuse_count × removed_stale_context
-                − summary_output_tokens
-                − fresh_input paid after losing cache</pre>
+
+        <p style="margin-top: 18px;"><strong><code>/share</code> jako vstup pro zlepšování:</strong> Vyexportujte 10 reálných sezení a nechte si je agentem zanalyzovat — <em>„jaký kontext stále chyběl, co se opakovaně načítalo zbytečně, jaký skill nebo AGENTS.md by zkrátil příští session?"</em> Investice tokenů do <strong>analýzy</strong> se vrátí zlevněním všech budoucích sezení. Repo jako sdílená paměť agenta i týmu.</p>
+
+        <p><code>/share</code> se hodí i pro <strong>eskalaci na autora skillu</strong> — když narazíte na opakovaný problém, pošlete autorovi export sezení místo popisu po paměti. Autor vidí přesný kontext a může skill cíleně vylepšit.</p>
+
+        <p style="margin-top: 18px;"><strong><code>/chronicle</code> — strukturovaná zpětná vazba zdarma:</strong> Vestavěný workflow nad historií sezení. Mimo standup a search hlavně:</p>
+        <ul>
+          <li><code>/chronicle tips</code> — agent vám řekne, co byste mohli dělat jinak / efektivněji</li>
+          <li><code>/chronicle cost-tips</code> — konkrétní návrhy, kde jste utratili zbytečné tokeny</li>
+          <li><code>/chronicle improve</code> — agent navrhne (a často rovnou napíše) konkrétní vylepšení skills, AGENTS.md, instructions</li>
+        </ul>
+        <p>Pravidelná self-reflection na konci dne nebo týdne. Levný způsob, jak nechat agenta optimalizovat agenta.</p>
       </div></div></div>
     </div>
 
