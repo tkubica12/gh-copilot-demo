@@ -9,6 +9,8 @@ from config import settings
 from repositories import TripRepository
 from routes import trip_routes
 from services import GalleryService
+from middleware import MetricsMiddleware
+from metrics import metrics_endpoint
 
 # Configure logging
 logging.basicConfig(
@@ -91,6 +93,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Metrics middleware
+app.add_middleware(MetricsMiddleware)
+
 # Include routers
 app.include_router(trip_routes.router)
 
@@ -99,6 +104,12 @@ app.include_router(trip_routes.router)
 async def health_check():
     """Health check endpoint."""
     return {"status": "healthy", "service": "trip"}
+
+
+@app.get("/metrics")
+async def metrics():
+    """Prometheus metrics endpoint."""
+    return await metrics_endpoint()
 
 
 if __name__ == "__main__":

@@ -10,6 +10,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from routes import configure_router, router
 from services.importer import DemoDataImportService
+from middleware import MetricsMiddleware
+from metrics import metrics_endpoint
 
 logging.basicConfig(
     level=getattr(logging, settings.log_level.upper(), logging.INFO),
@@ -55,12 +57,20 @@ app.add_middleware(
     allow_credentials=True,
 )
 
+app.add_middleware(MetricsMiddleware)
+
 app.include_router(router)
 
 
 @app.get("/health")
 async def health() -> dict[str, str]:
     return {"status": "ok", "service": "demo-data-init"}
+
+
+@app.get("/metrics")
+async def metrics():
+    """Prometheus metrics endpoint."""
+    return await metrics_endpoint()
 
 
 if __name__ == "__main__":

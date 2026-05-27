@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-data-init
+  namespace: default
+  labels:
+    app: demo-data-init
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8000"
+    prometheus.io/path: "/metrics"
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: demo-data-init
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-data-init
+  namespace: default
+  labels:
+    app: demo-data-init
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-data-init
+  template:
+    metadata:
+      labels:
+        app: demo-data-init
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: demo-data-init
+        image: demo-data-init:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: API_HOST
+          value: "0.0.0.0"
+        - name: API_PORT
+          value: "8000"
+        - name: LOG_LEVEL
+          value: "INFO"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
