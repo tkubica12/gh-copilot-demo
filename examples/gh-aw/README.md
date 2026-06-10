@@ -36,7 +36,7 @@ For this workshop, they help tell the story that agentic delivery does not stop 
 
 ## Practical note
 
-Most examples are intentionally stored outside `.github/workflows/` so they remain demo artifacts rather than active workflows in this repository. The issue triage source also lives in `.github\workflows\issue-triage.md` because it is the low-risk workflow intended for the live workshop; it becomes runnable after `gh aw compile` generates and commits the matching `.lock.yml`.
+Most examples are intentionally stored outside `.github/workflows/` so they remain demo artifacts rather than active workflows in this repository. The issue triage source also lives in `.github\workflows\issue-triage.md` with its compiled `.lock.yml` because it is the low-risk workflow intended for the live workshop.
 
 If you want to use the other examples for real:
 
@@ -55,4 +55,4 @@ For real usage, always review permissions, safe outputs, and security guidance c
 
 ## Demo-ready issue triage pattern
 
-The `issue-triage.md` example mirrors GitHub's current Agentic Workflows guidance: start with small, reviewable writes before enabling agents to create code changes. Once compiled, the workflow can add only allowed labels and one explanatory comment. That makes it a strong first live demo because the audience can immediately see classification, feasibility assessment, and recommended next action without risking repository state.
+The `issue-triage.md` example mirrors GitHub's current Agentic Workflows guidance: start with small, reviewable writes before enabling agents to create code changes. The workflow can add only allowed labels and one explanatory comment. That makes it a strong first live demo because the audience can immediately see classification, feasibility assessment, and recommended next action without risking repository state.

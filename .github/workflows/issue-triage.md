@@ -1,4 +1,5 @@
 ---
+timeout-minutes: 5
 on:
   issues:
     types: [opened, reopened]
@@ -15,18 +16,21 @@ safe-outputs:
     max: 2
   add-comment: {}
 ---
-## Issue Triage
+## Issue Triage Agent
 
-Analyze the triggering issue and help maintainers decide what should happen next.
+List open issues in `${{ github.repository }}` that have no labels. For each unlabeled issue, analyze the title and body, then add one or two of the allowed labels: `bug`, `enhancement`, `documentation`, `question`, `help wanted`, or `good first issue`.
 
-## What to do
+Skip issues that:
 
-1. Classify the issue by adding one or two allowed labels.
-2. Add a short maintainer-facing comment that includes:
-   - why the label or labels were selected
-   - whether the issue is clear enough for an agent or human to start
-   - any missing acceptance criteria, reproduction details, screenshots, logs, or scope decisions
-   - a recommendation: coding agent, workflow agent, human review, or close/merge with an existing issue
+- Already have labels.
+- Have been assigned to any user, especially non-bot users.
+
+After adding labels, mention the issue author in a comment and explain:
+
+- why the label or labels were selected
+- whether the issue is clear enough for an agent or human to start
+- any missing acceptance criteria, reproduction details, screenshots, logs, or scope decisions
+- a recommended next step: coding agent, workflow agent, human review, or close/merge with an existing issue
 
 ## Guardrails
 
