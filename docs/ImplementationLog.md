@@ -5,7 +5,7 @@
 Added evaluation datasets in `evals-data/topic-adherence/` to verify that healthcare AI assistants stay on topic and politely refuse non-healthcare questions (politics, immigration, religion, financial advice, legal advice, social controversies, geopolitics, entertainment).
 
 ### Decisions
-- Created `evals-data/topic-adherence/off_topic_refusal.jsonl` with 40 test cases spanning 8 off-topic categories. Each case provides a user query and a gold-standard polite-refusal response.
+- Created `evals-data/topic-adherence/off_topic_refusal.jsonl` with 41 test cases spanning 8 off-topic categories. Each case provides a user query and a gold-standard polite-refusal response.
 - Created `evals-data/topic-adherence/on_topic_acceptance.jsonl` with 30 test cases spanning 8 healthcare categories (symptoms, medication, chronic disease, mental health, preventive care, nutrition, emergency, paediatrics). Each case provides a user query and a gold-standard helpful response.
 - Used the Azure AI Foundry conversation evaluation JSONL format (`messages` array + `expected_behavior` + `category`) so datasets can be loaded directly into Foundry's evaluation UI or the Azure AI Evaluation SDK.
 - Added `evals-data/README.md` documenting the schema, folder structure, category taxonomy, and instructions for running evaluations both in the Foundry portal and programmatically.
