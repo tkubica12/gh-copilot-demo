@@ -1,5 +1,14 @@
 # Implementation Log
 
+## 2026-06-10 - Added issue-triage workflow-agent demo
+
+Expanded the workflow-agent workshop material so GitHub Agentic Workflows show concrete issue triage, not only scheduled reports or pull request governance follow-up.
+
+### Decisions
+- Added `examples\gh-aw\issue-triage.md` with label and comment safe outputs so the first workflow-agent demo performs bounded, visible writes.
+- Updated the workflow-agent chapter to present issue triage, daily reports, and PR governance as a maturity ladder.
+- Linked the token-efficiency and centrally managed skills articles from the workshop docs instead of duplicating their broader narrative inside the repo.
+
 ## 2026-04-26 – Expanded token lab with scaled context and cost units
 
 Extended the token-efficiency lab so the measured suite covers scaled `AGENTS.md` versus dynamic skills, Caveman-inspired response terseness, and relative model cost units.
@@ -197,4 +206,3 @@ Removed reliance on `RUN_INTEGRATION_TESTS` environment flag. Integration tests 
 
 ### 2025-08-31 – Integration test skip timing fix
 Adjusted integration test modules to load `.env` before evaluating `@pytest.mark.skipif` so that environment variables defined only in the service `.env` file are recognized during collection. Previously the skip condition ran before the autouse fixture loaded `.env`, causing false skips.
-

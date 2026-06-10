@@ -20,6 +20,8 @@ Good short explanation:
 - skills excel when you want something lightweight, local, and easy to package with the repository
 - MCP excels when you want live tools, external systems, or centrally managed enterprise integrations
 
+For a deeper discussion of how to manage skills centrally instead of copying one-off skill folders everywhere, point readers to the companion article: [Agent skills and central management](https://tomaskubica.cz/en/2026/agent-skills-centralni-sprava/). Keep this chapter focused on the hands-on repo examples; use the article for operating-model discussion.
+
 ## 3.2 See skills in action
 
 Open:

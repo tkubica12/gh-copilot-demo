@@ -20,4 +20,6 @@ This folder contains the detailed lecture flow for the GitHub Copilot Demo works
 
 - [Enterprise demo flow](../enterprise_demo_flow.md) for presenter notes.
 - [Token lab](../../tools/copilot-token-lab/README.md) for repeatable token-efficiency measurements.
+- [Token saving article](https://tomaskubica.cz/en/2026/token-saving-cz/) for a narrative explanation of the token-efficiency chapter.
+- [Central skills management article](https://tomaskubica.cz/en/2026/agent-skills-centralni-sprava/) for operating-model guidance beyond the local skill examples.
 - [Implementation log](../ImplementationLog.md) for documentation and architecture decisions.

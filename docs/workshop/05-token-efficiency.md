@@ -6,6 +6,8 @@
 
 This chapter turns token efficiency into a measurable engineering practice. It summarizes the lecture guidance and links to the repeatable Copilot CLI measurement lab.
 
+For the narrative version of the same guidance, use the companion article [Token saving in GitHub Copilot](https://tomaskubica.cz/en/2026/token-saving-cz/). This chapter intentionally stays focused on workshop evidence, prompts, and lab artifacts so the article can carry the broader explanation without duplicating it here.
+
 ## Measured benchmark summary
 
 These results come from a real local run of the reusable suite in `..\..\tools\copilot-token-lab`. Treat them as lab evidence and rerun the suite for current client, model, and repository state. Use **weighted units** as the headline metric when pricing weights are available because input, cached input, and output tokens can have different prices.

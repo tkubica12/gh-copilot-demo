@@ -33,7 +33,7 @@ The workshop follows one connected engineering story:
 
 ## Token-efficiency benchmark highlight
 
-The course now includes a measured token-efficiency lab. The headline lecture table is in [Chapter 05](docs/workshop/05-token-efficiency.md), with detailed results in [`tools/copilot-token-lab/suite-example-analysis.md`](tools/copilot-token-lab/suite-example-analysis.md) and rerun instructions in [`tools/copilot-token-lab/README.md`](tools/copilot-token-lab/README.md).
+The course now includes a measured token-efficiency lab. The headline lecture table is in [Chapter 05](docs/workshop/05-token-efficiency.md), with detailed results in [`tools/copilot-token-lab/suite-example-analysis.md`](tools/copilot-token-lab/suite-example-analysis.md) and rerun instructions in [`tools/copilot-token-lab/README.md`](tools/copilot-token-lab/README.md). Use the companion article [Token saving in GitHub Copilot](https://tomaskubica.cz/en/2026/token-saving-cz/) for the longer narrative and keep the repo chapter focused on measured workshop evidence.
 
 ## Supporting material
 
@@ -42,5 +42,6 @@ The course now includes a measured token-efficiency lab. The headline lecture ta
 - [`docs/enterprise_demo_flow.md`](docs/enterprise_demo_flow.md) is the concise presenter flow.
 - [`.github/prompts`](.github/prompts) and [`.github/skills`](.github/skills) contain reusable Copilot starts and local capabilities.
 - [`tools/copilot-token-lab`](tools/copilot-token-lab/README.md) contains the token measurement side project.
+- [Agent skills and central management](https://tomaskubica.cz/en/2026/agent-skills-centralni-sprava/) complements the local skills chapter with central operating-model guidance.
 
 This repository is for demonstrations and learning, not for production use.
