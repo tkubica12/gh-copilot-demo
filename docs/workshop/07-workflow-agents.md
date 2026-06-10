@@ -22,6 +22,7 @@ Traditional GitHub Actions workflows are deterministic YAML pipelines: build, te
 
 Open:
 
+- `.github\workflows\issue-triage.md`
 - `examples\gh-aw\README.md`
 - `examples\gh-aw\issue-triage.md`
 - `examples\gh-aw\daily-maintainer-report.md`
@@ -29,7 +30,7 @@ Open:
 
 ### Issue triage
 
-This is the most concrete and lowest-risk workflow-agent demo. The workflow runs when an issue is opened or reopened, classifies the issue with a small allowlist of labels, and posts a short comment about feasibility, clarity, missing details, and the recommended next step.
+This is the most concrete and lowest-risk workflow-agent demo. The runnable workflow source lives in `.github\workflows\issue-triage.md`; the matching copy in `examples\gh-aw\issue-triage.md` remains available for discussion with the other examples. After `gh aw compile` generates the `.lock.yml`, the workflow runs when an issue is opened or reopened, classifies the issue with a small allowlist of labels, and posts a short comment about feasibility, clarity, missing details, and the recommended next step.
 
 This maps directly to the latest GitHub Agentic Workflows examples: issue triage is useful because it is judgment-driven, repository-specific, and hard to capture as deterministic YAML. It is also safe to demonstrate because the only writes are `add-labels` and `add-comment`; the agent cannot close the issue, assign users, merge code, or create an implementation PR.
 

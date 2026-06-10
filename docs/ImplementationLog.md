@@ -6,6 +6,7 @@ Expanded the workflow-agent workshop material so GitHub Agentic Workflows show c
 
 ### Decisions
 - Added `examples\gh-aw\issue-triage.md` with label and comment safe outputs so the first workflow-agent demo performs bounded, visible writes.
+- Added the issue triage workflow source under `.github\workflows\issue-triage.md`; the generated `.lock.yml` must be committed after `gh aw compile` succeeds for live execution.
 - Updated the workflow-agent chapter to present issue triage, daily reports, and PR governance as a maturity ladder.
 - Linked the token-efficiency and centrally managed skills articles from the workshop docs instead of duplicating their broader narrative inside the repo.
 
