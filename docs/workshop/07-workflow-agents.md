@@ -23,8 +23,24 @@ Traditional GitHub Actions workflows are deterministic YAML pipelines: build, te
 Open:
 
 - `examples\gh-aw\README.md`
+- `examples\gh-aw\issue-triage.md`
 - `examples\gh-aw\daily-maintainer-report.md`
 - `examples\gh-aw\governance-after-pr.md`
+
+### Issue triage
+
+This is the most concrete and lowest-risk workflow-agent demo. The workflow runs when an issue is opened or reopened, classifies the issue with a small allowlist of labels, and posts a short comment about feasibility, clarity, missing details, and the recommended next step.
+
+This maps directly to the latest GitHub Agentic Workflows examples: issue triage is useful because it is judgment-driven, repository-specific, and hard to capture as deterministic YAML. It is also safe to demonstrate because the only writes are `add-labels` and `add-comment`; the agent cannot close the issue, assign users, merge code, or create an implementation PR.
+
+Good live-demo issue comment shape:
+
+```text
+Classification: documentation
+Feasibility: clear enough for a small docs PR
+Missing details: none
+Recommendation: assign to Copilot coding agent or handle as a quick maintainer PR
+```
 
 ### Daily maintainer report
 
@@ -34,7 +50,15 @@ This workflow runs on a weekday schedule. It asks the agent to analyze recent pu
 
 This workflow triggers on pull request events. It asks the agent to summarize the PR intent, highlight unresolved review concerns, note failing CI checks and security findings, and recommend whether the next step should be a coding-agent task, a workflow-agent task, or human review. Again, the only permitted write action is creating a governance issue.
 
-Both examples show the pattern: the agent brings judgment and context synthesis, while deterministic pipelines remain the source of truth for builds, tests, and releases.
+These examples show the pattern: the agent brings judgment and context synthesis, while deterministic pipelines remain the source of truth for builds, tests, and releases.
+
+The three examples form a clear maturity ladder:
+
+| Stage | Example | Safe outputs |
+| --- | --- | --- |
+| Start | Issue triage | add allowed labels and one comment |
+| Scale | Daily maintainer report | create a bounded report issue |
+| Govern | Governance after PR | create a bounded follow-up issue |
 
 ## 7.3 Try this
 
@@ -54,6 +78,8 @@ Draft a variant of this workflow that creates a governance issue only when pull 
 
 - workflow agents are a natural next step after coding agents
 - they are useful for scheduled or event-driven repository automation
+- issue triage is the fastest way to show visible, useful agentic workflow output
+- safe outputs make the demo credible because writes are allowlisted and bounded
 - human approval and deterministic pipelines still matter
 
 ---

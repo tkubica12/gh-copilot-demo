@@ -23,14 +23,16 @@ For this workshop, they help tell the story that agentic delivery does not stop 
 ## Suggested presenter flow
 
 1. show coding agents and PR review
-2. show security findings and governance expectations
-3. show a `gh-aw` workflow that summarizes repository state or PR follow-up
-4. emphasize human review and guardrails
+2. show issue triage as the lowest-risk write workflow: labels plus a recommendation comment
+3. show security findings and governance expectations
+4. show a `gh-aw` workflow that summarizes repository state or PR follow-up
+5. emphasize human review and guardrails
 
 ## Example files
 
 - `daily-maintainer-report.md`
 - `governance-after-pr.md`
+- `issue-triage.md`
 
 ## Practical note
 
@@ -50,3 +52,7 @@ gh aw compile .github/workflows/my-workflow.md
 ```
 
 For real usage, always review permissions, safe outputs, and security guidance carefully.
+
+## Demo-ready issue triage pattern
+
+The `issue-triage.md` example mirrors GitHub's current Agentic Workflows guidance: start with small, reviewable writes before enabling agents to create code changes. The workflow can add only allowed labels and one explanatory comment. That makes it a strong first live demo because the audience can immediately see classification, feasibility assessment, and recommended next action without risking repository state.
