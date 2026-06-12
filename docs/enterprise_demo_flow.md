@@ -1,5 +1,9 @@
 # Enterprise demo flow
 
+Language: [EN](enterprise_demo_flow.md) | [CZ](enterprise_demo_flow_CZ.md)
+
+> Canonical source of truth: English (`EN`) files are canonical. Czech (`CZ`) files are mirrors for local delivery.
+
 >> SLIDE: GitHub Enterprise and GitHub Copilot platform overview
 
 ## 1. Open with fast wins, but keep them brief

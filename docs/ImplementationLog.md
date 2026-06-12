@@ -1,5 +1,15 @@
 # Implementation Log
 
+## 2026-06-12 - Added Czech mirrors for workshop and enterprise documentation
+
+Added Czech (`CZ`) documentation mirrors for the workshop chapter set and enterprise presenter flow while explicitly keeping English (`EN`) files as the canonical source of truth.
+
+### Decisions
+- Added `docs\workshop\*_CZ.md` mirror files for all workshop chapters and the workshop index.
+- Added `docs\enterprise_demo_flow_CZ.md` as a Czech mirror of the presenter flow.
+- Updated root and workshop navigation files to expose Czech links and to state that English files remain canonical.
+- Added EN/CZ language-switch and source-of-truth notes to the workshop agenda files and enterprise flow entrypoint.
+
 ## 2026-06-10 - Added issue-triage workflow-agent demo
 
 Expanded the workflow-agent workshop material so GitHub Agentic Workflows show concrete issue triage, not only scheduled reports or pull request governance follow-up.
