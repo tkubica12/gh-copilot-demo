@@ -1,5 +1,9 @@
 # GitHub Copilot workshop: presenter-led příběh od plánu ke governed delivery
 
+Language: [EN](copilot_workshop_agenda_EN.md) | [CZ](copilot_workshop_agenda_CZ.md)
+
+> Canonical source of truth: English (`EN`) files are canonical. Czech (`CZ`) file is a translated mirror.
+
 Tento workshop je optimalizovaný pro presenter-led technický průchod s live demo ukázkami. Hlavní message je, že GitHub Copilot už není jen o autocomplete nebo chatu, ale o **governed multi-agent engineering workflow** napříč VS Code, Copilot CLI, GitHubem, GitHub Actions a provozem.
 
 - Rychlé ukázky a kontext nad repozitářem: volba modelu, porozumění codebase a rychlé ukotvení v tom, co v tomto repu skutečně je
