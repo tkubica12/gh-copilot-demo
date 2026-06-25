@@ -16,7 +16,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.3.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.24.0",
     "pytest-mock>=3.14.0",
     "respx>=0.21.1",
@@ -36,7 +36,7 @@ packages = ["routes", "services", "models"]
 
 [tool.uv]
 dev-dependencies = [
-    "pytest>=8.3.0",
+    "pytest>=9.0.3",
     "pytest-asyncio>=0.24.0",
     "pytest-mock>=3.14.0",
     "respx>=0.21.1",
